@@ -1,0 +1,49 @@
+---
+// import Card from "../components/Card.astro";
+import Main from "../layouts/Main.astro";
+---
+
+<Main>
+  <main>
+    <p>Hello World</p>
+    <p>Hello World</p>
+    <p>Hello World</p>
+    <p>Hello World</p>
+    <p style="margin-top: 4000px;">Hello World</p>
+  </main>
+  <!-- <div class="content">
+    <Card>ABC</Card>
+  </div> -->
+</Main>
+
+<style>
+  /* .content {
+    margin: 5rem;
+    width: 200px;
+    height: 300px;
+  } */
+
+  p:nth-of-type(1) {
+    font-family: "Mona Sans";
+  }
+
+  p:nth-of-type(2) {
+    font-family: "Mona Sans";
+    font-weight: 800;
+  }
+
+  p:nth-of-type(3) {
+    font-family: "Mona Sans";
+    font-style: italic;
+  }
+
+  p:nth-of-type(4) {
+    font-family: "Source Code Pro";
+    font-style: italic;
+  }
+
+  p:nth-of-type(5) {
+    font-family: "Source Code Pro";
+    font-style: normal;
+  }
+</style>

@@ -1,173 +1,21 @@
 ---
-
+import Main from "../layouts/Main.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Fabian Kachlock</title>
-  </head>
-  <body>
-    <div class="frame">
-      <span class="frame__hedge"></span>
-      <span class="frame__vedge"></span>
-      <span class="frame__corner tl"></span>
-      <span class="frame__corner tr"></span>
-      <span class="frame__corner bl"></span>
-      <span class="frame__corner br"></span>
-      <div class="frame__content">
-        <!-- <header>HEAD</header>
+<Main>
+  <!-- <header>HEAD</header>
         <main>CONTENT</main>
         <footer style="margin-top: 3000px;">FOOTER</footer> -->
-        <iframe
-          class="frame__old-content"
-          src="https://fabiankachlock.dev/"
-          allowtransparency="true"></iframe>
-      </div>
-    </div>
-  </body>
-</html>
+  <!-- <iframe
+    class="frame__old-content"
+    src="https://fabiankachlock.dev/"
+    allowtransparency="true"></iframe> -->
+</Main>
 
 <style>
-  body {
-    padding: 0;
-    margin: 0;
-    background-color: #141414;
-    color: #d8d8d8;
-    overflow: hidden;
-    cursor: crosshair;
-  }
-
-  :root {
-    --inset: 1rem;
-    --edge-size: calc(1rem * 0.75);
-  }
-
-  @media only screen and (min-width: 720px) {
-    :root {
-      --edge-size: 1rem;
-      --inset: 2rem;
-    }
-  }
-
-  .frame {
-    position: absolute;
-    inset: var(--inset);
-    margin: 0 auto;
-    max-width: 1280px;
-  }
-
-  .frame__content {
-    /* padding: 0.5rem; */
-    margin: 1px;
-    position: absolute;
-    overflow: hidden;
-    inset: 0;
-  }
-
-  .frame__hedge::before,
-  .frame__hedge::after,
-  .frame__vedge::before,
-  .frame__vedge::after {
-    background-color: #d8d8d8;
-    opacity: 0.6;
-    content: "";
-  }
-
-  .frame__hedge::before,
-  .frame__hedge::after {
-    position: fixed;
-    left: 0;
-    height: 1px;
-    width: 100vw;
-  }
-
-  .frame__vedge::before,
-  .frame__vedge::after {
-    position: absolute;
-    top: calc(var(--inset) * -1);
-    width: 1px;
-    height: 100dvh;
-  }
-
-  .frame__hedge::before {
-    top: var(--inset);
-  }
-
-  .frame__hedge::after {
-    bottom: var(--inset);
-  }
-
-  .frame__vedge::before {
-    left: 0;
-  }
-
-  .frame__vedge::after {
-    right: 0;
-  }
-
-  .frame__corner,
-  .frame__corner::after {
-    position: absolute;
-    background-color: #39a7cd;
-    content: "";
-    width: var(--edge-size);
-    height: 3px;
-  }
-
-  .frame__corner::after {
-    rotate: 90deg;
-  }
-
-  .frame__corner.tl {
-    left: 0;
-    top: 0;
-    translate: -50% -1px;
-  }
-
-  .frame__corner.tr {
-    right: 0;
-    top: 0;
-    translate: 50% -1px;
-  }
-
-  .frame__corner.bl {
-    left: 0;
-    bottom: 0;
-    translate: -50% 1px;
-  }
-
-  .frame__corner.br {
-    right: 0;
-    bottom: 0;
-    translate: 50% 1px;
-  }
-
   .frame__old-content {
     width: 100%;
     height: calc(100dvh - 2px - var(--inset) - var(--inset));
     border: 0;
   }
-</style>
-
-<style is:global>
-  /* width */
-  /* ::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #141414;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #d8d8d8;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  } */
 </style>
