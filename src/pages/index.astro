@@ -23,8 +23,8 @@
         <main>CONTENT</main>
         <footer style="margin-top: 3000px;">FOOTER</footer> -->
         <iframe
+          class="frame__old-content"
           src="https://fabiankachlock.dev/"
-          style="width: 100%; height: calc(100dvh - 2px - 4rem); border: 0;"
           allowtransparency="true"></iframe>
       </div>
     </div>
@@ -144,6 +144,12 @@
     right: 0;
     bottom: 0;
     translate: 50% 1px;
+  }
+
+  .frame__old-content {
+    width: 100%;
+    height: calc(100dvh - 2px - var(--inset) - var(--inset));
+    border: 0;
   }
 </style>
 
