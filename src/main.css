@@ -14,3 +14,17 @@
   font-weight: 200 900;
   font-stretch: 75% 125%;
 }
+
+:root {
+  --color-bg: #dfdfdf;
+  --color-text: #292929;
+  --color-primary: #39a7cd;
+  --color-surface: #f7f7f7;
+}
+
+.dark {
+  --color-bg: #141414;
+  --color-text: #d8d8d8;
+  --color-primary: #39a7cd;
+  --color-surface: #222222;
+}

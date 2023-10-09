@@ -12,7 +12,7 @@ import "../main.css";
     <meta name="generator" content={Astro.generator} />
     <title>Fabian Kachlock</title>
   </head>
-  <body>
+  <body class="dark">
     <div class="frame">
       <div class="frame__backdrop"></div>
       <div class="frame__content">
@@ -156,8 +156,8 @@ import "../main.css";
   body {
     padding: 0;
     margin: 0;
-    background-color: #141414;
-    color: #d8d8d8;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     overflow: hidden;
     cursor: crosshair;
   }
@@ -183,7 +183,7 @@ import "../main.css";
   }
 
   .head__bar {
-    background-color: #222222;
+    background-color: var(--color-surface);
     padding: 0.2rem;
     display: flex;
     justify-content: space-between;
@@ -202,7 +202,7 @@ import "../main.css";
 
   .head__title {
     margin: 0;
-    color: #39a7cd;
+    color: var(--color-primary);
     flex: 1;
     font-family: "Source Code Pro";
     font-weight: 600;
@@ -257,8 +257,7 @@ import "../main.css";
   .head__menu-content {
     position: relative;
     overflow: hidden;
-    background-color: #222222;
-    background-color: #141414;
+    background-color: var(--color-bg);
   }
 
   .head__menu-content-wrapper {
@@ -279,12 +278,12 @@ import "../main.css";
   .head__menu-item-link {
     font-family: "Source Code Pro";
     font-size: 1.5rem;
-    color: #d8d8d8;
+    color: var(--color-text);
   }
 
   .head__menu-item-link:hover {
     font-style: italic;
-    color: #39a7cd;
+    color: var(--color-primary);
   }
 
   .insertable-content {
@@ -320,11 +319,12 @@ import "../main.css";
   }
 
   .frame__backdrop {
-    background-color: #141414e0;
+    background-color: var(--color-bg);
     backdrop-filter: blur(3px);
     position: absolute;
     inset: 0;
     z-index: 0;
+    opacity: 0.8;
   }
 
   .frame__hline,
@@ -332,7 +332,7 @@ import "../main.css";
   .frame__hedge::after,
   .frame__vedge::before,
   .frame__vedge::after {
-    background-color: #d8d8d8;
+    background-color: var(--color-text);
     content: "";
   }
 
@@ -375,7 +375,7 @@ import "../main.css";
   .frame__corner,
   .frame__corner::after {
     position: absolute;
-    background-color: #39a7cd;
+    background-color: var(--color-primary);
     content: "";
     width: var(--edge-size);
     height: 3px;
