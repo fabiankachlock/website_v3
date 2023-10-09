@@ -1,8 +1,22 @@
 ---
+import { Image } from "astro:assets";
 import Main from "../layouts/Main.astro";
+import meJpeg from "../assets/me.jpeg";
 ---
 
 <Main>
+  <main>
+    <section class="hero">
+      <div class="hero__image-wrapper">
+        <div class="hero__image-mask">
+          <Image class="hero__image" src={meJpeg} alt="" />
+        </div>
+        <div class="hero__image-shadow">
+          <Image class="hero__image" src={meJpeg} alt="" />
+        </div>
+      </div>
+    </section>
+  </main>
   <!-- <header>HEAD</header>
         <main>CONTENT</main>
         <footer style="margin-top: 3000px;">FOOTER</footer> -->
@@ -13,9 +27,63 @@ import Main from "../layouts/Main.astro";
 </Main>
 
 <style>
-  .frame__old-content {
+  .hero__image-wrapper {
+    margin: 2rem auto;
+    width: 40vw;
+    height: 40vw;
+    min-width: 200px;
+    min-height: 200px;
+    max-height: 400px;
+    max-width: 400px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0) scale(1, 1);
+    -webkit-transform: translateZ(0) scale(1, 1);
+    position: relative;
+  }
+
+  .hero__image-mask {
+    position: absolute;
+    overflow: hidden;
     width: 100%;
-    height: calc(100dvh - 2px - var(--inset) - var(--inset));
-    border: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 2px solid #fff;
+    z-index: 2;
+  }
+
+  .hero__image-shadow {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 1;
+    border-radius: 10px;
+    transition:
+      top 70ms ease-in-out,
+      left 70ms ease-in-out;
+  }
+
+  .hero__image {
+    height: 120%;
+    width: auto;
+    translate: -28% -10%;
+  }
+
+  .hero__image-shadow .hero__image {
+    transition: scale 70ms ease-in-out;
+  }
+
+  .hero:has(.hero__image-mask:hover) .hero__image-shadow .hero__image {
+    scale: 0.92;
+  }
+
+  .hero:has(.hero__image-mask:hover) .hero__image-shadow {
+    top: 1.5rem;
+    left: 1.5rem;
   }
 </style>

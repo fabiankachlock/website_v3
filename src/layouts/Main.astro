@@ -14,18 +14,7 @@ import "../main.css";
   </head>
   <body>
     <div class="frame">
-      <span class="frame__hedge"></span>
-      <span class="frame__vedge"></span>
-      <span class="frame__corner tl"></span>
-      <span class="frame__corner tr"></span>
-      <span class="frame__corner bl"></span>
-      <span class="frame__corner br"></span>
-      <div class="frame__hline">
-        <div class="frame__hline-anchor">
-          <span class="frame__hline-edge l"></span>
-          <span class="frame__hline-edge r"></span>
-        </div>
-      </div>
+      <div class="frame__backdrop"></div>
       <div class="frame__content">
         <header class="head">
           <div class="head__bar">
@@ -58,7 +47,21 @@ import "../main.css";
             </div>
           </nav>
         </header>
-        <slot />
+        <div class="insertable-content">
+          <slot />
+        </div>
+      </div>
+      <span class="frame__hedge"></span>
+      <span class="frame__vedge"></span>
+      <span class="frame__corner tl"></span>
+      <span class="frame__corner tr"></span>
+      <span class="frame__corner bl"></span>
+      <span class="frame__corner br"></span>
+      <div class="frame__hline">
+        <div class="frame__hline-anchor">
+          <span class="frame__hline-edge l"></span>
+          <span class="frame__hline-edge r"></span>
+        </div>
       </div>
     </div>
     <div class="background"></div>
@@ -138,6 +141,10 @@ import "../main.css";
     menuButtonElement.addEventListener("click", () => toggleMenu());
   }
 
+  setInterval(() => {
+    renderBg();
+  }, 150);
+
   resizeBg();
 </script>
 
@@ -172,6 +179,7 @@ import "../main.css";
     flex-direction: column-reverse;
     position: sticky;
     top: 0;
+    z-index: 100;
   }
 
   .head__bar {
@@ -279,14 +287,16 @@ import "../main.css";
     color: #39a7cd;
   }
 
+  .insertable-content {
+    position: relative;
+    z-index: 0;
+  }
+
   .frame {
     position: absolute;
     inset: var(--inset);
     margin: 0 auto;
     max-width: 1280px;
-    background-color: #141414;
-    /* background-color: #14141460; */
-    /* backdrop-filter: blur(2px); */
     z-index: 10;
   }
 
@@ -297,7 +307,8 @@ import "../main.css";
     word-break: break-all;
     font-size: 18px;
     line-height: 20px;
-    opacity: 0.6;
+    opacity: 0.4;
+    user-select: none;
   }
 
   .frame__content {
@@ -306,6 +317,14 @@ import "../main.css";
     position: absolute;
     overflow: auto;
     inset: 0;
+  }
+
+  .frame__backdrop {
+    background-color: #141414e0;
+    backdrop-filter: blur(3px);
+    position: absolute;
+    inset: 0;
+    z-index: 0;
   }
 
   .frame__hline,
