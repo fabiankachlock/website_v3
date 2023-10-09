@@ -1,0 +1,92 @@
+---
+import lightTheme from "@carbon/icons/svg/32/awake.svg?raw";
+import darkTheme from "@carbon/icons/svg/32/asleep.svg?raw";
+---
+
+<div class="theme-switch-wrapper">
+  <button class="theme-switch" aria-label="Theme Switch">
+    <div class="light">
+      <Fragment set:html={lightTheme} />
+    </div>
+    <div class="dark">
+      <Fragment set:html={darkTheme} />
+    </div>
+  </button>
+</div>
+
+<script>
+  import { toggleTheme } from "@/scripts/theme";
+
+  document.querySelector(".theme-switch")?.addEventListener("click", () => {
+    toggleTheme();
+  });
+
+  document
+    .querySelector(".language-select")
+    ?.addEventListener("change", (e) => {
+      window.location.href = (e?.target as HTMLSelectElement).value;
+    });
+</script>
+
+<style>
+  .theme-switch-wrapper {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    position: relative;
+    margin: 0.4rem;
+  }
+
+  .theme-switch {
+    cursor: pointer;
+    background: none;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--color-text);
+    background-color: var(--color-surface);
+    padding: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition:
+      box-shadow 70ms linear,
+      top 70ms linear,
+      left 70ms linear;
+    box-shadow:
+      0px 0px 0 -1px var(--color-surface),
+      0px 0px var(--color-text);
+  }
+
+  .theme-switch-wrapper:hover .theme-switch {
+    top: -3px;
+    left: -3px;
+    background-color: var(--color-bg);
+    box-shadow:
+      3px 3px 0 -1px var(--color-surface),
+      3px 3px var(--color-text);
+  }
+
+  .theme-switch :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: var(--color-text);
+    transition: scale 70ms linear;
+  }
+
+  .theme-switch:active :global(svg) {
+    scale: 0.8;
+  }
+
+  .theme-switch .light {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .theme-switch .dark {
+    display: none;
+  }
+
+  :global([data-theme="dark"]) .theme-switch .light {
+    display: block;
+  }
+</style>

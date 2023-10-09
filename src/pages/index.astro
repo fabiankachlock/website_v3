@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import Main from "../layouts/Main.astro";
-import meJpeg from "../assets/me.jpeg";
+import Main from "@/layouts/Main.astro";
+import meJpeg from "@/assets/me.jpeg";
 ---
 
 <Main>
@@ -76,6 +76,7 @@ import meJpeg from "../assets/me.jpeg";
 
   .hero__image-shadow .hero__image {
     transition: scale 70ms ease-in-out;
+    filter: grayscale(0.7);
   }
 
   .hero:has(.hero__image-mask:hover) .hero__image-shadow .hero__image {

@@ -22,7 +22,7 @@
   --color-surface: #f7f7f7;
 }
 
-.dark {
+[data-theme="dark"] {
   --color-bg: #141414;
   --color-text: #d8d8d8;
   --color-primary: #39a7cd;

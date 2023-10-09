@@ -1,7 +1,9 @@
 ---
-import svgLogo from "../assets/logo.svg?raw";
-import svgMenuButton from "../assets/menu_button.svg?raw";
-import "../main.css";
+import svgLogo from "@/assets/logo.svg?raw";
+import svgMenuButton from "@/assets/menu_button.svg?raw";
+import ThemeSwitch from "@/components/ThemeSwitch.astro";
+import terminalIcon from "@carbon/icons/svg/32/terminal.svg?raw";
+import "@/main.css";
 ---
 
 <html lang="en">
@@ -12,7 +14,7 @@ import "../main.css";
     <meta name="generator" content={Astro.generator} />
     <title>Fabian Kachlock</title>
   </head>
-  <body class="dark">
+  <body>
     <div class="frame">
       <div class="frame__backdrop"></div>
       <div class="frame__content">
@@ -47,9 +49,29 @@ import "../main.css";
             </div>
           </nav>
         </header>
-        <div class="insertable-content">
+        <main class="insertable-content">
           <slot />
-        </div>
+          <!-- <div style="height: 3000px"></div> -->
+        </main>
+        <footer class="footer">
+          <div class="footer__bar">
+            <div class="footer__text">
+              <p>© Fabian Kachlock 2023</p>
+            </div>
+            <div class="footer__spacer" style="flex: 1 0 0; width: 100%"></div>
+            <div class="terminal-opener__wrapper">
+              <button class="terminal-opener">
+                <Fragment set:html={terminalIcon} />
+              </button>
+            </div>
+            <ThemeSwitch />
+          </div>
+          <div class="footer__console">
+            <div class="footer__console-content">
+              <div class="footer__console-content-wrapper">TEST</div>
+            </div>
+          </div>
+        </footer>
       </div>
       <span class="frame__hedge"></span>
       <span class="frame__vedge"></span>
@@ -57,7 +79,13 @@ import "../main.css";
       <span class="frame__corner tr"></span>
       <span class="frame__corner bl"></span>
       <span class="frame__corner br"></span>
-      <div class="frame__hline">
+      <div class="frame__hline frame__hline--top">
+        <div class="frame__hline-anchor">
+          <span class="frame__hline-edge l"></span>
+          <span class="frame__hline-edge r"></span>
+        </div>
+      </div>
+      <div class="frame__hline frame__hline--bottom">
         <div class="frame__hline-anchor">
           <span class="frame__hline-edge l"></span>
           <span class="frame__hline-edge r"></span>
@@ -69,16 +97,38 @@ import "../main.css";
 </html>
 
 <script>
+  import { getStoredTheme, setTheme } from "@/scripts/theme";
+
+  const setupTheme = () => {
+    const storedTheme = getStoredTheme();
+    if (storedTheme) {
+      setTheme(storedTheme);
+      return;
+    }
+
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      setTheme("dark");
+    }
+  };
+
   const menuButtonElement = document.querySelector(".menu__opener");
   const bgElement = document.querySelector(".background");
-  const farmeContentElement = document.querySelector(".frame__content");
+  const frameContentElement = document.querySelector(".frame__content");
   const headElement = document.querySelector(".head");
+  const footerElement = document.querySelector(".footer");
   const menuElement = document.querySelector(".head__menu-content-wrapper");
+  const terminalElement = document.querySelector(".terminal-opener");
+  const consoleElement = document.querySelector(
+    ".footer__console-content-wrapper"
+  );
   let last = 0;
   let stringSize = 0;
 
-  if (farmeContentElement) {
-    farmeContentElement.addEventListener("scroll", () => renderBg());
+  if (frameContentElement) {
+    frameContentElement.addEventListener("scroll", () => renderBg());
   }
   window.onmousemove = () => renderBg();
   window.ontouchmove = () => renderBg();
@@ -88,7 +138,7 @@ import "../main.css";
   window.onmouseup = () => renderBg();
   window.onresize = () => {
     resizeBg();
-    repositionHline();
+    repositionUpperHline();
   };
 
   const chars =
@@ -111,29 +161,38 @@ import "../main.css";
     bgElement.innerHTML = randomText;
   };
 
-  const moveHline = (yPosition?: string) => {
+  const moveHline = (
+    selector: string,
+    attribute: string,
+    yPosition?: string
+  ) => {
     if (yPosition !== undefined) {
       document
-        .querySelector(".frame__hline")
-        ?.setAttribute("style", `top: ${yPosition}`);
+        .querySelector(selector)
+        ?.setAttribute("style", `${attribute}: ${yPosition}`);
     } else {
       document
-        .querySelector(".frame__hline")
-        ?.setAttribute("style", `top:  var(--inset)`);
+        .querySelector(selector)
+        ?.setAttribute("style", `${attribute}:  var(--inset)`);
     }
   };
 
+  // toggle the menu
   const toggleMenu = () => {
     headElement?.classList.toggle("open");
-    repositionHline();
+    repositionUpperHline();
   };
 
-  const repositionHline = () => {
+  const repositionUpperHline = () => {
     const height = menuElement?.getBoundingClientRect()?.height;
     if (headElement?.classList.contains("open")) {
-      moveHline(`calc(var(--inset) + ${height}px)`);
+      moveHline(
+        ".frame__hline--top",
+        "top",
+        `calc(var(--inset) + ${height}px)`
+      );
     } else {
-      moveHline(undefined);
+      moveHline(".frame__hline--top", "top", undefined);
     }
   };
 
@@ -141,10 +200,34 @@ import "../main.css";
     menuButtonElement.addEventListener("click", () => toggleMenu());
   }
 
+  // toggle the terminal
+  const toggleTerminal = () => {
+    footerElement?.classList.toggle("open");
+    repositionBottomHline();
+  };
+
+  const repositionBottomHline = () => {
+    const height = consoleElement?.getBoundingClientRect()?.height;
+    if (footerElement?.classList.contains("open")) {
+      moveHline(
+        ".frame__hline--bottom",
+        "bottom",
+        `calc(var(--inset) + ${height}px)`
+      );
+    } else {
+      moveHline(".frame__hline--bottom", "bottom", undefined);
+    }
+  };
+
+  if (terminalElement) {
+    terminalElement.addEventListener("click", () => toggleTerminal());
+  }
+
   setInterval(() => {
     renderBg();
   }, 150);
 
+  setupTheme();
   resizeBg();
 </script>
 
@@ -289,6 +372,104 @@ import "../main.css";
   .insertable-content {
     position: relative;
     z-index: 0;
+    flex-grow: 1;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 100;
+  }
+
+  .footer__bar {
+    background-color: var(--color-surface);
+    padding: 0.2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-row: 2;
+  }
+
+  .footer__console {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 130ms ease-in-out;
+  }
+
+  .footer.open .footer__console {
+    grid-template-rows: 1fr;
+  }
+
+  .footer__console-content {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-bg);
+  }
+
+  .footer__text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.3rem;
+  }
+
+  .footer__text p {
+    margin: 0;
+    font-family: "Mona Sans";
+    color: var(--color-text);
+    font-size: 1rem;
+  }
+
+  .terminal-opener__wrapper {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    position: relative;
+    margin: 0.4rem;
+  }
+
+  .terminal-opener {
+    cursor: pointer;
+    background: none;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--color-text);
+    background-color: var(--color-surface);
+    padding: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition:
+      box-shadow 70ms linear,
+      top 70ms linear,
+      left 70ms linear;
+    box-shadow:
+      0px 0px 0 -1px var(--color-surface),
+      0px 0px var(--color-text);
+  }
+
+  .terminal-opener__wrapper:hover .terminal-opener {
+    top: -3px;
+    left: -3px;
+    background-color: var(--color-bg);
+    box-shadow:
+      3px 3px 0 -1px var(--color-surface),
+      3px 3px var(--color-text);
+  }
+
+  .terminal-opener :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: var(--color-text);
+    transition: scale 70ms linear;
+  }
+
+  .terminal-opener:active :global(svg) {
+    scale: 0.8;
   }
 
   .frame {
@@ -316,6 +497,9 @@ import "../main.css";
     position: absolute;
     overflow: auto;
     inset: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
   }
 
   .frame__backdrop {
@@ -334,6 +518,7 @@ import "../main.css";
   .frame__vedge::after {
     background-color: var(--color-text);
     content: "";
+    z-index: 1000;
   }
 
   .frame__hline,
@@ -353,11 +538,12 @@ import "../main.css";
     height: 100dvh;
   }
 
-  .frame__hline,
+  .frame__hline--top,
   .frame__hedge::before {
     top: var(--inset);
   }
 
+  .frame__hline--bottom,
   .frame__hedge::after {
     bottom: var(--inset);
   }
@@ -413,7 +599,9 @@ import "../main.css";
 
   .frame__hline {
     z-index: 10;
-    transition: top 130ms linear;
+    transition:
+      top 130ms linear,
+      bottom 130ms linear;
   }
 
   .frame__hline-anchor {
