@@ -267,6 +267,7 @@ import "@/main.css";
 
   .head__bar {
     background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-bg);
     padding: 0.2rem;
     display: flex;
     justify-content: space-between;
@@ -384,6 +385,7 @@ import "@/main.css";
 
   .footer__bar {
     background-color: var(--color-surface);
+    border-top: 1px solid var(--color-bg);
     padding: 0.2rem;
     display: flex;
     justify-content: flex-end;
@@ -564,7 +566,7 @@ import "@/main.css";
     content: "";
     width: var(--edge-size);
     height: 3px;
-    z-index: 10;
+    z-index: 1001;
   }
 
   .frame__hline-edge::after,
@@ -597,7 +599,7 @@ import "@/main.css";
   }
 
   .frame__hline {
-    z-index: 10;
+    z-index: 1002;
     transition:
       top 130ms linear,
       bottom 130ms linear;
