@@ -79,11 +79,11 @@ import meJpeg from "@/assets/me.jpeg";
     filter: grayscale(0.7);
   }
 
-  .hero:has(.hero__image-mask:hover) .hero__image-shadow .hero__image {
+  .hero__image-mask:hover + .hero__image-shadow .hero__image {
     scale: 0.92;
   }
 
-  .hero:has(.hero__image-mask:hover) .hero__image-shadow {
+  .hero__image-mask:hover + .hero__image-shadow {
     top: 1.5rem;
     left: 1.5rem;
   }

@@ -17,6 +17,7 @@
 
 :root {
   --color-bg: #dfdfdf;
+  --color-transparent-bg: #dfdfdfa0;
   --color-text: #292929;
   --color-primary: #39a7cd;
   --color-surface: #f7f7f7;
@@ -24,6 +25,7 @@
 
 [data-theme="dark"] {
   --color-bg: #141414;
+  --color-transparent-bg: #141414a0;
   --color-text: #d8d8d8;
   --color-primary: #39a7cd;
   --color-surface: #222222;
