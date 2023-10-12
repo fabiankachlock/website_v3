@@ -1,15 +1,11 @@
 ---
-import i18next, { t } from 'i18next';
+import i18next from 'i18next';
 import type { Props as AstroSeoProps } from '@astrolib/seo';
 
 import CommonHead from '@/components/CommonHead.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
 import CommonSeo from '@/components/seo/CommonSeo.astro';
-import ThemeSwitch from '@/components/ThemeSwitch.astro';
-
-import svgLogo from '@/assets/logo.svg?raw';
-import svgMenuButton from '@/assets/menu_button.svg?raw';
-import terminalIcon from '@carbon/icons/svg/32/terminal.svg?raw';
-import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
 
 import '@/main.css';
 
@@ -26,70 +22,18 @@ export interface Props {
     <CommonHead />
     <CommonSeo title={Astro.props.title!} description={Astro.props.description!} custom={Astro.props.seo!} />
     <slot name="head" />
+    <script src="../scripts/setup.ts"></script>
   </head>
   <body>
     <div class="frame">
       <div class="frame__backdrop"></div>
       <div class="frame__content">
-        <header class="head">
-          <div class="head__bar">
-            <div class="head__logo">
-              <Fragment set:html={svgLogo} />
-            </div>
-            <h1 class="head__title">Fabian Kachlock</h1>
-            <div>
-              <button class="menu__opener">
-                <Fragment set:html={svgMenuButton} />
-              </button>
-            </div>
-          </div>
-          <nav class="head__menu">
-            <div class="head__menu-content">
-              <ul class="head__menu-content-wrapper">
-                <li class="head__menu-item">
-                  <a class="head__menu-item-link" href="#about">Über mich</a>
-                </li>
-                <li class="head__menu-item">
-                  <a class="head__menu-item-link" href="#skills">Skills</a>
-                </li>
-                <li class="head__menu-item">
-                  <a class="head__menu-item-link" href="#projects">Projekte</a>
-                </li>
-                <li class="head__menu-item">
-                  <a class="head__menu-item-link" href="#contact">Kontakt</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>
+        <Header />
         <main class="insertable-content">
           <slot />
           <!-- <div style="height: 3000px"></div> -->
         </main>
-        <footer class="footer">
-          <div class="footer__bar">
-            <div class="footer__text">
-              <p>© Fabian Kachlock 2023</p>
-            </div>
-            <div class="footer__spacer" style="flex: 1 0 0; width: 100%"></div>
-            <div class="terminal-opener__wrapper">
-              <button class="terminal-opener">
-                <Fragment set:html={terminalIcon} />
-              </button>
-            </div>
-            <div class="translate-wrapper">
-              <button class="translate-button">
-                <Fragment set:html={translateIcon} />
-              </button>
-            </div>
-            <ThemeSwitch />
-          </div>
-          <div class="footer__console">
-            <div class="footer__console-content">
-              <div class="footer__console-content-wrapper">TEST</div>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
       <span class="frame__hedge"></span>
       <span class="frame__vedge"></span>
@@ -111,110 +55,6 @@ export interface Props {
       </div>
     </div>
     <div class="background"></div>
-    <script>
-      import { getStoredTheme, setTheme } from '@/scripts/theme';
-
-      const setupTheme = () => {
-        const storedTheme = getStoredTheme();
-        if (storedTheme) {
-          setTheme(storedTheme);
-          return;
-        }
-
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          setTheme('dark');
-        }
-      };
-
-      const menuButtonElement = document.querySelector('.menu__opener');
-      const bgElement = document.querySelector('.background');
-      const frameContentElement = document.querySelector('.frame__content');
-      const headElement = document.querySelector('.head');
-      const footerElement = document.querySelector('.footer');
-      const menuElement = document.querySelector('.head__menu-content-wrapper');
-      const terminalElement = document.querySelector('.terminal-opener');
-      const consoleElement = document.querySelector('.footer__console-content-wrapper');
-      let last = 0;
-      let stringSize = 0;
-
-      if (frameContentElement) {
-        frameContentElement.addEventListener('scroll', () => renderBg());
-      }
-      window.onresize = () => {
-        resizeBg();
-        repositionUpperHline();
-        repositionBottomHline();
-      };
-
-      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-+_#=';
-
-      const resizeBg = () => {
-        const rect = bgElement?.getBoundingClientRect();
-        stringSize = ((rect?.width ?? 1) / 10) * ((rect?.height ?? 1) / 20);
-        renderBg();
-      };
-
-      const renderBg = () => {
-        const now = performance.now();
-        if (!bgElement || now - 50 < last) return;
-        let randomText = '';
-        for (let i = 0; i < stringSize; i++) {
-          randomText += chars[Math.floor(Math.random() * chars.length)];
-        }
-        last = now;
-        bgElement.innerHTML = randomText;
-      };
-
-      const moveHline = (selector: string, attribute: string, yPosition?: string) => {
-        if (yPosition !== undefined) {
-          document.querySelector(selector)?.setAttribute('style', `${attribute}: ${yPosition}`);
-        } else {
-          document.querySelector(selector)?.setAttribute('style', `${attribute}:  var(--inset)`);
-        }
-      };
-
-      // toggle the menu
-      const toggleMenu = () => {
-        headElement?.classList.toggle('open');
-        repositionUpperHline();
-      };
-
-      const repositionUpperHline = () => {
-        const height = menuElement?.getBoundingClientRect()?.height;
-        if (headElement?.classList.contains('open')) {
-          moveHline('.frame__hline--top', 'top', `calc(var(--inset) + ${height}px)`);
-        } else {
-          moveHline('.frame__hline--top', 'top', undefined);
-        }
-      };
-
-      if (menuButtonElement) {
-        menuButtonElement.addEventListener('click', () => toggleMenu());
-      }
-
-      // toggle the terminal
-      const toggleTerminal = () => {
-        footerElement?.classList.toggle('open');
-        repositionBottomHline();
-      };
-
-      const repositionBottomHline = () => {
-        const height = consoleElement?.getBoundingClientRect()?.height;
-        if (footerElement?.classList.contains('open')) {
-          moveHline('.frame__hline--bottom', 'bottom', `calc(var(--inset) + ${height}px)`);
-        } else {
-          moveHline('.frame__hline--bottom', 'bottom', undefined);
-        }
-      };
-
-      if (terminalElement) {
-        terminalElement.addEventListener('click', () => toggleTerminal());
-      }
-
-      setupTheme();
-      resizeBg();
-    </script>
-
     <style>
       html {
         font-size: 16px;
@@ -241,228 +81,10 @@ export interface Props {
         }
       }
 
-      .head {
-        display: flex;
-        flex-direction: column-reverse;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-
-      .head__bar {
-        background-color: var(--color-surface);
-        border-bottom: 1px solid var(--color-bg);
-        padding: 0.2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        grid-row: 2;
-      }
-
-      .head__logo {
-        height: 3rem;
-        margin-right: 0.5rem;
-      }
-
-      .head__logo :global(svg) {
-        height: 3rem;
-      }
-
-      .head__title {
-        margin: 0;
-        color: var(--color-primary);
-        flex: 1;
-        font-family: 'Source Code Pro';
-        font-weight: 600;
-        font-size: 2rem;
-      }
-
-      .head__menu {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows 130ms ease-in-out;
-      }
-
-      .head.open .head__menu {
-        grid-template-rows: 1fr;
-      }
-
-      .menu__opener {
-        height: 3rem;
-        width: 3rem;
-        margin: 0 0.5rem;
-        padding: 0;
-        display: block;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-      }
-
-      .menu__opener :global(svg) {
-        height: 3rem;
-        /*                discard offset to start with gap 
-                      |   gap to start to hide first cross (480 diag.)
-                      |   |   menu button open state
-                      |   |   |    gap to hide second cross piece (480+360)
-                      |   |   |    |*/
-        stroke-dasharray: 480 480 1400 840;
-        stroke-dashoffset: 480;
-        transition:
-          stroke-dasharray 300ms ease-out,
-          stroke-dashoffset 300ms ease-out;
-      }
-
-      .head.open .menu__opener :global(svg) {
-        /*                show first cross 
-                      |   gap to start to hide open state
-                      |   |   show second cross
-                      |   |   |   */
-        stroke-dasharray: 480 1760 480;
-        stroke-dashoffset: 0;
-      }
-
-      .head__menu-content {
-        position: relative;
-        overflow: hidden;
-        background-color: var(--color-bg);
-      }
-
-      .head__menu-content-wrapper {
-        margin: 0;
-        padding: 0.5rem;
-        list-style: none;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: wrap;
-        text-align: center;
-      }
-
-      .head__menu-item {
-        padding: 0.5rem 1rem;
-      }
-
-      .head__menu-item-link {
-        font-family: 'Source Code Pro';
-        font-size: 1.5rem;
-        color: var(--color-text);
-      }
-
-      .head__menu-item-link:hover {
-        font-style: italic;
-        color: var(--color-primary);
-      }
-
       .insertable-content {
         position: relative;
         z-index: 0;
         flex-grow: 1;
-      }
-
-      .footer {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        z-index: 100;
-        position: sticky;
-        bottom: 2px;
-      }
-
-      .footer__bar {
-        background-color: var(--color-surface);
-        border-top: 1px solid var(--color-bg);
-        padding: 0.2rem;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        flex-wrap: wrap;
-        grid-row: 2;
-      }
-
-      .footer__console {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows 130ms ease-in-out;
-      }
-
-      .footer.open .footer__console {
-        grid-template-rows: 1fr;
-      }
-
-      .footer__console-content {
-        position: relative;
-        overflow: hidden;
-        background-color: var(--color-bg);
-      }
-
-      .footer__text {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 0.3rem;
-      }
-
-      .footer__text p {
-        margin: 0;
-        font-family: 'Mona Sans';
-        color: var(--color-text);
-        font-size: 1rem;
-      }
-
-      .translate-wrapper,
-      .terminal-opener__wrapper {
-        width: 2rem;
-        height: 2rem;
-        cursor: pointer;
-        position: relative;
-        margin: 0.4rem;
-      }
-
-      .translate-button,
-      .terminal-opener {
-        cursor: pointer;
-        background: none;
-        width: 2rem;
-        height: 2rem;
-        border: 1px solid var(--color-text);
-        background-color: var(--color-surface);
-        padding: 2px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transition:
-          box-shadow 70ms linear,
-          top 70ms linear,
-          left 70ms linear;
-        box-shadow:
-          0px 0px 0 -1px var(--color-surface),
-          0px 0px var(--color-text);
-      }
-
-      .translate-wrapper:hover .translate-button,
-      .terminal-opener__wrapper:hover .terminal-opener {
-        top: -3px;
-        left: -3px;
-        background-color: var(--color-bg);
-        box-shadow:
-          3px 3px 0 -1px var(--color-surface),
-          3px 3px var(--color-text);
-      }
-
-      .translate-button :global(svg),
-      .terminal-opener :global(svg) {
-        display: block;
-        width: 100%;
-        height: 100%;
-        fill: var(--color-text);
-        transition: scale 70ms linear;
-      }
-
-      .translate-button:active :global(svg),
-      .terminal-opener:active :global(svg) {
-        scale: 0.8;
       }
 
       .frame {

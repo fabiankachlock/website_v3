@@ -1,0 +1,151 @@
+---
+import svgLogo from '@/assets/logo.svg?raw';
+import svgMenuButton from '@/assets/menu_button.svg?raw';
+---
+
+<header class="head">
+  <div class="head__bar">
+    <div class="head__logo">
+      <Fragment set:html={svgLogo} />
+    </div>
+    <h1 class="head__title">Fabian Kachlock</h1>
+    <div>
+      <button class="menu__opener">
+        <Fragment set:html={svgMenuButton} />
+      </button>
+    </div>
+  </div>
+  <nav class="head__menu">
+    <div class="head__menu-content">
+      <ul class="head__menu-content-wrapper">
+        <li class="head__menu-item">
+          <a class="head__menu-item-link" href="#about">Über mich</a>
+        </li>
+        <li class="head__menu-item">
+          <a class="head__menu-item-link" href="#skills">Skills</a>
+        </li>
+        <li class="head__menu-item">
+          <a class="head__menu-item-link" href="#projects">Projekte</a>
+        </li>
+        <li class="head__menu-item">
+          <a class="head__menu-item-link" href="#contact">Kontakt</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .head {
+    display: flex;
+    flex-direction: column-reverse;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .head__bar {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-bg);
+    padding: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-row: 2;
+  }
+
+  .head__logo {
+    height: 3rem;
+    margin-right: 0.5rem;
+  }
+
+  .head__logo :global(svg) {
+    height: 3rem;
+  }
+
+  .head__title {
+    margin: 0;
+    color: var(--color-primary);
+    flex: 1;
+    font-family: 'Source Code Pro';
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+  .head__menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 130ms ease-in-out;
+  }
+
+  .head.open .head__menu {
+    grid-template-rows: 1fr;
+  }
+
+  .menu__opener {
+    height: 3rem;
+    width: 3rem;
+    margin: 0 0.5rem;
+    padding: 0;
+    display: block;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .menu__opener :global(svg) {
+    height: 3rem;
+    /*                discard offset to start with gap 
+                      |   gap to start to hide first cross (480 diag.)
+                      |   |   menu button open state
+                      |   |   |    gap to hide second cross piece (480+360)
+                      |   |   |    |*/
+    stroke-dasharray: 480 480 1400 840;
+    stroke-dashoffset: 480;
+    transition:
+      stroke-dasharray 300ms ease-out,
+      stroke-dashoffset 300ms ease-out;
+  }
+
+  .head.open .menu__opener :global(svg) {
+    /*                show first cross 
+                      |   gap to start to hide open state
+                      |   |   show second cross
+                      |   |   |   */
+    stroke-dasharray: 480 1760 480;
+    stroke-dashoffset: 0;
+  }
+
+  .head__menu-content {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-bg);
+  }
+
+  .head__menu-content-wrapper {
+    margin: 0;
+    padding: 0.5rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .head__menu-item {
+    padding: 0.5rem 1rem;
+  }
+
+  .head__menu-item-link {
+    font-family: 'Source Code Pro';
+    font-size: 1.5rem;
+    color: var(--color-text);
+  }
+
+  .head__menu-item-link:hover {
+    font-style: italic;
+    color: var(--color-primary);
+  }
+</style>
