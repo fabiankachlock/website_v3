@@ -1,0 +1,25 @@
+---
+import { localizePath } from 'astro-i18next';
+
+export interface Props {
+  path: string;
+  laguage?: string;
+  id?: string;
+  classes?: string;
+  rel?: string;
+  label?: string;
+  noPrefetch?: boolean;
+}
+
+const { path, id, classes, laguage, rel, label, noPrefetch } = Astro.props;
+---
+
+<a
+  id={id}
+  class={classes}
+  rel={`${noPrefetch ? '' : 'prefetch'} ${rel ?? ''}`}
+  href={localizePath(path, laguage)}
+  aria-label={label}
+>
+  <slot />
+</a>

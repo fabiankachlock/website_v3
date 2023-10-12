@@ -1,18 +1,18 @@
 @font-face {
   font-family: 'Source Code Pro';
   src:
-    url(/SourceCodePro.woff2) format('woff2') tech('variations'),
-    url(/SourceCodePro.woff2) format('woff2 supports variations'),
-    url(/SourceCodePro.woff2) format('woff2-variations');
+    url(/fonts/SourceCodePro.woff2) format('woff2') tech('variations'),
+    url(/fonts/SourceCodePro.woff2) format('woff2 supports variations'),
+    url(/fonts/SourceCodePro.woff2) format('woff2-variations');
   font-weight: 200 900;
 }
 
 @font-face {
   font-family: 'Mona Sans';
   src:
-    url(/MonaSans.woff2) format('woff2') tech('variations'),
-    url(/MonaSans.woff2) format('woff2 supports variations'),
-    url(/MonaSans.woff2) format('woff2-variations');
+    url(/fonts/MonaSans.woff2) format('woff2') tech('variations'),
+    url(/fonts/MonaSans.woff2) format('woff2 supports variations'),
+    url(/fonts/MonaSans.woff2) format('woff2-variations');
   font-weight: 200 900;
   font-stretch: 75% 125%;
 }

@@ -1,19 +1,31 @@
 ---
-import svgLogo from "@/assets/logo.svg?raw";
-import svgMenuButton from "@/assets/menu_button.svg?raw";
-import ThemeSwitch from "@/components/ThemeSwitch.astro";
-import terminalIcon from "@carbon/icons/svg/32/terminal.svg?raw";
-import translateIcon from "@carbon/icons/svg/32/translate.svg?raw";
-import "@/main.css";
+import i18next, { t } from 'i18next';
+import type { Props as AstroSeoProps } from '@astrolib/seo';
+
+import CommonHead from '@/components/CommonHead.astro';
+import CommonSeo from '@/components/seo/CommonSeo.astro';
+import ThemeSwitch from '@/components/ThemeSwitch.astro';
+
+import svgLogo from '@/assets/logo.svg?raw';
+import svgMenuButton from '@/assets/menu_button.svg?raw';
+import terminalIcon from '@carbon/icons/svg/32/terminal.svg?raw';
+import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
+
+import '@/main.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  seo?: AstroSeoProps;
+}
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang={i18next.language}>
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Fabian Kachlock</title>
+    <CommonHead />
+    <CommonSeo title={Astro.props.title!} description={Astro.props.description!} custom={Astro.props.seo!} />
+    <slot name="head" />
   </head>
   <body>
     <div class="frame">
@@ -99,535 +111,510 @@ import "@/main.css";
       </div>
     </div>
     <div class="background"></div>
-  </body>
-</html>
+    <script>
+      import { getStoredTheme, setTheme } from '@/scripts/theme';
 
-<script>
-  import { getStoredTheme, setTheme } from "@/scripts/theme";
+      const setupTheme = () => {
+        const storedTheme = getStoredTheme();
+        if (storedTheme) {
+          setTheme(storedTheme);
+          return;
+        }
 
-  const setupTheme = () => {
-    const storedTheme = getStoredTheme();
-    if (storedTheme) {
-      setTheme(storedTheme);
-      return;
-    }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          setTheme('dark');
+        }
+      };
 
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      setTheme("dark");
-    }
-  };
+      const menuButtonElement = document.querySelector('.menu__opener');
+      const bgElement = document.querySelector('.background');
+      const frameContentElement = document.querySelector('.frame__content');
+      const headElement = document.querySelector('.head');
+      const footerElement = document.querySelector('.footer');
+      const menuElement = document.querySelector('.head__menu-content-wrapper');
+      const terminalElement = document.querySelector('.terminal-opener');
+      const consoleElement = document.querySelector('.footer__console-content-wrapper');
+      let last = 0;
+      let stringSize = 0;
 
-  const menuButtonElement = document.querySelector(".menu__opener");
-  const bgElement = document.querySelector(".background");
-  const frameContentElement = document.querySelector(".frame__content");
-  const headElement = document.querySelector(".head");
-  const footerElement = document.querySelector(".footer");
-  const menuElement = document.querySelector(".head__menu-content-wrapper");
-  const terminalElement = document.querySelector(".terminal-opener");
-  const consoleElement = document.querySelector(
-    ".footer__console-content-wrapper"
-  );
-  let last = 0;
-  let stringSize = 0;
+      if (frameContentElement) {
+        frameContentElement.addEventListener('scroll', () => renderBg());
+      }
+      window.onresize = () => {
+        resizeBg();
+        repositionUpperHline();
+        repositionBottomHline();
+      };
 
-  if (frameContentElement) {
-    frameContentElement.addEventListener("scroll", () => renderBg());
-  }
-  window.onresize = () => {
-    resizeBg();
-    repositionUpperHline();
-    repositionBottomHline();
-  };
+      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-+_#=';
 
-  const chars =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-+_#=";
+      const resizeBg = () => {
+        const rect = bgElement?.getBoundingClientRect();
+        stringSize = ((rect?.width ?? 1) / 10) * ((rect?.height ?? 1) / 20);
+        renderBg();
+      };
 
-  const resizeBg = () => {
-    const rect = bgElement?.getBoundingClientRect();
-    stringSize = ((rect?.width ?? 1) / 10) * ((rect?.height ?? 1) / 20);
-    renderBg();
-  };
+      const renderBg = () => {
+        const now = performance.now();
+        if (!bgElement || now - 50 < last) return;
+        let randomText = '';
+        for (let i = 0; i < stringSize; i++) {
+          randomText += chars[Math.floor(Math.random() * chars.length)];
+        }
+        last = now;
+        bgElement.innerHTML = randomText;
+      };
 
-  const renderBg = () => {
-    const now = performance.now();
-    if (!bgElement || now - 50 < last) return;
-    let randomText = "";
-    for (let i = 0; i < stringSize; i++) {
-      randomText += chars[Math.floor(Math.random() * chars.length)];
-    }
-    last = now;
-    bgElement.innerHTML = randomText;
-  };
+      const moveHline = (selector: string, attribute: string, yPosition?: string) => {
+        if (yPosition !== undefined) {
+          document.querySelector(selector)?.setAttribute('style', `${attribute}: ${yPosition}`);
+        } else {
+          document.querySelector(selector)?.setAttribute('style', `${attribute}:  var(--inset)`);
+        }
+      };
 
-  const moveHline = (
-    selector: string,
-    attribute: string,
-    yPosition?: string
-  ) => {
-    if (yPosition !== undefined) {
-      document
-        .querySelector(selector)
-        ?.setAttribute("style", `${attribute}: ${yPosition}`);
-    } else {
-      document
-        .querySelector(selector)
-        ?.setAttribute("style", `${attribute}:  var(--inset)`);
-    }
-  };
+      // toggle the menu
+      const toggleMenu = () => {
+        headElement?.classList.toggle('open');
+        repositionUpperHline();
+      };
 
-  // toggle the menu
-  const toggleMenu = () => {
-    headElement?.classList.toggle("open");
-    repositionUpperHline();
-  };
+      const repositionUpperHline = () => {
+        const height = menuElement?.getBoundingClientRect()?.height;
+        if (headElement?.classList.contains('open')) {
+          moveHline('.frame__hline--top', 'top', `calc(var(--inset) + ${height}px)`);
+        } else {
+          moveHline('.frame__hline--top', 'top', undefined);
+        }
+      };
 
-  const repositionUpperHline = () => {
-    const height = menuElement?.getBoundingClientRect()?.height;
-    if (headElement?.classList.contains("open")) {
-      moveHline(
-        ".frame__hline--top",
-        "top",
-        `calc(var(--inset) + ${height}px)`
-      );
-    } else {
-      moveHline(".frame__hline--top", "top", undefined);
-    }
-  };
+      if (menuButtonElement) {
+        menuButtonElement.addEventListener('click', () => toggleMenu());
+      }
 
-  if (menuButtonElement) {
-    menuButtonElement.addEventListener("click", () => toggleMenu());
-  }
+      // toggle the terminal
+      const toggleTerminal = () => {
+        footerElement?.classList.toggle('open');
+        repositionBottomHline();
+      };
 
-  // toggle the terminal
-  const toggleTerminal = () => {
-    footerElement?.classList.toggle("open");
-    repositionBottomHline();
-  };
+      const repositionBottomHline = () => {
+        const height = consoleElement?.getBoundingClientRect()?.height;
+        if (footerElement?.classList.contains('open')) {
+          moveHline('.frame__hline--bottom', 'bottom', `calc(var(--inset) + ${height}px)`);
+        } else {
+          moveHline('.frame__hline--bottom', 'bottom', undefined);
+        }
+      };
 
-  const repositionBottomHline = () => {
-    const height = consoleElement?.getBoundingClientRect()?.height;
-    if (footerElement?.classList.contains("open")) {
-      moveHline(
-        ".frame__hline--bottom",
-        "bottom",
-        `calc(var(--inset) + ${height}px)`
-      );
-    } else {
-      moveHline(".frame__hline--bottom", "bottom", undefined);
-    }
-  };
+      if (terminalElement) {
+        terminalElement.addEventListener('click', () => toggleTerminal());
+      }
 
-  if (terminalElement) {
-    terminalElement.addEventListener("click", () => toggleTerminal());
-  }
+      setupTheme();
+      resizeBg();
+    </script>
 
-  setupTheme();
-  resizeBg();
-</script>
+    <style>
+      html {
+        font-size: 16px;
+      }
 
-<style>
-  html {
-    font-size: 16px;
-  }
+      body {
+        padding: 0;
+        margin: 0;
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        overflow: hidden;
+        cursor: crosshair;
+      }
 
-  body {
-    padding: 0;
-    margin: 0;
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    overflow: hidden;
-    cursor: crosshair;
-  }
+      :root {
+        --inset: 1rem;
+        --edge-size: calc(1rem * 0.75);
+      }
 
-  :root {
-    --inset: 1rem;
-    --edge-size: calc(1rem * 0.75);
-  }
+      @media only screen and (min-width: 720px) {
+        :root {
+          --edge-size: 1rem;
+          --inset: 2rem;
+        }
+      }
 
-  @media only screen and (min-width: 720px) {
-    :root {
-      --edge-size: 1rem;
-      --inset: 2rem;
-    }
-  }
+      .head {
+        display: flex;
+        flex-direction: column-reverse;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
 
-  .head {
-    display: flex;
-    flex-direction: column-reverse;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+      .head__bar {
+        background-color: var(--color-surface);
+        border-bottom: 1px solid var(--color-bg);
+        padding: 0.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        grid-row: 2;
+      }
 
-  .head__bar {
-    background-color: var(--color-surface);
-    border-bottom: 1px solid var(--color-bg);
-    padding: 0.2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    grid-row: 2;
-  }
+      .head__logo {
+        height: 3rem;
+        margin-right: 0.5rem;
+      }
 
-  .head__logo {
-    height: 3rem;
-    margin-right: 0.5rem;
-  }
+      .head__logo :global(svg) {
+        height: 3rem;
+      }
 
-  .head__logo :global(svg) {
-    height: 3rem;
-  }
+      .head__title {
+        margin: 0;
+        color: var(--color-primary);
+        flex: 1;
+        font-family: 'Source Code Pro';
+        font-weight: 600;
+        font-size: 2rem;
+      }
 
-  .head__title {
-    margin: 0;
-    color: var(--color-primary);
-    flex: 1;
-    font-family: "Source Code Pro";
-    font-weight: 600;
-    font-size: 2rem;
-  }
+      .head__menu {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 130ms ease-in-out;
+      }
 
-  .head__menu {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 130ms ease-in-out;
-  }
+      .head.open .head__menu {
+        grid-template-rows: 1fr;
+      }
 
-  .head.open .head__menu {
-    grid-template-rows: 1fr;
-  }
+      .menu__opener {
+        height: 3rem;
+        width: 3rem;
+        margin: 0 0.5rem;
+        padding: 0;
+        display: block;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
 
-  .menu__opener {
-    height: 3rem;
-    width: 3rem;
-    margin: 0 0.5rem;
-    padding: 0;
-    display: block;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-  }
-
-  .menu__opener :global(svg) {
-    height: 3rem;
-    /*                discard offset to start with gap 
+      .menu__opener :global(svg) {
+        height: 3rem;
+        /*                discard offset to start with gap 
                       |   gap to start to hide first cross (480 diag.)
                       |   |   menu button open state
                       |   |   |    gap to hide second cross piece (480+360)
                       |   |   |    |*/
-    stroke-dasharray: 480 480 1400 840;
-    stroke-dashoffset: 480;
-    transition:
-      stroke-dasharray 300ms ease-out,
-      stroke-dashoffset 300ms ease-out;
-  }
+        stroke-dasharray: 480 480 1400 840;
+        stroke-dashoffset: 480;
+        transition:
+          stroke-dasharray 300ms ease-out,
+          stroke-dashoffset 300ms ease-out;
+      }
 
-  .head.open .menu__opener :global(svg) {
-    /*                show first cross 
+      .head.open .menu__opener :global(svg) {
+        /*                show first cross 
                       |   gap to start to hide open state
                       |   |   show second cross
                       |   |   |   */
-    stroke-dasharray: 480 1760 480;
-    stroke-dashoffset: 0;
-  }
+        stroke-dasharray: 480 1760 480;
+        stroke-dashoffset: 0;
+      }
 
-  .head__menu-content {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--color-bg);
-  }
+      .head__menu-content {
+        position: relative;
+        overflow: hidden;
+        background-color: var(--color-bg);
+      }
 
-  .head__menu-content-wrapper {
-    margin: 0;
-    padding: 0.5rem;
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    text-align: center;
-  }
+      .head__menu-content-wrapper {
+        margin: 0;
+        padding: 0.5rem;
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        text-align: center;
+      }
 
-  .head__menu-item {
-    padding: 0.5rem 1rem;
-  }
+      .head__menu-item {
+        padding: 0.5rem 1rem;
+      }
 
-  .head__menu-item-link {
-    font-family: "Source Code Pro";
-    font-size: 1.5rem;
-    color: var(--color-text);
-  }
+      .head__menu-item-link {
+        font-family: 'Source Code Pro';
+        font-size: 1.5rem;
+        color: var(--color-text);
+      }
 
-  .head__menu-item-link:hover {
-    font-style: italic;
-    color: var(--color-primary);
-  }
+      .head__menu-item-link:hover {
+        font-style: italic;
+        color: var(--color-primary);
+      }
 
-  .insertable-content {
-    position: relative;
-    z-index: 0;
-    flex-grow: 1;
-  }
+      .insertable-content {
+        position: relative;
+        z-index: 0;
+        flex-grow: 1;
+      }
 
-  .footer {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    z-index: 100;
-    position: sticky;
-    bottom: 2px;
-  }
+      .footer {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 100;
+        position: sticky;
+        bottom: 2px;
+      }
 
-  .footer__bar {
-    background-color: var(--color-surface);
-    border-top: 1px solid var(--color-bg);
-    padding: 0.2rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-wrap: wrap;
-    grid-row: 2;
-  }
+      .footer__bar {
+        background-color: var(--color-surface);
+        border-top: 1px solid var(--color-bg);
+        padding: 0.2rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
+        grid-row: 2;
+      }
 
-  .footer__console {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 130ms ease-in-out;
-  }
+      .footer__console {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 130ms ease-in-out;
+      }
 
-  .footer.open .footer__console {
-    grid-template-rows: 1fr;
-  }
+      .footer.open .footer__console {
+        grid-template-rows: 1fr;
+      }
 
-  .footer__console-content {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--color-bg);
-  }
+      .footer__console-content {
+        position: relative;
+        overflow: hidden;
+        background-color: var(--color-bg);
+      }
 
-  .footer__text {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0.3rem;
-  }
+      .footer__text {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0.3rem;
+      }
 
-  .footer__text p {
-    margin: 0;
-    font-family: "Mona Sans";
-    color: var(--color-text);
-    font-size: 1rem;
-  }
+      .footer__text p {
+        margin: 0;
+        font-family: 'Mona Sans';
+        color: var(--color-text);
+        font-size: 1rem;
+      }
 
-  .translate-wrapper,
-  .terminal-opener__wrapper {
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
-    position: relative;
-    margin: 0.4rem;
-  }
+      .translate-wrapper,
+      .terminal-opener__wrapper {
+        width: 2rem;
+        height: 2rem;
+        cursor: pointer;
+        position: relative;
+        margin: 0.4rem;
+      }
 
-  .translate-button,
-  .terminal-opener {
-    cursor: pointer;
-    background: none;
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid var(--color-text);
-    background-color: var(--color-surface);
-    padding: 2px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition:
-      box-shadow 70ms linear,
-      top 70ms linear,
-      left 70ms linear;
-    box-shadow:
-      0px 0px 0 -1px var(--color-surface),
-      0px 0px var(--color-text);
-  }
+      .translate-button,
+      .terminal-opener {
+        cursor: pointer;
+        background: none;
+        width: 2rem;
+        height: 2rem;
+        border: 1px solid var(--color-text);
+        background-color: var(--color-surface);
+        padding: 2px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition:
+          box-shadow 70ms linear,
+          top 70ms linear,
+          left 70ms linear;
+        box-shadow:
+          0px 0px 0 -1px var(--color-surface),
+          0px 0px var(--color-text);
+      }
 
-  .translate-wrapper:hover .translate-button,
-  .terminal-opener__wrapper:hover .terminal-opener {
-    top: -3px;
-    left: -3px;
-    background-color: var(--color-bg);
-    box-shadow:
-      3px 3px 0 -1px var(--color-surface),
-      3px 3px var(--color-text);
-  }
+      .translate-wrapper:hover .translate-button,
+      .terminal-opener__wrapper:hover .terminal-opener {
+        top: -3px;
+        left: -3px;
+        background-color: var(--color-bg);
+        box-shadow:
+          3px 3px 0 -1px var(--color-surface),
+          3px 3px var(--color-text);
+      }
 
-  .translate-button :global(svg),
-  .terminal-opener :global(svg) {
-    display: block;
-    width: 100%;
-    height: 100%;
-    fill: var(--color-text);
-    transition: scale 70ms linear;
-  }
+      .translate-button :global(svg),
+      .terminal-opener :global(svg) {
+        display: block;
+        width: 100%;
+        height: 100%;
+        fill: var(--color-text);
+        transition: scale 70ms linear;
+      }
 
-  .translate-button:active :global(svg),
-  .terminal-opener:active :global(svg) {
-    scale: 0.8;
-  }
+      .translate-button:active :global(svg),
+      .terminal-opener:active :global(svg) {
+        scale: 0.8;
+      }
 
-  .frame {
-    position: absolute;
-    inset: var(--inset);
-    margin: 0 auto;
-    max-width: 1280px;
-    z-index: 10;
-  }
+      .frame {
+        position: absolute;
+        inset: var(--inset);
+        margin: 0 auto;
+        max-width: 1280px;
+        z-index: 10;
+      }
 
-  .background {
-    position: fixed;
-    inset: -5px;
-    font-family: "Source Code Pro";
-    word-break: break-all;
-    font-size: 18px;
-    line-height: 20px;
-    opacity: 0.4;
-    user-select: none;
-  }
+      .background {
+        position: fixed;
+        inset: -5px;
+        font-family: 'Source Code Pro';
+        word-break: break-all;
+        font-size: 18px;
+        line-height: 20px;
+        opacity: 0.4;
+        user-select: none;
+      }
 
-  .frame__content {
-    z-index: 1;
-    margin: 1px;
-    position: absolute;
-    overflow: auto;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-  }
+      .frame__content {
+        z-index: 1;
+        margin: 1px;
+        position: absolute;
+        overflow: auto;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
 
-  .frame__backdrop {
-    background-color: var(--color-bg);
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
+      .frame__backdrop {
+        background-color: var(--color-bg);
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
 
-  .frame__hline,
-  .frame__hedge::before,
-  .frame__hedge::after,
-  .frame__vedge::before,
-  .frame__vedge::after {
-    background-color: var(--color-text);
-    content: "";
-    z-index: 1000;
-  }
+      .frame__hline,
+      .frame__hedge::before,
+      .frame__hedge::after,
+      .frame__vedge::before,
+      .frame__vedge::after {
+        background-color: var(--color-text);
+        content: '';
+        z-index: 1000;
+      }
 
-  .frame__hline,
-  .frame__hedge::before,
-  .frame__hedge::after {
-    position: fixed;
-    left: 0;
-    height: 1px;
-    width: 100vw;
-  }
+      .frame__hline,
+      .frame__hedge::before,
+      .frame__hedge::after {
+        position: fixed;
+        left: 0;
+        height: 1px;
+        width: 100vw;
+      }
 
-  .frame__vedge::before,
-  .frame__vedge::after {
-    position: absolute;
-    top: calc(var(--inset) * -1);
-    width: 1px;
-    height: 100dvh;
-  }
+      .frame__vedge::before,
+      .frame__vedge::after {
+        position: absolute;
+        top: calc(var(--inset) * -1);
+        width: 1px;
+        height: 100dvh;
+      }
 
-  .frame__hline--top,
-  .frame__hedge::before {
-    top: var(--inset);
-  }
+      .frame__hline--top,
+      .frame__hedge::before {
+        top: var(--inset);
+      }
 
-  .frame__hline--bottom,
-  .frame__hedge::after {
-    bottom: var(--inset);
-  }
+      .frame__hline--bottom,
+      .frame__hedge::after {
+        bottom: var(--inset);
+      }
 
-  .frame__vedge::before {
-    left: 0;
-  }
+      .frame__vedge::before {
+        left: 0;
+      }
 
-  .frame__vedge::after {
-    right: 0;
-  }
+      .frame__vedge::after {
+        right: 0;
+      }
 
-  .frame__hline-edge,
-  .frame__hline-edge::after,
-  .frame__corner,
-  .frame__corner::after {
-    position: absolute;
-    background-color: var(--color-primary);
-    content: "";
-    width: var(--edge-size);
-    height: 3px;
-    z-index: 1001;
-  }
+      .frame__hline-edge,
+      .frame__hline-edge::after,
+      .frame__corner,
+      .frame__corner::after {
+        position: absolute;
+        background-color: var(--color-primary);
+        content: '';
+        width: var(--edge-size);
+        height: 3px;
+        z-index: 1001;
+      }
 
-  .frame__hline-edge::after,
-  .frame__corner::after {
-    rotate: 90deg;
-  }
+      .frame__hline-edge::after,
+      .frame__corner::after {
+        rotate: 90deg;
+      }
 
-  .frame__corner.tl {
-    left: 0;
-    top: 0;
-    translate: -50% -1px;
-  }
+      .frame__corner.tl {
+        left: 0;
+        top: 0;
+        translate: -50% -1px;
+      }
 
-  .frame__corner.tr {
-    right: 0;
-    top: 0;
-    translate: 50% -1px;
-  }
+      .frame__corner.tr {
+        right: 0;
+        top: 0;
+        translate: 50% -1px;
+      }
 
-  .frame__corner.bl {
-    left: 0;
-    bottom: 0;
-    translate: -50% 1px;
-  }
+      .frame__corner.bl {
+        left: 0;
+        bottom: 0;
+        translate: -50% 1px;
+      }
 
-  .frame__corner.br {
-    right: 0;
-    bottom: 0;
-    translate: 50% 1px;
-  }
+      .frame__corner.br {
+        right: 0;
+        bottom: 0;
+        translate: 50% 1px;
+      }
 
-  .frame__hline {
-    z-index: 1002;
-    transition:
-      top 130ms linear,
-      bottom 130ms linear;
-  }
+      .frame__hline {
+        z-index: 1002;
+        transition:
+          top 130ms linear,
+          bottom 130ms linear;
+      }
 
-  .frame__hline-anchor {
-    position: relative;
-    margin: 0 auto;
-    max-width: calc(1280px + var(--inset) + var(--inset));
-    height: 1px;
-  }
+      .frame__hline-anchor {
+        position: relative;
+        margin: 0 auto;
+        max-width: calc(1280px + var(--inset) + var(--inset));
+        height: 1px;
+      }
 
-  .frame__hline-edge.l {
-    left: var(--inset);
-    translate: -50% -1px;
-  }
+      .frame__hline-edge.l {
+        left: var(--inset);
+        translate: -50% -1px;
+      }
 
-  .frame__hline-edge.r {
-    right: var(--inset);
-    translate: 50% -1px;
-  }
-</style>
+      .frame__hline-edge.r {
+        right: var(--inset);
+        translate: 50% -1px;
+      }
+    </style>
 
-<style is:global>
-  /* ::-webkit-scrollbar {
+    <style is:global>
+      /* ::-webkit-scrollbar {
     width: 12px;
   }
 
@@ -642,4 +629,6 @@ import "@/main.css";
   ::-webkit-scrollbar-thumb:hover {
     background: #39a7cdc0;
   } */
-</style>
+    </style>
+  </body>
+</html>

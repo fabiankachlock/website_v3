@@ -1,0 +1,18 @@
+---
+import i18next, { t } from 'i18next';
+
+export interface Props {
+  key?: string;
+}
+
+const { key } = Astro.props;
+
+/**
+ * cant name slot dynamically
+ */
+---
+
+{key && t(key)}
+
+{!key && i18next.language === 'de' && <slot name="de" />}
+{!key && i18next.language === 'en' && <slot name="en" />}

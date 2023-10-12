@@ -1,0 +1,67 @@
+---
+import { AstroSeo } from '@astrolib/seo';
+import type { Props as AstroSeoProps } from '@astrolib/seo';
+import i18next, { t } from 'i18next';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  custom?: AstroSeoProps;
+}
+
+const { title: ptitle, description: pdescription } = Astro.props;
+const currentPath = Astro.url.pathname;
+const normalizedPath =
+  currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.substring(0, currentPath.length - 1) : currentPath;
+
+const title = t(ptitle ?? `title.${normalizedPath}`) ?? '';
+const description = t(pdescription ?? `description.${normalizedPath}`) ?? '';
+
+const buildUrl = (path: string) => `${Astro.site}${path}`;
+
+const locales: Record<string, string> = {
+  de: 'de_DE',
+  en: 'en_US',
+};
+---
+
+<AstroSeo
+  title={title}
+  description={description}
+  openGraph={{
+    url: Astro.url.toString(),
+    type: 'website',
+    title: title,
+    description: description,
+    locale: locales[i18next.language] ?? '',
+    site_name: 'Fabian Kachlock',
+    profile: {
+      username: 'fabian.kachlock',
+      ...Astro.props.custom?.openGraph?.profile,
+    },
+    images: [
+      {
+        url: buildUrl('...'),
+        secureUrl: buildUrl('...'),
+        alt: 'Fabian Kachlock',
+      },
+      ...(Astro.props.custom?.openGraph?.images ?? []),
+    ],
+    ...Astro.props.custom?.openGraph,
+  }}
+  twitter={{
+    cardType: 'summary',
+    ...Astro.props.custom?.twitter,
+  }}
+  additionalLinkTags={Astro.props.custom?.additionalLinkTags!}
+  additionalMetaTags={Astro.props.custom?.additionalMetaTags!}
+  canonical={Astro.props.custom?.canonical ?? Astro.url.toString()}
+  defaultTitle={Astro.props.custom?.defaultTitle!}
+  facebook={Astro.props.custom?.facebook!}
+  languageAlternates={Astro.props.custom?.languageAlternates!}
+  mobileAlternate={Astro.props.custom?.mobileAlternate!}
+  nofollow={Astro.props.custom?.nofollow!}
+  noindex={Astro.props.custom?.noindex!}
+  robotsProps={Astro.props.custom?.robotsProps!}
+  titleTemplate={Astro.props.custom?.titleTemplate!}
+/>
