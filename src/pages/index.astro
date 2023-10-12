@@ -5,18 +5,40 @@ import meJpeg from "@/assets/me.jpeg";
 ---
 
 <Main>
-  <main>
-    <section class="hero">
-      <div class="hero__image-wrapper">
-        <div class="hero__image-mask">
-          <Image class="hero__image" src={meJpeg} alt="" />
-        </div>
-        <div class="hero__image-shadow">
-          <Image class="hero__image" src={meJpeg} alt="" />
-        </div>
+  <section class="section hero">
+    <div class="hero__image-wrapper">
+      <div class="hero__image-mask">
+        <Image class="hero__image" src={meJpeg} alt="" />
       </div>
-    </section>
-  </main>
+      <div class="hero__image-shadow">
+        <Image class="hero__image" src={meJpeg} alt="" />
+      </div>
+    </div>
+  </section>
+  <section class="section about">
+    <a id="about" class="section-anchor">About</a>
+    <h2 class="section__header">
+      <span>About</span>
+    </h2>
+  </section>
+  <section class="section skills">
+    <a id="skills" class="section-anchor">Skills</a>
+    <h2 class="section__header">
+      <span>Skills</span>
+    </h2>
+  </section>
+  <section class="section projects">
+    <a id="projects" class="section-anchor">Projects</a>
+    <h2 class="section__header">
+      <span>Projects</span>
+    </h2>
+  </section>
+  <section class="section contact">
+    <a id="contact" class="section-anchor">Contact</a>
+    <h2 class="section__header">
+      <span>Contact</span>
+    </h2>
+  </section>
   <!-- <header>HEAD</header>
         <main>CONTENT</main>
         <footer style="margin-top: 3000px;">FOOTER</footer> -->
@@ -51,6 +73,9 @@ import meJpeg from "@/assets/me.jpeg";
     left: 0;
     border: 2px solid var(--color-text);
     z-index: 2;
+    transition:
+      top 70ms ease-in-out,
+      left 70ms ease-in-out;
   }
 
   .hero__image-shadow {
@@ -63,9 +88,6 @@ import meJpeg from "@/assets/me.jpeg";
     left: 0.75rem;
     z-index: 1;
     border-radius: 10px;
-    transition:
-      top 70ms ease-in-out,
-      left 70ms ease-in-out;
   }
 
   .hero__image {
@@ -79,12 +101,53 @@ import meJpeg from "@/assets/me.jpeg";
     filter: grayscale(0.7);
   }
 
-  .hero__image-mask:hover + .hero__image-shadow .hero__image {
-    scale: 0.92;
+  .hero__image-wrapper:hover .hero__image-shadow .hero__image {
+    scale: 0.98;
   }
 
-  .hero__image-mask:hover + .hero__image-shadow {
-    top: 1.5rem;
-    left: 1.5rem;
+  .hero__image-wrapper:hover .hero__image-mask {
+    top: -1rem;
+    left: -1rem;
+  }
+
+  .section-anchor {
+    display: block;
+    visibility: hidden;
+    margin-bottom: 50px;
+  }
+
+  .section__header {
+    color: var(--color-primary);
+    font-family: "Source Code Pro";
+    font-weight: 500;
+    letter-spacing: 3px;
+    font-size: 2rem;
+    padding-left: max(10vw, 1rem);
+    position: relative;
+  }
+
+  .section__header span {
+    background-color: var(--color-bg);
+    padding: 0 0.5rem;
+    border-radius: 0.2em;
+  }
+
+  .section__header::before {
+    content: "";
+    display: block;
+    background-color: var(--color-primary);
+    height: 2px;
+    top: 50%;
+    translate: 0 -50%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 12px 0 12px var(--color-surface);
+    z-index: -1;
+  }
+
+  .section {
+    margin: 1rem 0;
+    padding-bottom: 500px;
   }
 </style>
