@@ -5,12 +5,32 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "start:server": "yarn build && node ./src/server/main.mjs",
+    "generate": "astro-i18next generate && yarn format",
+    "pre:build": "astro-i18next generate",
+    "build": "yarn pre:build && astro build && yarn post:build",
+    "post:build": "yarn format",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier -w .",
+    "format:check": "prettier --check .",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "@astrojs/vue": "^3.0.1",
     "@carbon/icons": "^11.28.0",
-    "astro": "^3.2.3"
+    "@carbon/icons-vue": "^10.72.1",
+    "astro": "^3.2.3",
+    "astro-compress": "^2.0.15",
+    "astro-i18next": "^1.0.0-beta.21",
+    "i18next": "^23.5.1",
+    "i18next-vue": "^3.0.0",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0"
   }
 }

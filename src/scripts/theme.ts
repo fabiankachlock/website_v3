@@ -1,6 +1,6 @@
 export const setTheme = (theme: string) => {
-  document.body.setAttribute("data-theme", theme);
-  localStorage.setItem("fabiankachlock.dev/theme", theme);
+  document.body.setAttribute('data-theme', theme);
+  localStorage.setItem('fabiankachlock.dev/theme', theme);
 
   //   document
   //     .querySelectorAll('[data-id="favicon"]')
@@ -15,13 +15,13 @@ export const setTheme = (theme: string) => {
 };
 
 export const getStoredTheme = (): string | null => {
-  return localStorage.getItem("fabiankachlock.dev/theme");
+  return localStorage.getItem('fabiankachlock.dev/theme');
 };
 
 export const toggleTheme = () => {
-  if (document.body.getAttribute("data-theme") == "dark") {
-    setTheme("light");
+  if (document.body.getAttribute('data-theme') == 'dark') {
+    setTheme('light');
   } else {
-    setTheme("dark");
+    setTheme('dark');
   }
 };
