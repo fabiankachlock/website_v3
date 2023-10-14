@@ -20,19 +20,21 @@
 :root {
   --color-bg: #dfdfdf;
   --color-transparent-bg: #dfdfdfa0;
-  --color-text: #292929;
+  --color-text: #000;
   --color-primary: #39a7cd;
   --color-surface: #f7f7f7;
   --color-secondary-1: #7df6ec;
   --color-secondary-2: #f6f68c;
+  --color-secondary-3: #9179c1;
 }
 
 [data-theme='dark'] {
   --color-bg: #141414;
   --color-transparent-bg: #141414a0;
-  --color-text: #d8d8d8;
+  --color-text: #fff;
   --color-primary: #39a7cd;
   --color-surface: #222222;
   --color-secondary-1: #003150;
   --color-secondary-2: #006853;
+  --color-secondary-3: #32213a;
 }

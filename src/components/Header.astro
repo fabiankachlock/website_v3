@@ -79,6 +79,7 @@ import svgMenuButton from '@/assets/menu_button.svg?raw';
     transition: grid-template-rows 130ms ease-in-out;
   }
 
+  .head:has(.head__menu-item-link:focus) .head__menu,
   .head.open .head__menu {
     grid-template-rows: 1fr;
   }
@@ -132,6 +133,10 @@ import svgMenuButton from '@/assets/menu_button.svg?raw';
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
+  }
+
+  :global(.fullscreen) .head__menu-content-wrapper {
+    border-bottom: 1px solid var(--color-text);
   }
 
   .head__menu-item {

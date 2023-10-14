@@ -24,7 +24,7 @@ export interface Props {
     <slot name="head" />
     <script src="../scripts/setup.ts"></script>
   </head>
-  <body>
+  <body class="fullscreen">
     <div class="frame">
       <div class="frame__backdrop"></div>
       <div class="frame__content">
@@ -108,7 +108,6 @@ export interface Props {
 
       .frame__content {
         z-index: 1;
-        margin: 1px;
         position: absolute;
         overflow: auto;
         inset: 0;
@@ -232,6 +231,17 @@ export interface Props {
       .frame__hline-edge.r {
         right: var(--inset);
         translate: 50% -1px;
+      }
+
+      .fullscreen {
+        --inset: 0;
+      }
+
+      .fullscreen .frame__hedge,
+      .fullscreen .frame__vedge,
+      .fullscreen .frame__corner,
+      .fullscreen .frame__hline {
+        display: none;
       }
     </style>
 

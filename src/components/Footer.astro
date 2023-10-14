@@ -5,6 +5,7 @@ import ThemeSwitch from '@/components/ThemeSwitch.astro';
 import terminalIcon from '@carbon/icons/svg/32/terminal.svg?raw';
 import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
 import i18next, { t } from 'i18next';
+import FullscreenSwitch from './FullscreenSwitch.astro';
 
 const { pathname } = Astro.url;
 ---
@@ -21,6 +22,7 @@ const { pathname } = Astro.url;
       </button>
     </div>
     <ThemeSwitch />
+    <FullscreenSwitch />
     <div class="translate-wrapper">
       <button class="translate-button">
         <Fragment set:html={translateIcon} />
@@ -28,7 +30,13 @@ const { pathname } = Astro.url;
       <div class="language-select">
         <div class="language-content-wrapper">
           <div class="languages-wrapper">
-            {i18next.languages.map(lng => <a href={localizePath(pathname, lng)}>{t(`lng.${lng}`)}</a>)}
+            {
+              i18next.languages.map(lng => (
+                <a tabindex="0" href={localizePath(pathname, lng)}>
+                  {t(`lng.${lng}`)}
+                </a>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -50,7 +58,7 @@ const { pathname } = Astro.url;
     position: relative;
     z-index: 100;
     position: sticky;
-    bottom: 2px;
+    bottom: 0;
   }
 
   .footer__bar {
@@ -93,6 +101,10 @@ const { pathname } = Astro.url;
     font-family: 'Mona Sans';
     color: var(--color-text);
     font-size: 1rem;
+  }
+
+  :global(.fullscreen) .footer__console-content-wrapper {
+    border-top: 1px solid var(--color-text);
   }
 
   .translate-wrapper,
@@ -164,8 +176,10 @@ const { pathname } = Astro.url;
       grid-template-rows 120ms linear,
       opacity 120ms ease-in,
       bottom 120ms linear;
+    pointer-events: none;
   }
 
+  .language-select:has(a:focus),
   .language-select.open {
     opacity: 1;
     grid-template-rows: 1fr;
