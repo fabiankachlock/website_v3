@@ -3,6 +3,8 @@ import { changeLanguage } from 'i18next';
 import { Image } from 'astro:assets';
 import Main from '@/layouts/Main.astro';
 import meJpeg from '@/assets/me.jpeg';
+import SkillDrawer from '@/components/home/SkillDrawer.astro';
+import Translation from '@/components/Translation.astro';
 
 changeLanguage('de');
 ---
@@ -29,6 +31,120 @@ changeLanguage('de');
     <h2 class="section__header">
       <span>Skills</span>
     </h2>
+    <div class="skills-container">
+      <SkillDrawer
+        percentage={0.8}
+        featuredTools={['HTML', 'CSS', 'JS', 'TS']}
+        tools={['Web APIs', 'express', 'Nestjs', 'Electron', 'eslint', 'prettier', 'jest', 'Cypress']}
+      >
+        <Translation slot="title">
+          <span slot="de">Webdevelopment Basics</span>
+          <span slot="en">Webdevelopment Basics</span>
+        </Translation>
+        <Translation slot="content">
+          <span slot="de"
+            >Webdevelopment Basics is great and this here has to mimic some long text explaining whats going on...</span
+          >
+          <span slot="en"
+            >Webdevelopment Basics is great and this here has to mimic some long text explaining whats going on...</span
+          >
+        </Translation>
+      </SkillDrawer>
+      <SkillDrawer
+        percentage={0.8}
+        featuredTools={['vite', 'pinia', 'vuetify', 'vue-i18n']}
+        tools={['tailwindcss', 'vue-router']}
+      >
+        <Translation slot="title">
+          <span slot="de">Vue.js - my frontend framework of choice</span>
+          <span slot="en">Vue.js - my frontend framework of choice</span>
+        </Translation>
+        <Translation slot="content">
+          <span slot="de">BLA</span>
+          <span slot="en">BLA</span>
+        </Translation>
+      </SkillDrawer>
+      <SkillDrawer percentage={0.8} featuredTools={['Astro', 'React', 'Angular']} tools={['Nuxt.js', 'Alpinejs']}>
+        <Translation slot="title">
+          <span slot="de">Other frontend frameworks</span>
+          <span slot="en">Other frontend frameworks</span>
+        </Translation>
+        <Translation slot="content">
+          <span slot="de">BLA</span>
+          <span slot="en">BLA</span>
+        </Translation>
+      </SkillDrawer>
+      <SkillDrawer
+        percentage={0.8}
+        featuredTools={['fiber', 'go-cron', 'SSE']}
+        tools={['WebSockets', 'golang-migrate', 'Postgresql', 'MongoDB']}
+      >
+        <Translation slot="title">
+          <span slot="de">Golang - my backend language of choice</span>
+          <span slot="en">Golang - my backend language of choice</span>
+        </Translation>
+        <Translation slot="content">
+          <span slot="de">BLA</span>
+          <span slot="en">BLA</span>
+        </Translation>
+      </SkillDrawer>
+      <SkillDrawer
+        percentage={0.8}
+        featuredTools={['ASP.NET', 'Blazor', 'WASM']}
+        tools={['WebSockets', 'REST', 'Quartz.AspNetCore', 'MongoDB']}
+      >
+        <Translation slot="title">
+          <span slot="de">C# & .NET</span>
+          <span slot="en">C# & .NET</span>
+        </Translation>
+        <Translation slot="content">
+          <span slot="de">BLA</span>
+          <span slot="en">BLA</span>
+        </Translation>
+      </SkillDrawer>
+      <SkillDrawer
+        percentage={0.8}
+        featuredTools={['Git', 'Github', 'Jira']}
+        tools={['Confluence', 'BitBucket', 'Youtrack']}
+      >
+        <Translation slot="title">
+          <span slot="de">Version Control & Project management</span>
+          <span slot="en">Version Control & Project management</span>
+        </Translation>
+        <Translation slot="content">
+          <span slot="de">BLA</span>
+          <span slot="en">BLA</span>
+        </Translation>
+      </SkillDrawer>
+      <SkillDrawer
+        percentage={0.8}
+        featuredTools={['Docker', 'AWS', 'Github Actions']}
+        tools={['Heroku', 'Bash', 'Bitbucket Pipelines']}
+      >
+        <Translation slot="title">
+          <span slot="de">Deplyoment & CI/CD</span>
+          <span slot="en">Deplyoment & CI/CD</span>
+        </Translation>
+        <Translation slot="content">
+          <span slot="de">BLA</span>
+          <span slot="en">BLA</span>
+        </Translation>
+      </SkillDrawer>
+      <SkillDrawer
+        percentage={0.8}
+        featuredTools={['Rust', 'Kotlin', 'MQTT']}
+        tools={['Redis', 'BullMQ', 'Swift', 'p5.js']}
+      >
+        <Translation slot="title">
+          <span slot="de">Other tools, languages & libraries</span>
+          <span slot="en">Other tools, languages & libraries</span>
+        </Translation>
+        <Translation slot="content">
+          <span slot="de">BLA</span>
+          <span slot="en">BLA</span>
+        </Translation>
+      </SkillDrawer>
+    </div>
   </section>
   <section class="section projects">
     <a id="projects" class="section-anchor">Projects</a>
@@ -131,9 +247,15 @@ changeLanguage('de');
   }
 
   .section {
-    padding: 1rem 2rem 0;
+    padding: 1rem 1rem;
     padding-bottom: 500px;
     position: relative;
+  }
+
+  @media only screen and (min-width: 720px) {
+    .section {
+      padding: 1rem 2rem;
+    }
   }
 
   .section:not(:first-of-type) {
@@ -145,7 +267,7 @@ changeLanguage('de');
   }
 
   .skills {
-    background-color: var(--color-secondary-2);
+    background-color: var(--color-bg);
   }
 
   .contact {

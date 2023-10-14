@@ -23,7 +23,7 @@
   --color-text: #000;
   --color-primary: #39a7cd;
   --color-surface: #f7f7f7;
-  --color-secondary-1: #7df6ec;
+  --color-secondary-1: #85e1d9;
   --color-secondary-2: #f6f68c;
   --color-secondary-3: #9179c1;
 }
@@ -31,10 +31,10 @@
 [data-theme='dark'] {
   --color-bg: #141414;
   --color-transparent-bg: #141414a0;
-  --color-text: #fff;
+  --color-text: #d3d3d3;
   --color-primary: #39a7cd;
   --color-surface: #222222;
   --color-secondary-1: #003150;
-  --color-secondary-2: #006853;
+  --color-secondary-2: #04433b;
   --color-secondary-3: #32213a;
 }
