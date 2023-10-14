@@ -23,6 +23,8 @@
   --color-text: #292929;
   --color-primary: #39a7cd;
   --color-surface: #f7f7f7;
+  --color-secondary-1: #7df6ec;
+  --color-secondary-2: #f6f68c;
 }
 
 [data-theme='dark'] {
@@ -31,4 +33,6 @@
   --color-text: #d8d8d8;
   --color-primary: #39a7cd;
   --color-surface: #222222;
+  --color-secondary-1: #003150;
+  --color-secondary-2: #006853;
 }

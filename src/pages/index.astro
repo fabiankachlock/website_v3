@@ -1,10 +1,10 @@
 ---
-import { changeLanguage } from "i18next";
-import { Image } from "astro:assets";
-import Main from "@/layouts/Main.astro";
-import meJpeg from "@/assets/me.jpeg";
+import { changeLanguage } from 'i18next';
+import { Image } from 'astro:assets';
+import Main from '@/layouts/Main.astro';
+import meJpeg from '@/assets/me.jpeg';
 
-changeLanguage("de");
+changeLanguage('de');
 ---
 
 <Main>
@@ -116,41 +116,35 @@ changeLanguage("de");
   .section-anchor {
     display: block;
     visibility: hidden;
-    margin-bottom: 50px;
+    position: absolute;
+    top: -100px;
   }
 
   .section__header {
-    color: var(--color-primary);
-    font-family: "Source Code Pro";
-    font-weight: 500;
-    letter-spacing: 3px;
-    font-size: 2rem;
-    padding-left: max(10vw, 1rem);
+    color: var(--color-text);
+    font-family: 'Source Code Pro';
+    font-weight: 300;
+    font-size: 3rem;
     position: relative;
-  }
-
-  .section__header span {
-    background-color: var(--color-bg);
-    padding: 0 0.5rem;
-    border-radius: 0.2em;
-  }
-
-  .section__header::before {
-    content: "";
-    display: block;
-    background-color: var(--color-primary);
-    height: 2px;
-    top: 50%;
-    translate: 0 -50%;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    box-shadow: 0 12px 0 12px var(--color-surface);
-    z-index: -1;
+    margin: 0;
+    margin-bottom: 2rem;
   }
 
   .section {
-    margin: 1rem 0;
+    padding: 1rem 2rem 0;
     padding-bottom: 500px;
+    position: relative;
+  }
+
+  .section:not(:first-of-type) {
+    border-top: 1px solid var(--color-text);
+  }
+
+  .about {
+    background-color: var(--color-secondary-1);
+  }
+
+  .skills {
+    background-color: var(--color-secondary-2);
   }
 </style>

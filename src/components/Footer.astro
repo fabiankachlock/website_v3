@@ -1,8 +1,12 @@
 ---
+import { localizePath } from 'astro-i18next';
 import ThemeSwitch from '@/components/ThemeSwitch.astro';
 
 import terminalIcon from '@carbon/icons/svg/32/terminal.svg?raw';
 import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
+import i18next, { t } from 'i18next';
+
+const { pathname } = Astro.url;
 ---
 
 <footer class="footer">
@@ -16,12 +20,19 @@ import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
         <Fragment set:html={terminalIcon} />
       </button>
     </div>
+    <ThemeSwitch />
     <div class="translate-wrapper">
       <button class="translate-button">
         <Fragment set:html={translateIcon} />
       </button>
+      <div class="language-select">
+        <div class="language-content-wrapper">
+          <div class="languages-wrapper">
+            {i18next.languages.map(lng => <a href={localizePath(pathname, lng)}>{t(`lng.${lng}`)}</a>)}
+          </div>
+        </div>
+      </div>
     </div>
-    <ThemeSwitch />
   </div>
   <div class="footer__console">
     <div class="footer__console-content">
@@ -29,6 +40,8 @@ import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
     </div>
   </div>
 </footer>
+
+<script></script>
 
 <style>
   .footer {
@@ -42,12 +55,12 @@ import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
 
   .footer__bar {
     background-color: var(--color-surface);
-    border-top: 1px solid var(--color-bg);
+    border-top: 1px solid var(--color-text);
     padding: 0.2rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     grid-row: 2;
   }
 
@@ -110,6 +123,7 @@ import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
     box-shadow:
       0px 0px 0 -1px var(--color-surface),
       0px 0px var(--color-text);
+    z-index: 1;
   }
 
   .translate-wrapper:hover .translate-button,
@@ -134,5 +148,53 @@ import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
   .translate-button:active :global(svg),
   .terminal-opener:active :global(svg) {
     scale: 0.8;
+  }
+
+  .language-select {
+    position: absolute;
+    bottom: 20%;
+    right: 0;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      grid-template-rows 120ms linear,
+      opacity 120ms ease-in,
+      bottom 120ms linear;
+  }
+
+  .language-select.open {
+    opacity: 1;
+    grid-template-rows: 1fr;
+    bottom: 100%;
+  }
+
+  .language-content-wrapper {
+    overflow: hidden;
+    width: max-content;
+    background: var(--color-surface);
+    border: 1px solid var(--color-text);
+  }
+
+  .languages-wrapper {
+    padding: 0.3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .languages-wrapper a {
+    font-family: 'Mona Sans';
+    color: var(--color-text);
+    padding: 0.8rem 2rem;
+  }
+
+  .languages-wrapper a:hover {
+    background: var(--color-bg);
   }
 </style>

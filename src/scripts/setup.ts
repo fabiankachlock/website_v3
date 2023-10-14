@@ -20,6 +20,8 @@ const footerElement = document.querySelector('.footer');
 const menuElement = document.querySelector('.head__menu-content-wrapper');
 const terminalElement = document.querySelector('.terminal-opener');
 const consoleElement = document.querySelector('.footer__console-content-wrapper');
+const translateElement = document.querySelector('.translate-button');
+const languageElement = document.querySelector('.language-select');
 let last = 0;
 let stringSize = 0;
 
@@ -95,6 +97,13 @@ export const repositionBottomHline = () => {
 
 if (terminalElement) {
   terminalElement.addEventListener('click', () => toggleTerminal());
+}
+
+// toggle language select
+if (translateElement) {
+  translateElement.addEventListener('click', () => {
+    languageElement?.classList.toggle('open');
+  });
 }
 
 setupTheme();
