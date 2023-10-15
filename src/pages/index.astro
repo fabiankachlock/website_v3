@@ -5,6 +5,7 @@ import Main from '@/layouts/Main.astro';
 import meJpeg from '@/assets/me.jpeg';
 import SkillDrawer from '@/components/home/SkillDrawer.astro';
 import Translation from '@/components/Translation.astro';
+import ProjectCard from '@/components/home/ProjectCard.astro';
 
 changeLanguage('de');
 ---
@@ -169,6 +170,24 @@ changeLanguage('de');
     <h2 class="section__header">
       <span>Projects</span>
     </h2>
+    <div class="projects-container">
+      <ProjectCard color="var(--color-secondary-1)" link="#" tools={['ABC', 'EFG', 'HIJ', 'KLM']}>
+        <Translation slot="title">
+          <span slot="de">zwoo</span>
+          <span slot="en">zwoo</span>
+        </Translation>
+        <Translation slot="content">
+          <span slot="de"
+            >Wow, here i have to write some slightly longer text again, just to be able to check how longer text looks
+            in the design</span
+          >
+          <span slot="en"
+            >Wow, here i have to write some slightly longer text again, just to be able to check how longer text looks
+            in the design</span
+          >
+        </Translation>
+      </ProjectCard>
+    </div>
   </section>
 </Main>
 
