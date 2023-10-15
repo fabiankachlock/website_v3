@@ -15,20 +15,20 @@ import svgMenuButton from '@/assets/menu_button.svg?raw';
       </button>
     </div>
   </div>
-  <nav class="head__menu">
-    <div class="head__menu-content">
-      <ul class="head__menu-content-wrapper">
-        <li class="head__menu-item">
-          <a class="head__menu-item-link" href="#about">Über mich</a>
+  <nav class="menu">
+    <div class="menu__content">
+      <ul class="menu__content-wrapper">
+        <li class="menu__item">
+          <a class="menu__link" href="#about">Über mich</a>
         </li>
-        <li class="head__menu-item">
-          <a class="head__menu-item-link" href="#skills">Skills</a>
+        <li class="menu__item">
+          <a class="menu__link" href="#skills">Skills</a>
         </li>
-        <li class="head__menu-item">
-          <a class="head__menu-item-link" href="#projects">Projekte</a>
+        <li class="menu__item">
+          <a class="menu__link" href="#projects">Projekte</a>
         </li>
-        <li class="head__menu-item">
-          <a class="head__menu-item-link" href="#contact">Kontakt</a>
+        <li class="menu__item">
+          <a class="menu__link" href="#contact">Kontakt</a>
         </li>
       </ul>
     </div>
@@ -72,15 +72,15 @@ import svgMenuButton from '@/assets/menu_button.svg?raw';
     font-size: 2rem;
   }
 
-  .head__menu {
+  .menu {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 0fr;
     transition: grid-template-rows 130ms ease-in-out;
   }
 
-  .head:has(.head__menu-item-link:focus) .head__menu,
-  .head.open .head__menu {
+  .head:has(.menu__link:focus) .menu,
+  .head.open .menu {
     grid-template-rows: 1fr;
   }
 
@@ -118,13 +118,13 @@ import svgMenuButton from '@/assets/menu_button.svg?raw';
     stroke-dashoffset: 0;
   }
 
-  .head__menu-content {
+  .menu__content {
     position: relative;
     overflow: hidden;
     background-color: var(--color-bg);
   }
 
-  .head__menu-content-wrapper {
+  .menu__content-wrapper {
     margin: 0;
     padding: 0.5rem;
     list-style: none;
@@ -135,21 +135,21 @@ import svgMenuButton from '@/assets/menu_button.svg?raw';
     text-align: center;
   }
 
-  :global(.fullscreen) .head__menu-content-wrapper {
+  :global(.fullscreen) .menu__content-wrapper {
     border-bottom: 1px solid var(--color-text);
   }
 
-  .head__menu-item {
+  .menu__item {
     padding: 0.5rem 1rem;
   }
 
-  .head__menu-item-link {
+  .menu__link {
     font-family: 'Source Code Pro';
     font-size: 1.5rem;
     color: var(--color-text);
   }
 
-  .head__menu-item-link:hover {
+  .menu__link:hover {
     font-style: italic;
     color: var(--color-primary);
   }

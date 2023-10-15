@@ -16,20 +16,20 @@ const { pathname } = Astro.url;
       <p>© Fabian Kachlock 2023</p>
     </div>
     <div class="footer__spacer" style="flex: 1 0 0; width: 100%"></div>
-    <div class="terminal-opener__wrapper">
-      <button class="terminal-opener">
+    <div class="terminal-opener">
+      <button class="terminal-opener__button">
         <Fragment set:html={terminalIcon} />
       </button>
     </div>
     <FullscreenSwitch />
     <ThemeSwitch />
-    <div class="translate-wrapper">
-      <button class="translate-button">
+    <div class="translate">
+      <button class="translate__button">
         <Fragment set:html={translateIcon} />
       </button>
       <div class="language-select">
-        <div class="language-content-wrapper">
-          <div class="languages-wrapper">
+        <div class="language-select__wrapper">
+          <div class="language-select__content">
             {
               i18next.languages.map(lng => (
                 <a tabindex="0" href={localizePath(pathname, lng)}>
@@ -107,17 +107,16 @@ const { pathname } = Astro.url;
     border-top: 1px solid var(--color-text);
   }
 
-  .translate-wrapper,
-  .terminal-opener__wrapper {
+  .translate,
+  .terminal-opener {
     width: 2rem;
     height: 2rem;
     cursor: pointer;
-    position: relative;
     margin: 0.4rem;
   }
 
-  .translate-button,
-  .terminal-opener {
+  .translate__button,
+  .terminal-opener__button {
     cursor: pointer;
     background: none;
     width: 2rem;
@@ -125,31 +124,26 @@ const { pathname } = Astro.url;
     border: 1px solid var(--color-text);
     background-color: var(--color-surface);
     padding: 2px;
-    position: absolute;
-    top: 0;
-    left: 0;
     transition:
       box-shadow 70ms linear,
-      top 70ms linear,
-      left 70ms linear;
+      translate 70ms linear;
     box-shadow:
       0px 0px 0 -1px var(--color-surface),
       0px 0px var(--color-text);
     z-index: 1;
   }
 
-  .translate-wrapper:hover .translate-button,
-  .terminal-opener__wrapper:hover .terminal-opener {
-    top: -3px;
-    left: -3px;
+  .translate:hover .translate__button,
+  .terminal-opener:hover .terminal-opener__button {
+    translate: -3px -3px;
     background-color: var(--color-bg);
     box-shadow:
       3px 3px 0 -1px var(--color-surface),
       3px 3px var(--color-text);
   }
 
-  .translate-button :global(svg),
-  .terminal-opener :global(svg) {
+  .translate__button :global(svg),
+  .terminal-opener__button :global(svg) {
     display: block;
     width: 100%;
     height: 100%;
@@ -157,16 +151,16 @@ const { pathname } = Astro.url;
     transition: scale 70ms linear;
   }
 
-  .translate-button:active :global(svg),
-  .terminal-opener:active :global(svg) {
+  .translate__button:active :global(svg),
+  .terminal-opener__button:active :global(svg) {
     scale: 0.8;
   }
 
   .language-select {
     position: absolute;
     bottom: 20%;
-    right: 0;
-    margin-bottom: 1rem;
+    right: 0.5rem;
+    margin-bottom: 0.5rem;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 0fr;
@@ -186,14 +180,14 @@ const { pathname } = Astro.url;
     bottom: 100%;
   }
 
-  .language-content-wrapper {
+  .language-select__wrapper {
     overflow: hidden;
     width: max-content;
     background: var(--color-surface);
     border: 1px solid var(--color-text);
   }
 
-  .languages-wrapper {
+  .language-select__content {
     padding: 0.3rem 0;
     display: flex;
     flex-direction: column;
@@ -202,13 +196,13 @@ const { pathname } = Astro.url;
     text-align: center;
   }
 
-  .languages-wrapper a {
+  .language-select__content a {
     font-family: 'Mona Sans';
     color: var(--color-text);
     padding: 0.8rem 2rem;
   }
 
-  .languages-wrapper a:hover {
+  .language-select__content a:hover {
     background: var(--color-bg);
   }
 </style>

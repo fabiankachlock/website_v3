@@ -37,20 +37,20 @@ export interface Props {
       </div>
       <span class="frame__hedge"></span>
       <span class="frame__vedge"></span>
-      <span class="frame__corner tl"></span>
-      <span class="frame__corner tr"></span>
-      <span class="frame__corner bl"></span>
-      <span class="frame__corner br"></span>
+      <span class="frame__corner frame__corner--tl"></span>
+      <span class="frame__corner frame__corner--tr"></span>
+      <span class="frame__corner frame__corner--bl"></span>
+      <span class="frame__corner frame__corner--br"></span>
       <div class="frame__hline frame__hline--top">
         <div class="frame__hline-anchor">
-          <span class="frame__hline-edge l"></span>
-          <span class="frame__hline-edge r"></span>
+          <span class="frame__hline-edge frame__hline-edge--l"></span>
+          <span class="frame__hline-edge frame__hline-edge--r"></span>
         </div>
       </div>
       <div class="frame__hline frame__hline--bottom">
         <div class="frame__hline-anchor">
-          <span class="frame__hline-edge l"></span>
-          <span class="frame__hline-edge r"></span>
+          <span class="frame__hline-edge frame__hline-edge--l"></span>
+          <span class="frame__hline-edge frame__hline-edge--r"></span>
         </div>
       </div>
     </div>
@@ -185,25 +185,25 @@ export interface Props {
         rotate: 90deg;
       }
 
-      .frame__corner.tl {
+      .frame__corner--tl {
         left: 0;
         top: 0;
         translate: -50% -1px;
       }
 
-      .frame__corner.tr {
+      .frame__corner--tr {
         right: 0;
         top: 0;
         translate: 50% -1px;
       }
 
-      .frame__corner.bl {
+      .frame__corner--bl {
         left: 0;
         bottom: 0;
         translate: -50% 1px;
       }
 
-      .frame__corner.br {
+      .frame__corner--br {
         right: 0;
         bottom: 0;
         translate: 50% 1px;
@@ -223,12 +223,12 @@ export interface Props {
         height: 1px;
       }
 
-      .frame__hline-edge.l {
+      .frame__hline-edge--l {
         left: var(--inset);
         translate: -50% -1px;
       }
 
-      .frame__hline-edge.r {
+      .frame__hline-edge--r {
         right: var(--inset);
         translate: 50% -1px;
       }

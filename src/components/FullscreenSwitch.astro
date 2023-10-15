@@ -3,8 +3,8 @@ import maximize from '@carbon/icons/svg/32/maximize.svg?raw';
 import minimize from '@carbon/icons/svg/32/minimize.svg?raw';
 ---
 
-<div class="fullscreen-switch-wrapper">
-  <button class="fullscreen-switch" aria-label="Fullscreen Switch">
+<div class="fullscreen-switch">
+  <button class="fullscreen-switch__button" aria-label="Fullscreen Switch">
     <div class="max">
       <Fragment set:html={maximize} />
     </div>
@@ -15,21 +15,20 @@ import minimize from '@carbon/icons/svg/32/minimize.svg?raw';
 </div>
 
 <script>
-  document.querySelector('.fullscreen-switch')?.addEventListener('click', () => {
+  document.querySelector('.fullscreen-switch__button')?.addEventListener('click', () => {
     document.body.classList.toggle('fullscreen');
   });
 </script>
 
 <style>
-  .fullscreen-switch-wrapper {
+  .fullscreen-switch {
     width: 2rem;
     height: 2rem;
     cursor: pointer;
-    position: relative;
     margin: 0.4rem;
   }
 
-  .fullscreen-switch {
+  .fullscreen-switch__button {
     cursor: pointer;
     background: none;
     width: 2rem;
@@ -37,28 +36,23 @@ import minimize from '@carbon/icons/svg/32/minimize.svg?raw';
     border: 1px solid var(--color-text);
     background-color: var(--color-surface);
     padding: 2px;
-    position: absolute;
-    top: 0;
-    left: 0;
     transition:
       box-shadow 70ms linear,
-      top 70ms linear,
-      left 70ms linear;
+      translate 70ms linear;
     box-shadow:
       0px 0px 0 -1px var(--color-surface),
       0px 0px var(--color-text);
   }
 
-  .fullscreen-switch-wrapper:hover .fullscreen-switch {
-    top: -3px;
-    left: -3px;
+  .fullscreen-switch:hover .fullscreen-switch__button {
+    translate: -3px -3px;
     background-color: var(--color-bg);
     box-shadow:
       3px 3px 0 -1px var(--color-surface),
       3px 3px var(--color-text);
   }
 
-  .fullscreen-switch :global(svg) {
+  .fullscreen-switch__button :global(svg) {
     display: block;
     width: 100%;
     height: 100%;
@@ -66,19 +60,19 @@ import minimize from '@carbon/icons/svg/32/minimize.svg?raw';
     transition: scale 70ms linear;
   }
 
-  .fullscreen-switch:active :global(svg) {
+  .fullscreen-switch__button:active :global(svg) {
     scale: 0.8;
   }
 
-  .fullscreen-switch .min {
+  .fullscreen-switch__button .min {
     display: none;
   }
 
-  :global(.fullscreen) .fullscreen-switch .max {
+  :global(.fullscreen) .fullscreen-switch__button .max {
     display: none;
   }
 
-  :global(.fullscreen) .fullscreen-switch .min {
+  :global(.fullscreen) .fullscreen-switch__button .min {
     display: block;
   }
 </style>
