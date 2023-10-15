@@ -33,6 +33,7 @@ changeLanguage('de');
     </h2>
     <div class="skills-container">
       <SkillDrawer
+        color="var(--color-secondary-1)"
         percentage={0.8}
         featuredTools={['HTML', 'CSS', 'JS', 'TS']}
         tools={['Web APIs', 'express', 'Nestjs', 'Electron', 'eslint', 'prettier', 'jest', 'Cypress']}
@@ -51,6 +52,7 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
+        color="var(--color-secondary-2)"
         percentage={0.8}
         featuredTools={['vite', 'pinia', 'vuetify', 'vue-i18n']}
         tools={['tailwindcss', 'vue-router']}
@@ -64,7 +66,12 @@ changeLanguage('de');
           <span slot="en">BLA</span>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer percentage={0.8} featuredTools={['Astro', 'React', 'Angular']} tools={['Nuxt.js', 'Alpinejs']}>
+      <SkillDrawer
+        color="var(--color-secondary-3)"
+        percentage={0.8}
+        featuredTools={['Astro', 'React', 'Angular']}
+        tools={['Nuxt.js', 'Alpinejs']}
+      >
         <Translation slot="title">
           <span slot="de">Other frontend frameworks</span>
           <span slot="en">Other frontend frameworks</span>
@@ -75,6 +82,7 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
+        color="var(--color-secondary-1)"
         percentage={0.8}
         featuredTools={['fiber', 'go-cron', 'SSE']}
         tools={['WebSockets', 'golang-migrate', 'Postgresql', 'MongoDB']}
@@ -89,6 +97,7 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
+        color="var(--color-secondary-4)"
         percentage={0.8}
         featuredTools={['ASP.NET', 'Blazor', 'WASM']}
         tools={['WebSockets', 'Mudblazor', 'Quartz.AspNetCore', 'MongoDB']}
@@ -103,6 +112,7 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
+        color="var(--color-secondary-2)"
         percentage={0.8}
         featuredTools={['Git', 'Github', 'Jira']}
         tools={['Confluence', 'BitBucket', 'Youtrack']}
@@ -117,6 +127,7 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
+        color="var(--color-secondary-4)"
         percentage={0.8}
         featuredTools={['Docker', 'AWS', 'Github Actions']}
         tools={['Heroku', 'Bash', 'Bitbucket Pipelines']}
@@ -131,6 +142,7 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
+        color="var(--color-secondary-3)"
         percentage={0.8}
         featuredTools={['Rust', 'Kotlin', 'MQTT']}
         tools={['Redis', 'BullMQ', 'Swift', 'p5.js']}
@@ -146,25 +158,18 @@ changeLanguage('de');
       </SkillDrawer>
     </div>
   </section>
-  <section class="section projects">
-    <a id="projects" class="section-anchor">Projects</a>
-    <h2 class="section__header">
-      <span>Projects</span>
-    </h2>
-  </section>
   <section class="section contact">
     <a id="contact" class="section-anchor">Contact</a>
     <h2 class="section__header">
       <span>Contact</span>
     </h2>
   </section>
-  <!-- <header>HEAD</header>
-        <main>CONTENT</main>
-        <footer style="margin-top: 3000px;">FOOTER</footer> -->
-  <!-- <iframe
-    class="frame__old-content"
-    src="https://fabiankachlock.dev/"
-    allowtransparency="true"></iframe> -->
+  <section class="section projects">
+    <a id="projects" class="section-anchor">Projects</a>
+    <h2 class="section__header">
+      <span>Projects</span>
+    </h2>
+  </section>
 </Main>
 
 <style>
@@ -243,18 +248,17 @@ changeLanguage('de');
     font-size: 3rem;
     position: relative;
     margin: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .section {
-    padding: 1rem 1rem;
-    padding-bottom: 500px;
+    padding: 1rem;
     position: relative;
   }
 
   @media only screen and (min-width: 720px) {
     .section {
-      padding: 1rem 2rem;
+      padding: 2rem;
     }
   }
 
@@ -263,7 +267,7 @@ changeLanguage('de');
   }
 
   .about {
-    background-color: var(--color-secondary-1);
+    background-color: var(--color-secondary-3);
   }
 
   .skills {
@@ -271,6 +275,6 @@ changeLanguage('de');
   }
 
   .contact {
-    background-color: var(--color-secondary-3);
+    background-color: var(--color-secondary-4);
   }
 </style>

@@ -7,9 +7,10 @@ const setupTheme = () => {
     return;
   }
 
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    setTheme('dark');
-  }
+  // TODO: light theme as default? - works better with color schema
+  // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  //   setTheme('dark');
+  // }
 };
 
 const menuButtonElement = document.querySelector('.menu__opener');
