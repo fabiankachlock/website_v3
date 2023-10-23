@@ -6,6 +6,9 @@ import meJpeg from '@/assets/me.jpeg';
 import SkillDrawer from '@/components/home/SkillDrawer.astro';
 import Translation from '@/components/Translation.astro';
 import ProjectCard from '@/components/home/ProjectCard.astro';
+import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
+import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
+import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
 
 changeLanguage('de');
 ---
@@ -164,6 +167,29 @@ changeLanguage('de');
     <h2 class="section__header">
       <span>Contact</span>
     </h2>
+    <ul class="contact-content">
+      <li class="contact__item contact__item--email">
+        <div class="contact__logo">
+          <Fragment set:html={emailLogo} />
+        </div>
+        <h3>Email</h3>
+        <a class="contact__link" href="mailto:contact@fabiankachlock.dev">contact@fabiankachlock.dev</a>
+      </li>
+      <li class="contact__item contact__item--github">
+        <div class="contact__logo">
+          <Fragment set:html={githubLogo} />
+        </div>
+        <h3>Github</h3>
+        <a class="contact__link" href="https://github.com/fabiankachlock">@fabiankachlock</a>
+      </li>
+      <li class="contact__item contact__item--instagram">
+        <div class="contact__logo">
+          <Fragment set:html={instagramLogo} />
+        </div>
+        <h3>Instagram</h3>
+        <a class="contact__link" href="https://www.instagram.com/fabian.kachlock/">@fabian.kachlock</a>
+      </li>
+    </ul>
   </section>
   <section class="section projects">
     <a id="projects" class="section-anchor">Projects</a>
@@ -295,5 +321,63 @@ changeLanguage('de');
 
   .contact {
     background-color: var(--color-secondary-2);
+  }
+
+  .contact-content {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+  }
+
+  .contact__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0.5rem 0;
+    font-family: 'Mona Sans';
+    font-size: 1.6rem;
+  }
+
+  .contact__logo {
+    width: 2rem;
+    height: 2rem;
+    padding: 1rem;
+    background-color: var(--color-bg);
+    border-radius: 50%;
+    border: 1px solid var(--color-text);
+    margin-right: 1rem;
+    box-shadow: 3px 3px 0 0 var(--color-text);
+    transition:
+      width 70ms linear,
+      height 70ms linear,
+      padding 70ms linear;
+  }
+
+  .contact__item--github .contact__logo {
+    background-color: var(--color-secondary-4);
+  }
+
+  .contact__item--email .contact__logo {
+    background-color: var(--color-secondary-1);
+  }
+
+  .contact__item--instagram .contact__logo {
+    background-color: var(--color-secondary-3);
+  }
+
+  .contact__logo :global(svg) {
+    fill: var(--color-text);
+  }
+
+  .contact__link {
+    font-family: 'Source Code Pro';
+    color: var(--color-text);
+    margin-left: 0.5rem;
+  }
+
+  .contact__item:hover .contact__logo {
+    width: 2.6rem;
+    height: 2.6rem;
+    padding: 0.7rem;
   }
 </style>

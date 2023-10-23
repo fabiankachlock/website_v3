@@ -1,3 +1,133 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 @font-face {
   font-family: 'Source Code Pro';
   src:
@@ -25,9 +155,9 @@
   --color-surface: #f7f7f7;
 
   --color-secondary-1: #109285;
-  --color-secondary-2: #f6f677;
+  --color-secondary-2: #e6e649;
   --color-secondary-3: #7997de;
-  --color-secondary-4: #ce7967;
+  --color-secondary-4: #cf6651;
 }
 
 [data-theme='dark'] {
@@ -37,8 +167,8 @@
   --color-primary: #39a7cd;
   --color-surface: #222222;
 
-  --color-secondary-1: #005c50;
-  --color-secondary-2: #655418;
-  --color-secondary-3: #2e4853;
+  --color-secondary-1: #006454;
+  --color-secondary-2: #7a7015;
+  --color-secondary-3: #215368;
   --color-secondary-4: #863c06;
 }
