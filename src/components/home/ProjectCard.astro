@@ -11,7 +11,7 @@ const { color, link, tools } = Astro.props;
 <div class="project-card">
   <a class="project-card__link" href={link}>
     <div class="project-card__image-wrapper">
-      <img class="project-card__image" src="" alt="Test" width="1080" height="720" />
+      <img class="project-card__image" src="#" alt="Test" width="1080" height="720" />
     </div>
     <div class="project-card__content">
       <div class="project-card__title">
@@ -28,4 +28,64 @@ const { color, link, tools } = Astro.props;
   </a>
 </div>
 
-<style define:vars={{ _background: color }}></style>
+<style define:vars={{ _background: color }}>
+  .project-card {
+    background-color: var(--_background);
+    max-width: 420px;
+    border: 1px solid var(--color-text);
+    border-radius: 5px;
+  }
+
+  .project-card__link {
+    display: block;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .project-card__content {
+    padding: 1rem;
+  }
+
+  .project-card__title {
+    font-size: 2rem;
+    font-family: 'Mona Sans';
+    margin-bottom: 0.5rem;
+  }
+
+  .project-card__description {
+    font-size: 1.25rem;
+    font-family: 'Mona Sans';
+    margin-bottom: 0.5rem;
+  }
+
+  .project-card__tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0;
+    margin-top: 1rem;
+  }
+
+  .project-card__tool {
+    margin: 0;
+    font-size: 1rem;
+    background-color: var(--color-surface);
+    padding: 0.3rem 0.8rem;
+    white-space: nowrap;
+    box-shadow: 0 0 0 0 var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: 20px;
+    margin: 0 0.2rem;
+    padding: 0.3rem 1rem;
+    transition:
+      margin 140ms linear,
+      padding 140ms linear,
+      translate 140ms linear,
+      box-shadow 140ms linear,
+      border-radius 100ms ease-in;
+  }
+
+  .project-card__tool:hover {
+    translate: -3px -3px;
+    box-shadow: 3px 3px 0 0 var(--color-text);
+  }
+</style>
