@@ -161,6 +161,7 @@ table {
 }
 
 [data-theme='dark'] {
+  color-scheme: dark;
   --color-bg: #191914;
   --color-transparent-bg: #141414a0;
   --color-text: #d3d3d3;
