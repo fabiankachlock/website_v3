@@ -29,6 +29,7 @@ changeLanguage('de');
     <h2 class="section__header">
       <span>About</span>
     </h2>
+    <div class="about-container"></div>
   </section>
   <section class="section skills">
     <a id="skills" class="section-anchor">Skills</a>
@@ -167,7 +168,7 @@ changeLanguage('de');
     <h2 class="section__header">
       <span>Contact</span>
     </h2>
-    <ul class="contact-content">
+    <ul class="contact-container">
       <li class="contact__item contact__item--email">
         <div class="contact__logo">
           <Fragment set:html={emailLogo} />
@@ -319,11 +320,21 @@ changeLanguage('de');
     background-color: var(--color-bg);
   }
 
+  :global(.fullscreen) .skills-container,
+  :global(.fullscreen) .projects-container,
+  :global(.fullscreen) .about-container,
+  :global(.fullscreen) .contact-container,
+  :global(.fullscreen) .section__header {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .contact {
     background-color: var(--color-secondary-2);
   }
 
-  .contact-content {
+  .contact-container {
     padding: 0;
     list-style: none;
     margin: 0;
