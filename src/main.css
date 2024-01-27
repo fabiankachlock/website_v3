@@ -152,7 +152,12 @@ table {
   --color-transparent-bg: #dfdfdfa0;
   --color-text: #000;
   --color-primary: #39a7cd;
+  --color-secondary: #874707;
   --color-surface: #f7f7f7;
+
+  --color-bg-tint-1: #dfeeec;
+  --color-bg-tint-2: #e7dfee;
+  --color-bg-tint-3: #e6eedf;
 
   --color-secondary-1: #109285;
   --color-secondary-2: #e6e649;

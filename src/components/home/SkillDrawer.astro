@@ -2,16 +2,14 @@
 const id = Math.random().toString().substring(2, 7);
 
 export type Props = {
-  color: string;
-  percentage: number;
   tools: string[];
   featuredTools: string[];
 };
 
-const { percentage, featuredTools, tools, color } = Astro.props;
+const { featuredTools, tools } = Astro.props;
 ---
 
-<div class="skill-drawer" data-id={id} style={`--percentage: ${percentage * 100}%`}>
+<div class="skill-drawer" data-id={id}>
   <div class="skill-drawer__head">
     <!-- <div class="skill-drawer__percentage"></div> -->
     <div class="skill-drawer__title">
@@ -48,12 +46,12 @@ const { percentage, featuredTools, tools, color } = Astro.props;
   });
 </script>
 
-<style define:vars={{ _background: color }}>
+<style>
   .skill-drawer {
     display: grid;
     grid-template-rows: auto 0fr;
     border: 1px solid var(--color-text);
-    background-color: var(--_background);
+    background-color: var(--color-surface);
     transition:
       grid-template-rows 200ms ease-in-out,
       margin 140ms linear,
@@ -225,6 +223,7 @@ const { percentage, featuredTools, tools, color } = Astro.props;
     translate: -3px -3px;
     box-shadow: 3px 3px 0 0 var(--color-text);
     border-right-color: var(--color-text);
+    background-color: var(--color-primary);
   }
 
   .skill-drawer__text {
@@ -246,5 +245,6 @@ const { percentage, featuredTools, tools, color } = Astro.props;
   .tools__tool:hover {
     translate: -3px -3px;
     box-shadow: 3px 3px 0 0 var(--color-text);
+    background-color: var(--color-primary);
   }
 </style>

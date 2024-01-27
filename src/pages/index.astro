@@ -25,7 +25,10 @@ changeLanguage('de');
           <span class="hero__caret"></span>
            Fabian
         </span>
+        <br />
+        <span class="hero__name">&emsp;Kachlock</span>
       </h1>
+      <p class="hero__things">Software&nbsp;Developer/Code&nbsp;Architect/Tech&nbsp;Enthusiast</p>
     </div>
   </section>
   <section class="section about">
@@ -41,8 +44,6 @@ changeLanguage('de');
     </h2>
     <div class="skills-container">
       <SkillDrawer
-        color="var(--color-secondary-1)"
-        percentage={0.8}
         featuredTools={['HTML', 'CSS', 'JS', 'TS']}
         tools={['Web APIs', 'express', 'Nestjs', 'Electron', 'eslint', 'prettier', 'jest', 'Cypress']}
       >
@@ -59,12 +60,7 @@ changeLanguage('de');
           >
         </Translation>
       </SkillDrawer>
-      <SkillDrawer
-        color="var(--color-secondary-2)"
-        percentage={0.8}
-        featuredTools={['vite', 'pinia', 'vuetify', 'vue-i18n']}
-        tools={['tailwindcss', 'vue-router']}
-      >
+      <SkillDrawer featuredTools={['vite', 'pinia', 'vuetify', 'vue-i18n']} tools={['tailwindcss', 'vue-router']}>
         <Translation slot="title">
           <span slot="de">Vue.js - my frontend framework of choice</span>
           <span slot="en">Vue.js - my frontend framework of choice</span>
@@ -74,12 +70,7 @@ changeLanguage('de');
           <span slot="en">BLA</span>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer
-        color="var(--color-secondary-3)"
-        percentage={0.8}
-        featuredTools={['Astro', 'React', 'Angular']}
-        tools={['Nuxt.js', 'Alpinejs']}
-      >
+      <SkillDrawer featuredTools={['Astro', 'React', 'Angular']} tools={['Nuxt.js', 'Alpinejs']}>
         <Translation slot="title">
           <span slot="de">Other frontend frameworks</span>
           <span slot="en">Other frontend frameworks</span>
@@ -90,8 +81,6 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
-        color="var(--color-secondary-1)"
-        percentage={0.8}
         featuredTools={['fiber', 'go-cron', 'SSE']}
         tools={['WebSockets', 'golang-migrate', 'Postgresql', 'MongoDB']}
       >
@@ -105,8 +94,6 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
-        color="var(--color-secondary-4)"
-        percentage={0.8}
         featuredTools={['ASP.NET', 'Blazor', 'WASM']}
         tools={['WebSockets', 'Mudblazor', 'Quartz.AspNetCore', 'MongoDB']}
       >
@@ -119,12 +106,7 @@ changeLanguage('de');
           <span slot="en">BLA</span>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer
-        color="var(--color-secondary-2)"
-        percentage={0.8}
-        featuredTools={['Git', 'Github', 'Jira']}
-        tools={['Confluence', 'BitBucket', 'Youtrack']}
-      >
+      <SkillDrawer featuredTools={['Git', 'Github', 'Jira']} tools={['Confluence', 'BitBucket', 'Youtrack']}>
         <Translation slot="title">
           <span slot="de">Version Control & Project management</span>
           <span slot="en">Version Control & Project management</span>
@@ -135,8 +117,6 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
-        color="var(--color-secondary-4)"
-        percentage={0.8}
         featuredTools={['Docker', 'AWS', 'Github Actions']}
         tools={['Heroku', 'Bash', 'Bitbucket Pipelines']}
       >
@@ -149,12 +129,7 @@ changeLanguage('de');
           <span slot="en">BLA</span>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer
-        color="var(--color-secondary-3)"
-        percentage={0.8}
-        featuredTools={['Rust', 'Kotlin', 'MQTT']}
-        tools={['Redis', 'BullMQ', 'Swift', 'p5.js']}
-      >
+      <SkillDrawer featuredTools={['Rust', 'Kotlin', 'MQTT']} tools={['Redis', 'BullMQ', 'Swift', 'p5.js']}>
         <Translation slot="title">
           <span slot="de">Other tools, languages & libraries</span>
           <span slot="en">Other tools, languages & libraries</span>
@@ -222,7 +197,39 @@ changeLanguage('de');
 </Main>
 
 <style>
-  .section.hero {
+  .section-anchor {
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    top: -100px;
+  }
+
+  .section__header {
+    color: var(--color-text);
+    font-family: 'Source Code Pro';
+    font-weight: 400;
+    font-size: 3rem;
+    position: relative;
+    margin: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .section {
+    padding: 1rem;
+    position: relative;
+  }
+
+  @media only screen and (min-width: 720px) {
+    .section {
+      padding: 2rem;
+    }
+  }
+
+  .section:not(:first-of-type) {
+    border-top: 1px solid var(--color-text);
+  }
+
+  .hero {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -231,6 +238,7 @@ changeLanguage('de');
     min-height: 100dvh;
     flex-wrap: wrap;
     gap: 2rem;
+    padding: 0;
   }
 
   .hero__image-wrapper {
@@ -253,7 +261,13 @@ changeLanguage('de');
     display: block;
     font-family: 'Mona Sans';
     color: var(--color-text);
-    opacity: 0.6;
+    font-size: 2rem;
+  }
+
+  .hero__things {
+    display: block;
+    font-family: 'Mona Sans';
+    color: var(--color-text);
     font-size: 2rem;
   }
 
@@ -287,31 +301,21 @@ changeLanguage('de');
     }
   }
 
-  .section {
-    padding: 1rem;
-    position: relative;
-  }
-
-  @media only screen and (min-width: 720px) {
-    .section {
-      padding: 2rem;
-    }
-  }
-
-  .section:not(:first-of-type) {
-    border-top: 1px solid var(--color-text);
-  }
-
   .about {
-    background-color: var(--color-secondary-3);
+    background-color: var(--color-bg-tint-1);
   }
 
   .skills {
-    background-color: var(--color-bg);
+    background-color: var(--color-bg-tint-2);
   }
 
   .contact {
-    background-color: var(--color-secondary-2);
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+  }
+
+  .contact .section__header {
+    color: var(--color-bg);
   }
 
   .contact-content {
@@ -338,37 +342,28 @@ changeLanguage('de');
     border: 1px solid var(--color-text);
     margin-right: 1rem;
     box-shadow: 3px 3px 0 0 var(--color-text);
-    transition:
-      width 70ms linear,
-      height 70ms linear,
-      padding 70ms linear;
-  }
-
-  .contact__item--github .contact__logo {
-    background-color: var(--color-secondary-4);
-  }
-
-  .contact__item--email .contact__logo {
-    background-color: var(--color-secondary-1);
-  }
-
-  .contact__item--instagram .contact__logo {
-    background-color: var(--color-secondary-3);
+    background-color: var(--color-surface);
   }
 
   .contact__logo :global(svg) {
     fill: var(--color-text);
+    transition: scale 70ms ease-in-out;
   }
 
   .contact__link {
     font-family: 'Source Code Pro';
-    color: var(--color-text);
+    color: var(--color-bg);
     margin-left: 0.5rem;
   }
+  .contact__link:hover {
+    color: var(--color-secondary);
+  }
 
-  .contact__item:hover .contact__logo {
-    width: 2.6rem;
-    height: 2.6rem;
-    padding: 0.7rem;
+  .contact__item:hover .contact__logo :global(svg) {
+    scale: 1.4;
+  }
+
+  .projects {
+    background-color: var(--color-bg-tint-3);
   }
 </style>
