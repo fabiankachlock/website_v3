@@ -1,4 +1,4 @@
-import { getStoredTheme, setTheme } from '@/scripts/theme';
+import { getStoredTheme, setTheme, toggleTheme } from '@/scripts/theme';
 
 const setupTheme = () => {
   const storedTheme = getStoredTheme();
@@ -7,105 +7,39 @@ const setupTheme = () => {
     return;
   }
 
-  // TODO: light theme as default? - works better with color schema
-  // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  //   setTheme('dark');
-  // }
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    setTheme('dark');
+  }
 };
 
 const menuButtonElement = document.querySelector('.menu__opener');
-const bgElement = document.querySelector('.background');
-const frameContentElement = document.querySelector('.frame__content');
 const headElement = document.querySelector('.head');
-const footerElement = document.querySelector('.footer');
-const menuElement = document.querySelector('.menu__content-wrapper');
-const terminalElement = document.querySelector('.terminal-opener');
-const consoleElement = document.querySelector('.footer__console-content-wrapper');
-const translateElement = document.querySelector('.translate__button');
-const languageElement = document.querySelector('.language-select');
-let last = 0;
-let stringSize = 0;
-
-if (frameContentElement) {
-  frameContentElement.addEventListener('scroll', () => renderBg());
-}
-window.onresize = () => {
-  resizeBg();
-  repositionUpperHline();
-  repositionBottomHline();
-};
-
-const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-+_#=';
-
-const resizeBg = () => {
-  const rect = bgElement?.getBoundingClientRect();
-  stringSize = ((rect?.width ?? 1) / 10) * ((rect?.height ?? 1) / 20);
-  renderBg();
-};
-
-const renderBg = () => {
-  const now = performance.now();
-  if (!bgElement || now - 50 < last) return;
-  let randomText = '';
-  for (let i = 0; i < stringSize; i++) {
-    randomText += chars[Math.floor(Math.random() * chars.length)];
-  }
-  last = now;
-  bgElement.innerHTML = randomText;
-};
-
-const moveHline = (selector: string, attribute: string, yPosition?: string) => {
-  if (yPosition !== undefined) {
-    document.querySelector(selector)?.setAttribute('style', `${attribute}: ${yPosition}`);
-  } else {
-    document.querySelector(selector)?.setAttribute('style', `${attribute}:  var(--inset)`);
-  }
-};
+const translateElements = document.querySelectorAll('.translate');
+const themeSwitchElements = document.querySelectorAll('.theme-switch__button');
 
 // toggle the menu
-const toggleMenu = () => {
-  headElement?.classList.toggle('open');
-  repositionUpperHline();
-};
-
-export const repositionUpperHline = () => {
-  const height = menuElement?.getBoundingClientRect()?.height;
-  if (headElement?.classList.contains('open')) {
-    moveHline('.frame__hline--top', 'top', `calc(var(--inset) + ${height}px)`);
-  } else {
-    moveHline('.frame__hline--top', 'top', undefined);
-  }
-};
-
 if (menuButtonElement) {
-  menuButtonElement.addEventListener('click', () => toggleMenu());
-}
-
-// toggle the terminal
-const toggleTerminal = () => {
-  footerElement?.classList.toggle('open');
-  repositionBottomHline();
-};
-
-export const repositionBottomHline = () => {
-  const height = consoleElement?.getBoundingClientRect()?.height;
-  if (footerElement?.classList.contains('open')) {
-    moveHline('.frame__hline--bottom', 'bottom', `calc(var(--inset) + ${height}px)`);
-  } else {
-    moveHline('.frame__hline--bottom', 'bottom', undefined);
-  }
-};
-
-if (terminalElement) {
-  terminalElement.addEventListener('click', () => toggleTerminal());
-}
-
-// toggle language select
-if (translateElement) {
-  translateElement.addEventListener('click', () => {
-    languageElement?.classList.toggle('open');
+  menuButtonElement.addEventListener('click', () => {
+    headElement?.classList.toggle('open');
   });
 }
 
+// toggle language select
+if (translateElements.length > 0) {
+  translateElements.forEach(
+    e =>
+      e.querySelector('.translate__button')?.addEventListener('click', () => {
+        e.querySelector('.language-select')?.classList.toggle('open');
+      }),
+  );
+}
+
+if (themeSwitchElements.length > 0) {
+  themeSwitchElements.forEach(e =>
+    e.addEventListener('click', () => {
+      toggleTheme();
+    }),
+  );
+}
+
 setupTheme();
-resizeBg();

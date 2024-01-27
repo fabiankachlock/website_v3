@@ -25,36 +25,14 @@ export interface Props {
     <script src="../scripts/setup.ts"></script>
   </head>
   <body>
-    <div class="frame">
-      <div class="frame__backdrop"></div>
-      <div class="frame__content">
-        <Header />
-        <main class="insertable-content">
-          <slot />
-          <!-- <div style="height: 3000px"></div> -->
-        </main>
+    <div class="frame__content">
+      <Header />
+      <main class="main-content">
+        <slot />
         <Footer />
-      </div>
-      <span class="frame__hedge"></span>
-      <span class="frame__vedge"></span>
-      <span class="frame__corner frame__corner--tl"></span>
-      <span class="frame__corner frame__corner--tr"></span>
-      <span class="frame__corner frame__corner--bl"></span>
-      <span class="frame__corner frame__corner--br"></span>
-      <div class="frame__hline frame__hline--top">
-        <div class="frame__hline-anchor">
-          <span class="frame__hline-edge frame__hline-edge--l"></span>
-          <span class="frame__hline-edge frame__hline-edge--r"></span>
-        </div>
-      </div>
-      <div class="frame__hline frame__hline--bottom">
-        <div class="frame__hline-anchor">
-          <span class="frame__hline-edge frame__hline-edge--l"></span>
-          <span class="frame__hline-edge frame__hline-edge--r"></span>
-        </div>
-      </div>
+      </main>
     </div>
-    <div class="background"></div>
+
     <style>
       html {
         font-size: 16px;
@@ -65,187 +43,11 @@ export interface Props {
         margin: 0;
         background-color: var(--color-bg);
         color: var(--color-text);
-        overflow: hidden;
         cursor: crosshair;
       }
 
-      :root {
-        --inset: 1rem;
-        --edge-size: calc(1rem * 0.75);
-      }
-
-      @media only screen and (min-width: 720px) {
-        :root {
-          --edge-size: 1rem;
-          --inset: 2rem;
-        }
-      }
-
-      .insertable-content {
-        position: relative;
-        z-index: 0;
-        flex-grow: 1;
-      }
-
-      .frame {
-        position: absolute;
-        inset: var(--inset);
-        margin: 0 auto;
-        max-width: 1280px;
-        z-index: 10;
-      }
-
-      .background {
-        position: fixed;
-        inset: -5px;
-        font-family: 'Source Code Pro';
-        word-break: break-all;
-        font-size: 18px;
-        line-height: 20px;
-        opacity: 0.4;
-        user-select: none;
-      }
-
-      .frame__content {
-        z-index: 1;
-        position: absolute;
-        overflow: auto;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        min-height: 100%;
-      }
-
-      .frame__backdrop {
-        background-color: var(--color-bg);
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-      }
-
-      .frame__hline,
-      .frame__hedge::before,
-      .frame__hedge::after,
-      .frame__vedge::before,
-      .frame__vedge::after {
-        background-color: var(--color-text);
-        content: '';
-        z-index: 1000;
-      }
-
-      .frame__hline,
-      .frame__hedge::before,
-      .frame__hedge::after {
-        position: fixed;
-        left: 0;
-        height: 1px;
-        width: 100vw;
-      }
-
-      .frame__vedge::before,
-      .frame__vedge::after {
-        position: absolute;
-        top: calc(var(--inset) * -1);
-        width: 1px;
-        height: 100dvh;
-      }
-
-      .frame__hline--top,
-      .frame__hedge::before {
-        top: var(--inset);
-      }
-
-      .frame__hline--bottom,
-      .frame__hedge::after {
-        bottom: var(--inset);
-      }
-
-      .frame__vedge::before {
-        left: 0;
-      }
-
-      .frame__vedge::after {
-        right: 0;
-      }
-
-      .frame__hline-edge,
-      .frame__hline-edge::after,
-      .frame__corner,
-      .frame__corner::after {
-        position: absolute;
-        background-color: var(--color-primary);
-        content: '';
-        width: var(--edge-size);
-        height: 3px;
-        z-index: 1001;
-      }
-
-      .frame__hline-edge::after,
-      .frame__corner::after {
-        rotate: 90deg;
-      }
-
-      .frame__corner--tl {
-        left: 0;
-        top: 0;
-        translate: -50% -1px;
-      }
-
-      .frame__corner--tr {
-        right: 0;
-        top: 0;
-        translate: 50% -1px;
-      }
-
-      .frame__corner--bl {
-        left: 0;
-        bottom: 0;
-        translate: -50% 1px;
-      }
-
-      .frame__corner--br {
-        right: 0;
-        bottom: 0;
-        translate: 50% 1px;
-      }
-
-      .frame__hline {
-        z-index: 1002;
-        transition:
-          top 130ms linear,
-          bottom 130ms linear;
-      }
-
-      .frame__hline-anchor {
-        position: relative;
-        margin: 0 auto;
-        max-width: calc(1280px + var(--inset) + var(--inset));
-        height: 1px;
-      }
-
-      .frame__hline-edge--l {
-        left: var(--inset);
-        translate: -50% -1px;
-      }
-
-      .frame__hline-edge--r {
-        right: var(--inset);
-        translate: 50% -1px;
-      }
-
-      .fullscreen {
-        --inset: 0;
-      }
-
-      .fullscreen .frame {
-        max-width: unset;
-      }
-
-      .fullscreen .frame__hedge,
-      .fullscreen .frame__vedge,
-      .fullscreen .frame__corner,
-      .fullscreen .frame__hline {
-        display: none;
+      .main-content {
+        transition: 300ms ease-in-out translate;
       }
     </style>
 

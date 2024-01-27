@@ -1,23 +1,18 @@
 ---
-import svgLogo from '@/assets/logo.svg?raw';
 import svgMenuButton from '@/assets/menu_button.svg?raw';
+import ThemeSwitch from './ThemeSwitch.astro';
+import LanguageSelect from './LanguageSelect.astro';
 ---
 
 <header class="head">
-  <div class="head__bar">
-    <div class="head__logo">
-      <Fragment set:html={svgLogo} />
-    </div>
-    <h1 class="head__title">Fabian Kachlock</h1>
-    <div>
-      <button class="menu__opener">
-        <Fragment set:html={svgMenuButton} />
-      </button>
-    </div>
+  <div class="floating-menu">
+    <button class="menu__opener">
+      <Fragment set:html={svgMenuButton} />
+    </button>
   </div>
   <nav class="menu">
     <div class="menu__content">
-      <ul class="menu__content-wrapper">
+      <ul class="menu__nav">
         <li class="menu__item">
           <a class="menu__link" href="#about">Über mich</a>
         </li>
@@ -31,63 +26,28 @@ import svgMenuButton from '@/assets/menu_button.svg?raw';
           <a class="menu__link" href="#contact">Kontakt</a>
         </li>
       </ul>
+      <div class="menu__spacer"></div>
+      <div class="menu__actions">
+        <ThemeSwitch />
+        <LanguageSelect />
+      </div>
     </div>
   </nav>
 </header>
 
 <style>
-  .head {
-    display: flex;
-    flex-direction: column-reverse;
-    position: sticky;
-    top: 0;
+  .floating-menu {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: transparent;
     z-index: 100;
-  }
-
-  .head__bar {
-    background-color: var(--color-surface);
-    border-bottom: 1px solid var(--color-text);
-    padding: 0.2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    grid-row: 2;
-  }
-
-  .head__logo {
-    height: 3rem;
-    margin-right: 0.5rem;
-  }
-
-  .head__logo :global(svg) {
-    height: 3rem;
-  }
-
-  .head__title {
-    margin: 0;
-    color: var(--color-primary);
-    flex: 1;
-    font-family: 'Source Code Pro';
-    font-weight: 600;
-    font-size: 2rem;
-  }
-
-  .menu {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 130ms ease-in-out;
-  }
-
-  .head:has(.menu__link:focus) .menu,
-  .head.open .menu {
-    grid-template-rows: 1fr;
   }
 
   .menu__opener {
     height: 3rem;
     width: 3rem;
-    margin: 0 0.5rem;
+    margin: 0;
     padding: 0;
     display: block;
     background: transparent;
@@ -118,25 +78,32 @@ import svgMenuButton from '@/assets/menu_button.svg?raw';
     stroke-dashoffset: 0;
   }
 
+  .menu {
+    background-color: var(--color-surface);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: min(70vw, 300px);
+    left: 100vw;
+    transition: 300ms ease-in-out left;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-left: 2px solid var(--color-text);
+  }
+
   .menu__content {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--color-bg);
-  }
-
-  .menu__content-wrapper {
-    margin: 0;
-    padding: 0.5rem;
-    list-style: none;
+    padding: 4rem 1rem 1rem;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    text-align: center;
+    position: relative;
+    flex-direction: column;
+    min-height: calc(100% - 5rem);
   }
 
-  :global(.fullscreen) .menu__content-wrapper {
-    border-bottom: 1px solid var(--color-text);
+  .menu__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
   }
 
   .menu__item {
@@ -152,5 +119,25 @@ import svgMenuButton from '@/assets/menu_button.svg?raw';
   .menu__link:hover {
     font-style: italic;
     color: var(--color-primary);
+  }
+
+  .menu__spacer {
+    flex-grow: 1;
+  }
+
+  .menu__actions {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .head:has(a:focus) .menu,
+  .head.open .menu {
+    left: calc(100vw - min(70vw, 300px));
+  }
+
+  .head:has(a:focus) + :global(.main-content),
+  .head.open + :global(.main-content) {
+    translate: max(-70vw, -300px) 0;
   }
 </style>

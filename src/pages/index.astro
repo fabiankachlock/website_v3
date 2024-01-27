@@ -16,12 +16,16 @@ changeLanguage('de');
 <Main>
   <section class="section hero">
     <div class="hero__image-wrapper">
-      <div class="hero__image-mask">
-        <Image class="hero__image" src={meJpeg} alt="" />
-      </div>
-      <div class="hero__image-shadow">
-        <Image class="hero__image" src={meJpeg} alt="" />
-      </div>
+      <Image class="hero__image" src={meJpeg} alt="Me :)" />
+    </div>
+    <div>
+      <h1 class="hero__title">
+        <span class="hero__intro">Hello, I'm</span><br />
+        <span class="hero__name">
+          <span class="hero__caret"></span>
+           Fabian
+        </span>
+      </h1>
     </div>
   </section>
   <section class="section about">
@@ -218,82 +222,69 @@ changeLanguage('de');
 </Main>
 
 <style>
+  .section.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
   .hero__image-wrapper {
-    margin: 2rem auto;
-    width: 40vw;
-    height: 40vw;
-    min-width: 200px;
-    min-height: 200px;
-    max-height: 400px;
-    max-width: 400px;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    transform: translateZ(0) scale(1, 1);
-    -webkit-transform: translateZ(0) scale(1, 1);
-    position: relative;
-  }
-
-  .hero__image-mask {
-    position: absolute;
-    overflow: hidden;
     width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border: 2px solid var(--color-text);
-    z-index: 2;
-    transition:
-      top 70ms ease-in-out,
-      left 70ms ease-in-out;
-  }
-
-  .hero__image-shadow {
+    max-width: clamp(200px, 50vw, 300px);
+    max-height: clamp(200px, 50vw, 300px);
     overflow: hidden;
-    width: 100%;
-    height: 100%;
-    border: 2px solid var(--color-text);
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    z-index: 1;
-    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
   }
 
   .hero__image {
-    height: 120%;
-    width: auto;
-    translate: -28% -10%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
-  .hero__image-shadow .hero__image {
-    transition: scale 70ms ease-in-out;
-    filter: grayscale(0.7);
-  }
-
-  .hero__image-wrapper:hover .hero__image-shadow .hero__image {
-    scale: 0.98;
-  }
-
-  .hero__image-wrapper:hover .hero__image-mask {
-    top: -1rem;
-    left: -1rem;
-  }
-
-  .section-anchor {
+  .hero__intro {
     display: block;
-    visibility: hidden;
-    position: absolute;
-    top: -100px;
+    font-family: 'Mona Sans';
+    color: var(--color-text);
+    opacity: 0.6;
+    font-size: 2rem;
   }
 
-  .section__header {
-    color: var(--color-text);
+  .hero__name {
+    display: block;
     font-family: 'Source Code Pro';
-    font-weight: 400;
-    font-size: 3rem;
+    color: var(--color-primary);
+    font-size: 5rem;
     position: relative;
-    margin: 0;
-    margin-bottom: 1.5rem;
+  }
+
+  .hero__caret {
+    display: block;
+    position: absolute;
+    background-color: var(--color-text);
+    width: 1ch;
+    height: 8px;
+    bottom: 0px;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   .section {
