@@ -1,9 +1,11 @@
 ---
-import svgMenuButton from '@/assets/menu_button.svg?raw';
 import ThemeSwitch from './ThemeSwitch.astro';
 import LanguageSelect from './LanguageSelect.astro';
 import LocalizedLink from './LocalizedLink.astro';
 import Translation from './Translation.astro';
+
+import svgMenuButton from '@/assets/menu_button.svg?raw';
+import svgLogo from '@/assets/logo.svg?raw';
 ---
 
 <header class="head">
@@ -14,6 +16,9 @@ import Translation from './Translation.astro';
   </div>
   <nav class="menu">
     <div class="menu__content">
+      <div class="menu__logo">
+        <Fragment set:html={svgLogo} />
+      </div>
       <ul class="menu__nav">
         <li class="menu__item">
           <LocalizedLink classes="menu__link" path="/#about">
@@ -129,11 +134,21 @@ import Translation from './Translation.astro';
   }
 
   .menu__content {
-    padding: 4rem 1rem 1rem;
+    padding: 1rem;
     display: flex;
     position: relative;
     flex-direction: column;
     min-height: calc(100% - 5rem);
+  }
+
+  .menu__logo {
+    height: 5rem;
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .menu__logo :global(svg) {
+    height: 100%;
   }
 
   .menu__nav {
@@ -149,6 +164,7 @@ import Translation from './Translation.astro';
 
   .menu__nav :global(.menu__link) {
     font-family: 'Source Code Pro';
+    font-weight: 500;
     font-size: 1.5rem;
     color: var(--color-text);
   }
