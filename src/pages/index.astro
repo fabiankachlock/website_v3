@@ -1,16 +1,16 @@
 ---
-import { changeLanguage } from 'i18next';
-import { Image } from 'astro:assets';
-import Main from '@/layouts/Main.astro';
-import meJpeg from '@/assets/me.jpeg';
-import SkillDrawer from '@/components/home/SkillDrawer.astro';
-import Translation from '@/components/Translation.astro';
-import ProjectCard from '@/components/home/ProjectCard.astro';
-import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
-import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
-import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
+import { changeLanguage } from "i18next";
+import { Image } from "astro:assets";
+import Main from "@/layouts/Main.astro";
+import meJpeg from "@/assets/me.jpeg";
+import SkillDrawer from "@/components/home/SkillDrawer.astro";
+import Translation from "@/components/Translation.astro";
+import ProjectCard from "@/components/home/ProjectCard.astro";
+import githubLogo from "@carbon/icons/svg/32/logo--github.svg?raw";
+import instagramLogo from "@carbon/icons/svg/32/logo--instagram.svg?raw";
+import emailLogo from "@carbon/icons/svg/32/email.svg?raw";
 
-changeLanguage('de');
+changeLanguage("de");
 ---
 
 <Main>
@@ -20,7 +20,12 @@ changeLanguage('de');
     </div>
     <div>
       <h1 class="hero__title">
-        <span class="hero__intro">Hi, I'm</span><br />
+        <span class="hero__intro">
+          <Translation>
+            <span slot="de">Hi, Ich bin</span>
+            <span slot="en">Hi, I'm</span>
+          </Translation>
+        </span><br />
         <span class="hero__name">
           <span class="hero__caret"></span>
            Fabian
@@ -36,15 +41,31 @@ changeLanguage('de');
     </div>
   </section>
   <section class="section about">
-    <a id="about" class="section-anchor">About</a>
+    <a id="about" class="section-anchor">
+      <Translation>
+        <span slot="de">Über</span>
+        <span slot="en">About</span>
+      </Translation>
+    </a>
     <h2 class="section__header">
-      <span>About</span>
+      <Translation>
+        <span slot="de">Über</span>
+        <span slot="en">About</span>
+      </Translation>
     </h2>
   </section>
   <section class="section skills">
-    <a id="skills" class="section-anchor">Skills</a>
+    <a id="skills" class="section-anchor">
+      <Translation>
+        <span slot="de">Skills</span>
+        <span slot="en">Skills</span>
+      </Translation>
+    </a>
     <h2 class="section__header">
-      <span>Skills</span>
+      <Translation>
+        <span slot="de">Skills</span>
+        <span slot="en">Skills</span>
+      </Translation>
     </h2>
     <div class="skills-container">
       <SkillDrawer
@@ -175,9 +196,17 @@ changeLanguage('de');
     </ul>
   </section>
   <section class="section projects">
-    <a id="projects" class="section-anchor">Projects</a>
+    <a id="projects" class="section-anchor">
+      <Translation>
+        <span slot="de">Projekte</span>
+        <span slot="en">Projects</span>
+      </Translation>
+    </a>
     <h2 class="section__header">
-      <span>Projects</span>
+      <Translation>
+        <span slot="de">Projekte</span>
+        <span slot="en">Projects</span>
+      </Translation>
     </h2>
     <div class="projects-container">
       <ProjectCard color="var(--color-secondary-1)" link="#" tools={['ABC', 'EFG', 'HIJ', 'KLM']}>

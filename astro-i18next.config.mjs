@@ -6,6 +6,8 @@ export default {
   defaultNamespace: 'common',
   load: ['server', 'client'],
   routes: {
-    en: {},
+    en: {
+      impressum: 'imprint',
+    },
   },
 };

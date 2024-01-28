@@ -1,11 +1,19 @@
 ---
 import ThemeSwitch from '@/components/ThemeSwitch.astro';
 import LanguageSelect from './LanguageSelect.astro';
+import LocalizedLink from './LocalizedLink.astro';
+import Translation from './Translation.astro';
 ---
 
 <footer class="footer">
   <div class="footer__text">
-    <p>© Fabian Kachlock 2023</p>
+    <p>© Fabian Kachlock <span id="year">2024</span>&emsp;|&emsp;</p>
+    <LocalizedLink path="/impressum">
+      <Translation>
+        <span slot="de">Impressum</span>
+        <span slot="en">Imprint</span>
+      </Translation>
+    </LocalizedLink>
   </div>
   <div class="footer__spacer" style="flex: 1 0 0; width: 100%"></div>
   <ThemeSwitch />
@@ -32,10 +40,15 @@ import LanguageSelect from './LanguageSelect.astro';
     padding: 0.3rem;
   }
 
+  .footer__text :global(a),
   .footer__text p {
     margin: 0;
     font-family: 'Mona Sans';
     color: var(--color-text);
     font-size: 1rem;
+  }
+
+  .footer__text :global(a:hover) {
+    color: var(--color-primary);
   }
 </style>

@@ -2,6 +2,8 @@
 import svgMenuButton from '@/assets/menu_button.svg?raw';
 import ThemeSwitch from './ThemeSwitch.astro';
 import LanguageSelect from './LanguageSelect.astro';
+import LocalizedLink from './LocalizedLink.astro';
+import Translation from './Translation.astro';
 ---
 
 <header class="head">
@@ -14,19 +16,49 @@ import LanguageSelect from './LanguageSelect.astro';
     <div class="menu__content">
       <ul class="menu__nav">
         <li class="menu__item">
-          <a class="menu__link" href="#about">Über mich</a>
+          <LocalizedLink classes="menu__link" path="/#about">
+            <Translation>
+              <span slot="de">Über mich</span>
+              <span slot="en">About me</span>
+            </Translation>
+          </LocalizedLink>
         </li>
         <li class="menu__item">
-          <a class="menu__link" href="#skills">Skills</a>
+          <LocalizedLink classes="menu__link" path="/#skills">
+            <Translation>
+              <span slot="de">Skills</span>
+              <span slot="en">Skills</span>
+            </Translation>
+          </LocalizedLink>
         </li>
         <li class="menu__item">
-          <a class="menu__link" href="#projects">Projekte</a>
+          <LocalizedLink classes="menu__link" path="/#projects">
+            <Translation>
+              <span slot="de">Projekte</span>
+              <span slot="en">Projects</span>
+            </Translation>
+          </LocalizedLink>
         </li>
         <li class="menu__item">
-          <a class="menu__link" href="#contact">Kontakt</a>
+          <LocalizedLink classes="menu__link" path="/#contact">
+            <Translation>
+              <span slot="de">Kontakt</span>
+              <span slot="en">Contact</span>
+            </Translation>
+          </LocalizedLink>
         </li>
       </ul>
       <div class="menu__spacer"></div>
+      <ul class="menu__extra">
+        <li class="menu__item">
+          <LocalizedLink classes="menu__link" path="/impressum">
+            <Translation>
+              <span slot="de">Impressum</span>
+              <span slot="en">Imprint</span>
+            </Translation>
+          </LocalizedLink>
+        </li>
+      </ul>
       <div class="menu__actions">
         <ThemeSwitch />
         <LanguageSelect />
@@ -88,7 +120,7 @@ import LanguageSelect from './LanguageSelect.astro';
     top: 0;
     bottom: 0;
     width: min(70vw, 300px);
-    left: 100vw;
+    left: 100%;
     transition: 300ms ease-in-out left;
     overflow-y: auto;
     overflow-x: hidden;
@@ -114,14 +146,24 @@ import LanguageSelect from './LanguageSelect.astro';
     padding: 0.5rem 1rem;
   }
 
-  .menu__link {
+  .menu__nav :global(.menu__link) {
     font-family: 'Source Code Pro';
     font-size: 1.5rem;
     color: var(--color-text);
   }
 
-  .menu__link:hover {
+  .menu__nav :global(.menu__link:hover) {
     font-style: italic;
+    color: var(--color-primary);
+  }
+
+  .menu__extra :global(.menu__link) {
+    font-family: 'Mona Sans';
+    font-size: 1rem;
+    color: var(--color-text);
+  }
+
+  .menu__extra :global(.menu__link:hover) {
     color: var(--color-primary);
   }
 
@@ -162,7 +204,7 @@ import LanguageSelect from './LanguageSelect.astro';
     }
 
     .menu {
-      left: calc(100vw - min(70vw, 300px));
+      left: calc(100% - 300px);
     }
   }
 </style>
