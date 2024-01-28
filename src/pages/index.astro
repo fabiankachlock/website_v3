@@ -20,7 +20,7 @@ changeLanguage('de');
     </div>
     <div>
       <h1 class="hero__title">
-        <span class="hero__intro">Hello, I'm</span><br />
+        <span class="hero__intro">Hi, I'm</span><br />
         <span class="hero__name">
           <span class="hero__caret"></span>
            Fabian
@@ -28,7 +28,11 @@ changeLanguage('de');
         <br />
         <span class="hero__name">&emsp;Kachlock</span>
       </h1>
-      <p class="hero__things">Software&nbsp;Developer/Code&nbsp;Architect/Tech&nbsp;Enthusiast</p>
+    </div>
+    <div class="hero__descriptions">
+      <p class="hero__things">&lt;Software&nbsp;Developer&nbsp;/&gt;</p>
+      <p class="hero__things">&lt;Code&nbsp;Architect&nbsp;/&gt;</p>
+      <p class="hero__things">&lt;Tech&nbsp;Enthusiast&nbsp;/&gt;</p>
     </div>
   </section>
   <section class="section about">
@@ -259,15 +263,21 @@ changeLanguage('de');
 
   .hero__intro {
     display: block;
-    font-family: 'Mona Sans';
+    font-family: 'Source Code Pro';
     color: var(--color-text);
     font-size: 2rem;
   }
 
+  .hero__descriptions {
+    display: flex;
+    flex-direction: column;
+  }
+
   .hero__things {
     display: block;
-    font-family: 'Mona Sans';
+    font-family: 'Source Code Pro';
     color: var(--color-text);
+    opacity: 0.7;
     font-size: 2rem;
   }
 
@@ -310,7 +320,7 @@ changeLanguage('de');
   }
 
   .contact {
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-bg);
     color: var(--color-bg);
   }
 

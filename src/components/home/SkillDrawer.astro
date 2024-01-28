@@ -18,7 +18,7 @@ const { featuredTools, tools } = Astro.props;
         <slot name="title" />
       </div>
       <div class="featured-tools">
-        {featuredTools.map(name => <p class="featured-tools__tool">{name}</p>)}
+        {featuredTools.reverse().map(name => <p class="featured-tools__tool">{name}</p>)}
       </div>
     </div>
     <button class="skill-drawer__opener" aria-label="Toggle open state"></button>
@@ -51,11 +51,11 @@ const { featuredTools, tools } = Astro.props;
     display: grid;
     grid-template-rows: auto 0fr;
     border: 1px solid var(--color-text);
-    background-color: var(--color-surface);
+    background-color: var(--color-bg);
     transition:
       grid-template-rows 200ms ease-in-out,
       margin 140ms linear,
-      border-top 70ms linear,
+      border 70ms linear,
       border-radius 140ms linear;
   }
 
@@ -75,7 +75,8 @@ const { featuredTools, tools } = Astro.props;
     grid-template-rows: auto 1fr;
     margin: 1rem 0;
     border-radius: 1rem;
-    border-top: 1px solid var(--color-text);
+    border: 2px solid var(--color-text);
+    background-color: var(--color-surface);
   }
 
   .skill-drawer.open + .skill-drawer {
@@ -128,24 +129,9 @@ const { featuredTools, tools } = Astro.props;
     scale: 0 1;
   }
 
-  .skill-drawer__percentage {
-    width: 3rem;
-    height: 3rem;
-    background: conic-gradient(var(--color-primary) var(--percentage), transparent 0deg);
-    border-radius: 50%;
-    position: relative;
-  }
-
-  .skill-drawer__percentage::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
-    border-radius: 50%;
-    translate: -50% -50%;
-    background-color: var(--_background);
+  .skill-drawer.open .skill-drawer__opener::after,
+  .skill-drawer.open .skill-drawer__opener::before {
+    background: var(--color-primary);
   }
 
   .skill-drawer__content {
@@ -179,6 +165,11 @@ const { featuredTools, tools } = Astro.props;
     transition: scale 140ms linear;
   }
 
+  .featured-tools {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
   .skill-drawer.open .featured-tools {
     scale: 0;
   }
@@ -205,14 +196,14 @@ const { featuredTools, tools } = Astro.props;
   }
 
   .featured-tools__tool:first-child {
-    border-radius: 20px 0 0 20px;
-  }
-
-  .featured-tools__tool:last-child {
     border-radius: 0 20px 20px 0;
   }
 
-  .featured-tools__tool:not(:last-child) {
+  .featured-tools__tool:last-child {
+    border-radius: 20px 0 0 20px;
+  }
+
+  .featured-tools__tool:not(:first-child) {
     border-right-color: transparent;
   }
 
@@ -224,6 +215,11 @@ const { featuredTools, tools } = Astro.props;
     box-shadow: 3px 3px 0 0 var(--color-text);
     border-right-color: var(--color-text);
     background-color: var(--color-primary);
+    color: var(--color-primary-text);
+  }
+
+  .featured-tools__tool:hover + .featured-tools__tool {
+    border-right: 1px solid var(--color-text);
   }
 
   .skill-drawer__text {
@@ -246,5 +242,6 @@ const { featuredTools, tools } = Astro.props;
     translate: -3px -3px;
     box-shadow: 3px 3px 0 0 var(--color-text);
     background-color: var(--color-primary);
+    color: var(--color-primary-text);
   }
 </style>

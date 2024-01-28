@@ -144,4 +144,25 @@ import LanguageSelect from './LanguageSelect.astro';
   .head.open + :global(.main-content) {
     translate: max(-70vw, -300px) 0;
   }
+
+  @media only screen and (min-width: 1024px) {
+    .floating-menu {
+      display: none;
+    }
+
+    :global(.main-content) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      width: calc(100vw - 300px);
+      translate: 0 0;
+    }
+
+    .menu {
+      left: calc(100vw - min(70vw, 300px));
+    }
+  }
 </style>
