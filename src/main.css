@@ -170,9 +170,26 @@ table {
   --color-primary-bg: #2b7d99;
   --color-primary-text: #292929;
   --color-secondary: #cc8439;
-  --color-surface: #222222;
+  --color-surface: #2b2b2b;
 
   --color-bg-tint-1: #17141a;
   --color-bg-tint-2: #161a14;
   --color-bg-tint-3: #14181a;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #39a7cd80;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #39a7cdc0;
 }

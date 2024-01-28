@@ -12,7 +12,7 @@ const setupTheme = () => {
   }
 };
 
-const menuButtonElement = document.querySelector('.menu__opener');
+const menuButtonElement = document.querySelector('.menu__opener') as HTMLButtonElement | null;
 const headElement = document.querySelector('.head');
 const translateElements = document.querySelectorAll('.translate');
 const themeSwitchElements = document.querySelectorAll('.theme-switch__button');
@@ -21,6 +21,7 @@ const themeSwitchElements = document.querySelectorAll('.theme-switch__button');
 if (menuButtonElement) {
   menuButtonElement.addEventListener('click', () => {
     headElement?.classList.toggle('open');
+    menuButtonElement.blur();
   });
 }
 
