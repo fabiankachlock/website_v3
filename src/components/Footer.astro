@@ -6,6 +6,7 @@ import terminalIcon from '@carbon/icons/svg/32/terminal.svg?raw';
 import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
 import i18next, { t } from 'i18next';
 import FullscreenSwitch from './FullscreenSwitch.astro';
+import Terminal from './Terminal.vue';
 
 const { pathname } = Astro.url;
 ---
@@ -44,7 +45,9 @@ const { pathname } = Astro.url;
   </div>
   <div class="footer__console">
     <div class="footer__console-content">
-      <div class="footer__console-content-wrapper">TEST</div>
+      <div class="footer__console-content-wrapper">
+        <Terminal client:visible />
+      </div>
     </div>
   </div>
 </footer>
