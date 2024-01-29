@@ -5,6 +5,8 @@ import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
 import compress from 'astro-compress';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
@@ -49,5 +51,6 @@ export default defineConfig({
       js: true,
       logger: 0,
     }),
+    mdx(),
   ],
 });

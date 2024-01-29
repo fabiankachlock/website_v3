@@ -1,16 +1,19 @@
 ---
-import { changeLanguage } from 'i18next';
-import { Image } from 'astro:assets';
-import Main from '@/layouts/Main.astro';
-import meJpeg from '@/assets/me.jpeg';
-import SkillDrawer from '@/components/home/SkillDrawer.astro';
-import Translation from '@/components/Translation.astro';
-import ProjectCard from '@/components/home/ProjectCard.astro';
-import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
-import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
-import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
+import { changeLanguage } from "i18next";
+import { Image } from "astro:assets";
+import Main from "@/layouts/Main.astro";
+import meJpeg from "@/assets/me.jpeg";
+import SkillDrawer from "@/components/home/SkillDrawer.astro";
+import Translation from "@/components/Translation.astro";
+import ProjectCard from "@/components/home/ProjectCard.astro";
+import githubLogo from "@carbon/icons/svg/32/logo--github.svg?raw";
+import instagramLogo from "@carbon/icons/svg/32/logo--instagram.svg?raw";
+import emailLogo from "@carbon/icons/svg/32/email.svg?raw";
+import { getPreviewProjects } from "@/content/projects";
 
-changeLanguage('de');
+changeLanguage("de");
+
+const project = await getPreviewProjects();
 ---
 
 <Main>
@@ -212,22 +215,7 @@ changeLanguage('de');
       </Translation>
     </h2>
     <div class="projects-container">
-      <ProjectCard color="var(--color-secondary-1)" link="#" tools={['ABC', 'EFG', 'HIJ', 'KLM']}>
-        <Translation slot="title">
-          <span slot="de">zwoo</span>
-          <span slot="en">zwoo</span>
-        </Translation>
-        <Translation slot="description">
-          <span slot="de"
-            >Wow, here i have to write some slightly longer text again, just to be able to check how longer text looks
-            in the design</span
-          >
-          <span slot="en"
-            >Wow, here i have to write some slightly longer text again, just to be able to check how longer text looks
-            in the design</span
-          >
-        </Translation>
-      </ProjectCard>
+      {project.map(p => <ProjectCard project={p} />)}
     </div>
   </section>
 </Main>

@@ -1,11 +1,15 @@
 ---
+import type { LocalizedProject } from '@/content/projects';
+import i18next from 'i18next';
+
 export type Props = {
-  color: string;
-  link: string;
-  tools: string[];
+  project: LocalizedProject;
 };
 
-const { color, link, tools } = Astro.props;
+const { project: projectData } = Astro.props;
+const translatedData = projectData[i18next.language] ?? projectData[Object.keys(projectData)[0]!];
+const link = translatedData!.slug;
+const project = translatedData!.data;
 ---
 
 <div class="project-card">
@@ -13,22 +17,21 @@ const { color, link, tools } = Astro.props;
     <div class="project-card__image-wrapper"></div>
     <div class="project-card__content">
       <div class="project-card__title">
-        <!-- TODO: should this be a h3? -->
-        <slot name="title" />
+        <h3>{project?.title}</h3>
       </div>
       <div class="project-card__description">
         <slot name="description" />
       </div>
       <div class="project-card__tools">
-        {tools.map(name => <p class="project-card__tool">{name}</p>)}
+        {project?.technologies.map(name => <p class="project-card__tool">{name}</p>)}
       </div>
     </div>
   </a>
 </div>
 
-<style define:vars={{ _background: color }}>
+<style>
   .project-card {
-    background-color: var(--_background);
+    background-color: var(--color-surface);
     max-width: 420px;
     border: 1px solid var(--color-text);
     border-radius: 5px;
