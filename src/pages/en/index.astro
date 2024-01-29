@@ -13,7 +13,7 @@ import { getPreviewProjects } from "@/content/projects";
 
 changeLanguage("en");
 
-const project = await getPreviewProjects();
+const projects = await getPreviewProjects();
 ---
 
 <Main>
@@ -215,7 +215,7 @@ const project = await getPreviewProjects();
       </Translation>
     </h2>
     <div class="projects-container">
-      {project.map(p => <ProjectCard project={p} />)}
+      {projects.map(p => <ProjectCard project={p} />)}
     </div>
   </section>
 </Main>
@@ -379,7 +379,7 @@ const project = await getPreviewProjects();
   }
 
   .about {
-    background-color: var(--color-bg-tint-1);
+    background-color: var(--color-bg-tint-3);
   }
 
   .skills {
@@ -482,6 +482,6 @@ const project = await getPreviewProjects();
   }
 
   .projects {
-    background-color: var(--color-bg-tint-3);
+    background-color: var(--color-bg-tint-1);
   }
 </style>

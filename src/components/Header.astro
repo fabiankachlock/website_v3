@@ -6,6 +6,10 @@ import Translation from './Translation.astro';
 
 import svgMenuButton from '@/assets/menu_button.svg?raw';
 import svgLogo from '@/assets/logo.svg?raw';
+import { getProjectLinks } from '@/content/projects';
+import i18next from 'i18next';
+
+const projectLinks = await getProjectLinks();
 ---
 
 <header class="head">
@@ -44,6 +48,17 @@ import svgLogo from '@/assets/logo.svg?raw';
             </Translation>
           </LocalizedLink>
         </li>
+
+        {
+          projectLinks.map(project => (
+            <li class="menu__item menu__item--project">
+              <LocalizedLink classes="menu__link" path={'projekte/' + project.url}>
+                {project.title[i18next.language] ?? Object.values(project.title)[0]}
+              </LocalizedLink>
+            </li>
+          ))
+        }
+
         <li class="menu__item">
           <LocalizedLink classes="menu__link" path="/#contact">
             <Translation>
@@ -160,6 +175,10 @@ import svgLogo from '@/assets/logo.svg?raw';
 
   .menu__item {
     padding: 0.5rem 1rem;
+  }
+
+  .menu__item--project {
+    padding: 0 2rem 0.5rem;
   }
 
   .menu__nav :global(.menu__link) {

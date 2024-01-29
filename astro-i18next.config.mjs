@@ -8,6 +8,7 @@ export default {
   routes: {
     en: {
       impressum: 'imprint',
+      projekte: 'projects',
     },
   },
 };

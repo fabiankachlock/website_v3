@@ -1,5 +1,6 @@
 ---
 import type { LocalizedProject } from '@/content/projects';
+import { Image } from 'astro:assets';
 import i18next from 'i18next';
 
 export type Props = {
@@ -14,7 +15,9 @@ const project = translatedData!.data;
 
 <div class="project-card">
   <a class="project-card__link" href={link}>
-    <div class="project-card__image-wrapper"></div>
+    <div class="project-card__image-wrapper">
+      <Image class="project-card__image" src={project.cover} alt="Project image" />
+    </div>
     <div class="project-card__content">
       <div class="project-card__title">
         <h3>{project?.title}</h3>
@@ -31,16 +34,24 @@ const project = translatedData!.data;
 
 <style>
   .project-card {
-    background-color: var(--color-surface);
+    background-color: var(--color-bg);
     max-width: 420px;
     border: 1px solid var(--color-text);
     border-radius: 5px;
+  }
+  .project-card:hover {
+    background-color: var(--color-surface);
+    border: 2px solid var(--color-text);
+  }
+  .project-card:hover .project-card__link {
+    border: 0px solid transparent;
   }
 
   .project-card__link {
     display: block;
     color: var(--color-text);
     text-decoration: none;
+    border: 1px solid transparent;
   }
 
   .project-card__content {
@@ -89,5 +100,7 @@ const project = translatedData!.data;
   .project-card__tool:hover {
     translate: -3px -3px;
     box-shadow: 3px 3px 0 0 var(--color-text);
+    background-color: var(--color-primary);
+    color: var(--color-primary-text);
   }
 </style>
