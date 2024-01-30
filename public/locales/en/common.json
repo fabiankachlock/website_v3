@@ -8,5 +8,8 @@
   "lng": {
     "de": "Deutsch",
     "en": "English"
+  },
+  "common": {
+    "projects": "Projects"
   }
 }

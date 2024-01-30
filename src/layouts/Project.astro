@@ -2,6 +2,7 @@
 import type { ProjectEntry } from '@/content/config';
 import Main from './Main.astro';
 import { Image } from 'astro:assets';
+import { t } from 'i18next';
 
 export interface Props {
   project: ProjectEntry;
@@ -10,15 +11,117 @@ export interface Props {
 const { project } = Astro.props;
 ---
 
-<Main>
+<Main
+  title={project.data.title}
+  description={project.data.description}
+  seo={{
+    openGraph: {
+      images: [
+        {
+          url: project.data.cover.src,
+          alt: project.data.coverAlt,
+        },
+      ],
+    },
+    titleTemplate: `%s | ${t('common.projects')}`,
+  }}
+>
   <article>
-    <header>
-      <h1>{project.data.title}</h1>
-      <Image src={project.data.cover} alt={project.data.coverAlt} />
+    <header class="project__header">
+      <div class="project__header-content">
+        <Image src={project.data.cover} alt={project.data.coverAlt} />
+        <h1 class="project__title">{project.data.title}</h1>
+      </div>
     </header>
-    <main>
+    <main class="project__content">
       <slot />
     </main>
-    <footer></footer>
+    <footer class="project__footer">Test</footer>
   </article>
 </Main>
+
+<style>
+  .project__header {
+    padding: 2rem 2rem 2rem 6rem;
+    background-color: var(--color-bg-tint-3);
+    position: relative;
+  }
+
+  .project__title {
+    font-family: 'Source Code Pro';
+    font-weight: 700;
+    font-size: 4rem;
+    margin-top: 1rem;
+  }
+
+  .project__content {
+    border-top: 1px solid var(--color-text);
+    padding: 2rem;
+    position: relative;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .project__content {
+      padding: 2rem 4rem;
+    }
+  }
+
+  .project__footer {
+    border-top: 1px solid var(--color-text);
+    background-color: var(--color-bg-tint-1);
+  }
+
+  .project__content :global(h1) {
+    font-family: 'Mona Sans';
+    font-weight: 700;
+    color: 1px solid var(--color-text-header);
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .project__content :global(h2) {
+    font-family: 'Mona Sans';
+    font-weight: 700;
+    color: 1px solid var(--color-text-header);
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .project__content :global(h3) {
+    font-family: 'Mona Sans';
+    font-weight: 600;
+    color: 1px solid var(--color-text-header);
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .project__content :global(h4) {
+    font-family: 'Mona Sans';
+    font-weight: 500;
+    color: 1px solid var(--color-text-header);
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project__content :global(h5) {
+    font-family: 'Mona Sans';
+    font-weight: 400;
+    color: 1px solid var(--color-text-header);
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project__content :global(h6) {
+    font-family: 'Mona Sans';
+    font-weight: 300;
+    color: 1px solid var(--color-text-header);
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+</style>

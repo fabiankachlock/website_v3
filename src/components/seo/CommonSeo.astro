@@ -6,10 +6,11 @@ import i18next, { t } from 'i18next';
 export interface Props {
   title?: string;
   description?: string;
+  language?: string;
   custom?: AstroSeoProps;
 }
 
-const { title: ptitle, description: pdescription } = Astro.props;
+const { title: ptitle, description: pdescription, language } = Astro.props;
 const currentPath = Astro.url.pathname;
 const normalizedPath =
   currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.substring(0, currentPath.length - 1) : currentPath;
@@ -33,19 +34,19 @@ const locales: Record<string, string> = {
     type: 'website',
     title: title,
     description: description,
-    locale: locales[i18next.language] ?? '',
+    locale: locales[language ?? i18next.language] ?? '',
     site_name: 'Fabian Kachlock',
     profile: {
       username: 'fabian.kachlock',
       ...Astro.props.custom?.openGraph?.profile,
     },
     images: [
+      ...(Astro.props.custom?.openGraph?.images ?? []),
       {
-        url: buildUrl('...'),
-        secureUrl: buildUrl('...'),
+        url: buildUrl('/favicon.svg'),
+        secureUrl: buildUrl('/favicon.svg'),
         alt: 'Fabian Kachlock',
       },
-      ...(Astro.props.custom?.openGraph?.images ?? []),
     ],
     ...Astro.props.custom?.openGraph,
   }}

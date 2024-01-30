@@ -150,7 +150,8 @@ table {
 :root {
   --color-bg: #edede4;
   --color-transparent-bg: #dfdfdfa0;
-  --color-text: #000;
+  --color-text-header: #000;
+  --color-text: #161616;
   --color-primary: #39a7cd;
   --color-primary-bg: #3292b3;
   --color-primary-text: #000;
@@ -165,6 +166,7 @@ table {
 [data-theme='dark'] {
   --color-bg: #191914;
   --color-transparent-bg: #141414a0;
+  --color-text-header: #cccccc;
   --color-text: #b1b1b1;
   --color-primary: #39a7cd;
   --color-primary-bg: #2b7d99;
