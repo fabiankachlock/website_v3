@@ -8,7 +8,7 @@ export type ProjectLink = {
   url: string;
 };
 
-const extractSlug = (slug: string) => {
+export const extractSlug = (slug: string) => {
   const parts = slug.split('/');
   return {
     lang: parts[0],

@@ -1,0 +1,52 @@
+---
+import githubIcon from '@carbon/icons/svg/32/logo--github.svg?raw';
+import wikisIcon from '@carbon/icons/svg/32/wikis.svg?raw';
+import linkIcon from '@carbon/icons/svg/32/link.svg?raw';
+
+const linkTypes = ['github', 'web', 'link'] as const;
+
+export type LinkType = (typeof linkTypes)[number];
+
+const linkIcons: Record<LinkType, string> = {
+  github: githubIcon,
+  web: wikisIcon,
+  link: linkIcon,
+} as const;
+
+export interface Props {
+  type: LinkType;
+  href: string;
+  rel?: string;
+}
+
+const { type, href, rel } = Astro.props;
+---
+
+<div class={`social-link social-link--${type}`}>
+  <a class="social-link__link" href={href} rel={rel ?? 'external noopener noreferrer'}>
+    <Fragment set:html={linkIcons[type]} />
+  </a>
+</div>
+
+<style>
+  .social-link {
+    display: block;
+  }
+
+  .social-link__link {
+    color: var(--color-text);
+    display: block;
+    width: 2em;
+    height: 2em;
+  }
+
+  .social-link__link:hover {
+    color: var(--color-primary);
+  }
+
+  .social-link__link :global(svg) {
+    height: 100%;
+    width: 100%;
+    fill: currentColor;
+  }
+</style>
