@@ -489,5 +489,27 @@ const projects = await getPreviewProjects();
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
     gap: 1rem;
+    justify-content: center;
+    place-items: center;
+  }
+
+  @media only screen and (min-width: 720px) {
+    .projects-container {
+      grid-template-columns: repeat(auto-fill, 310px);
+    }
+  }
+
+  @media only screen and (min-width: 1130px) {
+    .projects-container {
+      grid-template-columns: repeat(auto-fill, 360px);
+      gap: 2rem;
+    }
+  }
+
+  @media only screen and (min-width: 1312px) {
+    .projects-container {
+      place-content: unset;
+      justify-items: start;
+    }
   }
 </style>

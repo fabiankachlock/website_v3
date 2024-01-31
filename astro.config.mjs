@@ -23,6 +23,12 @@ export default defineConfig({
       noExternal: ['path-to-regexp', '@carbon/icons-vue'],
     },
   },
+  markdown: {
+    experimentalThemes: {
+      light: 'catppuccin-latte',
+      dark: 'ayu-dark',
+    },
+  },
   integrations: [
     astroI18next(),
     prefetch({

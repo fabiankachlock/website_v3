@@ -22,12 +22,17 @@ const project = translatedData!.data;
   <div class="project-card__wrapper">
     <p class="project-card__year">{project?.year}</p>
     <div class="project-card__image-wrapper">
-      <Image class="project-card__image" src={project.cover} alt={project.coverAlt} />
+      <Image
+        class="project-card__image"
+        src={project.cover}
+        alt={project.coverAlt}
+        transition:name={`project-image:${translatedData?.slug}`}
+      />
     </div>
     <div class="project-card__divider"></div>
     <div class="project-card__content">
       <div class="project-card__title">
-        <h3>{project?.title}</h3>
+        <h3 transition:name={`project-title:${translatedData?.slug}`}>{project?.title}</h3>
       </div>
       <div class="project-card__description">
         <p>{project?.description}</p>

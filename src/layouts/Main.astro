@@ -8,6 +8,7 @@ import Footer from '@/components/Footer.astro';
 import CommonSeo from '@/components/seo/CommonSeo.astro';
 
 import '@/main.css';
+import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
   title?: string;
@@ -24,6 +25,7 @@ export interface Props {
     <slot name="head" />
     <script src="../scripts/setup.ts"></script>
     <script src="../scripts/home.ts"></script>
+    <ViewTransitions />
   </head>
   <body>
     <div class="frame__content">
