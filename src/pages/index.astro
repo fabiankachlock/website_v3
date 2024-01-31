@@ -1,17 +1,17 @@
 ---
-import { changeLanguage } from "i18next";
-import { Image } from "astro:assets";
-import Main from "@/layouts/Main.astro";
-import meJpeg from "@/assets/me.jpeg";
-import SkillDrawer from "@/components/home/SkillDrawer.astro";
-import Translation from "@/components/Translation.astro";
-import ProjectCard from "@/components/home/ProjectCard.astro";
-import githubLogo from "@carbon/icons/svg/32/logo--github.svg?raw";
-import instagramLogo from "@carbon/icons/svg/32/logo--instagram.svg?raw";
-import emailLogo from "@carbon/icons/svg/32/email.svg?raw";
-import { getPreviewProjects } from "@/content/projects";
+import { changeLanguage } from 'i18next';
+import { Image } from 'astro:assets';
+import Main from '@/layouts/Main.astro';
+import meJpeg from '@/assets/me.jpeg';
+import SkillDrawer from '@/components/home/SkillDrawer.astro';
+import Translation from '@/components/Translation.astro';
+import ProjectCard from '@/components/home/ProjectCard.astro';
+import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
+import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
+import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
+import { getPreviewProjects } from '@/content/projects';
 
-changeLanguage("de");
+changeLanguage('de');
 
 const projects = await getPreviewProjects();
 ---
@@ -489,5 +489,27 @@ const projects = await getPreviewProjects();
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
     gap: 1rem;
+    justify-content: center;
+    place-items: center;
+  }
+
+  @media only screen and (min-width: 720px) {
+    .projects-container {
+      grid-template-columns: repeat(auto-fill, 310px);
+    }
+  }
+
+  @media only screen and (min-width: 1130px) {
+    .projects-container {
+      grid-template-columns: repeat(auto-fill, 360px);
+      gap: 2rem;
+    }
+  }
+
+  @media only screen and (min-width: 1312px) {
+    .projects-container {
+      place-content: unset;
+      justify-items: start;
+    }
   }
 </style>
