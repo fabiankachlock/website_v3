@@ -42,7 +42,16 @@ const { project } = Astro.props;
         </div>
         <h1 class="project__title" transition:name={`project-title:${project?.slug}`}>{project.data.title}</h1>
       </div>
-      <p class="project__year">{project.data.year}</p>
+      <div class="project__header-info">
+        <p class="project__author">
+          <Translation>
+            <span slot="de">von</span>
+            <span slot="en">by</span>
+          </Translation>
+          {project.data.author}
+        </p>
+        <p class="project__year">{project.data.year}</p>
+      </div>
       <div class="project__meta">
         <div class="project__tech">
           {project.data.technologies.map(t => <TechPill tech={t} />)}
@@ -59,19 +68,27 @@ const { project } = Astro.props;
     </main>
     <footer class="project__footer">
       <div class="project__footer-info">
+        <Translation>
+          <p slot="de">Links</p>
+          <p slot="en">Links</p>
+        </Translation>
         <div class="project__links">
           {project.data.socials?.web && <SocialLink href={project.data.socials?.web} type="web" />}
           {project.data.socials?.github && <SocialLink href={project.data.socials?.github} type="github" />}
           {project.data.socials?.link && <SocialLink href={project.data.socials?.link} type="link" />}
         </div>
       </div>
+      <Translation>
+        <p slot="de">Auch interessant</p>
+        <p slot="en">See also</p>
+      </Translation>
       <div class="project__footer-links">
         {project.data.seeAlso?.map(p => <p>{p}</p>)}
         <div class="project__footer-link project__footer-link--home">
-          <a href="#">
+          <a href="/">
             <Translation>
-              <span slot="de">Zurück</span>
-              <span slot="en">Go home</span>
+              <span slot="de">Zurück zur Startseite</span>
+              <span slot="en">Go back home</span>
             </Translation>
           </a>
         </div>
@@ -128,20 +145,29 @@ const { project } = Astro.props;
       -7px 7px 0 0 var(--color-text);
   }
 
+  .project__author,
   .project__year {
     font-size: 1.3rem;
     font-family: 'Mona Sans';
     font-weight: 300;
     color: var(--color-text);
-    text-align: right;
-    margin-bottom: 0.5rem;
   }
 
+  .project__year {
+    text-align: right;
+  }
+
+  .project__header-info,
   .project__meta {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+  }
+
+  .project__header-info {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 
   .project__tech {
@@ -175,6 +201,21 @@ const { project } = Astro.props;
   .project__footer {
     border-top: var(--color-text);
     background-color: var(--color-bg-tint-1);
+  }
+
+  .project__footer-info {
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .project__footer-info p {
+    font-family: 'Mona Sans';
+    color: var(--color-text);
+    font-size: 1.3rem;
   }
 
   .project__content :global(h1) {
