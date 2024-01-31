@@ -5,6 +5,7 @@ import { Image } from 'astro:assets';
 import i18next from 'i18next';
 import Translation from '../Translation.astro';
 import SocialLink from '../common/SocialLink.astro';
+import TechPill from '../common/TechPill.astro';
 
 export type Props = {
   project: LocalizedProject;
@@ -32,7 +33,7 @@ const project = translatedData!.data;
         <p>{project?.description}</p>
       </div>
       <div class="project-card__tools">
-        {project?.technologies.map(name => <p class="project-card__tool">{name}</p>)}
+        {project?.technologies.map(name => <TechPill tech={name} />)}
       </div>
       <div class="project-card__footer">
         <div class="project-card__socials">
@@ -141,33 +142,6 @@ const project = translatedData!.data;
       flex-wrap: wrap;
       gap: 0.3rem 0;
       margin-top: 1rem;
-    }
-
-    .project-card__tool {
-      margin: 0;
-      font-size: 1rem;
-      background-color: var(--color-surface);
-      font-family: 'Mona Sans';
-      padding: 0.3rem 0.8rem;
-      white-space: nowrap;
-      box-shadow: 0 0 0 0 var(--color-text);
-      border: 1px solid var(--color-text);
-      border-radius: 20px;
-      margin: 0 0.2rem;
-      padding: 0.3rem 1rem;
-      transition:
-        margin 140ms linear,
-        padding 140ms linear,
-        translate 140ms linear,
-        box-shadow 140ms linear,
-        border-radius 100ms ease-in;
-    }
-
-    .project-card__tool:hover {
-      translate: -3px -3px;
-      box-shadow: 3px 3px 0 0 var(--color-text);
-      background-color: var(--color-primary);
-      color: var(--color-primary-text);
     }
 
     .project-card__footer {

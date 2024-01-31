@@ -1,0 +1,38 @@
+---
+export interface Props {
+  tech: string;
+}
+---
+
+<p class="tech">{Astro.props.tech}</p>
+
+<style>
+  .tech {
+    margin: 0 0.2rem;
+    padding: 0.3rem 1rem;
+
+    font-size: 1rem;
+    font-family: 'Mona Sans';
+    color: var(--color-text);
+    background-color: var(--color-surface);
+    white-space: nowrap;
+
+    box-shadow: 0 0 0 0 var(--color-text);
+    border: 1px solid var(--color-text);
+    border-radius: 20px;
+
+    transition:
+      margin 140ms linear,
+      padding 140ms linear,
+      translate 140ms linear,
+      box-shadow 140ms linear,
+      border-radius 100ms ease-in;
+  }
+
+  .tech:hover {
+    translate: -3px -3px;
+    box-shadow: 3px 3px 0 0 var(--color-text);
+    background-color: var(--color-primary);
+    color: var(--color-primary-text);
+  }
+</style>
