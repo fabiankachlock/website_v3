@@ -56,6 +56,7 @@ const projects = await getPreviewProjects();
         <span slot="en">About</span>
       </Translation>
     </h2>
+    <div class="about-container"></div>
   </section>
   <section class="section skills">
     <a id="skills" class="section-anchor">
@@ -174,7 +175,7 @@ const projects = await getPreviewProjects();
     <h2 class="section__header">
       <span>Contact</span>
     </h2>
-    <ul class="contact-content">
+    <ul class="contact-container">
       <li class="contact__item contact__item--email">
         <div class="contact__logo">
           <Fragment set:html={emailLogo} />
@@ -386,6 +387,16 @@ const projects = await getPreviewProjects();
     background-color: var(--color-bg-tint-2);
   }
 
+  :global(.fullscreen) .skills-container,
+  :global(.fullscreen) .projects-container,
+  :global(.fullscreen) .about-container,
+  :global(.fullscreen) .contact-container,
+  :global(.fullscreen) .section__header {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .contact {
     background-color: var(--color-primary-bg);
     color: var(--color-bg);
@@ -395,7 +406,7 @@ const projects = await getPreviewProjects();
     color: var(--color-bg);
   }
 
-  .contact-content {
+  .contact-container {
     padding: 0;
     list-style: none;
     margin: 0;
