@@ -1,0 +1,310 @@
+---
+import type { ProjectEntry } from '@/content/config';
+import Main from './Main.astro';
+import { Image } from 'astro:assets';
+import { t } from 'i18next';
+import TechPill from '@/components/common/TechPill.astro';
+import SocialLink from '@/components/common/SocialLink.astro';
+import Translation from '@/components/Translation.astro';
+
+export interface Props {
+  project: ProjectEntry;
+}
+
+const { project } = Astro.props;
+---
+
+<Main
+  title={project.data.title}
+  description={project.data.description}
+  seo={{
+    openGraph: {
+      images: [
+        {
+          url: project.data.cover.src,
+          alt: project.data.coverAlt,
+        },
+      ],
+    },
+    titleTemplate: `%s | ${t('common.projects')}`,
+  }}
+>
+  <article>
+    <header class="project__header">
+      <div class="project__header-content">
+        <div class="project__header-image-wrappper">
+          <Image
+            class="project__header-image"
+            src={project.data.cover}
+            alt={project.data.coverAlt}
+            transition:name={`project-image:${project?.slug}`}
+          />
+        </div>
+        <h1 class="project__title" transition:name={`project-title:${project?.slug}`}>{project.data.title}</h1>
+      </div>
+      <div class="project__header-info">
+        <p class="project__author">
+          <Translation>
+            <span slot="de">von</span>
+            <span slot="en">by</span>
+          </Translation>
+          {project.data.author}
+        </p>
+        <p class="project__year">{project.data.year}</p>
+      </div>
+      <div class="project__meta">
+        <div class="project__tech">
+          {project.data.technologies.map(t => <TechPill tech={t} />)}
+        </div>
+        <div class="project__links project__links--header">
+          {project.data.socials?.web && <SocialLink href={project.data.socials?.web} type="web" />}
+          {project.data.socials?.github && <SocialLink href={project.data.socials?.github} type="github" />}
+          {project.data.socials?.link && <SocialLink href={project.data.socials?.link} type="link" />}
+        </div>
+      </div>
+    </header>
+    <main class="project__content">
+      <slot />
+    </main>
+    <footer class="project__footer">
+      <div class="project__footer-info">
+        <Translation>
+          <p slot="de">Links</p>
+          <p slot="en">Links</p>
+        </Translation>
+        <div class="project__links">
+          {project.data.socials?.web && <SocialLink href={project.data.socials?.web} type="web" />}
+          {project.data.socials?.github && <SocialLink href={project.data.socials?.github} type="github" />}
+          {project.data.socials?.link && <SocialLink href={project.data.socials?.link} type="link" />}
+        </div>
+      </div>
+      <Translation>
+        <p slot="de">Auch interessant</p>
+        <p slot="en">See also</p>
+      </Translation>
+      <div class="project__footer-links">
+        {project.data.seeAlso?.map(p => <p>{p}</p>)}
+        <div class="project__footer-link project__footer-link--home">
+          <a href="/">
+            <Translation>
+              <span slot="de">Zurück zur Startseite</span>
+              <span slot="en">Go back home</span>
+            </Translation>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </article>
+</Main>
+
+<style>
+  .project__header {
+    padding: 2rem;
+    background-color: var(--color-bg-tint-3);
+    position: relative;
+  }
+
+  .project__header-content {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .project__header-image-wrappper {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    max-height: 70vh;
+    max-width: 80vw;
+    margin: 0 auto 1rem 0;
+  }
+
+  .project__header-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .project__title {
+    font-family: 'Source Code Pro';
+    font-weight: 700;
+    font-size: 4rem;
+    background: var(--color-bg);
+    border: 2px solid var(--color-text);
+    border-right: none;
+    border-top: none;
+    padding: 1rem 1rem 1rem 2rem;
+    position: absolute;
+    bottom: -1rem;
+    left: -1rem;
+    min-width: 60%;
+    z-index: 100;
+    box-shadow:
+      -7px 7px 0 -2px var(--color-primary),
+      -7px 7px 0 0 var(--color-text);
+  }
+
+  .project__author,
+  .project__year {
+    font-size: 1.3rem;
+    font-family: 'Mona Sans';
+    font-weight: 300;
+    color: var(--color-text);
+  }
+
+  .project__year {
+    text-align: right;
+  }
+
+  .project__header-info,
+  .project__meta {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .project__header-info {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .project__tech {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .project__links {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .project__links--header {
+    justify-content: flex-end;
+  }
+
+  .project__content {
+    border-top: 1px solid var(--color-text);
+    padding: 2rem;
+    position: relative;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .project__content {
+      padding: 2rem 4rem;
+    }
+  }
+
+  .project__footer {
+    border-top: var(--color-text);
+    background-color: var(--color-bg-tint-1);
+  }
+
+  .project__footer-info {
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .project__footer-info p {
+    font-family: 'Mona Sans';
+    color: var(--color-text);
+    font-size: 1.3rem;
+  }
+
+  .project__content :global(h1) {
+    font-family: 'Mona Sans';
+    font-weight: 700;
+    color: var(--color-text-header);
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .project__content :global(h2) {
+    font-family: 'Mona Sans';
+    font-weight: 700;
+    color: var(--color-text-header);
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .project__content :global(h3) {
+    font-family: 'Mona Sans';
+    font-weight: 600;
+    color: var(--color-text-header);
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .project__content :global(h4) {
+    font-family: 'Mona Sans';
+    font-weight: 500;
+    color: var(--color-text-header);
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project__content :global(h5) {
+    font-family: 'Mona Sans';
+    font-weight: 400;
+    color: var(--color-text-header);
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project__content :global(h6) {
+    font-family: 'Mona Sans';
+    font-weight: 300;
+    color: var(--color-text-header);
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project__content :global(ul),
+  .project__content :global(ol),
+  .project__content :global(p) {
+    font-family: 'Mona Sans';
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .project__content :global(ul) {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+  }
+
+  .project__content :global(ol) {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+  }
+
+  .project__content :global(p) > :global(code) {
+    font-family: 'Source Code Pro';
+    padding: 0.25rem;
+    color: var(--color-text-heading);
+    background: var(--color-transparent-bg);
+    border-radius: 5px;
+  }
+
+  .project__content :global(.astro-code) {
+    padding: 0.5rem;
+    font-family: 'Source Code Pro';
+    font-size: 0.9rem;
+    border: 1px solid var(--color-text);
+    border-radius: 5px;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+  }
+</style>

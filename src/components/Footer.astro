@@ -1,95 +1,36 @@
 ---
-import { localizePath } from 'astro-i18next';
 import ThemeSwitch from '@/components/ThemeSwitch.astro';
-
-import terminalIcon from '@carbon/icons/svg/32/terminal.svg?raw';
-import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
-import i18next, { t } from 'i18next';
-import FullscreenSwitch from './FullscreenSwitch.astro';
-import Terminal from './Terminal.vue';
-
-const { pathname } = Astro.url;
+import LanguageSelect from './LanguageSelect.astro';
+import LocalizedLink from './LocalizedLink.astro';
+import Translation from './Translation.astro';
 ---
 
 <footer class="footer">
-  <div class="footer__bar">
-    <div class="footer__text">
-      <p>© Fabian Kachlock 2023</p>
-    </div>
-    <div class="footer__spacer" style="flex: 1 0 0; width: 100%"></div>
-    <div class="terminal-opener">
-      <button class="terminal-opener__button">
-        <Fragment set:html={terminalIcon} />
-      </button>
-    </div>
-    <FullscreenSwitch />
-    <ThemeSwitch />
-    <div class="translate">
-      <button class="translate__button">
-        <Fragment set:html={translateIcon} />
-      </button>
-      <div class="language-select">
-        <div class="language-select__wrapper">
-          <div class="language-select__content">
-            {
-              i18next.languages.map(lng => (
-                <a tabindex="0" href={localizePath(pathname, lng)}>
-                  {t(`lng.${lng}`)}
-                </a>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="footer__text">
+    <p>© Fabian Kachlock <span id="year">2024</span>&emsp;|&emsp;</p>
+    <LocalizedLink path="/impressum">
+      <Translation>
+        <span slot="de">Impressum</span>
+        <span slot="en">Imprint</span>
+      </Translation>
+    </LocalizedLink>
   </div>
-  <div class="footer__console">
-    <div class="footer__console-content">
-      <div class="footer__console-content-wrapper">
-        <Terminal client:visible />
-      </div>
-    </div>
-  </div>
+  <div class="footer__spacer" style="flex: 1 0 0; width: 100%"></div>
+  <ThemeSwitch />
+  <LanguageSelect />
 </footer>
-
-<script></script>
 
 <style>
   .footer {
     display: flex;
-    flex-direction: column;
     position: relative;
     z-index: 100;
-    position: sticky;
-    bottom: 0;
-  }
-
-  .footer__bar {
     background-color: var(--color-surface);
-    border-top: 1px solid var(--color-text);
+    border-top: 2px solid var(--color-text);
     padding: 0.2rem;
-    display: flex;
     justify-content: flex-end;
     align-items: center;
     flex-wrap: wrap-reverse;
-    grid-row: 2;
-  }
-
-  .footer__console {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 130ms ease-in-out;
-  }
-
-  .footer.open .footer__console {
-    grid-template-rows: 1fr;
-  }
-
-  .footer__console-content {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--color-bg);
   }
 
   .footer__text {
@@ -99,6 +40,7 @@ const { pathname } = Astro.url;
     padding: 0.3rem;
   }
 
+  .footer__text :global(a),
   .footer__text p {
     margin: 0;
     font-family: 'Mona Sans';
@@ -106,6 +48,10 @@ const { pathname } = Astro.url;
     font-size: 1rem;
   }
 
+<<<<<<< HEAD
+  .footer__text :global(a:hover) {
+    color: var(--color-primary);
+=======
   :global(.fullscreen) .footer__console-content-wrapper {
     border-top: 1px solid var(--color-text);
   }
@@ -208,5 +154,6 @@ const { pathname } = Astro.url;
 
   .language-select__content a:hover {
     background: var(--color-bg);
+>>>>>>> 4ad70ca91b6e601ff3f83d03038a452520ac851d
   }
 </style>

@@ -9,37 +9,70 @@ import ProjectCard from '@/components/home/ProjectCard.astro';
 import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
 import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
 import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
+import { getPreviewProjects } from '@/content/projects';
 
 changeLanguage('de');
+
+const projects = await getPreviewProjects();
 ---
 
 <Main>
   <section class="section hero">
-    <div class="hero__image-wrapper">
-      <div class="hero__image-mask">
-        <Image class="hero__image" src={meJpeg} alt="" />
+    <div class="hero__bar">
+      <div class="hero__image-wrapper">
+        <Image class="hero__image" src={meJpeg} alt="Me :)" />
       </div>
-      <div class="hero__image-shadow">
-        <Image class="hero__image" src={meJpeg} alt="" />
-      </div>
+      <h1 class="hero__title">
+        <span class="hero__intro">
+          <Translation>
+            <span slot="de">Hi, Ich bin</span>
+            <span slot="en">Hi, I'm</span>
+          </Translation>
+        </span><br />
+        <span class="hero__name">
+          <span class="hero__caret"></span>
+           Fabian
+        </span>
+        <br />
+        <span class="hero__name">&emsp;Kachlock</span>
+      </h1>
+    </div>
+    <div class="hero__descriptions">
+      <p class="hero__things">&lt;Software Developer/&gt;</p>
+      <p class="hero__things">&lt;Code Architect/&gt;</p>
+      <p class="hero__things">&lt;Tech Enthusiast/&gt;</p>
     </div>
   </section>
   <section class="section about">
-    <a id="about" class="section-anchor">About</a>
+    <a id="about" class="section-anchor">
+      <Translation>
+        <span slot="de">Über</span>
+        <span slot="en">About</span>
+      </Translation>
+    </a>
     <h2 class="section__header">
-      <span>About</span>
+      <Translation>
+        <span slot="de">Über</span>
+        <span slot="en">About</span>
+      </Translation>
     </h2>
     <div class="about-container"></div>
   </section>
   <section class="section skills">
-    <a id="skills" class="section-anchor">Skills</a>
+    <a id="skills" class="section-anchor">
+      <Translation>
+        <span slot="de">Skills</span>
+        <span slot="en">Skills</span>
+      </Translation>
+    </a>
     <h2 class="section__header">
-      <span>Skills</span>
+      <Translation>
+        <span slot="de">Skills</span>
+        <span slot="en">Skills</span>
+      </Translation>
     </h2>
     <div class="skills-container">
       <SkillDrawer
-        color="var(--color-secondary-1)"
-        percentage={0.8}
         featuredTools={['HTML', 'CSS', 'JS', 'TS']}
         tools={['Web APIs', 'express', 'Nestjs', 'Electron', 'eslint', 'prettier', 'jest', 'Cypress']}
       >
@@ -56,12 +89,7 @@ changeLanguage('de');
           >
         </Translation>
       </SkillDrawer>
-      <SkillDrawer
-        color="var(--color-secondary-2)"
-        percentage={0.8}
-        featuredTools={['vite', 'pinia', 'vuetify', 'vue-i18n']}
-        tools={['tailwindcss', 'vue-router']}
-      >
+      <SkillDrawer featuredTools={['vite', 'pinia', 'vuetify', 'vue-i18n']} tools={['tailwindcss', 'vue-router']}>
         <Translation slot="title">
           <span slot="de">Vue.js - my frontend framework of choice</span>
           <span slot="en">Vue.js - my frontend framework of choice</span>
@@ -71,12 +99,7 @@ changeLanguage('de');
           <span slot="en">BLA</span>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer
-        color="var(--color-secondary-3)"
-        percentage={0.8}
-        featuredTools={['Astro', 'React', 'Angular']}
-        tools={['Nuxt.js', 'Alpinejs']}
-      >
+      <SkillDrawer featuredTools={['Astro', 'React', 'Angular']} tools={['Nuxt.js', 'Alpinejs']}>
         <Translation slot="title">
           <span slot="de">Other frontend frameworks</span>
           <span slot="en">Other frontend frameworks</span>
@@ -87,8 +110,6 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
-        color="var(--color-secondary-1)"
-        percentage={0.8}
         featuredTools={['fiber', 'go-cron', 'SSE']}
         tools={['WebSockets', 'golang-migrate', 'Postgresql', 'MongoDB']}
       >
@@ -102,8 +123,6 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
-        color="var(--color-secondary-4)"
-        percentage={0.8}
         featuredTools={['ASP.NET', 'Blazor', 'WASM']}
         tools={['WebSockets', 'Mudblazor', 'Quartz.AspNetCore', 'MongoDB']}
       >
@@ -116,12 +135,7 @@ changeLanguage('de');
           <span slot="en">BLA</span>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer
-        color="var(--color-secondary-2)"
-        percentage={0.8}
-        featuredTools={['Git', 'Github', 'Jira']}
-        tools={['Confluence', 'BitBucket', 'Youtrack']}
-      >
+      <SkillDrawer featuredTools={['Git', 'Github', 'Jira']} tools={['Confluence', 'BitBucket', 'Youtrack']}>
         <Translation slot="title">
           <span slot="de">Version Control & Project management</span>
           <span slot="en">Version Control & Project management</span>
@@ -132,8 +146,6 @@ changeLanguage('de');
         </Translation>
       </SkillDrawer>
       <SkillDrawer
-        color="var(--color-secondary-4)"
-        percentage={0.8}
         featuredTools={['Docker', 'AWS', 'Github Actions']}
         tools={['Heroku', 'Bash', 'Bitbucket Pipelines']}
       >
@@ -146,12 +158,7 @@ changeLanguage('de');
           <span slot="en">BLA</span>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer
-        color="var(--color-secondary-3)"
-        percentage={0.8}
-        featuredTools={['Rust', 'Kotlin', 'MQTT']}
-        tools={['Tauri', 'Redis', 'BullMQ', 'Swift', 'p5.js']}
-      >
+      <SkillDrawer featuredTools={['Rust', 'Kotlin', 'MQTT']} tools={['Redis', 'BullMQ', 'Swift', 'p5.js']}>
         <Translation slot="title">
           <span slot="de">Other tools, languages & libraries</span>
           <span slot="en">Other tools, languages & libraries</span>
@@ -173,6 +180,7 @@ changeLanguage('de');
         <div class="contact__logo">
           <Fragment set:html={emailLogo} />
         </div>
+        <a class="contact__short-link" href="mailto:contact@fabiankachlock.dev">Email</a>
         <h3>Email</h3>
         <a class="contact__link" href="mailto:contact@fabiankachlock.dev">contact@fabiankachlock.dev</a>
       </li>
@@ -180,106 +188,40 @@ changeLanguage('de');
         <div class="contact__logo">
           <Fragment set:html={githubLogo} />
         </div>
-        <h3>Github</h3>
+        <a class="contact__short-link" href="https://github.com/fabiankachlock">GitHub</a>
+        <h3>GitHub</h3>
         <a class="contact__link" href="https://github.com/fabiankachlock">@fabiankachlock</a>
       </li>
       <li class="contact__item contact__item--instagram">
         <div class="contact__logo">
           <Fragment set:html={instagramLogo} />
         </div>
+        <a class="contact__short-link" href="https://www.instagram.com/fabian.kachlock/">Instagram</a>
         <h3>Instagram</h3>
         <a class="contact__link" href="https://www.instagram.com/fabian.kachlock/">@fabian.kachlock</a>
       </li>
     </ul>
   </section>
   <section class="section projects">
-    <a id="projects" class="section-anchor">Projects</a>
+    <a id="projects" class="section-anchor">
+      <Translation>
+        <span slot="de">Projekte</span>
+        <span slot="en">Projects</span>
+      </Translation>
+    </a>
     <h2 class="section__header">
-      <span>Projects</span>
+      <Translation>
+        <span slot="de">Projekte</span>
+        <span slot="en">Projects</span>
+      </Translation>
     </h2>
     <div class="projects-container">
-      <ProjectCard color="var(--color-secondary-1)" link="#" tools={['ABC', 'EFG', 'HIJ', 'KLM']}>
-        <Translation slot="title">
-          <span slot="de">zwoo</span>
-          <span slot="en">zwoo</span>
-        </Translation>
-        <Translation slot="description">
-          <span slot="de"
-            >Wow, here i have to write some slightly longer text again, just to be able to check how longer text looks
-            in the design</span
-          >
-          <span slot="en"
-            >Wow, here i have to write some slightly longer text again, just to be able to check how longer text looks
-            in the design</span
-          >
-        </Translation>
-      </ProjectCard>
+      {projects.map(p => <ProjectCard project={p} />)}
     </div>
   </section>
 </Main>
 
 <style>
-  .hero__image-wrapper {
-    margin: 2rem auto;
-    width: 40vw;
-    height: 40vw;
-    min-width: 200px;
-    min-height: 200px;
-    max-height: 400px;
-    max-width: 400px;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    transform: translateZ(0) scale(1, 1);
-    -webkit-transform: translateZ(0) scale(1, 1);
-    position: relative;
-  }
-
-  .hero__image-mask {
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border: 2px solid var(--color-text);
-    z-index: 2;
-    transition:
-      top 70ms ease-in-out,
-      left 70ms ease-in-out;
-  }
-
-  .hero__image-shadow {
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    border: 2px solid var(--color-text);
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    z-index: 1;
-    border-radius: 10px;
-  }
-
-  .hero__image {
-    height: 120%;
-    width: auto;
-    translate: -28% -10%;
-  }
-
-  .hero__image-shadow .hero__image {
-    transition: scale 70ms ease-in-out;
-    filter: grayscale(0.7);
-  }
-
-  .hero__image-wrapper:hover .hero__image-shadow .hero__image {
-    scale: 0.98;
-  }
-
-  .hero__image-wrapper:hover .hero__image-mask {
-    top: -1rem;
-    left: -1rem;
-  }
-
   .section-anchor {
     display: block;
     visibility: hidden;
@@ -288,7 +230,7 @@ changeLanguage('de');
   }
 
   .section__header {
-    color: var(--color-text);
+    color: var(--color-text-header);
     font-family: 'Source Code Pro';
     font-weight: 400;
     font-size: 3rem;
@@ -312,12 +254,137 @@ changeLanguage('de');
     border-top: 1px solid var(--color-text);
   }
 
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    gap: 2rem;
+    padding: 0;
+  }
+
+  .hero__bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .hero__image-wrapper {
+    width: 100%;
+    max-width: clamp(200px, 50vw, 300px);
+    max-height: clamp(200px, 50vw, 300px);
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+  }
+
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero__intro {
+    display: block;
+    font-family: 'Source Code Pro';
+    color: var(--color-text-header);
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+
+  .hero__descriptions {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+  }
+
+  .hero__things {
+    display: block;
+    font-family: 'Source Code Pro';
+    color: var(--color-text);
+    opacity: 0.7;
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+
+  .hero__name {
+    display: block;
+    font-family: 'Source Code Pro';
+    font-weight: 500;
+    color: var(--color-primary);
+    font-size: 2rem;
+    position: relative;
+  }
+
+  @media only screen and (min-width: 360px) {
+    .hero__name {
+      font-size: 3rem;
+    }
+
+    .hero__things,
+    .hero__intro {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media only screen and (min-width: 720px) {
+    .hero__name {
+      font-size: 5rem;
+    }
+
+    .hero__things,
+    .hero__intro {
+      font-size: 2rem;
+    }
+  }
+
+  @media only screen and (min-width: 1320px) {
+    .hero__name {
+      font-size: 7rem;
+    }
+
+    .hero__things,
+    .hero__intro {
+      font-size: 2.5rem;
+    }
+  }
+
+  .hero__caret {
+    display: block;
+    position: absolute;
+    background-color: var(--color-text);
+    width: 1ch;
+    height: 8px;
+    bottom: 0px;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   .about {
-    background-color: var(--color-secondary-3);
+    background-color: var(--color-bg-tint-3);
   }
 
   .skills {
-    background-color: var(--color-bg);
+    background-color: var(--color-bg-tint-2);
   }
 
   :global(.fullscreen) .skills-container,
@@ -331,7 +398,12 @@ changeLanguage('de');
   }
 
   .contact {
-    background-color: var(--color-secondary-2);
+    background-color: var(--color-primary-bg);
+    color: var(--color-bg);
+  }
+
+  .contact .section__header {
+    color: var(--color-bg);
   }
 
   .contact-container {
@@ -349,6 +421,11 @@ changeLanguage('de');
     font-size: 1.6rem;
   }
 
+  .contact__item h3,
+  .contact__link {
+    display: none;
+  }
+
   .contact__logo {
     width: 2rem;
     height: 2rem;
@@ -358,37 +435,92 @@ changeLanguage('de');
     border: 1px solid var(--color-text);
     margin-right: 1rem;
     box-shadow: 3px 3px 0 0 var(--color-text);
-    transition:
-      width 70ms linear,
-      height 70ms linear,
-      padding 70ms linear;
-  }
-
-  .contact__item--github .contact__logo {
-    background-color: var(--color-secondary-4);
-  }
-
-  .contact__item--email .contact__logo {
-    background-color: var(--color-secondary-1);
-  }
-
-  .contact__item--instagram .contact__logo {
-    background-color: var(--color-secondary-3);
+    background-color: var(--color-surface);
   }
 
   .contact__logo :global(svg) {
     fill: var(--color-text);
+    transition: scale 70ms ease-in-out;
   }
 
+  .contact__short-link,
   .contact__link {
     font-family: 'Source Code Pro';
-    color: var(--color-text);
+    color: var(--color-bg);
     margin-left: 0.5rem;
   }
 
-  .contact__item:hover .contact__logo {
-    width: 2.6rem;
-    height: 2.6rem;
-    padding: 0.7rem;
+  .contact__short-link:hover,
+  .contact__link:hover {
+    color: var(--color-secondary);
+  }
+
+  .contact__item:hover .contact__logo :global(svg) {
+    scale: 1.4;
+  }
+
+  @media only screen and (min-width: 380px) {
+    .contact__item--instagram .contact__short-link,
+    .contact__item--github .contact__short-link {
+      display: none;
+    }
+
+    .contact__item--github .contact__link,
+    .contact__item--instagram .contact__link {
+      display: unset;
+    }
+  }
+
+  @media only screen and (min-width: 540px) {
+    .contact__item--email .contact__short-link {
+      display: none;
+    }
+
+    .contact__item--email .contact__link {
+      display: unset;
+    }
+  }
+
+  @media only screen and (min-width: 640px) {
+    .contact__item--email .contact__short-link {
+      display: none;
+    }
+
+    .contact__item--email .contact__link,
+    .contact__item h3 {
+      display: unset;
+    }
+  }
+
+  .projects {
+    background-color: var(--color-bg-tint-1);
+  }
+
+  .projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    gap: 1rem;
+    justify-content: center;
+    place-items: center;
+  }
+
+  @media only screen and (min-width: 720px) {
+    .projects-container {
+      grid-template-columns: repeat(auto-fill, 310px);
+    }
+  }
+
+  @media only screen and (min-width: 1130px) {
+    .projects-container {
+      grid-template-columns: repeat(auto-fill, 360px);
+      gap: 2rem;
+    }
+  }
+
+  @media only screen and (min-width: 1312px) {
+    .projects-container {
+      place-content: unset;
+      justify-items: start;
+    }
   }
 </style>

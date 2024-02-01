@@ -5,10 +5,12 @@ import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
 import compress from 'astro-compress';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  // site: "https://fabiankachlock.github.io",
+  // site: 'https://fabiankachlock.github.io',
   // base: "/website_v3",
   server: {
     port: 3000,
@@ -19,6 +21,12 @@ export default defineConfig({
   vite: {
     ssr: {
       noExternal: ['path-to-regexp', '@carbon/icons-vue'],
+    },
+  },
+  markdown: {
+    experimentalThemes: {
+      light: 'catppuccin-latte',
+      dark: 'ayu-dark',
     },
   },
   integrations: [
@@ -49,5 +57,6 @@ export default defineConfig({
       js: true,
       logger: 0,
     }),
+    mdx(),
   ],
 });

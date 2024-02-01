@@ -1,93 +1,109 @@
 ---
-import svgLogo from '@/assets/logo.svg?raw';
+import i18next from 'i18next';
+import { getProjectLinks } from '@/content/projects';
+
+import ThemeSwitch from './ThemeSwitch.astro';
+import LanguageSelect from './LanguageSelect.astro';
+import LocalizedLink from './LocalizedLink.astro';
+import Translation from './Translation.astro';
+
 import svgMenuButton from '@/assets/menu_button.svg?raw';
+import svgLogo from '@/assets/logo.svg?raw';
+import carretRightIcon from '@carbon/icons/svg/32/caret--right.svg?raw';
+
+const projectLinks = await getProjectLinks();
 ---
 
 <header class="head">
-  <div class="head__bar">
-    <div class="head__logo">
-      <Fragment set:html={svgLogo} />
-    </div>
-    <h1 class="head__title">Fabian Kachlock</h1>
-    <div>
-      <button class="menu__opener">
-        <Fragment set:html={svgMenuButton} />
-      </button>
-    </div>
+  <div class="floating-menu">
+    <button class="menu__opener">
+      <Fragment set:html={svgMenuButton} />
+    </button>
   </div>
   <nav class="menu">
     <div class="menu__content">
-      <ul class="menu__content-wrapper">
+      <div class="menu__logo">
+        <Fragment set:html={svgLogo} />
+      </div>
+      <ul class="menu__nav">
         <li class="menu__item">
-          <a class="menu__link" href="#about">Über mich</a>
+          <LocalizedLink classes="menu__link" path="/#about">
+            <Translation>
+              <span slot="de">Über mich</span>
+              <span slot="en">About me</span>
+            </Translation>
+          </LocalizedLink>
         </li>
         <li class="menu__item">
-          <a class="menu__link" href="#skills">Skills</a>
+          <LocalizedLink classes="menu__link" path="/#skills">
+            <Translation>
+              <span slot="de">Skills</span>
+              <span slot="en">Skills</span>
+            </Translation>
+          </LocalizedLink>
         </li>
-        <li class="menu__item">
-          <a class="menu__link" href="#projects">Projekte</a>
+        <li class="menu__item menu__item--project">
+          <LocalizedLink classes="menu__link" path="/#projects">
+            <Translation>
+              <span slot="de">Projekte</span>
+              <span slot="en">Projects</span>
+            </Translation>
+          </LocalizedLink>
         </li>
+        {
+          projectLinks.map(project => (
+            <li class="menu__item menu__item--project-item">
+              <LocalizedLink classes="menu__link" path={'projekte/' + project.url}>
+                {project.title[i18next.language] ?? Object.values(project.title)[0]}
+              </LocalizedLink>
+            </li>
+          ))
+        }
         <li class="menu__item">
-          <a class="menu__link" href="#contact">Kontakt</a>
+          <LocalizedLink classes="menu__link" path="/#contact">
+            <Translation>
+              <span slot="de">Kontakt</span>
+              <span slot="en">Contact</span>
+            </Translation>
+          </LocalizedLink>
         </li>
       </ul>
+      <div class="menu__spacer"></div>
+      <ul class="menu__extra">
+        <li class="menu__item">
+          <LocalizedLink classes="menu__link" path="/impressum">
+            <Translation>
+              <span slot="de">Impressum</span>
+              <span slot="en">Imprint</span>
+            </Translation>
+          </LocalizedLink>
+        </li>
+      </ul>
+      <div class="menu__actions">
+        <ThemeSwitch />
+        <LanguageSelect />
+      </div>
     </div>
   </nav>
 </header>
 
 <style>
-  .head {
-    display: flex;
-    flex-direction: column-reverse;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  .head__bar {
-    background-color: var(--color-surface);
-    border-bottom: 1px solid var(--color-text);
+  .floating-menu {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: transparent;
+    z-index: 1200;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-surface);
     padding: 0.2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    grid-row: 2;
-  }
-
-  .head__logo {
-    height: 3rem;
-    margin-right: 0.5rem;
-  }
-
-  .head__logo :global(svg) {
-    height: 3rem;
-  }
-
-  .head__title {
-    margin: 0;
-    color: var(--color-primary);
-    flex: 1;
-    font-family: 'Source Code Pro';
-    font-weight: 600;
-    font-size: 2rem;
-  }
-
-  .menu {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 130ms ease-in-out;
-  }
-
-  .head:has(.menu__link:focus) .menu,
-  .head.open .menu {
-    grid-template-rows: 1fr;
+    border-radius: 7px;
   }
 
   .menu__opener {
     height: 3rem;
     width: 3rem;
-    margin: 0 0.5rem;
+    margin: 0;
     padding: 0;
     display: block;
     background: transparent;
@@ -118,39 +134,133 @@ import svgMenuButton from '@/assets/menu_button.svg?raw';
     stroke-dashoffset: 0;
   }
 
+  .menu {
+    background-color: var(--color-surface);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: min(70vw, 300px);
+    left: 100%;
+    transition: 300ms ease-in-out left;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-left: 2px solid var(--color-text);
+    z-index: 1000;
+  }
+
   .menu__content {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--color-bg);
-  }
-
-  .menu__content-wrapper {
-    margin: 0;
-    padding: 0.5rem;
-    list-style: none;
+    padding: 1rem;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    text-align: center;
+    position: relative;
+    flex-direction: column;
+    min-height: calc(100% - 2rem);
   }
 
-  :global(.fullscreen) .menu__content-wrapper {
-    border-bottom: 1px solid var(--color-text);
+  .menu__logo {
+    height: 5rem;
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .menu__logo :global(svg) {
+    height: 100%;
+  }
+
+  .menu__nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .menu__item {
     padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
   }
 
-  .menu__link {
+  .menu__item--project-item,
+  .menu__item--project {
+    margin: 0;
+  }
+
+  .menu__item--project-item {
+    margin-left: 1rem;
+    position: relative;
+  }
+
+  .menu__item--project-item::before {
+    content: '';
+    width: 0.3rem;
+    background: var(--color-text);
+    height: 1.5rem;
+    left: 0.1rem;
+    top: 50%;
+    translate: 0 -50%;
+    position: absolute;
+  }
+
+  .menu__item--project-item:has(:global(, menu__link:hover))::before {
+    background: var(--color-primary);
+  }
+
+  .menu__nav :global(.menu__link) {
     font-family: 'Source Code Pro';
+    font-weight: 500;
     font-size: 1.5rem;
+    color: var(--color-text-header);
+  }
+
+  .menu__item--project-item :global(.menu__link) {
+    font-weight: 400;
+    font-size: 1.4rem;
+  }
+
+  .menu__nav :global(.menu__link:hover) {
+    font-style: italic;
+    color: var(--color-primary);
+  }
+
+  .menu__extra :global(.menu__link) {
+    font-family: 'Mona Sans';
+    font-size: 1rem;
     color: var(--color-text);
   }
 
-  .menu__link:hover {
-    font-style: italic;
+  .menu__extra :global(.menu__link:hover) {
     color: var(--color-primary);
+  }
+
+  .menu__spacer {
+    flex-grow: 1;
+  }
+
+  .menu__actions {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .head:has(*:focus) .menu,
+  .head.open .menu {
+    left: calc(100vw - min(70vw, 300px));
+  }
+
+  .head:has(*:focus) + :global(.main-content),
+  .head.open + :global(.main-content) {
+    left: max(-70vw, -300px);
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .floating-menu {
+      display: none;
+    }
+
+    :global(.main-content) {
+      width: calc(100vw - 300px) !important;
+      left: 0 !important;
+    }
+
+    .menu {
+      left: calc(100% - 300px) !important;
+    }
   }
 </style>
