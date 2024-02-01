@@ -17,14 +17,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.1.0",
+    "@astrojs/mdx": "^2.1.1",
     "@astrojs/prefetch": "^0.4.1",
     "@astrojs/sitemap": "3.0.5",
     "@astrojs/vue": "4.0.8",
     "@astrolib/seo": "^0.6.0",
     "@carbon/icons": "^11.28.0",
     "@carbon/icons-vue": "^10.72.1",
-    "astro": "4.2.6",
+    "astro": "^4.3.0",
     "astro-compress": "^2.0.15",
     "astro-i18next": "^1.0.0-beta.21",
     "i18next": "^22.4.10",
