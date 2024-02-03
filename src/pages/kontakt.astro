@@ -1,0 +1,34 @@
+---
+import Main from '@/layouts/Main.astro';
+import ContactForm from '@/components/interactive/ContactForm.vue';
+import Translation from '@/components/Translation.astro';
+---
+
+<Main>
+  <div class="site__content">
+    <Translation>
+      <h1 slot="de" class="site__title">Kontakt</h1>
+      <h1 slot="en" class="site__title">Contact</h1>
+    </Translation>
+    <ContactForm client:load />
+  </div>
+</Main>
+
+<style>
+  .site__title {
+    color: var(--color-text-header);
+    font-family: 'Source Code Pro';
+    font-weight: 400;
+    font-size: 3rem;
+    margin: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .site__content {
+    padding: 2rem;
+    flex: 1;
+    margin: 0 auto;
+    width: calc(100% - 4rem);
+    max-width: 768px;
+  }
+</style>
