@@ -1,0 +1,19 @@
+
+[build]
+base = "netlify"
+publish = "www"
+command = ""
+
+[functions]
+directory = "functions"
+
+[dev]
+framework = "#static"
+publish = "www"
+port = 5000
+functionsPort = 5001
+autoLaunch = false
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
