@@ -14,6 +14,9 @@ port = 5000
 functionsPort = 5001
 autoLaunch = false
 
+[context.dev.environment]
+API_ENV = "dev"
+
 [[redirects]]
 from = "/*"
-to = "/index.html"
+to = "https://fabiankachlock.dev/"
