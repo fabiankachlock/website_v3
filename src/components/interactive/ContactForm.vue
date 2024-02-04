@@ -91,7 +91,7 @@ const handleSubmit = async () => {
 
   isLoading.value = true;
   try {
-    const response = await fetch('/api/contact', {
+    const response = await fetch('https://api.fabiankachlock.dev/.netlify/functions/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
