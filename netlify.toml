@@ -6,6 +6,7 @@ command = ""
 
 [functions]
 directory = "functions"
+node_bundler = "esbuild"
 
 [dev]
 framework = "#static"

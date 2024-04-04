@@ -62,6 +62,7 @@ const project = translatedData!.data;
       border: 1px solid var(--color-text);
       border-radius: 5px;
       max-width: 400px;
+      z-index: 10;
     }
 
     @media only screen and (min-width: 720px) {
@@ -74,6 +75,8 @@ const project = translatedData!.data;
       background-color: var(--color-surface);
       border: 2px solid var(--color-text);
       max-width: 398px;
+      box-shadow: 0 0 7rem -3rem var(--color-primary);
+      z-index: 1;
     }
 
     .project-card:hover .project-card__wrapper {
@@ -176,7 +179,7 @@ const project = translatedData!.data;
     .project-card__read {
       font-size: 1.1rem;
       font-family: 'Mona Sans';
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       background: none;
       color: var(--color-text);

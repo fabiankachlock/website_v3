@@ -37,7 +37,7 @@ export default async (req: Request) => {
     sgMail.setApiKey(process.env['SENDGRID_API_KEY']!);
 
     let body = `From: '${data.name}' (${data.email})\n`;
-    body += `Submitted: ${data.site} at ${Date.now().toLocaleString('de-DE')}\n`;
+    body += `Submitted: ${data.site} at ${new Date(Date.now()).toLocaleString('de-DE')}\n`;
     body += `Captcha Score: ${captchaResponse.success ? 1 : 0} / 1\n`;
     body += `Message:\n${data.message}\n\n`;
 
