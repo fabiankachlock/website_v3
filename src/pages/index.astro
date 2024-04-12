@@ -52,15 +52,63 @@ const projects = await getPreviewProjects();
     </a>
     <h2 class="section__header">
       <Translation>
-        <span slot="de">Über</span>
-        <span slot="en">About</span>
+        <span slot="de">Über mich</span>
+        <span slot="en">About me</span>
       </Translation>
     </h2>
-    <div class="about-container">
-      <p>
-        Hi, I'm Fabian Kachlock, a 20 years old Software Developer from Germany with about <span id="experience">5</span> years of experience in mainly web development.
-      </p>
-    </div>
+    <Translation>
+      <div slot="en" class="about-container">
+        <p>
+          Hi, I'm Fabian Kachlock, a 20 years old Software Developer from Germany with about <span id="experience"
+            >5</span
+          > years of experience in mainly web development.
+        </p>
+        <p>
+          My focus lies in crafting user-friendly interfaces and robust back-end systems. I'm well-versed in a variety
+          of technologies, including TypeScript for writing clean and scalable code, along with tools like Prettier and
+          ESLint to maintain code quality.
+        </p>
+        <p>
+          On the front end, I work with frameworks like Vue, React, and Angular, as well as the basics: HTML, CSS, and
+          JavaScript. For the back end, I'm proficient with Node.js, C#, and Golang to build efficient and scalable
+          applications.
+        </p>
+        <p>
+          I'm also keen on streamlining deployment processes, using Docker, Git, GitHub, and GitHub Actions to automate
+          workflows and ensure smooth transitions from development to production.
+        </p>
+        <p>
+          I'm committed to delivering top-notch solutions while continuously learning and improving along the way.
+          Looking forward to contributing my skills and collaborating with others in the tech community.
+        </p>
+      </div>
+      <div slot="de" class="about-container">
+        <p>
+          Hallo, ich bin Fabian Kachlock, ein 20 Jahre alter Softwareentwickler aus Deutschland mit etwa 6 Jahren
+          Erfahrung hauptsächlich in der Webentwicklung.
+        </p>
+        <p>
+          Mein Fokus liegt darauf, benutzerfreundliche Oberflächen und robuste Back-End-Systeme zu entwickeln. Ich bin
+          mit einer Vielzahl von Technologien vertraut, darunter TypeScript, um sauberen und skalierbaren Code zu
+          schreiben, sowie Tools wie Prettier und ESLint, um die Codequalität zu gewährleisten.
+        </p>
+        <p>
+          Auf der Front-End-Seite arbeite ich mit Frameworks wie Vue, React und Angular sowie den Grundlagen: HTML, CSS
+          und JavaScript. Für das Backend beherrsche ich Node.js, C# und Golang, um effiziente und skalierbare
+          Anwendungen zu entwickeln.
+        </p>
+        <p>
+          Ich bin auch darauf bedacht, Bereitstellungsprozesse zu optimieren, indem ich Docker, Git, GitHub und GitHub
+          Actions verwende, um Workflows zu automatisieren und reibungslose Übergänge von der Entwicklung zur Produktion
+          sicherzustellen.
+        </p>
+        <p>
+          Ich bin bestrebt, erstklassige Lösungen zu liefern, während ich kontinuierlich dazulerne und mich verbessere.
+          Ich freue mich darauf, meine Fähigkeiten einzubringen und mit anderen in der Tech-Community
+          zusammenzuarbeiten.
+        </p>
+      </div>
+    </Translation>
   </section>
   <section class="section skills">
     <a id="skills" class="section-anchor">
@@ -239,8 +287,8 @@ const projects = await getPreviewProjects();
     font-weight: 400;
     font-size: 3rem;
     position: relative;
-    margin: 0;
-    margin-bottom: 1.5rem;
+    margin: 0 auto 1.5rem;
+    max-width: 920px;
   }
 
   .section {
@@ -387,18 +435,25 @@ const projects = await getPreviewProjects();
     background-color: var(--color-bg-tint-3);
   }
 
+  .about-container {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .about-container p {
+    font-family: 'Mona Sans';
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
   .skills {
     background-color: var(--color-bg-tint-2);
   }
 
-  :global(.fullscreen) .skills-container,
-  :global(.fullscreen) .projects-container,
-  :global(.fullscreen) .about-container,
-  :global(.fullscreen) .contact-container,
-  :global(.fullscreen) .section__header {
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
+  .skills-container {
+    max-width: 920px;
+    margin: 0 auto;
   }
 
   .contact {
@@ -413,7 +468,8 @@ const projects = await getPreviewProjects();
   .contact-container {
     padding: 0;
     list-style: none;
-    margin: 0;
+    margin: 0 auto;
+    max-width: 920px;
   }
 
   .contact__item {
@@ -506,6 +562,8 @@ const projects = await getPreviewProjects();
     gap: 1rem;
     justify-content: center;
     place-items: center;
+    max-width: 920px;
+    margin: 0 auto;
   }
 
   @media only screen and (min-width: 720px) {
