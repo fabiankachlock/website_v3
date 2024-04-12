@@ -9,3 +9,7 @@ document.querySelectorAll('.skill-drawer').forEach(drawer => {
     });
   });
 });
+
+document.querySelectorAll('#experience').forEach(span => {
+  span.innerHTML = (new Date().getFullYear() - 2018).toString();
+});
