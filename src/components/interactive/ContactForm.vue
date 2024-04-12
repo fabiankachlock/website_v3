@@ -39,7 +39,6 @@ onMounted(() => {
   saveUrl.value = window.location.href.replace('http://', 'https://');
   unwatchTheme = watchTheme(newTheme => {
     // hcaptcha sadly cant change theme reactively...
-    console.log('theme changed', newTheme);
     theme.value = newTheme;
     forceReload.value += 1;
   });
@@ -260,19 +259,22 @@ const handleSubmit = async () => {
   border: 1px solid var(--color-bg);
   padding: 0.2rem;
   resize: vertical;
+  box-shadow: 12px 10px 1px -4px var(--color-primary);
+  transition: box-shadow 70ms linear;
 }
 
 .form__row textarea:hover,
 .form__row input:hover {
   border-color: var(--color-primary);
+  box-shadow: 12px 10px 0 -4px var(--color-primary);
 }
 
 .form__row label {
   font-family: 'Source Code Pro';
   color: var(--color-text-header);
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 400;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .form__row button[type='submit'],
