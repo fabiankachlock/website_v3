@@ -37,4 +37,8 @@ document.querySelectorAll('.theme-switch__button').forEach(e => {
   });
 });
 
+document.querySelectorAll('#year').forEach(span => {
+  span.innerHTML = new Date().getFullYear().toString();
+});
+
 setupTheme();
