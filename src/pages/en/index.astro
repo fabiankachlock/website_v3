@@ -5,15 +5,13 @@ import Main from "@/layouts/Main.astro";
 import meJpeg from "@/assets/me.jpeg";
 import SkillDrawer from "@/components/home/SkillDrawer.astro";
 import Translation from "@/components/Translation.astro";
-import ProjectCard from "@/components/home/ProjectCard.astro";
+// import ProjectCard from '@/components/home/ProjectCard.astro';
 import githubLogo from "@carbon/icons/svg/32/logo--github.svg?raw";
 import instagramLogo from "@carbon/icons/svg/32/logo--instagram.svg?raw";
 import emailLogo from "@carbon/icons/svg/32/email.svg?raw";
-import { getPreviewProjects } from "@/content/projects";
+import formLogo from "@carbon/icons/svg/32/pen.svg?raw";
 
 changeLanguage("en");
-
-const projects = await getPreviewProjects();
 ---
 
 <Main>
@@ -31,7 +29,7 @@ const projects = await getPreviewProjects();
         </span><br />
         <span class="hero__name">
           <span class="hero__caret"></span>
-           Fabian
+          Fabian
         </span>
         <br />
         <span class="hero__name">&emsp;Kachlock</span>
@@ -52,10 +50,63 @@ const projects = await getPreviewProjects();
     </a>
     <h2 class="section__header">
       <Translation>
-        <span slot="de">Über</span>
-        <span slot="en">About</span>
+        <span slot="de">Über mich</span>
+        <span slot="en">About me</span>
       </Translation>
     </h2>
+    <Translation>
+      <div slot="en" class="about-container">
+        <p>
+          Hi, I'm Fabian Kachlock, a 20 years old Software Developer from Germany with about <span id="experience"
+            >5</span
+          > years of experience in mainly web development.
+        </p>
+        <p>
+          My focus lies in crafting user-friendly interfaces and robust back-end systems. I'm well-versed in a variety
+          of technologies, including TypeScript for writing clean and scalable code, along with tools like Prettier and
+          ESLint to maintain code quality.
+        </p>
+        <p>
+          On the front end, I work with frameworks like Vue, React, and Angular, as well as the basics: HTML, CSS, and
+          JavaScript. For the back end, I'm proficient with Node.js, C#, and Golang to build efficient and scalable
+          applications.
+        </p>
+        <p>
+          I'm also keen on streamlining deployment processes, using Docker, Git, GitHub, and GitHub Actions to automate
+          workflows and ensure smooth transitions from development to production.
+        </p>
+        <p>
+          I'm committed to delivering top-notch solutions while continuously learning and improving along the way.
+          Looking forward to contributing my skills and collaborating with others in the tech community.
+        </p>
+      </div>
+      <div slot="de" class="about-container">
+        <p>
+          Hallo, ich bin Fabian Kachlock, ein 20 Jahre alter Softwareentwickler aus Deutschland mit etwa 6 Jahren
+          Erfahrung hauptsächlich in der Webentwicklung.
+        </p>
+        <p>
+          Mein Fokus liegt darauf, benutzerfreundliche Oberflächen und robuste Back-End-Systeme zu entwickeln. Ich bin
+          mit einer Vielzahl von Technologien vertraut, darunter TypeScript, um sauberen und skalierbaren Code zu
+          schreiben, sowie Tools wie Prettier und ESLint, um die Codequalität zu gewährleisten.
+        </p>
+        <p>
+          Auf der Front-End-Seite arbeite ich mit Frameworks wie Vue, React und Angular sowie den Grundlagen: HTML, CSS
+          und JavaScript. Für das Backend beherrsche ich Node.js, C# und Golang, um effiziente und skalierbare
+          Anwendungen zu entwickeln.
+        </p>
+        <p>
+          Ich bin auch darauf bedacht, Bereitstellungsprozesse zu optimieren, indem ich Docker, Git, GitHub und GitHub
+          Actions verwende, um Workflows zu automatisieren und reibungslose Übergänge von der Entwicklung zur Produktion
+          sicherzustellen.
+        </p>
+        <p>
+          Ich bin bestrebt, erstklassige Lösungen zu liefern, während ich kontinuierlich dazulerne und mich verbessere.
+          Ich freue mich darauf, meine Fähigkeiten einzubringen und mit anderen in der Tech-Community
+          zusammenzuarbeiten.
+        </p>
+      </div>
+    </Translation>
   </section>
   <section class="section skills">
     <a id="skills" class="section-anchor">
@@ -76,36 +127,54 @@ const projects = await getPreviewProjects();
         tools={['Web APIs', 'express', 'Nestjs', 'Electron', 'eslint', 'prettier', 'jest', 'Cypress']}
       >
         <Translation slot="title">
-          <span slot="de">Webdevelopment Basics</span>
-          <span slot="en">Webdevelopment Basics</span>
+          <span slot="de">Grundlagen der Web-Entwicklung</span>
+          <span slot="en">Webdevelopment essentials</span>
         </Translation>
         <Translation slot="content">
           <span slot="de"
-            >Webdevelopment Basics is great and this here has to mimic some long text explaining whats going on...</span
+            >Ich beherrsche die Grundlagen der Webentwicklung und erstelle dynamische und visuell beeindruckende
+            Webseiten mit HTML, CSS, und JavaScript. Von der Erstellung von REST-vollen APIs mit Express bis zur
+            Durchführung von gründlichen Tests mit Jest und Cypress sorge ich für hochwertige und zuverlässige
+            Anwendungen.</span
           >
-          <span slot="en"
-            >Webdevelopment Basics is great and this here has to mimic some long text explaining whats going on...</span
-          >
+          <span slot="en">
+            Mastering the basics of web development, I create dynamic and visually stunning websites using HTML, CSS,
+            and JavaScript. From building RESTful APIs with Express to conducting thorough testing with Jest and
+            Cypress, I ensure high-quality and reliable applications.
+          </span>
         </Translation>
       </SkillDrawer>
       <SkillDrawer featuredTools={['vite', 'pinia', 'vuetify', 'vue-i18n']} tools={['tailwindcss', 'vue-router']}>
         <Translation slot="title">
-          <span slot="de">Vue.js - my frontend framework of choice</span>
+          <span slot="de">Vue.js - mein bevorzugtes Frontend-Framework</span>
           <span slot="en">Vue.js - my frontend framework of choice</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">BLA</span>
-          <span slot="en">BLA</span>
+          <span slot="de">
+            Vue.js ist mein bevorzugtes Frontend-Framework, um benutzerfreundliche und interaktive Oberflächen zu
+            entwickeln. Ich arbeite mit Tools wie Vite, Pinia und Vuetify, um effiziente und skalierbare Anwendungen zu
+            erstellen.
+          </span>
+          <span slot="en">
+            Vue.js is my preferred frontend framework for developing user-friendly and interactive interfaces. I work
+            with tools like Vite, Pinia, and Vuetify to build efficient and scalable applications.
+          </span>
         </Translation>
       </SkillDrawer>
       <SkillDrawer featuredTools={['Astro', 'React', 'Angular']} tools={['Nuxt.js', 'Alpinejs']}>
         <Translation slot="title">
-          <span slot="de">Other frontend frameworks</span>
+          <span slot="de">Andere Frontend-Frameworks</span>
           <span slot="en">Other frontend frameworks</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">BLA</span>
-          <span slot="en">BLA</span>
+          <span slot="de">
+            Neben Vue.js arbeite ich auch mit anderen Frontend-Frameworks wie React und Angular, um vielseitige und
+            leistungsstarke Anwendungen zu entwickeln.
+          </span>
+          <span slot="en">
+            In addition to Vue.js, I also work with other frontend frameworks like React and Angular to develop
+            versatile and powerful applications.
+          </span>
         </Translation>
       </SkillDrawer>
       <SkillDrawer
@@ -113,12 +182,18 @@ const projects = await getPreviewProjects();
         tools={['WebSockets', 'golang-migrate', 'Postgresql', 'MongoDB']}
       >
         <Translation slot="title">
-          <span slot="de">Golang - my backend language of choice</span>
+          <span slot="de">Golang - meine bevorzugte Backend-Sprache</span>
           <span slot="en">Golang - my backend language of choice</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">BLA</span>
-          <span slot="en">BLA</span>
+          <span slot="de">
+            Golang ist meine bevorzugte Backend-Sprache, um effiziente und skalierbare Anwendungen zu entwickeln. Ich
+            arbeite mit Tools wie Fiber, go-cron und SSE, um robuste und zuverlässige Back-End-Systeme zu erstellen.
+          </span>
+          <span slot="en">
+            Golang is my preferred backend language for developing efficient and scalable applications. I work with
+            tools like Fiber, go-cron, and SSE to build robust and reliable back-end systems.
+          </span>
         </Translation>
       </SkillDrawer>
       <SkillDrawer
@@ -130,18 +205,31 @@ const projects = await getPreviewProjects();
           <span slot="en">C# & .NET</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">BLA</span>
-          <span slot="en">BLA</span>
+          <span slot="de">
+            Ich arbeite auch mit C# und .NET, um leistungsstarke und skalierbare Anwendungen zu entwickeln. Dabei nutze
+            ich Tools wie ASP.NET, Blazor und WebAssembly, um top integrierte, effiziente und zuverlässige Anwendungen
+            zu erstellen.
+          </span>
+          <span slot="en">
+            I also work with C# and .NET to develop powerful and scalable applications. I use tools like ASP.NET,
+            Blazor, and WebAssembly to create top-integrated, efficient, and reliable applications.
+          </span>
         </Translation>
       </SkillDrawer>
       <SkillDrawer featuredTools={['Git', 'Github', 'Jira']} tools={['Confluence', 'BitBucket', 'Youtrack']}>
         <Translation slot="title">
-          <span slot="de">Version Control & Project management</span>
+          <span slot="de"> Versionskontrolle & Projektmanagement</span>
           <span slot="en">Version Control & Project management</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">BLA</span>
-          <span slot="en">BLA</span>
+          <span slot="de">
+            Ich bin erfahren im Umgang mit Versionskontrollsystemen wie Git und Projektmanagement-Tools wie Jira, um
+            effizient und effektiv zu arbeiten.
+          </span>
+          <span slot="en">
+            I'm experienced in working with version control systems like Git and project management tools like Jira to
+            work efficiently and effectively.
+          </span>
         </Translation>
       </SkillDrawer>
       <SkillDrawer
@@ -153,18 +241,31 @@ const projects = await getPreviewProjects();
           <span slot="en">Deplyoment & CI/CD</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">BLA</span>
-          <span slot="en">BLA</span>
+          <span slot="de">
+            Ich bin erfahren im Streamlining von Bereitstellungsprozessen, indem ich Docker, AWS und GitHub Actions
+            verwende, um Workflows zu automatisieren und reibungslose Übergänge von der Entwicklung zur Produktion
+            sicherzustellen.
+          </span>
+          <span slot="en">
+            I'm experienced in streamlining deployment processes, using Docker, AWS, and GitHub Actions to automate
+            workflows and ensure smooth transitions from development to production.
+          </span>
         </Translation>
       </SkillDrawer>
       <SkillDrawer featuredTools={['Rust', 'Kotlin', 'MQTT']} tools={['Redis', 'BullMQ', 'Swift', 'p5.js']}>
         <Translation slot="title">
-          <span slot="de">Other tools, languages & libraries</span>
+          <span slot="de"> Andere Tools, Sprachen & Bibliotheken</span>
           <span slot="en">Other tools, languages & libraries</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">BLA</span>
-          <span slot="en">BLA</span>
+          <span slot="de">
+            Neben meinen Hauptfähigkeiten arbeite ich auch mit anderen Tools, Sprachen und Bibliotheken wie Rust, Kotlin
+            und MQTT, um vielseitige und leistungsstarke Anwendungen zu entwickeln.
+          </span>
+          <span slot="en">
+            In addition to my main skills, I also work with other tools, languages, and libraries like Rust, Kotlin, and
+            MQTT to develop versatile and powerful applications.
+          </span>
         </Translation>
       </SkillDrawer>
     </div>
@@ -174,7 +275,7 @@ const projects = await getPreviewProjects();
     <h2 class="section__header">
       <span>Contact</span>
     </h2>
-    <ul class="contact-content">
+    <ul class="contact-container">
       <li class="contact__item contact__item--email">
         <div class="contact__logo">
           <Fragment set:html={emailLogo} />
@@ -199,6 +300,25 @@ const projects = await getPreviewProjects();
         <h3>Instagram</h3>
         <a class="contact__link" href="https://www.instagram.com/fabian.kachlock/">@fabian.kachlock</a>
       </li>
+      <li class="contact__item contact__item--form">
+        <div class="contact__logo">
+          <Fragment set:html={formLogo} />
+        </div>
+        <a class="contact__short-link" href="https://www.instagram.com/fabian.kachlock/">
+          <Translation>
+            <span slot="de">Kontaktformular</span>
+            <span slot="en">Contact form</span>
+          </Translation>
+        </a>
+        <h3>
+          <a class="contact__link" href="https://www.instagram.com/fabian.kachlock/">
+            <Translation>
+              <span slot="de">Kontaktformular</span>
+              <span slot="en">Contact form</span>
+            </Translation>
+          </a>
+        </h3>
+      </li>
     </ul>
   </section>
   <section class="section projects">
@@ -215,7 +335,11 @@ const projects = await getPreviewProjects();
       </Translation>
     </h2>
     <div class="projects-container">
-      {projects.map(p => <ProjectCard project={p} />)}
+      <!-- {projects.map(p => <ProjectCard project={p} />)} -->
+      <Translation>
+        <p slot="de" style="font-family: 'Mona Sans'">Bald verfügbar</p>
+        <p slot="en" style="font-family: 'Mona Sans'">Coming soon</p>
+      </Translation>
     </div>
   </section>
 </Main>
@@ -234,8 +358,8 @@ const projects = await getPreviewProjects();
     font-weight: 400;
     font-size: 3rem;
     position: relative;
-    margin: 0;
-    margin-bottom: 1.5rem;
+    margin: 0.5rem auto 2rem;
+    max-width: 920px;
   }
 
   .section {
@@ -382,8 +506,25 @@ const projects = await getPreviewProjects();
     background-color: var(--color-bg-tint-3);
   }
 
+  .about-container {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .about-container p {
+    font-family: 'Mona Sans';
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
   .skills {
     background-color: var(--color-bg-tint-2);
+  }
+
+  .skills-container {
+    max-width: 920px;
+    margin: 0 auto;
   }
 
   .contact {
@@ -395,10 +536,11 @@ const projects = await getPreviewProjects();
     color: var(--color-bg);
   }
 
-  .contact-content {
+  .contact-container {
     padding: 0;
     list-style: none;
-    margin: 0;
+    margin: 0 auto;
+    max-width: 920px;
   }
 
   .contact__item {
@@ -479,6 +621,10 @@ const projects = await getPreviewProjects();
     .contact__item h3 {
       display: unset;
     }
+
+    .contact__item--form .contact__short-link {
+      margin-left: 0;
+    }
   }
 
   .projects {
@@ -491,6 +637,8 @@ const projects = await getPreviewProjects();
     gap: 1rem;
     justify-content: center;
     place-items: center;
+    max-width: 920px;
+    margin: 0 auto;
   }
 
   @media only screen and (min-width: 720px) {

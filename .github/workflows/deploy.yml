@@ -17,11 +17,9 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
       - name: Install dependencies
-        run: yarn --frozen-lockfile --ignore-engines
-      - name: Fix sharp errors
-        run: yarn add sharp --ignore-engines
+        run: npm i
       - name: Build
-        run: yarn build
+        run: npm run build
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v2
         with:
