@@ -39,9 +39,11 @@ const { featuredTools, tools } = Astro.props;
     grid-template-rows: auto 0fr;
     border: 1px solid var(--color-text);
     background-color: var(--color-bg);
+    box-shadow: 0 0 0 0 var(--color-text);
     transition:
-      grid-template-rows 200ms ease-in-out,
+      grid-template-rows 210ms ease-in-out,
       margin 140ms linear,
+      box-shadow 70ms linear 140ms,
       border 70ms linear,
       border-radius 140ms linear;
   }
@@ -64,6 +66,7 @@ const { featuredTools, tools } = Astro.props;
     border-radius: 1rem;
     border: 2px solid var(--color-text);
     background-color: var(--color-surface);
+    box-shadow: 4px 4px 0 0 var(--color-text);
   }
 
   .skill-drawer.open + .skill-drawer {

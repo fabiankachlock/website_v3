@@ -9,7 +9,6 @@ import Translation from './Translation.astro';
 
 import svgMenuButton from '@/assets/menu_button.svg?raw';
 import svgLogo from '@/assets/logo.svg?raw';
-import carretRightIcon from '@carbon/icons/svg/32/caret--right.svg?raw';
 
 const projectLinks = await getProjectLinks();
 ---
@@ -95,7 +94,7 @@ const projectLinks = await getProjectLinks();
     background-color: transparent;
     z-index: 1200;
     background-color: var(--color-bg);
-    border: 1px solid var(--color-surface);
+    border: 2px solid var(--color-surface);
     padding: 0.2rem;
     border-radius: 7px;
   }
@@ -157,7 +156,7 @@ const projectLinks = await getProjectLinks();
   }
 
   .menu__logo {
-    height: 5rem;
+    height: 8rem;
     margin-left: 1rem;
     margin-bottom: 2rem;
   }
@@ -183,7 +182,7 @@ const projectLinks = await getProjectLinks();
   }
 
   .menu__item--project-item {
-    margin-left: 1rem;
+    margin-left: 1.1rem;
     position: relative;
   }
 
@@ -191,7 +190,7 @@ const projectLinks = await getProjectLinks();
     content: '';
     width: 0.3rem;
     background: var(--color-text);
-    height: 1.5rem;
+    height: 60%;
     left: 0.1rem;
     top: 50%;
     translate: 0 -50%;
@@ -261,6 +260,25 @@ const projectLinks = await getProjectLinks();
 
     .menu {
       left: calc(100% - 300px) !important;
+    }
+  }
+
+  @media only screen and (min-width: 1324px) {
+    body {
+      --menu-width: min(calc(100vw - 1024px), 450px);
+    }
+
+    .menu {
+      width: var(--menu-width) !important;
+    }
+
+    :global(.main-content) {
+      width: calc(100vw - var(--menu-width)) !important;
+      left: 0 !important;
+    }
+
+    .menu {
+      left: calc(100% - var(--menu-width)) !important;
     }
   }
 </style>

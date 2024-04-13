@@ -196,3 +196,8 @@ table {
 ::-webkit-scrollbar-thumb:hover {
   background: #39a7cdc0;
 }
+
+:focus {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
