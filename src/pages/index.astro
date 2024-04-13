@@ -5,15 +5,16 @@ import Main from '@/layouts/Main.astro';
 import meJpeg from '@/assets/me.jpeg';
 import SkillDrawer from '@/components/home/SkillDrawer.astro';
 import Translation from '@/components/Translation.astro';
-import ProjectCard from '@/components/home/ProjectCard.astro';
+// import ProjectCard from '@/components/home/ProjectCard.astro';
 import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
 import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
 import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
-import { getPreviewProjects } from '@/content/projects';
+import formLogo from '@carbon/icons/svg/32/pen.svg?raw';
+// import { getPreviewProjects } from '@/content/projects';
 
 changeLanguage('de');
 
-const projects = await getPreviewProjects();
+// const projects = await getPreviewProjects();
 ---
 
 <Main>
@@ -302,6 +303,25 @@ const projects = await getPreviewProjects();
         <h3>Instagram</h3>
         <a class="contact__link" href="https://www.instagram.com/fabian.kachlock/">@fabian.kachlock</a>
       </li>
+      <li class="contact__item contact__item--form">
+        <div class="contact__logo">
+          <Fragment set:html={formLogo} />
+        </div>
+        <a class="contact__short-link" href="https://www.instagram.com/fabian.kachlock/">
+          <Translation>
+            <span slot="de">Kontaktformular</span>
+            <span slot="en">Contact form</span>
+          </Translation>
+        </a>
+        <h3>
+          <a class="contact__link" href="https://www.instagram.com/fabian.kachlock/">
+            <Translation>
+              <span slot="de">Kontaktformular</span>
+              <span slot="en">Contact form</span>
+            </Translation>
+          </a>
+        </h3>
+      </li>
     </ul>
   </section>
   <section class="section projects">
@@ -318,7 +338,11 @@ const projects = await getPreviewProjects();
       </Translation>
     </h2>
     <div class="projects-container">
-      {projects.map(p => <ProjectCard project={p} />)}
+      <!-- {projects.map(p => <ProjectCard project={p} />)} -->
+      <Translation>
+        <p slot="de" style="font-family: 'Mona Sans'">Bald verfügbar</p>
+        <p slot="en" style="font-family: 'Mona Sans'">Coming soon</p>
+      </Translation>
     </div>
   </section>
 </Main>
@@ -599,6 +623,10 @@ const projects = await getPreviewProjects();
     .contact__item--email .contact__link,
     .contact__item h3 {
       display: unset;
+    }
+
+    .contact__item--form .contact__short-link {
+      margin-left: 0;
     }
   }
 
