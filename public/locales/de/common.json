@@ -11,5 +11,29 @@
   },
   "common": {
     "projects": "Projekte"
+  },
+  "contactForm": {
+    "warnHttp": "Achtung: Die Seite wurde über HTTP aufgerufen. Alle Daten, die in dieses Formular eingeben werden, werden unverschlüsselt über das Internet übertragen. Das Formular kann nur über eine sichere HTTPS Verbindung genutzt werden.",
+    "httpsLink": "Zur sicheren Seite!",
+    "name": "Name*:",
+    "namePlaceholder": "Max Mustermann",
+    "email": "E-Mail Adresse*:",
+    "emailPlaceholder": "max@mustermann.de",
+    "message": "Nachricht*:",
+    "messagePlaceholder": "Deine Nachricht ans mich",
+    "submit": "Absenden",
+    "loading": "lädt...",
+    "submitDone": "Vielen Dank für deine Kontaktanfrage. Deine Anfrage wurde im System registriert und ich werde sie so schnell wie möglich bearbeiten und mich bei dir zurückmelden.",
+    "error": {
+      "invalidName": "Bitte gebe deinen Namen ein.",
+      "invalidEmail": "Bitte gebe eine gültige E-Mail Adresse ein.",
+      "invalidMessage": "Bitte gebe eine Nachricht ein.",
+      "nonSuccessResponse": "Bei der Verarbeitung der Anfrage ist ein Fehler aufgetreten. Versuche es später noch einmal erneut.",
+      "cantSubmit": "Die Anfrage ist fehlgeschlagen. Versuche es später noch einmal erneut.",
+      "captchaError": "Es ist ein Fehler bei der Captcha Verifizierung aufgetreten.",
+      "captchaExpired": "Das Captcha ist abgelaufen. Bitte fülle es erneut aus.",
+      "captchaMissing": "Die Captcha Verifizierung fehlt.",
+      "captchaInsufficient": "Du hast die Captcha Prüfung nicht bestanden, bitte versuche es erneut."
+    }
   }
 }

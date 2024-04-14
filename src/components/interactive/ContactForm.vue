@@ -265,6 +265,7 @@ const handleSubmit = async () => {
   resize: vertical;
   box-shadow: 12px 10px 1px -4px var(--color-primary);
   transition: box-shadow 70ms linear;
+  border-radius: 2px;
 }
 
 .form__row textarea:hover,
@@ -275,7 +276,8 @@ const handleSubmit = async () => {
 
 .form__row textarea:focus,
 .form__row input:focus {
-  outline-color: var(--color-secondary);
+  outline: none;
+  box-shadow: 12px 10px 0 -4px var(--color-secondary);
 }
 
 .form__row label {

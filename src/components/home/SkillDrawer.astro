@@ -52,12 +52,16 @@ const { featuredTools, tools } = Astro.props;
     border-top: none;
   }
 
-  .skill-drawer:first-child {
-    border-radius: 1rem 1rem 0 0;
+  .skill-drawer:first-child,
+  .skill-drawer.open + .skill-drawer {
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
   }
 
-  .skill-drawer:last-child {
-    border-radius: 0 0 1rem 1rem;
+  .skill-drawer:last-child,
+  .skill-drawer:has(+ .skill-drawer.open) {
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
   }
 
   .skill-drawer.open {

@@ -11,5 +11,29 @@
   },
   "common": {
     "projects": "Projects"
+  },
+  "contactForm": {
+    "warnHttp": "Attention: The page was accessed via HTTP. All data you enter in this form will be transmitted unencrypted over the Internet. The form can only be used with a secure HTTPS connection.",
+    "httpsLink": "To the secure site",
+    "name": "Name*:",
+    "namePlaceholder": "Your name",
+    "email": "E-mail address*:",
+    "emailPlaceholder": "name@provider.com",
+    "message": "Message*:",
+    "messagePlaceholder": "Your message",
+    "submit": "Submit",
+    "loading": "loading...",
+    "submitDone": "Thanks for your contact request. Your request has been registered in the system and I will process it and get back to you as soon as possible.",
+    "error": {
+      "invalidName": "Please enter a name.",
+      "invalidEmail": "Please enter a valid e-mail address.",
+      "invalidMessage": "Please enter a message.",
+      "nonSuccessResponse": "An error occurred while processing the request. Please try again later.",
+      "cantSubmit": "The request has failed. Please try again later.",
+      "captchaError": "An error occurred during the Captcha verification.",
+      "captchaExpired": "The captcha has expired. Please fill it out again.",
+      "captchaMissing": "Captcha verification is missing.",
+      "captchaInsufficient": "You did not pass the Captcha check, please try again."
+    }
   }
 }

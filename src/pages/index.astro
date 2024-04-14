@@ -10,6 +10,7 @@ import githubLogo from "@carbon/icons/svg/32/logo--github.svg?raw";
 import instagramLogo from "@carbon/icons/svg/32/logo--instagram.svg?raw";
 import emailLogo from "@carbon/icons/svg/32/email.svg?raw";
 import formLogo from "@carbon/icons/svg/32/pen.svg?raw";
+import infoIcon from "@carbon/icons/svg/32/information.svg?raw";
 import LocalizedLink from "@/components/LocalizedLink.astro";
 
 changeLanguage("de");
@@ -41,6 +42,15 @@ changeLanguage("de");
       <p class="hero__things">&lt;Code Architect/&gt;</p>
       <p class="hero__things">&lt;Tech Enthusiast/&gt;</p>
     </div>
+  </section>
+  <section class="section projects">
+    <p id="info" style="max-width: 920px; margin: 0 auto; font-family: 'Mona Sans'; font-size: 1.5rem">
+      <Fragment set:html={infoIcon} />
+      <Translation>
+        <span slot="de">Diese Seite ist aktuell im Aufbau.</span>
+        <span slot="en">This page is currently under construction.</span>
+      </Translation>
+    </p>
   </section>
   <section class="section about">
     <a id="about" class="section-anchor">
@@ -272,9 +282,17 @@ changeLanguage("de");
     </div>
   </section>
   <section class="section contact">
-    <a id="contact" class="section-anchor">Contact</a>
+    <a id="contact" class="section-anchor">
+      <Translation>
+        <span slot="de">Kontakt</span>
+        <span slot="en">Contact</span>
+      </Translation>
+    </a>
     <h2 class="section__header">
-      <span>Contact</span>
+      <Translation>
+        <span slot="de">Kontakt</span>
+        <span slot="en">Contact</span>
+      </Translation>
     </h2>
     <ul class="contact-container">
       <li class="contact__item contact__item--email">
@@ -346,6 +364,12 @@ changeLanguage("de");
 </Main>
 
 <style is:global>
+  #info svg {
+    height: 29px;
+    fill: var(--color-primary);
+    vertical-align: bottom;
+  }
+
   .section-anchor {
     display: block;
     visibility: hidden;
@@ -585,6 +609,11 @@ changeLanguage("de");
   .contact__short-link:hover,
   .contact__link:hover {
     color: var(--color-secondary);
+  }
+
+  .contact__short-link:focus,
+  .contact__link:focus {
+    outline-color: var(--color-secondary);
   }
 
   .contact__item:hover .contact__logo svg {
