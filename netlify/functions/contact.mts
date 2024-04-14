@@ -34,7 +34,7 @@ export default async (req: Request) => {
       });
     }
 
-    sgMail.setApiKey(process.env['SENDGRID_API_KEY']!);
+    sgMail.setApiKey(Netlify.env.get('SENDGRID_API_KEY')!);
 
     let body = `From: '${data.name}' (${data.email})\n`;
     body += `Submitted: ${data.site} at ${new Date(Date.now()).toLocaleString('de-DE')}\n`;
