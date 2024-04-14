@@ -5,6 +5,7 @@ publish = "www"
 command = ""
 
 [functions]
+external_node_modules = ["@sendgrid/mail"]
 directory = "functions"
 node_bundler = "esbuild"
 
