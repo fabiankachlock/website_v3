@@ -10,6 +10,7 @@ import githubLogo from "@carbon/icons/svg/32/logo--github.svg?raw";
 import instagramLogo from "@carbon/icons/svg/32/logo--instagram.svg?raw";
 import emailLogo from "@carbon/icons/svg/32/email.svg?raw";
 import formLogo from "@carbon/icons/svg/32/pen.svg?raw";
+import LocalizedLink from "@/components/LocalizedLink.astro";
 
 changeLanguage("de");
 ---
@@ -304,19 +305,19 @@ changeLanguage("de");
         <div class="contact__logo">
           <Fragment set:html={formLogo} />
         </div>
-        <a class="contact__short-link" href="https://www.instagram.com/fabian.kachlock/">
+        <LocalizedLink classes="contact__short-link" path="/kontakt">
           <Translation>
             <span slot="de">Kontaktformular</span>
             <span slot="en">Contact form</span>
           </Translation>
-        </a>
+        </LocalizedLink>
         <h3>
-          <a class="contact__link" href="https://www.instagram.com/fabian.kachlock/">
+          <LocalizedLink classes="contact__link" path="/kontakt">
             <Translation>
               <span slot="de">Kontaktformular</span>
               <span slot="en">Contact form</span>
             </Translation>
-          </a>
+          </LocalizedLink>
         </h3>
       </li>
     </ul>
@@ -344,7 +345,7 @@ changeLanguage("de");
   </section>
 </Main>
 
-<style>
+<style is:global>
   .section-anchor {
     display: block;
     visibility: hidden;
@@ -569,7 +570,7 @@ changeLanguage("de");
     background-color: var(--color-surface);
   }
 
-  .contact__logo :global(svg) {
+  .contact__logo svg {
     fill: var(--color-text);
     transition: scale 70ms ease-in-out;
   }
@@ -586,7 +587,7 @@ changeLanguage("de");
     color: var(--color-secondary);
   }
 
-  .contact__item:hover .contact__logo :global(svg) {
+  .contact__item:hover .contact__logo svg {
     scale: 1.4;
   }
 

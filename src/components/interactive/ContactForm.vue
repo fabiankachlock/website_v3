@@ -250,6 +250,10 @@ const handleSubmit = async () => {
   font-family: 'Mona Sans';
 }
 
+.form__row:nth-child(3) {
+  margin: 1rem 0;
+}
+
 .form__row textarea,
 .form__row input {
   font-size: 1rem;
@@ -267,6 +271,11 @@ const handleSubmit = async () => {
 .form__row input:hover {
   border-color: var(--color-primary);
   box-shadow: 12px 10px 0 -4px var(--color-primary);
+}
+
+.form__row textarea:focus,
+.form__row input:focus {
+  outline-color: var(--color-secondary);
 }
 
 .form__row label {
