@@ -19,5 +19,6 @@ autoLaunch = false
 API_ENV = "dev"
 
 [[redirects]]
+force = true
 from = "/*"
 to = "https://fabiankachlock.dev/"
