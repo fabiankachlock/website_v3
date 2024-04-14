@@ -17,7 +17,7 @@ export default async (req: Request) => {
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
   };
-  console.log(`[http] in | ${req.method} ${req.url}`);
+  console.log(`[http] in  | ${req.method} ${req.url}`);
   if (req.method === 'OPTIONS') {
     // returns CORS headers
     return new Response('', { headers });

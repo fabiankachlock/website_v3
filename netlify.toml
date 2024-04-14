@@ -20,11 +20,6 @@ API_ENV = "dev"
 
 [[redirects]]
 force = true
-from = "/api/*"
-to = "/.netlify/functions/:splat"
-
-[[redirects]]
-force = true
 status = 308
 from = "/*"
 to = "https://fabiankachlock.dev/"
