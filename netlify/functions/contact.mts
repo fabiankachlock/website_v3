@@ -17,6 +17,7 @@ export default async (req: Request) => {
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
   };
+  console.log(`[http] in | ${req.method} ${req.url}`);
   if (req.method === 'OPTIONS') {
     // returns CORS headers
     return new Response('', { headers });
@@ -28,6 +29,7 @@ export default async (req: Request) => {
 
   try {
     const captchaResponse = await verifyCaptcha({ token: data.captchaToken });
+    console.log(`[http] out | 401 - captcha failure: ${captchaResponse['error-codes']}`);
     if (!captchaResponse || !captchaResponse.success) {
       return new Response('insufficient captcha', {
         status: 401,
@@ -47,8 +49,10 @@ export default async (req: Request) => {
       subject: 'Contact Form Submission',
       text: body,
     });
+    console.log(`[http] out | 200 - success`);
     return new Response('OK', { headers, status: 200 });
-  } catch {
+  } catch (e: unknown) {
+    console.log(`[http] out | 500 - error: ${e}`);
     return new Response('Internal Server Error', { headers, status: 500 });
   }
 };
