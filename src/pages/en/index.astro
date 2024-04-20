@@ -1,19 +1,19 @@
 ---
-import { changeLanguage } from "i18next";
-import { Image } from "astro:assets";
-import Main from "@/layouts/Main.astro";
-import meJpeg from "@/assets/me.jpeg";
-import SkillDrawer from "@/components/home/SkillDrawer.astro";
-import Translation from "@/components/Translation.astro";
+import { changeLanguage } from 'i18next';
+import { Image } from 'astro:assets';
+import Main from '@/layouts/Main.astro';
+import meJpeg from '@/assets/me.jpeg';
+import SkillDrawer from '@/components/home/SkillDrawer.astro';
+import Translation from '@/components/Translation.astro';
 // import ProjectCard from '@/components/home/ProjectCard.astro';
-import githubLogo from "@carbon/icons/svg/32/logo--github.svg?raw";
-import instagramLogo from "@carbon/icons/svg/32/logo--instagram.svg?raw";
-import emailLogo from "@carbon/icons/svg/32/email.svg?raw";
-import formLogo from "@carbon/icons/svg/32/pen.svg?raw";
-import infoIcon from "@carbon/icons/svg/32/information.svg?raw";
-import LocalizedLink from "@/components/LocalizedLink.astro";
+import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
+import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
+import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
+import formLogo from '@carbon/icons/svg/32/pen.svg?raw';
+import infoIcon from '@carbon/icons/svg/32/information.svg?raw';
+import LocalizedLink from '@/components/LocalizedLink.astro';
 
-changeLanguage("en");
+changeLanguage('en');
 ---
 
 <Main>
@@ -68,53 +68,43 @@ changeLanguage("en");
     <Translation>
       <div slot="en" class="about-container">
         <p>
-          Hi, I'm Fabian Kachlock, a 20 years old Software Developer from Germany with about <span id="experience"
-            >5</span
+          Hi, I'm Fabian Kachlock, a 20 years old software developer from Germany with about <span id="experience"
+            >6</span
           > years of experience in mainly web development.
         </p>
         <p>
-          My focus lies in crafting user-friendly interfaces and robust back-end systems. I'm well-versed in a variety
-          of technologies, including TypeScript for writing clean and scalable code, along with tools like Prettier and
-          ESLint to maintain code quality.
+          I focus on developing user-friendly interfaces and robust backend systems. My extensive experience with a
+          variety of technologies and tools enables me to write high-quality code and ensure its quality.
         </p>
         <p>
-          On the front end, I work with frameworks like Vue, React, and Angular, as well as the basics: HTML, CSS, and
-          JavaScript. For the back end, I'm proficient with Node.js, C#, and Golang to build efficient and scalable
-          applications.
+          I rely on proven methods and techniques to ensure the security and scalability of my applications and to
+          establish a solid codebase. Through careful architectural planning and continuous assurance of code quality, I
+          aim to deliver reliable and high-quality solutions.
         </p>
         <p>
-          I'm also keen on streamlining deployment processes, using Docker, Git, GitHub, and GitHub Actions to automate
-          workflows and ensure smooth transitions from development to production.
-        </p>
-        <p>
-          I'm committed to delivering top-notch solutions while continuously learning and improving along the way.
-          Looking forward to contributing my skills and collaborating with others in the tech community.
+          By automating workflows and optimizing deployment processes, I ensure efficient operations and continuous
+          improvement in development.
         </p>
       </div>
       <div slot="de" class="about-container">
         <p>
-          Hallo, ich bin Fabian Kachlock, ein 20 Jahre alter Softwareentwickler aus Deutschland mit etwa 6 Jahren
-          Erfahrung hauptsächlich in der Webentwicklung.
+          Hi, ich bin Fabian Kachlock, ein 20 Jahre alter Softwareentwickler aus Deutschland mit etwa <span
+            id="experience">6</span
+          > Jahren Erfahrung hauptsächlich in der Webentwicklung.
         </p>
         <p>
-          Mein Fokus liegt darauf, benutzerfreundliche Oberflächen und robuste Back-End-Systeme zu entwickeln. Ich bin
-          mit einer Vielzahl von Technologien vertraut, darunter TypeScript, um sauberen und skalierbaren Code zu
-          schreiben, sowie Tools wie Prettier und ESLint, um die Codequalität zu gewährleisten.
+          Ich konzentriere mich darauf, benutzerfreundliche Oberflächen und robuste Backend-Systeme zu entwickeln. Meine
+          umfangreiche Erfahrung mit einer Vielzahl von Technologien und Tools ermöglicht es mir, hochwertigen Code zu
+          schreiben und dessen Qualität sicherzustellen.
         </p>
         <p>
-          Auf der Front-End-Seite arbeite ich mit Frameworks wie Vue, React und Angular sowie den Grundlagen: HTML, CSS
-          und JavaScript. Für das Backend beherrsche ich Node.js, C# und Golang, um effiziente und skalierbare
-          Anwendungen zu entwickeln.
+          Ich setze auf bewährte Methoden und Techniken, um die Sicherheit und Skalierbarkeit meiner Anwendungen zu
+          gewährleisten und eine solide Codebasis zu schaffen. Durch sorgfältige Architekturplanung und kontinuierliche
+          Sicherstellung der Codequalität strebe ich nach zuverlässigen und hochwertigen Lösungen.
         </p>
         <p>
-          Ich bin auch darauf bedacht, Bereitstellungsprozesse zu optimieren, indem ich Docker, Git, GitHub und GitHub
-          Actions verwende, um Workflows zu automatisieren und reibungslose Übergänge von der Entwicklung zur Produktion
-          sicherzustellen.
-        </p>
-        <p>
-          Ich bin bestrebt, erstklassige Lösungen zu liefern, während ich kontinuierlich dazulerne und mich verbessere.
-          Ich freue mich darauf, meine Fähigkeiten einzubringen und mit anderen in der Tech-Community
-          zusammenzuarbeiten.
+          Mit der Automatisierung von Workflows und der Optimierung von Bereitstellungsprozessen sorge ich für
+          effiziente Abläufe und eine kontinuierliche Verbesserung der Entwicklung.
         </p>
       </div>
     </Translation>
@@ -135,57 +125,101 @@ changeLanguage("en");
     <div class="skills-container">
       <SkillDrawer
         featuredTools={['HTML', 'CSS', 'JS', 'TS']}
-        tools={['Web APIs', 'express', 'Nestjs', 'Electron', 'eslint', 'prettier', 'jest', 'Cypress']}
+        tools={['Web APIs', 'express', 'NestJS', 'eslint', 'prettier', 'jest', 'Cypress']}
       >
         <Translation slot="title">
           <span slot="de">Grundlagen der Web-Entwicklung</span>
           <span slot="en">Webdevelopment essentials</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de"
-            >Ich beherrsche die Grundlagen der Webentwicklung und erstelle dynamische und visuell beeindruckende
-            Webseiten mit HTML, CSS, und JavaScript. Von der Erstellung von REST-vollen APIs mit Express bis zur
-            Durchführung von gründlichen Tests mit Jest und Cypress sorge ich für hochwertige und zuverlässige
-            Anwendungen.</span
-          >
-          <span slot="en">
-            Mastering the basics of web development, I create dynamic and visually stunning websites using HTML, CSS,
-            and JavaScript. From building RESTful APIs with Express to conducting thorough testing with Jest and
-            Cypress, I ensure high-quality and reliable applications.
-          </span>
+          <div slot="de">
+            <p>
+              Ich verfüge über umfassende Kenntnisse in der Webentwicklung, die von den Grundlagen mit HTML, CSS und
+              JavaScript bis hin zur Erstellung dynamischer Webseiten reichen. Um das Paket der Fullstack-Anwendung
+              abzurunden, setze ich auf RESTful APIs in Express oder NestJS.
+            </p>
+            <p>
+              Um die Qualität und Zuverlässigkeit meiner Anwendungen sicherzustellen, greife ich regelmäßig auf Tools
+              wie Jest und Cypress zurück. Darüber hinaus verwende ich TypeScript und Tools wie ESLint und Prettier, um
+              sicherzustellen, dass auch die Codequalität stimmt.
+            </p>
+          </div>
+          <div slot="en">
+            <p>
+              I have extensive knowledge in web development, ranging from the basics with HTML, CSS, and JavaScript to
+              building dynamic web pages. To complete the package of a full-stack application, I rely on RESTful APIs in
+              Express or NestJS.
+            </p>
+            <p>
+              To ensure the quality and reliability of my applications, I regularly utilize tools like Jest and Cypress.
+              Additionally, I use TypeScript and tools like ESLint and Prettier to ensure code quality.
+            </p>
+          </div>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer featuredTools={['vite', 'pinia', 'vuetify', 'vue-i18n']} tools={['tailwindcss', 'vue-router']}>
+      <SkillDrawer
+        featuredTools={['vite', 'pinia', 'vuetify', 'vue-i18n']}
+        tools={['tailwindcss', 'SASS', 'vitest', 'vue-router']}
+      >
         <Translation slot="title">
           <span slot="de">Vue.js - mein bevorzugtes Frontend-Framework</span>
           <span slot="en">Vue.js - my frontend framework of choice</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">
-            Vue.js ist mein bevorzugtes Frontend-Framework, um benutzerfreundliche und interaktive Oberflächen zu
-            entwickeln. Ich arbeite mit Tools wie Vite, Pinia und Vuetify, um effiziente und skalierbare Anwendungen zu
-            erstellen.
-          </span>
-          <span slot="en">
-            Vue.js is my preferred frontend framework for developing user-friendly and interactive interfaces. I work
-            with tools like Vite, Pinia, and Vuetify to build efficient and scalable applications.
-          </span>
+          <div slot="de">
+            <p>
+              Vue.js ist mein bevorzugtes Frontend-Framework für interaktive Single-Page-Applications. In Kombination
+              mit Tools wie Vite, Pinia und Vuetify ermöglicht es mir, schnell voll funktionsfähige Anwendungen zu
+              entwickeln. Für Komponententests nutze ich dabei vitest.
+            </p>
+            <p>
+              Um meine Vue.js-Anwendungen zu internationalisieren, greife ich gerne auf vue-i18n zurück. Beim Styling
+              verwende ich entweder reines CSS, Tailwind CSS oder andere Utility-CSS-Frameworks für schnelle Ergebnisse,
+              oder auch SASS für komplexere Anforderungen.
+            </p>
+          </div>
+          <div slot="en">
+            <p>
+              Vue.js is my preferred frontend framework for interactive single-page applications. In combination with
+              tools like Vite, Pinia, and Vuetify, it allows me to quickly develop fully functional applications. For
+              component testing, I use vitest.
+            </p>
+            <p>
+              To internationalize my Vue.js applications, I often rely on vue-i18n. For styling, I use either plain CSS,
+              Tailwind CSS, or other utility CSS frameworks for quick results, or SASS for more complex requirements.
+            </p>
+          </div>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer featuredTools={['Astro', 'React', 'Angular']} tools={['Nuxt.js', 'Alpinejs']}>
+      <SkillDrawer featuredTools={['Astro', 'React', 'Angular']} tools={['Nuxt.js', 'Alpinejs', 'i18next']}>
         <Translation slot="title">
           <span slot="de">Andere Frontend-Frameworks</span>
           <span slot="en">Other frontend frameworks</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">
-            Neben Vue.js arbeite ich auch mit anderen Frontend-Frameworks wie React und Angular, um vielseitige und
-            leistungsstarke Anwendungen zu entwickeln.
-          </span>
-          <span slot="en">
-            In addition to Vue.js, I also work with other frontend frameworks like React and Angular to develop
-            versatile and powerful applications.
-          </span>
+          <div slot="de">
+            <p>
+              Neben Vue.js arbeite ich auch mit anderen Frontend-Frameworks wie React und Angular. Wenn ich eine
+              Multi-Page-Application oder andere Server-Side-Rendering-Anforderungen habe, greife ich gerne Nuxt.js oder
+              Astro zurück.
+            </p>
+            <p>
+              Für Anwendungen, die nur minimale Interaktivität erfordern, setze ich gerne auf Alpine.js, da es mir
+              ermöglicht, interaktive Elemente einfach und ohne großen Overhead zu erstellen. Außerhalb des
+              Vue-Ökosystems nutze ich i18next für die Internationalisierung.
+            </p>
+          </div>
+          <div slot="en">
+            <p>
+              In addition to Vue.js, I also work with other frontend frameworks like React and Angular. When I have
+              multi-page application or other server-side rendering requirements, I often turn to Nuxt.js or Astro.
+            </p>
+            <p>
+              For applications that require minimal interactivity, I enjoy using Alpine.js as it allows me to create
+              interactive elements simply and with minimal overhead. Outside the Vue ecosystem, I use i18next for
+              internationalization.
+            </p>
+          </div>
         </Translation>
       </SkillDrawer>
       <SkillDrawer
@@ -197,14 +231,34 @@ changeLanguage("en");
           <span slot="en">Golang - my backend language of choice</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">
-            Golang ist meine bevorzugte Backend-Sprache, um effiziente und skalierbare Anwendungen zu entwickeln. Ich
-            arbeite mit Tools wie Fiber, go-cron und SSE, um robuste und zuverlässige Back-End-Systeme zu erstellen.
-          </span>
-          <span slot="en">
-            Golang is my preferred backend language for developing efficient and scalable applications. I work with
-            tools like Fiber, go-cron, and SSE to build robust and reliable back-end systems.
-          </span>
+          <div slot="de">
+            <p>
+              Ich setze Golang für die Entwicklung vielseitiger und hochintegrierter Backends ein. Mit Tools wie Fiber
+              erstelle ich leistungsstarke Services, die per Websockets oder Server-Sent-Events das Frontend in Echtzeit
+              auf dem neuesten Stand halten.
+            </p>
+            <p>
+              Je nach Anwendungsfall arbeite ich datenbankseitig entweder mit PostgreSQL oder MongoDB. Dabei lege ich
+              großen Wert auf die Datenmigrationsfähigkeit und ein robustes Datenbankschema.
+            </p>
+            <p>
+              Neben Backend-Anwendungen verwende ich Go auch für die Entwicklung von CLI-Tools, die meine tägliche
+              Arbeit erleichtern.
+            </p>
+          </div>
+          <div slot="en">
+            <p>
+              I use Golang for developing versatile and highly-integrated backends. With tools like Fiber, I create
+              powerful services that keep the frontend up-to-date in real-time using WebSockets or Server-Sent Events.
+            </p>
+            <p>
+              Depending on the use case, I work with either PostgreSQL or MongoDB on the database side. I prioritize
+              data migration capability and a robust database schema.
+            </p>
+            <p>
+              In addition to backend applications, I also use Go for developing CLI tools that streamline my daily work.
+            </p>
+          </div>
         </Translation>
       </SkillDrawer>
       <SkillDrawer

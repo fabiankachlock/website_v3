@@ -12,8 +12,8 @@
     "post:build": "yarn format",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier -w .",
-    "format:check": "prettier --check .",
+    "format": "prettier -w \"./**/*.{html,css,js,ts,mdx,json,astro,vue}\"",
+    "format:check": "prettier --check \"./**/*.{html,css,js,ts,mdx,json,astro,vue}\"",
     "prepare": "husky install"
   },
   "dependencies": {
