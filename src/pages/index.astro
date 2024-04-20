@@ -1,19 +1,19 @@
 ---
-import { changeLanguage } from "i18next";
-import { Image } from "astro:assets";
-import Main from "@/layouts/Main.astro";
-import meJpeg from "@/assets/me.jpeg";
-import SkillDrawer from "@/components/home/SkillDrawer.astro";
-import Translation from "@/components/Translation.astro";
+import { changeLanguage } from 'i18next';
+import { Image } from 'astro:assets';
+import Main from '@/layouts/Main.astro';
+import meJpeg from '@/assets/me.jpeg';
+import SkillDrawer from '@/components/home/SkillDrawer.astro';
+import Translation from '@/components/Translation.astro';
 // import ProjectCard from '@/components/home/ProjectCard.astro';
-import githubLogo from "@carbon/icons/svg/32/logo--github.svg?raw";
-import instagramLogo from "@carbon/icons/svg/32/logo--instagram.svg?raw";
-import emailLogo from "@carbon/icons/svg/32/email.svg?raw";
-import formLogo from "@carbon/icons/svg/32/pen.svg?raw";
-import infoIcon from "@carbon/icons/svg/32/information.svg?raw";
-import LocalizedLink from "@/components/LocalizedLink.astro";
+import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
+import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
+import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
+import formLogo from '@carbon/icons/svg/32/pen.svg?raw';
+import infoIcon from '@carbon/icons/svg/32/information.svg?raw';
+import LocalizedLink from '@/components/LocalizedLink.astro';
 
-changeLanguage("de");
+changeLanguage('de');
 ---
 
 <Main>
@@ -68,53 +68,43 @@ changeLanguage("de");
     <Translation>
       <div slot="en" class="about-container">
         <p>
-          Hi, I'm Fabian Kachlock, a 20 years old Software Developer from Germany with about <span id="experience"
-            >5</span
+          Hi, I'm Fabian Kachlock, a 20 years old software developer from Germany with about <span id="experience"
+            >6</span
           > years of experience in mainly web development.
         </p>
         <p>
-          My focus lies in crafting user-friendly interfaces and robust back-end systems. I'm well-versed in a variety
-          of technologies, including TypeScript for writing clean and scalable code, along with tools like Prettier and
-          ESLint to maintain code quality.
+          I focus on developing user-friendly interfaces and robust backend systems. My extensive experience with a
+          variety of technologies and tools enables me to write high-quality code and ensure its quality.
         </p>
         <p>
-          On the front end, I work with frameworks like Vue, React, and Angular, as well as the basics: HTML, CSS, and
-          JavaScript. For the back end, I'm proficient with Node.js, C#, and Golang to build efficient and scalable
-          applications.
+          I rely on proven methods and techniques to ensure the security and scalability of my applications and to
+          establish a solid codebase. Through careful architectural planning and continuous assurance of code quality, I
+          aim to deliver reliable and high-quality solutions.
         </p>
         <p>
-          I'm also keen on streamlining deployment processes, using Docker, Git, GitHub, and GitHub Actions to automate
-          workflows and ensure smooth transitions from development to production.
-        </p>
-        <p>
-          I'm committed to delivering top-notch solutions while continuously learning and improving along the way.
-          Looking forward to contributing my skills and collaborating with others in the tech community.
+          By automating workflows and optimizing deployment processes, I ensure efficient operations and continuous
+          improvement in development.
         </p>
       </div>
       <div slot="de" class="about-container">
         <p>
-          Hallo, ich bin Fabian Kachlock, ein 20 Jahre alter Softwareentwickler aus Deutschland mit etwa 6 Jahren
-          Erfahrung hauptsächlich in der Webentwicklung.
+          Hi, ich bin Fabian Kachlock, ein 20 Jahre alter Softwareentwickler aus Deutschland mit etwa <span
+            id="experience">6</span
+          > Jahren Erfahrung hauptsächlich in der Webentwicklung.
         </p>
         <p>
-          Mein Fokus liegt darauf, benutzerfreundliche Oberflächen und robuste Back-End-Systeme zu entwickeln. Ich bin
-          mit einer Vielzahl von Technologien vertraut, darunter TypeScript, um sauberen und skalierbaren Code zu
-          schreiben, sowie Tools wie Prettier und ESLint, um die Codequalität zu gewährleisten.
+          Ich konzentriere mich darauf, benutzerfreundliche Oberflächen und robuste Backend-Systeme zu entwickeln. Meine
+          umfangreiche Erfahrung mit einer Vielzahl von Technologien und Tools ermöglicht es mir, hochwertigen Code zu
+          schreiben und dessen Qualität sicherzustellen.
         </p>
         <p>
-          Auf der Front-End-Seite arbeite ich mit Frameworks wie Vue, React und Angular sowie den Grundlagen: HTML, CSS
-          und JavaScript. Für das Backend beherrsche ich Node.js, C# und Golang, um effiziente und skalierbare
-          Anwendungen zu entwickeln.
+          Ich setze auf bewährte Methoden und Techniken, um die Sicherheit und Skalierbarkeit meiner Anwendungen zu
+          gewährleisten und eine solide Codebasis zu schaffen. Durch sorgfältige Architekturplanung und kontinuierliche
+          Sicherstellung der Codequalität strebe ich nach zuverlässigen und hochwertigen Lösungen.
         </p>
         <p>
-          Ich bin auch darauf bedacht, Bereitstellungsprozesse zu optimieren, indem ich Docker, Git, GitHub und GitHub
-          Actions verwende, um Workflows zu automatisieren und reibungslose Übergänge von der Entwicklung zur Produktion
-          sicherzustellen.
-        </p>
-        <p>
-          Ich bin bestrebt, erstklassige Lösungen zu liefern, während ich kontinuierlich dazulerne und mich verbessere.
-          Ich freue mich darauf, meine Fähigkeiten einzubringen und mit anderen in der Tech-Community
-          zusammenzuarbeiten.
+          Mit der Automatisierung von Workflows und der Optimierung von Bereitstellungsprozessen sorge ich für
+          effiziente Abläufe und eine kontinuierliche Verbesserung der Entwicklung.
         </p>
       </div>
     </Translation>
