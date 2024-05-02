@@ -77,6 +77,14 @@ const projectLinks = await getProjectLinks();
             </Translation>
           </LocalizedLink>
         </li>
+        <li class="menu__item">
+          <LocalizedLink classes="menu__link" path="/datenschutz">
+            <Translation>
+              <span slot="de">Datenschutz</span>
+              <span slot="en">Privacy</span>
+            </Translation>
+          </LocalizedLink>
+        </li>
       </ul>
       <div class="menu__actions">
         <ThemeSwitch />
@@ -108,6 +116,11 @@ const projectLinks = await getProjectLinks();
     background: transparent;
     border: none;
     cursor: pointer;
+    transition: scale 70ms linear;
+  }
+
+  .menu__opener:active {
+    scale: 0.95;
   }
 
   .menu__opener :global(svg) {
