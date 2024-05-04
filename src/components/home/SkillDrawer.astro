@@ -149,16 +149,20 @@ const { featuredTools, tools } = Astro.props;
     font-family: 'Mona Sans';
     font-size: 1.6rem;
     color: var(--color-text-header);
+    font-weight: 500;
   }
 
   .skill-drawer__name {
     margin-bottom: 1rem;
-    transition: margin 70ms linear;
+    transition:
+      margin 70ms linear,
+      font-weight 70ms linear;
   }
 
   .skill-drawer.open .skill-drawer__name {
     /* margin-top: 0.5rem; */
-    /* margin-bottom: 0; */
+    margin-bottom: 0;
+    font-weight: 700;
   }
 
   .tools,
@@ -167,7 +171,9 @@ const { featuredTools, tools } = Astro.props;
     flex-wrap: wrap;
     gap: 0.3rem 0;
     transform-origin: left center;
-    transition: scale 140ms linear;
+    transition:
+      scale 140ms linear,
+      height 140ms linear;
   }
 
   @media only screen and (max-width: 390px) {
@@ -187,6 +193,7 @@ const { featuredTools, tools } = Astro.props;
 
   .skill-drawer.open .featured-tools {
     scale: 0;
+    height: 0;
   }
 
   .skill-drawer.open .skill-drawer__head {
