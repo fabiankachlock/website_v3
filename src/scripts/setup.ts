@@ -34,8 +34,15 @@ const tryToggleMenu = (open: boolean) => {
 
 // toggle language select
 document.querySelectorAll('.translate').forEach(e => {
-  e.querySelector('.translate__button')?.addEventListener('click', () => {
+  e.querySelector('.translate__button')?.addEventListener('click', evt => {
     e.querySelector('.language-select')?.classList.toggle('open');
+    evt.stopPropagation();
+  });
+});
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.translate').forEach(e => {
+    e.querySelector('.language-select')?.classList.remove('open');
   });
 });
 

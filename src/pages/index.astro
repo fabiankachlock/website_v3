@@ -462,10 +462,9 @@ changeLanguage('de');
     justify-content: center;
     align-items: center;
     align-content: center;
-    min-height: 100vh;
-    min-height: 100dvh;
+    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
     gap: 2rem;
-    padding: 0;
   }
 
   .hero__bar {
@@ -675,6 +674,8 @@ changeLanguage('de');
 
   .contact__item:hover .contact__logo svg {
     scale: 1.4;
+    animation: wiggle 2s ease-in-out infinite;
+    fill: var(--color-secondary);
   }
 
   @media only screen and (min-width: 380px) {
@@ -745,6 +746,24 @@ changeLanguage('de');
     .projects-container {
       place-content: unset;
       justify-items: start;
+    }
+  }
+
+  @keyframes wiggle {
+    0% {
+      transform: rotate(0deg);
+    }
+    7.25% {
+      transform: rotate(5deg);
+    }
+    12.5% {
+      transform: rotate(-5deg);
+    }
+    19.75% {
+      transform: rotate(5deg);
+    }
+    25% {
+      transform: rotate(0deg);
     }
   }
 </style>

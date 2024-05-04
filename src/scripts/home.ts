@@ -25,13 +25,14 @@ document.querySelectorAll('.skill-drawer').forEach((drawer, idx) => {
       if (other && other?.getBoundingClientRect().top < drawerRect.top) {
         const otherHead = document.querySelector(`[data-id="${other.getAttribute('data-id')}"] .skill-drawer__head`);
         const offset = other.getBoundingClientRect().height - (otherHead?.getBoundingClientRect()?.height || 0);
-        // console.log(otherHead?.getBoundingClientRect(), other.getBoundingClientRect());
         content?.scrollTo({
           top: target - offset - 31,
+          behavior: 'smooth',
         });
       } else {
         content?.scrollTo({
           top: target,
+          behavior: 'smooth',
         });
       }
     }
