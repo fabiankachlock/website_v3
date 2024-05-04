@@ -153,7 +153,7 @@ const projectLinks = await getProjectLinks();
     bottom: 0;
     width: min(70vw, 300px);
     left: 100%;
-    transition: 300ms ease-in-out left;
+    transition: left 300ms ease-in-out;
     overflow-y: auto;
     overflow-x: hidden;
     border-left: 2px solid var(--color-text);
@@ -259,6 +259,27 @@ const projectLinks = await getProjectLinks();
   .head:has(*:focus) + :global(.main-content),
   .head.open + :global(.main-content) {
     left: max(-70vw, -300px);
+  }
+
+  .head.dragging + :global(.main-content),
+  .head.dragging .menu {
+    transition-duration: 10ms;
+  }
+
+  .head.dragging + :global(.main-content) {
+    left: calc(max(-70vw, -300px) * var(--dragged-offset));
+  }
+
+  .head.dragging .menu {
+    left: calc(100vw - min(70vw, 300px) * var(--dragged-offset));
+  }
+
+  .head.dragging.open + :global(.main-content) {
+    left: calc(max(-70vw, -300px) + min(70vw, 300px) * var(--dragged-offset));
+  }
+
+  .head.dragging.open .menu {
+    left: calc(100vw - min(70vw, 300px) + min(70vw, 300px) * var(--dragged-offset));
   }
 
   @media only screen and (min-width: 1024px) {
