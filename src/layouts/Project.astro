@@ -197,7 +197,7 @@ const { project } = Astro.props;
   .project__content {
     padding: 2rem;
     position: relative;
-    max-width: 920px;
+    max-width: 768px;
     margin: 0 auto;
   }
 
@@ -234,6 +234,7 @@ const { project } = Astro.props;
     font-size: 2rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    position: relative;
   }
 
   .project__content :global(h2) {
@@ -243,6 +244,7 @@ const { project } = Astro.props;
     font-size: 1.5rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    position: relative;
   }
 
   .project__content :global(h3) {
@@ -252,6 +254,7 @@ const { project } = Astro.props;
     font-size: 1.4rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    position: relative;
   }
 
   .project__content :global(h4) {
@@ -261,6 +264,7 @@ const { project } = Astro.props;
     font-size: 1.3rem;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+    position: relative;
   }
 
   .project__content :global(h5) {
@@ -270,6 +274,7 @@ const { project } = Astro.props;
     font-size: 1.2rem;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+    position: relative;
   }
 
   .project__content :global(h6) {
@@ -279,6 +284,7 @@ const { project } = Astro.props;
     font-size: 1.1rem;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+    position: relative;
   }
 
   .project__content :global(ul),
@@ -288,6 +294,7 @@ const { project } = Astro.props;
     color: var(--color-text);
     margin-bottom: 1rem;
     line-height: 1.7em;
+    max-width: 65ch;
   }
 
   .project__content :global(ul) {
@@ -316,5 +323,23 @@ const { project } = Astro.props;
     border-radius: 5px;
     background-color: var(--color-surface);
     color: var(--color-text);
+  }
+
+  .project__content :global(p):has(> img) {
+    max-width: unset;
+  }
+
+  .project__content :global(img) {
+    width: 100%;
+    height: auto;
+  }
+
+  .project__content :global(h1) :global(a) {
+    position: absolute;
+    top: 0;
+    left: -1rem;
+    bottom: 0;
+    width: 0.5rem;
+    background-color: var(--color-text);
   }
 </style>

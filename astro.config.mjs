@@ -5,6 +5,11 @@ import vue from '@astrojs/vue';
 import compress from '@playform/compress';
 
 import mdx from '@astrojs/mdx';
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,6 +32,8 @@ export default defineConfig({
     },
   },
   markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeHeadingIds, rehypeAccessibleEmojis, rehypeKatex, rehypeAutolinkHeadings],
     experimentalThemes: {
       light: 'catppuccin-latte',
       dark: 'ayu-dark',
