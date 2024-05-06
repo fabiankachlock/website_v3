@@ -17,18 +17,16 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.1.1",
-    "@astrojs/prefetch": "^0.4.1",
-    "@astrojs/sitemap": "3.0.5",
-    "@astrojs/vue": "4.0.8",
+    "@astrojs/mdx": "^2.3.1",
+    "@astrojs/sitemap": "3.1.4",
+    "@astrojs/vue": "4.1.0",
     "@astrolib/seo": "^0.6.0",
-    "@carbon/icons": "^11.28.0",
-    "@carbon/icons-vue": "^10.72.1",
-    "@hcaptcha/vue3-hcaptcha": "^1.2.1",
-    "@netlify/functions": "^2.5.1",
-    "@sendgrid/mail": "^8.1.0",
-    "astro": "^4.3.0",
-    "astro-compress": "^2.0.15",
+    "@carbon/icons": "^11.40.0",
+    "@carbon/icons-vue": "^10.83.1",
+    "@hcaptcha/vue3-hcaptcha": "^1.3.0",
+    "@netlify/functions": "^2.6.3",
+    "@sendgrid/mail": "^8.1.3",
+    "astro": "^4.7.1",
     "astro-i18next": "^1.0.0-beta.21",
     "i18next": "^22.4.10",
     "i18next-vue": "^2.1.1",
@@ -37,9 +35,10 @@
   },
   "devDependencies": {
     "@hcaptcha/types": "^1.0.3",
-    "husky": "^8.0.3",
+    "@playform/compress": "^0.0.3",
+    "husky": "^9.0.11",
     "lint-staged": "^14.0.1",
-    "prettier": "^3.0.3",
-    "prettier-plugin-astro": "^0.12.0"
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0"
   }
 }

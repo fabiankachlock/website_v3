@@ -210,7 +210,7 @@ const projectLinks = await getProjectLinks();
     position: absolute;
   }
 
-  .menu__item--project-item:has(:global(, menu__link:hover))::before {
+  .menu__item--project-item:has(:global(.menu__link:hover))::before {
     background: var(--color-primary);
   }
 

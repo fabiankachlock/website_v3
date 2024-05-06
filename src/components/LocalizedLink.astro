@@ -20,6 +20,7 @@ const { path, id, classes, laguage, rel, label, noPrefetch } = Astro.props;
   rel={`${noPrefetch ? '' : 'prefetch'} ${rel ?? ''}`}
   href={localizePath(path, laguage)}
   aria-label={label}
+  data-astro-prefetch={noPrefetch ? 'false' : ''}
 >
   <slot />
 </a>

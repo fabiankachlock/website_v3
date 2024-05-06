@@ -5,15 +5,18 @@ import Main from '@/layouts/Main.astro';
 import meJpeg from '@/assets/me.jpeg';
 import SkillDrawer from '@/components/home/SkillDrawer.astro';
 import Translation from '@/components/Translation.astro';
-// import ProjectCard from '@/components/home/ProjectCard.astro';
+import ProjectCard from '@/components/home/ProjectCard.astro';
 import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
 import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
 import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
 import formLogo from '@carbon/icons/svg/32/pen.svg?raw';
 import infoIcon from '@carbon/icons/svg/32/information.svg?raw';
 import LocalizedLink from '@/components/LocalizedLink.astro';
+import { getPreviewProjects } from '@/content/projects';
 
 changeLanguage('en');
+
+const projects = await getPreviewProjects();
 ---
 
 <Main>
@@ -408,11 +411,11 @@ changeLanguage('en');
       </Translation>
     </h2>
     <div class="projects-container">
-      <!-- {projects.map(p => <ProjectCard project={p} />)} -->
-      <Translation>
+      {projects.map(p => <ProjectCard project={p} />)}
+      <!-- <Translation>
         <p slot="de" style="font-family: 'Mona Sans'">Bald verfügbar</p>
         <p slot="en" style="font-family: 'Mona Sans'">Coming soon</p>
-      </Translation>
+      </Translation> -->
     </div>
   </section>
 </Main>
@@ -434,7 +437,7 @@ changeLanguage('en');
   .section__header {
     color: var(--color-text-header);
     font-family: 'Source Code Pro';
-    font-weight: 400;
+    font-weight: 500;
     font-size: 3rem;
     position: relative;
     margin: 0.5rem auto 2rem;
@@ -462,10 +465,9 @@ changeLanguage('en');
     justify-content: center;
     align-items: center;
     align-content: center;
-    min-height: 100vh;
-    min-height: 100dvh;
+    min-height: calc(100vh - 5rem);
+    min-height: calc(100dvh - 5rem);
     gap: 2rem;
-    padding: 0;
   }
 
   .hero__bar {
@@ -515,6 +517,7 @@ changeLanguage('en');
     opacity: 0.7;
     font-weight: 300;
     font-size: 1.5rem;
+    margin-bottom: 0.4rem;
   }
 
   .hero__name {
@@ -674,6 +677,8 @@ changeLanguage('en');
 
   .contact__item:hover .contact__logo svg {
     scale: 1.4;
+    animation: wiggle 2s ease-in-out infinite;
+    fill: var(--color-secondary);
   }
 
   @media only screen and (min-width: 380px) {
@@ -744,6 +749,24 @@ changeLanguage('en');
     .projects-container {
       place-content: unset;
       justify-items: start;
+    }
+  }
+
+  @keyframes wiggle {
+    0% {
+      transform: rotate(0deg);
+    }
+    7.25% {
+      transform: rotate(5deg);
+    }
+    12.5% {
+      transform: rotate(-5deg);
+    }
+    19.75% {
+      transform: rotate(5deg);
+    }
+    25% {
+      transform: rotate(0deg);
     }
   }
 </style>
