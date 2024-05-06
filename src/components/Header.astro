@@ -49,7 +49,7 @@ const projectLinks = await getProjectLinks();
             </Translation>
           </LocalizedLink>
         </li>
-        <!-- {
+        {
           projectLinks.map(project => (
             <li class="menu__item menu__item--project-item">
               <LocalizedLink classes="menu__link" path={'projekte/' + project.url}>
@@ -57,7 +57,7 @@ const projectLinks = await getProjectLinks();
               </LocalizedLink>
             </li>
           ))
-        } -->
+        }
         <li class="menu__item">
           <LocalizedLink classes="menu__link" path="/#contact">
             <Translation>
