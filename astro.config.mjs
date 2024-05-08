@@ -10,6 +10,10 @@ import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { h } from 'hastscript';
+import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
+
+import linkIcon from './src/assets/link.svg?raw';
 
 // https://astro.build/config
 export default defineConfig({
@@ -33,7 +37,23 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeHeadingIds, rehypeAccessibleEmojis, rehypeKatex, rehypeAutolinkHeadings],
+    rehypePlugins: [
+      rehypeHeadingIds,
+      rehypeAccessibleEmojis,
+      rehypeKatex,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'before',
+          content(node) {
+            return [h('span.header-link', fromHtmlIsomorphic(linkIcon))];
+          },
+          group(node) {
+            return h('.header-group');
+          },
+        },
+      ],
+    ],
     experimentalThemes: {
       light: 'catppuccin-latte',
       dark: 'ayu-dark',

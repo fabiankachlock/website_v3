@@ -21,7 +21,7 @@ Lately, I did a small, funny project. The goal was to visualize a bifurcation. T
 
 First of all, bifurcation is a period-doubling, which occurs while changing the control parameter. In my case, the control parameter is $$r$$, and the bifurcation happens, like in many others, in a fixed ratio: the Feigbaum Constant. As you increase r by a tiny amount up to 4 you are going to see that at $$r = 3$$, the graph splits into two. At $$r \approx 3.44$$, the graph forks into a period of 4. And so on until $$r \approx 3.5699$$, then the deterministic chaos starts.
 
-# But where are these periods arising from?
+## But where are these periods arising from?
 
 For this question, we have to look at the function, which represents the logistic map from another angle. We can use the equation for calculation populations.
 
@@ -29,7 +29,7 @@ Here we have the function again: $$x_n+1 = r * x_n * ( 1 - x_n )$$. xn is the cu
 
 For that, I have to know $$r$$. In the case of population calculation, $$r$$ is considered as the growth rate. If we would only use the parameter $$r$$, this would be a linear system. For $$0 < r < 1$$, the population decreases over time and goes extinct at some point. For $$r > 1$$, the population increases infinitely. In nature, this isn't the case. Every year rabbits die, du enemies or old age. The term $$(1 - x_n)$$ represents this exact reduction. It also transforms this equation into a dynamic system. You also might notice that if the theoretical maximum of $$1$$ gets reached, the population will go extinct next year.
 
-# Now we can have a look at a simple calculation example.
+## Now we can have a look at a simple calculation example.
 
 Let's take a population of $$0.4$$ with a growth rate of $$2$$. If we put these values into the equation wwe will have a population of $$x = 0.48$$ in the next year. A year later $$0.4992$$ and if you iterate over, and over, you will see, that the population stays at about $$0.5$$, that means, the equilibrium population is $$0.5$$. That's the case for $$1 \leq r < 3$$, not $$0.5$$ every time, but the equilibrium population will settle down at one value.
 
@@ -51,7 +51,7 @@ And for the grand final after $$r \approx 3.5699$$, you have chaos.
 
 Deterministic chaos, to be exact. Here you can find every period. Every $$x$$ you pick, is part of some period, whether one of $$128$$ or $$1354$$ or etc. It's deterministic because theoretically, you can calculate the start value for every $$x$$ you pick on the graph and predict the next $$x$$. Practically it isn't possible because you would need $$x$$ to an infinite amount of decimal points.
 
-# The Program
+## The Program
 
 Enough theory lets go on to the program! I wouldn't make a post about it if the only thing the program does is plotting this perspective of the diagram, so let's have a look at some features. I'll be going to start with the basics, the only way for controlling the diagram/perspective is through the console of your browser. You can call a javascript function, to send instructions to the program.
 
@@ -59,7 +59,7 @@ Disclaimer: You need to be able to access the Console, to control the program.
 
 The functions `help()` and `zoomHelp()` are going to give you a rough idea of the purposes of the functions, but here I'm going to explain it a little bit further.When you open up the script, the program memorizes the size of the browser window, because the size is needed for the calculation.The program doesn't keep track of the size of your browser, so you have to reload the page or call `resize()` when you did resize your window. If you want to clear the screen, you have to call `clearScreen()`.
 
-# Let's look at the static plotting:
+### Let's look at the static plotting:
 
 I have preprogrammed some functions into the source code so that you can have a look at some beautiful sections of the diagram without having to worry about plotting-parameters. These are `plot()` and `plotPointx()`.
 
