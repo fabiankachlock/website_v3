@@ -1,6 +1,6 @@
 ---
 title: 'Bifurcation Diagram'
-description: 'Explore the beauty of the bifurcation diagram!'
+description: 'Ein Einblick in die Wunderwelt der Mathematik!'
 cover: '../images/bifurcation-diagram/bifurcation_diagram_dark.png'
 coverAlt: 'zwoo Logo'
 year: '2020'
@@ -17,85 +17,99 @@ socials:
 
 import BlogImage from '../BlogImage.vue';
 
-# The bifurcation diagram!
+# Das Bifurkationsdiagramm!
 
-Lately, I did a small, funny project. The goal was to visualize a bifurcation. The bifurcation I was going to plot is one of the most famous ones: Its the bifurcation for the logistic map: $$x_n+1 = r * x_n * ( 1 - x_n )$$. But before I'm going to talk about the program, I want to exemplify some of the mathematical backgrounds, without diving too deep into dynamic systems and chaos.
+Letztens habe ich mich einem kleinen, lustigen Projekt gewidmet. Mein Ziel war es eine Bifurkation (oder auch Verzweigung) zu visualisieren. Die Bifurkation, die ich zeichnen möchte, ist eine der bekanntesten: Es ist die, für die logistische Gleichung $$x_n+1 = r * x_n * ( 1 - x_n )$$. Aber bevor ich starte über das Programm zu reden, möchte ich erste ein paar mathematische Hintergründe erklären.
 
-First of all, bifurcation is a period-doubling, which occurs while changing the control parameter. In my case, the control parameter is $$r$$, and the bifurcation happens, like in many others, in a fixed ratio: the Feigbaum Constant. As you increase r by a tiny amount up to 4 you are going to see that at $$r = 3$$, the graph splits into two. At $$r \approx 3.44$$, the graph forks into a period of 4. And so on until $$r \approx 3.5699$$, then the deterministic chaos starts.
+Als aller erstes, eine Bifurkation ist das verdoppeln einer Periode, welches auftritt, während man einen Kontroll-Parameter verändert. In diesem Falle ist der Steuerparameter $$r$$, und die Verzweigungen tauchen, wie bei vielen anderen Beispielen, in einem festen Verhältnis auf: der Feigenbaum-Konstante. Während man r um einen kleinen Betrag bis 4 erhöht, kann man sehen, dass bei $$r = 3$$ sich der Graph aufteilt. Bei $$r \approx 3.44$$, teilen sich beide Arme des Graphs erneut, diesmal in eine Periode von $$4$$. Das geht so immer weiter, bis bei $$r \approx 3.5699$$ das deterministische Chaos beginnt.
 
-## But where are these periods arising from?
+## Aber woher kommen diese Perioden?
 
-For this question, we have to look at the function, which represents the logistic map from another angle. We can use the equation for calculation populations.
+Um diese Frage zu beantworten, müssen wir die Funktion, die die logistische Gleichung beschreibt, von einem anderen Winkel aus betrachten.
 
-Here we have the function again: $$x_n+1 = r * x_n * ( 1 - x_n )$$. xn is the current population, but it doesn't represent it in absolute value, rather in a relative amount to the theoretical maximum. For example, we let $$x_n$$ be this year's rabbit population of $$0.5$$. The theoretical highest population possible is $$1$$, due to nature factors like remaining space or whatever you can imagine. Now I want to calculate the population for next year.
+Hier ist noch einmal die Funktion: $$x_n+1 = r * x_n * ( 1 - x_n )$$. $$x_n$$ stellt eine derzeitige Population. Aber nicht in einem absoluten Wert, sondern in einem relativen Wert zum theoretischen Maximum. Zum Beispiel ist $$0,5$$ eine diesjährige Population $$x_n$$ von Hasen. $$1$$ ist der theoretische Maximalwert. Dieser ist definiert durch die Natur, ein beeinflussender Faktor ist zu Beispiel der verfügbare Platz. Jetzt möchte ich die Population für das nächste Jahr berechnen.
 
-For that, I have to know $$r$$. In the case of population calculation, $$r$$ is considered as the growth rate. If we would only use the parameter $$r$$, this would be a linear system. For $$0 < r < 1$$, the population decreases over time and goes extinct at some point. For $$r > 1$$, the population increases infinitely. In nature, this isn't the case. Every year rabbits die, du enemies or old age. The term $$(1 - x_n)$$ represents this exact reduction. It also transforms this equation into a dynamic system. You also might notice that if the theoretical maximum of $$1$$ gets reached, the population will go extinct next year.
+Dafür muss ich den Wert von $$r$$. wissen. In diesen Fall ist $$r$$ die Wachstumsrate. Wenn man nur den Parameter $$r$$ nehmen würde, dann wäre das Ganze ein lineares System. Für $$0 < r < 1$$nimmt die Population mit der Zeit ab und stirbt irgendwann ganz aus. Für $$r > 1$$,nimmt die Population unendlich zu. In der Natur ist das nicht der Fall. In jedem Jahr sterben Hasen, sei es durch Feinde oder auch nur Altersschwäche. Der Term $$(1 - x_n)$$ repräsentiert genau diesen Rückgang der Population. Außerdem wird dadurch die Gleichung auch in ein dynamisches System umgewandelt. Man merkt eventuell auch, dass die Population im nächsten Jahr ausstirbt, wenn das theoretische Maximum von $$1$$ erreicht wird.
 
-## Now we can have a look at a simple calculation example.
+## Schauen wir uns doch mal ein einfaches Berechnungsbeispiel an.
 
-Let's take a population of $$0.4$$ with a growth rate of $$2$$. If we put these values into the equation wwe will have a population of $$x = 0.48$$ in the next year. A year later $$0.4992$$ and if you iterate over, and over, you will see, that the population stays at about $$0.5$$, that means, the equilibrium population is $$0.5$$. That's the case for $$1 \leq r < 3$$, not $$0.5$$ every time, but the equilibrium population will settle down at one value.
+Nehmen wir eine Population von $$0.4$$ mit einer Wachstumsrate von $$2$$. Setzt man nun diese Werte in die Gleichung ein, erhält man im nächsten Jahr eine relative Population von $$x = 0.48$$. Danach $$0.4992$$ und wenn man immer weiter über diese Gleichung iteriert, wird man sehen, dass sich die die Größe der Population kaum/gar nicht mehr verändert. Das bedeutet die Gleichgewichtspopulation liegt bei $$\approx 0.5$$. Das ist der Fall für $$1 \leq r < 3$$, nicht jedes Mal $$0.5$$, aber die Gleichgewichtspopulation wird sich bei einem Wert einpendeln.
 
 import Period1Dark from '../images/bifurcation-diagram/period1_dark.png';
 import Period1Light from '../images/bifurcation-diagram/period1_light.png';
 
-<BlogImage dark={Period1Dark} light={Period1Light} alt="Here you can see, how the population evolves, for this exact parameter (r = 2)." />
+<BlogImage
+  dark={Period1Dark}
+  light={Period1Light}
+  alt="Hier sieht man, wie sich die Population entwickelt. (Für r = 2)"
+/>
 
-At $$r = 3$$, the first period-doubling happens. Now the equilibrium population alternates between two values back and forth.
+Setzt man nun $$r = 3$$ in der Funktion ein, verdoppelt sich das erste Mal die Periode. Nun pendelt die Gleichgewichtspopulation zwischen $$2$$ Werten hin und her.
 
 import Period2Dark from '../images/bifurcation-diagram/period2_dark.png';
 import Period2Light from '../images/bifurcation-diagram/period2_light.png';
 
-<BlogImage dark={Period2Dark} light={Period2Light} alt="Here we have a period of 2." />
+<BlogImage dark={Period2Dark} light={Period2Light} alt="Hier sieht man eine Periode von 2." />
 
-With $$r \approx 3.44$$, you are going to have a period of $$4$$, the equilibrium population alternates between four values.
+Bei $$r \approx 3.44$$ verdoppelt sich die Periode wieder, jetzt pendelt die Gleichgewichtspopulation zwischen $$4$$ Werten.
 
 import Period4Dark from '../images/bifurcation-diagram/period4_dark.png';
 import Period4Light from '../images/bifurcation-diagram/period4_light.png';
 
-<BlogImage dark={Period4Dark} light={Period4Light} alt="The next step is a period of 4." />
+<BlogImage dark={Period4Dark} light={Period4Light} alt="Danach kommt eine Periode von 4." />
 
 import Period8Dark from '../images/bifurcation-diagram/period8_dark.png';
 import Period8Light from '../images/bifurcation-diagram/period8_light.png';
 
-<BlogImage dark={Period8Dark} light={Period8Light} alt="A period of 8. It's crazy how a simple function like this can create patterns like these." />
+<BlogImage
+  dark={Period8Dark}
+  light={Period8Light}
+  alt="Eine Periode von 8. Es ist verrückt, wie eine so einfache Funktion, Muster wie diese erzeugen kann."
+/>
 
-And for the grand final after $$r \approx 3.5699$$, you have chaos.
+Letztendlich bei $$r \approx 3.5699$$ startet das Chaos.
 
 import PeriodChaosDark from '../images/bifurcation-diagram/periods_chaos_dark.png';
 import PeriodChaosLight from '../images/bifurcation-diagram/periods_chaos_light.png';
 
-<BlogImage dark={PeriodChaosDark} light={PeriodChaosLight} alt="Chaos! It's almost sad that nothing of this is random, just pure math." />
+<BlogImage
+  dark={PeriodChaosDark}
+  light={PeriodChaosLight}
+  alt="Chaos! Es ist fast schon traurig, dass nix davon zufällig ist, pure Mathematik!"
+/>
 
-Deterministic chaos, to be exact. Here you can find every period. Every $$x$$ you pick, is part of some period, whether one of $$128$$ or $$1354$$ or etc. It's deterministic because theoretically, you can calculate the start value for every $$x$$ you pick on the graph and predict the next $$x$$. Practically it isn't possible because you would need $$x$$ to an infinite amount of decimal points.
+Deterministisches Chaos, um genau zu sein. Hier kannst du jede Periode finden. Jedes x ist Teil irgendeiner Periode, egal ob $$128$$ or $$1354$$ oder etc. Es ist deterministisches Chaos, weil man theoretisch für jeden Wert den Startwert berechnen kann und somit auch den nächsten Wert vorhersagen kann. Praktisch ist das kaum möglich, weil man jeden Wert auf unendlich viele Kommastellen genau braucht.
 
-## The Program
+## Das Programm
 
-Enough theory lets go on to the program! I wouldn't make a post about it if the only thing the program does is plotting this perspective of the diagram, so let's have a look at some features. I'll be going to start with the basics, the only way for controlling the diagram/perspective is through the console of your browser. You can call a javascript function, to send instructions to the program.
+Genug Theorie, nun zum Programm. Als aller erstes, die Basics! Das Programm wird über die Konsole im Browser gesteuert. Durch das aufrufen von JavaScript Funktionen werden Anweisungen an das Programm geschickt
 
-Disclaimer: You need to be able to access the Console, to control the program.
+Disclaimer: Die Konsole ist (derzeit, PRs sind Willkommen) der einzige Weg dieses Programm zu kontrollieren.
 
-The functions `help()` and `zoomHelp()` are going to give you a rough idea of the purposes of the functions, but here I'm going to explain it a little bit further.When you open up the script, the program memorizes the size of the browser window, because the size is needed for the calculation.The program doesn't keep track of the size of your browser, so you have to reload the page or call `resize()` when you did resize your window. If you want to clear the screen, you have to call `clearScreen()`.
+Die Funktionen `help()` und `zoomHelp()` geben einen kleinen überblick über die Funktionen und ihre Anwendung, hier erkläre ich alles etwas genauer und umfassender. Wenn du das Script öffnest wird die Größe vom Browser Fenster gespeichert. Diese gespeicherte Größe wird später für das zeichnen der Graphen benötigt. Da das Programm nicht die aktuelle Größe im Auge behält, muss man die Funktion `resize()` aufrufen oder das Script neu laden, wenn die Größe des Browser Fensters sich geändert hat. Mit der `clearScreen()` Funktion wird das wird das Diagramm zurückgesetzt.
 
-### Let's look at the static plotting:
+### Nun zum statischen Darstellen:
 
-I have preprogrammed some functions into the source code so that you can have a look at some beautiful sections of the diagram without having to worry about plotting-parameters. These are `plot()` and `plotPointx()`.
+Hier habe ich einige Funktionen vorprogrammiert, damit man sich einige atemberaubend schöne Stellen der Funktion anschauen kann, ohne sich sorgen um Parameter zu machen. Diese sind `plot()` und `plotPointx()`.
 
-With `plot()`, you can have a look at the whole diagram. It shows you everything from $$r = 2.9$$ to $$r = 4$$. The start is only at $$r = 2.9$$ because that's where the real magic happens. Before you will only find a boring, ugly line.
+Mit `plot()` kann man sich das gesamte Diagramm anschauen. Es startet bei $$r = 2.9$$ und geht bis $$r = 4$$. Es fängst deshalb erst bei $$r = 2.9$$an, weil davor nix passiert, nur eine langweilige Linie.
 
-With `plotPointx()` you have the options: `plotPoint2()`, `plotPoint1()`, `plotPoint02()`, `plotPoint005()`, `plotPoint0001()`, `plotPoint00005()`. The Numeric values represent fractions of r. For example, by `plotPoint02()`, you are going to have a value $$r (0 < r < 4)$$ at the left side of your screen and $$r + 0.02$$ on the right side. For graphing, I have to iterate over the equation. How often I have to iterate tells me the variable iterations. Its default is $$500000$$, but it can be changed with the `setIterations(to)`. The argument to is going to be the new value for the iterations variable. The iterations are responsible for the density of the points. If you set it too high, it might take too long. If it's too low, then you aren't going to see too much.
+Bei `plotPointx()` hat man mehrere Optionen: `plotPoint2()`, `plotPoint1()`, `plotPoint02()`, `plotPoint005()`, `plotPoint0001()`, `plotPoint00005()`. Die Zahlenwerte repräsentieren Reichweiten von $$r$$. Zum Beispiel, bei `plotPoint02()` ist ein bestimmter Wert von $$r (0 < r < 4)$$ an der linken Seite des Bildschirms und $$r + 0.02$$ auf der rechten. Um das Diagramm zeichnen zu können, muss ich über die Funktion iterieren. Die Variable `iterations`bestimmt diesen Wert. Der Standartwert liegt bei $$500000$$, dieser kann mit der Funktion `setIterations(to)`verändert werden. Das Argument `to` wird der neue `iterations`-Wert sein. Ist dieser zu groß gewählt, kann das Zeichnen zu lange dauern, da dieser aber auch die Dichte der Punkte bestimmt, ist einer zu kleiner Wert auch sehr unvorteilhaft, da man dann kaum noch etwas erkennen kann.
 
-With the `plotRange()` function, you can plot your very own section of the diagram. Therefore you have to pass at least 4 arguments.
-The first argument is called from here you have to give a value of $$r$$ between $$0$$ and $$4$$. This value is going to be on the left side of your screen. The second one is to, this closes the range of $$r$$. This value is going to be the upper bound of iteration, you are going to see it on the right side of your screen, and it also shouldn't be smaller than from.
+Mit der `plotRange()` Funktion kann man sich jede beliebige Stelle des Diagramms ansehen. Dafür muss man aber mindestens 4 Argumente mitgeben.
+Das erste heißt `from`. Dieses bestimmt den Wert von $$r$$ am linken Bildschirmrand. Der Wert sollte zwischen $$0$$ und $$4$$liegen. Das zweite Argument ist `to`, dies ist der Wert von $$r$$ am rechten Bildschirmrand. Auch er sollte zwischen $$0$$ und $$4$$ liegen und muss dazu noch größer als `from` sein.
 
-The next two arguments are minX and maxX. These aren't restricting x into a certain range, but they going to change the appearance of the diagram. For example, if you set the minX to 0.2 and the maxX to 0.6, you aren't going to see points for $$0 < x < 0.2$$ and $$0.6 < x < 1$$, but these points gets drawn although. Setting these arguments to anything else than 0 and 1 prevents the diagram from stretching in particular by very small ranges of $$r$$.
-The fifth parameter (iterations) is optional, and the sixth parameter (zoom) is only needed from the algorithm.
-If you want to know the current configuration of the diagram, you can call `logPlot()`.
+Die nächsten 2 sind `minX` und `maxX`. Hierbei kann ich zwar $$x$$ nicht auf bestimmte Werte beschränken, jedoch aber das Sichtfeld. Zum Beispiel wenn ich `minX` auf $$0.2$$ und `maxX` auf $$0.6$$ setzte, kann ich nicht verhindern, dass es x-Werte kleiner als $$0.2$$ und größer als $$0.6$$ gibt, jedoch kann ich diese außerhalb des Sichtfelds zeichnen. Das abändern dieser Werte von $$0$$ und $$1$$ verhindert, dass das Diagramm gedehnt oder gestaucht wird.
+Das 5. Argument (`iterations`) ist optional und wird standartmäßig auf den Wert der iterations Variable gesetzt. Das 6. Argument (`zoom`) wird nur von Programm benötigt.
+Falls man die derzeitige Konfiguration des Diagramms wissen will, kann man `logPlot()` aufrufen.
 
-As you might recognized, there is also an ability for zooming. For activating the zoom mode, you have to call `zoomIn()` for zooming in or `zoomOut()` for zooming out. If you want to disable the zoom mode, you have to call `disableZoom()`. Zooming creates a pretty heavy workload because of that, the iterations for zooming are less (default: $$250000$$). You can change them like you want with the `setZoomIterations(to)` function. Just pass the number of iterations as an argument. You can also change the zoom rate/factor with the `setZoomRate(to)` function, again pass the new factor as an argument. The zoom factor/rate is the multiplier for zooming, which means a zoom factor of 2 will scale the diagram by x2.
+Um den Zoom-Modus zu aktivieren muss man `zoomIn()` aufrufen, um heraus zu zoomen `zoomOut()` und um ihn wieder ganz auszustellen muss du `disableZoom()` aufrufen. Da das Zoomen sehr aufwendige Berechnungen enthält werden die Iterationen auf einen Standartwert von $$250000$$ herabgestellt, um eine bessere Lesitung zu liefern. Mit der Funktion `setZoomInterations(to)` lässt sich aber auch dieser verändern. Die Zoom-Rate kann durch die Funktion `setZommRate(to)` verändert werden. Der Zoomfaktor oder die Zoom-Rate ist der Faktor für das zoomen, das heißt ein Zoom-Faktor von $$2$$ zoomt das Diagramm x2 oder doppelt so groß.
 
-If you have one of the zoom Modes activated (booth work the same), you can zoom by clicking in the diagram. The location you clicked is going to be in the center after zooming. Because the control parameter $$r$$ is very sensitive and has to in the range of $$0 \leq r < 4$$, some weird stuff or nothing will happen if you leave this range. To prevent this, I recommend not zooming out from the normal stage (achieved with `plot()`) or "walk-around" with a zoom rate of 1 in rough stages of the diagram (a change of $$r$$ from left to right bigger than $$0.1$$).
+Wenn einer der beiden Zoom-Modes aktiviert ist, kann man mit einem Klick im Diagramm zoomen. Die Stelle, die dabei angeklickt wird, wird danach in der Mitte sein. Dadurch, dass das Steuerparameter $$r$$ sehr "empfindlich" ist und immer innerhalb $$0 \leq r < 4$$ sein muss, können sehr komische Dinge oder gar nichts passieren, wenn $$r$$ diesen Bereich verlässt. Um dies zu verhindern, empfehle ich im Ausgangszustand (erreichbar mit `plot()`) nicht heraus zu zoomen oder in sehr groben Darstellung (eine Änderung von $$r$$ von links nach rechts von mehr als $$0.1$$) nicht mit einem Zoom-Faktor von 1 „herumzuschauen“.
 
 import ChaosDark from '../images/bifurcation-diagram/bifurcation_chaos_dark.png';
 import ChaosLight from '../images/bifurcation-diagram/bifurcation_chaos_light.png';
 
-<BlogImage dark={ChaosDark} light={ChaosLight} alt="Here I have an example of what you can achieve with zooming." />
+<BlogImage dark={ChaosDark} light={ChaosLight} alt="Hier ist ein Beispiel dafür, was mit zoomen möglich ist." />
+
+Das ist es schon. Ich hoffe alles ist zu verstehen. Der Quellcode zum Projekt ist auch auf [Github](https://github.com/fabiankachlock/Bifurcation_Diagram) zu finden.

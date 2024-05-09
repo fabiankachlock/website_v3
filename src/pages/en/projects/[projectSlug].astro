@@ -1,17 +1,18 @@
 ---
+import type { ProjectEntry } from '@/content/config';
+import { getProjects } from '@/content/projects';
 import Project from '@/layouts/Project.astro';
-import { getCollection } from 'astro:content';
-import { changeLanguage } from 'i18next';
+import i18next, { changeLanguage } from 'i18next';
 
 changeLanguage('en');
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
+  const projects = await getProjects(i18next.language);
   return projects.map(entry => ({
     params: {
-      project: entry.slug.split('/')[1],
+      projectSlug: entry.slug.split('/')[1],
     },
-    props: { entry },
+    props: { entry: entry as ProjectEntry },
   }));
 }
 const { entry } = Astro.props;

@@ -14,7 +14,7 @@ export type Props = {
 const { project: projectData } = Astro.props;
 const translatedData = projectData[i18next.language] ?? projectData[Object.keys(projectData)[0]!];
 const slugData = extractSlug(translatedData!.slug);
-const link = localizePath(`/projekte/${slugData.id}`, slugData.lang);
+const link = localizePath(`/projekte/[projectSlug]`, slugData.lang).replace('[projectSlug]', slugData.id);
 const project = translatedData!.data;
 ---
 

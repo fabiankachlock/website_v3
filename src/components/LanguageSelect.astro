@@ -5,6 +5,35 @@ import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
 import i18next, { t } from 'i18next';
 
 const { pathname } = Astro.url;
+const translateExcludes = [
+  {
+    translateKey: 'projekte/[projectSlug]',
+    prefixes: ['/projekte/', '/en/projects/'],
+    replace: '[projectSlug]',
+  },
+];
+
+const localize = (path: string, lng: string): string => {
+  let translatedUrl = path;
+  for (const exclude of translateExcludes) {
+    if (exclude.prefixes.some(prefix => path.startsWith(prefix))) {
+      translatedUrl = localizePath(exclude.translateKey, lng);
+
+      for (const prefix of exclude.prefixes) {
+        path = path.replace(prefix, '');
+      }
+
+      translatedUrl = translatedUrl.replace(exclude.replace, path);
+    }
+  }
+
+  if (translatedUrl === path) {
+    // unchanged - use normal method
+    translatedUrl = localizePath(path, lng);
+  }
+
+  return translatedUrl;
+};
 ---
 
 <div class="translate">
@@ -14,7 +43,7 @@ const { pathname } = Astro.url;
   <div class="language-select">
     <div class="language-select__wrapper">
       <div class="language-select__content">
-        {i18next.languages.map(lng => <a href={localizePath(pathname, lng)}>{t(`lng.${lng}`)}</a>)}
+        {i18next.languages.map(lng => <a href={localize(pathname, lng)}>{t(`lng.${lng}`)}</a>)}
       </div>
     </div>
   </div>

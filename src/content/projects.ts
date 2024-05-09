@@ -16,6 +16,26 @@ export const extractSlug = (slug: string) => {
   };
 };
 
+export const getProjects = async (language: string): Promise<ProjectEntry[]> => {
+  const allProjects = await getCollection('projects');
+  const localizedProjects: Record<string, ProjectEntry> = {};
+
+  for (const project of allProjects) {
+    const data = extractSlug(project.slug);
+    if (!data.id || !data.lang) continue;
+
+    if (!localizedProjects[data.id]?.slug.startsWith(language)) {
+      localizedProjects[data.id] = project;
+    }
+  }
+
+  return Object.values(localizedProjects).toSorted((a, b) => {
+    const orderA = a?.data.order ?? Infinity;
+    const orderB = b?.data.order ?? Infinity;
+    return orderA - orderB;
+  });
+};
+
 export const getPreviewProjects = async (): Promise<LocalizedProject[]> => {
   const allProjects = await getCollection('projects');
   const localizedProjects: Record<string, LocalizedProject> = {};
