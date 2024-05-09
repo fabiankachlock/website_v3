@@ -14,6 +14,8 @@ export interface Props {
 const { project } = Astro.props;
 ---
 
+<script src="../scripts/blog.ts"></script>
+
 <Main
   title={project.data.title}
   description={project.data.description}
@@ -356,6 +358,11 @@ const { project } = Astro.props;
       height 110ms ease-in-out 100ms;
   }
 
+  .project__content :global(.header-group a:focus) {
+    transition: none;
+  }
+
+  .project__content :global(.header-group a:focus),
   .project__content :global(.header-group:hover a),
   .project__content :global(.header-group a:hover) {
     left: -2.1rem;

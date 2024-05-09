@@ -15,6 +15,8 @@ socials:
   web: TODO
 ---
 
+import BlogImage from '../BlogImage.vue';
+
 # The bifurcation diagram!
 
 Lately, I did a small, funny project. The goal was to visualize a bifurcation. The bifurcation I was going to plot is one of the most famous ones: Its the bifurcation for the logistic map: $$x_n+1 = r * x_n * ( 1 - x_n )$$. But before I'm going to talk about the program, I want to exemplify some of the mathematical backgrounds, without diving too deep into dynamic systems and chaos.
@@ -33,21 +35,36 @@ For that, I have to know $$r$$. In the case of population calculation, $$r$$ is 
 
 Let's take a population of $$0.4$$ with a growth rate of $$2$$. If we put these values into the equation wwe will have a population of $$x = 0.48$$ in the next year. A year later $$0.4992$$ and if you iterate over, and over, you will see, that the population stays at about $$0.5$$, that means, the equilibrium population is $$0.5$$. That's the case for $$1 \leq r < 3$$, not $$0.5$$ every time, but the equilibrium population will settle down at one value.
 
-![Bild1](../images/bifurcation-diagram/period1_dark.png)
+import Period1Dark from '../images/bifurcation-diagram/period1_dark.png';
+import Period1Light from '../images/bifurcation-diagram/period1_light.png';
+
+<BlogImage dark={Period1Dark} light={Period1Light} alt="ABC" />
 
 At $$r = 3$$, the first period-doubling happens. Now the equilibrium population alternates between two values back and forth.
 
-![Bild2](../images/bifurcation-diagram/period2_dark.png)
+import Period2Dark from '../images/bifurcation-diagram/period2_dark.png';
+import Period2Light from '../images/bifurcation-diagram/period2_light.png';
+
+<BlogImage dark={Period2Dark} light={Period2Light} alt="ABC" />
 
 With $$r \approx 3.44$$, you are going to have a period of $$4$$, the equilibrium population alternates between four values.
 
-![Bild3](../images/bifurcation-diagram/period4_dark.png)
-![Bild4](../images/bifurcation-diagram/period8_dark.png)
+import Period4Dark from '../images/bifurcation-diagram/period4_dark.png';
+import Period4Light from '../images/bifurcation-diagram/period4_light.png';
 
+<BlogImage dark={Period4Dark} light={Period4Light} alt="ABC" />
+
+import Period8Dark from '../images/bifurcation-diagram/period8_dark.png';
+import Period8Light from '../images/bifurcation-diagram/period8_light.png';
+
+<BlogImage dark={Period8Dark} light={Period8Light} alt="ABC" />
 
 And for the grand final after $$r \approx 3.5699$$, you have chaos.
 
-![Bild5](../images/bifurcation-diagram/periods_chaos_dark.png)
+import PeriodChaosDark from '../images/bifurcation-diagram/periods_chaos_dark.png';
+import PeriodChaosLight from '../images/bifurcation-diagram/periods_chaos_light.png';
+
+<BlogImage dark={PeriodChaosDark} light={PeriodChaosLight} alt="ABC" />
 
 Deterministic chaos, to be exact. Here you can find every period. Every $$x$$ you pick, is part of some period, whether one of $$128$$ or $$1354$$ or etc. It's deterministic because theoretically, you can calculate the start value for every $$x$$ you pick on the graph and predict the next $$x$$. Practically it isn't possible because you would need $$x$$ to an infinite amount of decimal points.
 
@@ -78,5 +95,7 @@ As you might recognized, there is also an ability for zooming. For activating th
 
 If you have one of the zoom Modes activated (booth work the same), you can zoom by clicking in the diagram. The location you clicked is going to be in the center after zooming. Because the control parameter $$r$$ is very sensitive and has to in the range of $$0 \leq r < 4$$, some weird stuff or nothing will happen if you leave this range. To prevent this, I recommend not zooming out from the normal stage (achieved with `plot()`) or "walk-around" with a zoom rate of 1 in rough stages of the diagram (a change of $$r$$ from left to right bigger than $$0.1$$).
 
-![Bild6](../images/bifurcation-diagram/bifurcation_chaos_dark.png)
+import ChaosDark from '../images/bifurcation-diagram/bifurcation_chaos_dark.png';
+import ChaosLight from '../images/bifurcation-diagram/bifurcation_chaos_light.png';
 
+<BlogImage dark={ChaosDark} light={ChaosLight} alt="ABC" />
