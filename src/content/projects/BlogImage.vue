@@ -81,12 +81,16 @@ defineProps<{
   margin-bottom: 0.5rem;
   cursor: pointer;
   transition: scale 140ms ease-in-out;
+  max-width: 1024px;
+  max-height: calc(100vh - 4rem);
 }
 
 .blog-image__image {
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
+  max-height: 100%;
+  margin: auto;
 }
 
 .blog-image:active .blog-image__wrapper {
@@ -109,6 +113,9 @@ defineProps<{
 
 .blog-image--open .blog-image__wrapper {
   border-radius: 5px;
+  margin-bottom: 2rem;
+  height: 100%;
+  display: flex;
 }
 
 .blog-image--open .blog-image__backdrop {
@@ -124,7 +131,7 @@ defineProps<{
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 2rem 1rem;
+  padding: 0 2rem;
   font-size: 1.2rem;
   color: var(--color-text);
 }
@@ -159,6 +166,10 @@ defineProps<{
     right: 0rem;
     top: 0rem;
   }
+}
+
+.blog-image__action--minimize {
+  display: none !important;
 }
 
 .blog-image__action:focus {

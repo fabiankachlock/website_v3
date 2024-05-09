@@ -38,33 +38,33 @@ Let's take a population of $$0.4$$ with a growth rate of $$2$$. If we put these 
 import Period1Dark from '../images/bifurcation-diagram/period1_dark.png';
 import Period1Light from '../images/bifurcation-diagram/period1_light.png';
 
-<BlogImage dark={Period1Dark} light={Period1Light} alt="ABC" />
+<BlogImage dark={Period1Dark} light={Period1Light} alt="Here you can see, how the population evolves, for this exact parameter (r = 2)." />
 
 At $$r = 3$$, the first period-doubling happens. Now the equilibrium population alternates between two values back and forth.
 
 import Period2Dark from '../images/bifurcation-diagram/period2_dark.png';
 import Period2Light from '../images/bifurcation-diagram/period2_light.png';
 
-<BlogImage dark={Period2Dark} light={Period2Light} alt="ABC" />
+<BlogImage dark={Period2Dark} light={Period2Light} alt="Here we have a period of 2." />
 
 With $$r \approx 3.44$$, you are going to have a period of $$4$$, the equilibrium population alternates between four values.
 
 import Period4Dark from '../images/bifurcation-diagram/period4_dark.png';
 import Period4Light from '../images/bifurcation-diagram/period4_light.png';
 
-<BlogImage dark={Period4Dark} light={Period4Light} alt="ABC" />
+<BlogImage dark={Period4Dark} light={Period4Light} alt="The next step is a period of 4." />
 
 import Period8Dark from '../images/bifurcation-diagram/period8_dark.png';
 import Period8Light from '../images/bifurcation-diagram/period8_light.png';
 
-<BlogImage dark={Period8Dark} light={Period8Light} alt="ABC" />
+<BlogImage dark={Period8Dark} light={Period8Light} alt="A period of 8. It's crazy how a simple function like this can create patterns like these." />
 
 And for the grand final after $$r \approx 3.5699$$, you have chaos.
 
 import PeriodChaosDark from '../images/bifurcation-diagram/periods_chaos_dark.png';
 import PeriodChaosLight from '../images/bifurcation-diagram/periods_chaos_light.png';
 
-<BlogImage dark={PeriodChaosDark} light={PeriodChaosLight} alt="ABC" />
+<BlogImage dark={PeriodChaosDark} light={PeriodChaosLight} alt="Chaos! It's almost sad that nothing of this is random, just pure math." />
 
 Deterministic chaos, to be exact. Here you can find every period. Every $$x$$ you pick, is part of some period, whether one of $$128$$ or $$1354$$ or etc. It's deterministic because theoretically, you can calculate the start value for every $$x$$ you pick on the graph and predict the next $$x$$. Practically it isn't possible because you would need $$x$$ to an infinite amount of decimal points.
 
@@ -98,4 +98,4 @@ If you have one of the zoom Modes activated (booth work the same), you can zoom 
 import ChaosDark from '../images/bifurcation-diagram/bifurcation_chaos_dark.png';
 import ChaosLight from '../images/bifurcation-diagram/bifurcation_chaos_light.png';
 
-<BlogImage dark={ChaosDark} light={ChaosLight} alt="ABC" />
+<BlogImage dark={ChaosDark} light={ChaosLight} alt="Here I have an example of what you can achieve with zooming." />
