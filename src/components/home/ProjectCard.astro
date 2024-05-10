@@ -40,6 +40,9 @@ const project = translatedData!.data;
       <div class="project-card__tools">
         {project?.technologies.map(name => <TechPill tech={name} />)}
       </div>
+    </div>
+    <div style="flex: 1"></div>
+    <div>
       <div class="project-card__footer">
         <div class="project-card__socials">
           {project.socials?.web && <SocialLink href={project.socials?.web} type="web" />}
@@ -77,7 +80,7 @@ const project = translatedData!.data;
 
   .project-card:hover {
     background-color: var(--color-surface);
-    border: 2px solid var(--color-text);
+    border: 1px solid var(--color-text);
     max-width: 398px;
     box-shadow:
       4px 4px 0 0 var(--color-text),
@@ -86,23 +89,28 @@ const project = translatedData!.data;
   }
 
   .project-card:hover .project-card__wrapper {
-    border: 0px solid transparent;
+    border: 1px solid var(--color-text);
   }
 
   .project-card__wrapper {
+    height: calc(100% - 2rem);
+    position: relative;
     display: block;
     color: var(--color-text);
     text-decoration: none;
+    border-radius: 4px;
     border: 1px solid transparent;
     padding: 1rem;
     position: relative;
+    transition: border 140ms linear;
+    display: flex;
+    flex-direction: column;
     transition: border 140ms linear;
   }
 
   .project-card__image-wrapper {
     max-height: 300px;
     overflow: hidden;
-    height: 100%;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
