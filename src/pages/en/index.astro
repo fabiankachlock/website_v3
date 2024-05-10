@@ -484,6 +484,7 @@ const projects = await getPreviewProjects();
     min-height: calc(100vh - 5rem);
     min-height: calc(100dvh - 5rem);
     gap: 2rem;
+    flex-shrink: 0;
   }
 
   .hero__bar {
@@ -523,7 +524,7 @@ const projects = await getPreviewProjects();
   .hero__descriptions {
     display: flex;
     flex-direction: column;
-    padding: 0 2rem;
+    padding: 0 2rem 2rem;
   }
 
   .hero__things {
