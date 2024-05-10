@@ -37,7 +37,7 @@ const localize = (path: string, lng: string): string => {
 ---
 
 <div class="translate">
-  <button class="translate__button">
+  <button class="translate__button" aria-label={t('common.changeLanguage')}>
     <Fragment set:html={translateIcon} />
   </button>
   <div class="language-select">

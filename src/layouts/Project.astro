@@ -59,9 +59,33 @@ const { project } = Astro.props;
           {project.data.technologies.map(t => <TechPill tech={t} />)}
         </div>
         <div class="project__links project__links--header">
-          {project.data.socials?.web && <SocialLink href={project.data.socials?.web} type="web" />}
-          {project.data.socials?.github && <SocialLink href={project.data.socials?.github} type="github" />}
-          {project.data.socials?.link && <SocialLink href={project.data.socials?.link} type="link" />}
+          {
+            project.data.socials?.web && (
+              <SocialLink
+                href={project.data.socials?.web}
+                type="web"
+                label={t('common.openWeb', { name: project.data.title })}
+              />
+            )
+          }
+          {
+            project.data.socials?.github && (
+              <SocialLink
+                href={project.data.socials?.github}
+                type="github"
+                label={t('common.openGithub', { name: project.data.title })}
+              />
+            )
+          }
+          {
+            project.data.socials?.link && (
+              <SocialLink
+                href={project.data.socials?.link}
+                type="link"
+                label={t('common.openLink', { name: project.data.title })}
+              />
+            )
+          }
         </div>
       </div>
     </header>

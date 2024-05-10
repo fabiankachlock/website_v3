@@ -17,13 +17,14 @@ export interface Props {
   type: LinkType;
   href: string;
   rel?: string;
+  label?: string;
 }
 
-const { type, href, rel } = Astro.props;
+const { type, href, rel, label } = Astro.props;
 ---
 
 <div class={`social-link social-link--${type}`}>
-  <a class="social-link__link" href={href} rel={rel ?? 'external noopener noreferrer'}>
+  <a class="social-link__link" href={href} rel={rel ?? 'external noopener noreferrer'} aria-label={label}>
     <Fragment set:html={linkIcons[type]} />
   </a>
 </div>

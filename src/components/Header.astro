@@ -1,5 +1,5 @@
 ---
-import i18next from 'i18next';
+import i18next, { t } from 'i18next';
 import { localizePath } from 'astro-i18next';
 import { getProjectLinks } from '@/content/projects';
 
@@ -16,7 +16,7 @@ const projectLinks = await getProjectLinks();
 
 <header class="head">
   <div class="floating-menu">
-    <button class="menu__opener">
+    <button class="menu__opener" aria-label={t('common.openMenu')}>
       <Fragment set:html={svgMenuButton} />
     </button>
   </div>

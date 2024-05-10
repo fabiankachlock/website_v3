@@ -2,7 +2,7 @@
 import { extractSlug, type LocalizedProject } from '@/content/projects';
 import { localizePath } from 'astro-i18next';
 import { Image } from 'astro:assets';
-import i18next from 'i18next';
+import i18next, { t } from 'i18next';
 import Translation from '../Translation.astro';
 import SocialLink from '../common/SocialLink.astro';
 import TechPill from '../common/TechPill.astro';
@@ -45,9 +45,29 @@ const project = translatedData!.data;
     <div>
       <div class="project-card__footer">
         <div class="project-card__socials">
-          {project.socials?.web && <SocialLink href={project.socials?.web} type="web" />}
-          {project.socials?.github && <SocialLink href={project.socials?.github} type="github" />}
-          {project.socials?.link && <SocialLink href={project.socials?.link} type="link" />}
+          {
+            project.socials?.web && (
+              <SocialLink href={project.socials?.web} type="web" label={t('common.openWeb', { name: project.title })} />
+            )
+          }
+          {
+            project.socials?.github && (
+              <SocialLink
+                href={project.socials?.github}
+                type="github"
+                label={t('common.openGithub', { name: project.title })}
+              />
+            )
+          }
+          {
+            project.socials?.link && (
+              <SocialLink
+                href={project.socials?.link}
+                type="link"
+                label={t('common.openLink', { name: project.title })}
+              />
+            )
+          }
         </div>
         <a class="project-card__read" href={link}>
           <Translation>

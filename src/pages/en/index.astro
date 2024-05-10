@@ -730,30 +730,24 @@ const projects = await getPreviewProjects();
     gap: 1rem;
     justify-content: center;
     place-items: center;
+    align-items: stretch;
     max-width: 920px;
     margin: 0 auto;
   }
 
   @media only screen and (min-width: 720px) {
     .projects-container {
-      grid-template-columns: repeat(auto-fill, 310px);
+      grid-template-columns: repeat(2, minmax(310px, 360px));
+      justify-items: start;
+      place-content: start;
     }
   }
 
   @media only screen and (min-width: 1130px) {
     .projects-container {
-      grid-template-columns: repeat(auto-fill, 360px);
       gap: 2rem;
     }
   }
-
-  @media only screen and (min-width: 1312px) {
-    .projects-container {
-      place-content: unset;
-      justify-items: start;
-    }
-  }
-
   @keyframes wiggle {
     0% {
       transform: rotate(0deg);
