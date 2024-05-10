@@ -59,7 +59,7 @@ const projectLinks = await getProjectLinks();
             </li>
           ))
         }
-        <li class="menu__item">
+        <li class="menu__item menu__item--contact">
           <LocalizedLink classes="menu__link" path="/#contact">
             <Translation>
               <span slot="de">Kontakt</span>
@@ -190,9 +190,20 @@ const projectLinks = await getProjectLinks();
     margin: 0.5rem 0;
   }
 
-  .menu__item--project-item,
   .menu__item--project {
+    margin-bottom: 0;
+  }
+
+  .menu__item--project-item {
     margin: 0;
+  }
+
+  .menu__item--project-item {
+    margin-bottom: 0;
+  }
+
+  .menu__item--contact {
+    margin-top: 1rem;
   }
 
   .menu__item--project-item {

@@ -4,6 +4,7 @@ import type { ProjectEntry } from './config';
 export type LocalizedProject = Record<string, ProjectEntry>;
 
 export type ProjectLink = {
+  slug: string;
   title: Record<string, string>;
   url: string;
 };
@@ -71,6 +72,7 @@ export const getProjectLinks = async (): Promise<ProjectLink[]> => {
         title: {
           [data.lang]: project.data.title,
         },
+        slug: project.slug,
         url: data.id,
         order: project.data.order,
       };
@@ -78,4 +80,14 @@ export const getProjectLinks = async (): Promise<ProjectLink[]> => {
   }
 
   return Object.values(links).toSorted((a, b) => a.order - b.order);
+};
+
+export const getSeeAlsoLinks = async (seeAlso: string[]): Promise<ProjectLink[]> => {
+  if (!seeAlso || seeAlso.length === 0) return [];
+
+  const allLinks = await getProjectLinks();
+  return allLinks.filter(link => {
+    const slugData = extractSlug(link.slug);
+    return slugData.id && seeAlso.includes(slugData.id);
+  });
 };

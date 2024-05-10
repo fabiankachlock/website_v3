@@ -1,0 +1,16 @@
+---
+import type { ProjectEntry } from '@/content/config';
+import SocialLink from './SocialLink.astro';
+import { t } from 'i18next';
+
+export interface Props {
+  title: string;
+  socials: ProjectEntry['data']['socials'];
+}
+
+const { socials, title } = Astro.props;
+---
+
+{socials?.web && <SocialLink href={socials?.web} type="web" label={t('common.openWeb', { name: title })} />}
+{socials?.github && <SocialLink href={socials?.github} type="github" label={t('common.openGithub', { name: title })} />}
+{socials?.link && <SocialLink href={socials?.link} type="link" label={t('common.openLink', { name: title })} />}

@@ -1,17 +1,23 @@
 ---
 import type { ProjectEntry } from '@/content/config';
+import { getSeeAlsoLinks } from '@/content/projects';
 import Main from './Main.astro';
 import { Image } from 'astro:assets';
-import { t } from 'i18next';
+import i18next, { t } from 'i18next';
+import { localizePath } from 'astro-i18next';
 import TechPill from '@/components/common/TechPill.astro';
-import SocialLink from '@/components/common/SocialLink.astro';
 import Translation from '@/components/Translation.astro';
+import ProjectLinks from '@/components/common/ProjectLinks.astro';
+import LocalizedLink from '@/components/LocalizedLink.astro';
+import homeIcon from '@carbon/icons/svg/32/home.svg?raw';
+import arrowUpRightIcon from '@carbon/icons/svg/32/arrow--up-right.svg?raw';
 
 export interface Props {
   project: ProjectEntry;
 }
 
 const { project } = Astro.props;
+const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
 ---
 
 <script src="../scripts/blog.ts"></script>
@@ -59,33 +65,7 @@ const { project } = Astro.props;
           {project.data.technologies.map(t => <TechPill tech={t} />)}
         </div>
         <div class="project__links project__links--header">
-          {
-            project.data.socials?.web && (
-              <SocialLink
-                href={project.data.socials?.web}
-                type="web"
-                label={t('common.openWeb', { name: project.data.title })}
-              />
-            )
-          }
-          {
-            project.data.socials?.github && (
-              <SocialLink
-                href={project.data.socials?.github}
-                type="github"
-                label={t('common.openGithub', { name: project.data.title })}
-              />
-            )
-          }
-          {
-            project.data.socials?.link && (
-              <SocialLink
-                href={project.data.socials?.link}
-                type="link"
-                label={t('common.openLink', { name: project.data.title })}
-              />
-            )
-          }
+          <ProjectLinks socials={project.data.socials} title={project.data.title} />
         </div>
       </div>
     </header>
@@ -93,30 +73,43 @@ const { project } = Astro.props;
       <slot />
     </main>
     <footer class="project__footer">
-      <div class="project__footer-info">
-        <Translation>
-          <p slot="de">Links</p>
-          <p slot="en">Links</p>
-        </Translation>
-        <div class="project__links">
-          {project.data.socials?.web && <SocialLink href={project.data.socials?.web} type="web" />}
-          {project.data.socials?.github && <SocialLink href={project.data.socials?.github} type="github" />}
-          {project.data.socials?.link && <SocialLink href={project.data.socials?.link} type="link" />}
+      <div class="project__footer-content">
+        <div class="project__footer-info">
+          <Translation>
+            <p slot="de">Links</p>
+            <p slot="en">Links</p>
+          </Translation>
+          <div class="project__links">
+            <ProjectLinks socials={project.data.socials} title={project.data.title} />
+          </div>
         </div>
-      </div>
-      <Translation>
-        <p slot="de">Auch interessant</p>
-        <p slot="en">See also</p>
-      </Translation>
-      <div class="project__footer-links">
-        {project.data.seeAlso?.map(p => <p>{p}</p>)}
-        <div class="project__footer-link project__footer-link--home">
-          <a href="/">
+        <Translation>
+          <p class="project__footer-see-also" slot="de">Auch interessant:</p>
+          <p class="project__footer-see-also" slot="en">See also:</p>
+        </Translation>
+        <div class="project__footer-links">
+          {
+            seeAlso?.map(p => (
+              <LocalizedLink
+                classes="project__footer-link project__footer-link--project"
+                path={localizePath('/projekte') + '/' + p.url}
+              >
+                <span class="project__footer-link-icon">
+                  <Fragment set:html={arrowUpRightIcon} />
+                </span>
+                <span>{p.title[i18next.language] ?? Object.values(p.title)[0]}</span>
+              </LocalizedLink>
+            ))
+          }
+          <LocalizedLink classes="project__footer-link project__footer-link--home" path="/">
+            <span class="project__footer-link-icon">
+              <Fragment set:html={homeIcon} />
+            </span>
             <Translation>
               <span slot="de">Zurück zur Startseite</span>
               <span slot="en">Go back home</span>
             </Translation>
-          </a>
+          </LocalizedLink>
         </div>
       </div>
     </footer>
@@ -220,6 +213,7 @@ const { project } = Astro.props;
     justify-content: flex-end;
   }
 
+  .project__footer-content,
   .project__content {
     padding: 2rem;
     position: relative;
@@ -235,11 +229,10 @@ const { project } = Astro.props;
 
   .project__footer {
     border-top: 1px solid var(--color-text);
-    background-color: var(--color-bg-tint-1);
+    background-color: var(--color-bg-tint-3);
   }
 
   .project__footer-info {
-    padding: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -251,6 +244,75 @@ const { project } = Astro.props;
     font-family: 'Mona Sans';
     color: var(--color-text);
     font-size: 1.3rem;
+  }
+
+  .project__footer-see-also {
+    font-family: 'Mona Sans';
+    color: var(--color-text);
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .project__footer-links {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .project__footer-links {
+      flex-direction: row;
+    }
+  }
+
+  :global(.project__footer-link) {
+    font-family: 'Mona Sans';
+    color: var(--color-text);
+    font-size: 1.2rem;
+    padding: 1rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-text);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    transition:
+      box-shadow 70ms linear,
+      translate 70ms linear;
+    box-shadow:
+      0px 0px 0 -1px var(--color-bg-tint-3),
+      0px 0px var(--color-text);
+    text-decoration: none;
+    flex: 1;
+  }
+
+  :global(.project__footer-link-icon) {
+    transition: rotate 70ms linear;
+  }
+
+  :global(.project__footer-link:hover) {
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+    translate: -5px -5px;
+    box-shadow:
+      5px 5px 0 -1px var(--color-bg-tint-3),
+      5px 5px var(--color-text);
+  }
+
+  :global(.project__footer-link .project__footer-link-icon) {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--color-text);
+  }
+
+  :global(.project__footer-link:hover .project__footer-link-icon) {
+    fill: var(--color-primary);
+  }
+
+  :global(.project__footer-link:hover.project__footer-link--project .project__footer-link-icon) {
+    rotate: 45deg;
   }
 
   .project__content :global(h1) {

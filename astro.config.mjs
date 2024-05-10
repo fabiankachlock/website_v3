@@ -12,6 +12,7 @@ import remarkMath from 'remark-math';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { h } from 'hastscript';
 import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
+import rehypeExternalLinks from 'rehype-external-links';
 
 import linkIcon from './src/assets/link.svg?raw';
 
@@ -53,6 +54,7 @@ export default defineConfig({
           },
         },
       ],
+      [rehypeExternalLinks, { rel: ['external', 'noopener', 'noreferrer', 'nofollow'] }],
     ],
     experimentalThemes: {
       light: 'catppuccin-latte',
