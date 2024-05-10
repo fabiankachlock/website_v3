@@ -50,22 +50,24 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
         </div>
         <h1 class="project__title" transition:name={`project-title:${project?.slug}`}>{project.data.title}</h1>
       </div>
-      <div class="project__header-info">
-        <p class="project__author">
-          <Translation>
-            <span slot="de">von</span>
-            <span slot="en">by</span>
-          </Translation>
-          {project.data.author}
-        </p>
-        <p class="project__year">{project.data.year}</p>
-      </div>
-      <div class="project__meta">
-        <div class="project__tech">
-          {project.data.technologies.map(t => <TechPill tech={t} />)}
+      <div class="project__header-content">
+        <div class="project__header-info">
+          <p class="project__author">
+            <Translation>
+              <span slot="de">von</span>
+              <span slot="en">by</span>
+            </Translation>
+            {project.data.author}
+          </p>
+          <p class="project__year">{project.data.year}</p>
         </div>
-        <div class="project__links project__links--header">
-          <ProjectLinks socials={project.data.socials} title={project.data.title} />
+        <div class="project__meta">
+          <div class="project__tech">
+            {project.data.technologies.map(t => <TechPill tech={t} />)}
+          </div>
+          <div class="project__links project__links--header">
+            <ProjectLinks socials={project.data.socials} title={project.data.title} />
+          </div>
         </div>
       </div>
     </header>
@@ -118,7 +120,7 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
 
 <style>
   .project__header {
-    padding: 2rem;
+    padding: 1rem;
     background-color: var(--color-bg-tint-3);
     position: relative;
     border-bottom: 1px solid var(--color-text);
@@ -126,12 +128,12 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
 
   .project__header-content {
     position: relative;
-    margin-bottom: 2rem;
+    margin: 0 auto;
+    max-width: 920px;
   }
 
   .project__header-image-wrappper {
-    margin: 0 auto 5rem 0;
-    max-width: 80vw;
+    margin-bottom: 1rem;
   }
 
   .project__header-image {
@@ -145,31 +147,18 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
   .project__title {
     font-family: 'Source Code Pro';
     font-weight: 700;
-    font-size: 4rem;
-    background: var(--color-bg);
+    font-size: 2rem;
+    background: var(--color-bg-tint-3);
     border: 2px solid var(--color-text);
     border-right: none;
     border-top: none;
-    padding: 1rem 1rem 1rem 2rem;
-    position: absolute;
-    bottom: -3rem;
-    left: -1rem;
-    width: 60%;
-    max-width: 640px;
+    padding: 1rem;
+    width: calc(100% - 2rem);
+    hyphens: auto;
     z-index: 100;
     box-shadow:
       -7px 7px 0 -2px var(--color-primary),
       -7px 7px 0 0 var(--color-text);
-  }
-
-  @media only screen and (min-width: 768px) {
-    .project__header-image-wrappper {
-      margin: 0 3rem 0 0;
-    }
-
-    .project__title {
-      bottom: -1rem;
-    }
   }
 
   .project__author,
@@ -187,13 +176,13 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
   .project__header-info,
   .project__meta {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 0.5rem;
   }
-
   .project__header-info {
-    margin-top: 2rem;
+    margin-top: 3rem;
     margin-bottom: 1rem;
   }
 
@@ -202,6 +191,43 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+  }
+
+  @media only screen and (min-width: 460px) {
+    .project__header {
+      padding: 2rem;
+    }
+
+    .project__meta,
+    .project__header-info {
+      flex-direction: row;
+    }
+
+    .project__header-image-wrappper {
+      max-width: 80vw;
+      margin-bottom: 5rem;
+    }
+
+    .project__title {
+      font-size: 3rem;
+      padding: 1rem 1rem 1rem 2rem;
+      position: absolute;
+      bottom: -3rem;
+      left: -1rem;
+      width: unset;
+      max-width: 80%;
+    }
+  }
+
+  @media only screen and (min-width: 620px) {
+    .project__title {
+      font-size: 4rem;
+      bottom: -1rem;
+    }
+
+    .project__header-image-wrappper {
+      margin-bottom: 3rem;
+    }
   }
 
   .project__links {
@@ -215,10 +241,21 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
 
   .project__footer-content,
   .project__content {
-    padding: 2rem;
+    padding: 1rem;
     position: relative;
     max-width: 768px;
     margin: 0 auto;
+  }
+
+  .project__content {
+    hyphens: auto;
+  }
+
+  @media only screen and (min-width: 460px) {
+    .project__footer-content,
+    .project__content {
+      padding: 2rem;
+    }
   }
 
   @media only screen and (min-width: 768px) {
