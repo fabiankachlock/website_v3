@@ -1,18 +1,16 @@
-import { defineConfig } from 'astro/config';
-import astroI18next from 'astro-i18next';
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
-import compress from '@playform/compress';
-
-import mdx from '@astrojs/mdx';
-import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+import { defineConfig } from 'astro/config';
+import astroI18next from 'astro-i18next';
+import { fromHtml } from 'hast-util-from-html';
+import { h } from 'hastscript';
 import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeExternalLinks from 'rehype-external-links';
 import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import { h } from 'hastscript';
-import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
-import rehypeExternalLinks from 'rehype-external-links';
 
 import linkIcon from './src/assets/link.svg?raw';
 
@@ -47,7 +45,7 @@ export default defineConfig({
         {
           behavior: 'before',
           content(node) {
-            return [h('span.header-link', fromHtmlIsomorphic(linkIcon))];
+            return [h('span.header-link', fromHtml(linkIcon))];
           },
           group(node) {
             return h('.header-group');
@@ -77,14 +75,6 @@ export default defineConfig({
     }),
     vue({
       appEntrypoint: '/src/scripts/vue/setup',
-    }),
-    compress({
-      css: true,
-      img: false,
-      svg: true,
-      html: true,
-      js: true,
-      logger: 0,
     }),
     mdx(),
   ],
