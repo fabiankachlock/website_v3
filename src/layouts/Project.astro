@@ -354,155 +354,165 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
     rotate: 45deg;
   }
 
-  .project__content :global(h1) {
-    font-family: 'Mona Sans';
-    font-weight: 700;
-    color: var(--color-text-header);
-    font-size: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    position: relative;
-  }
+  @layer blog-defaults {
+    .project__content :global(h1) {
+      font-family: 'Mona Sans';
+      font-weight: 700;
+      color: var(--color-text-header);
+      font-size: 2rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
 
-  .project__content :global(h2) {
-    font-family: 'Mona Sans';
-    font-weight: 700;
-    color: var(--color-text-header);
-    font-size: 1.5rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    position: relative;
-  }
+    .project__content :global(h2) {
+      font-family: 'Mona Sans';
+      font-weight: 700;
+      color: var(--color-text-header);
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
 
-  .project__content :global(h3) {
-    font-family: 'Mona Sans';
-    font-weight: 600;
-    color: var(--color-text-header);
-    font-size: 1.4rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    position: relative;
-  }
+    .project__content :global(h3) {
+      font-family: 'Mona Sans';
+      font-weight: 600;
+      color: var(--color-text-header);
+      font-size: 1.4rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
 
-  .project__content :global(h4) {
-    font-family: 'Mona Sans';
-    font-weight: 500;
-    color: var(--color-text-header);
-    font-size: 1.3rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    position: relative;
-  }
+    .project__content :global(h4) {
+      font-family: 'Mona Sans';
+      font-weight: 500;
+      color: var(--color-text-header);
+      font-size: 1.3rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
 
-  .project__content :global(h5) {
-    font-family: 'Mona Sans';
-    font-weight: 400;
-    color: var(--color-text-header);
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    position: relative;
-  }
+    .project__content :global(h5) {
+      font-family: 'Mona Sans';
+      font-weight: 400;
+      color: var(--color-text-header);
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
 
-  .project__content :global(h6) {
-    font-family: 'Mona Sans';
-    font-weight: 300;
-    color: var(--color-text-header);
-    font-size: 1.1rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    position: relative;
-  }
+    .project__content :global(h6) {
+      font-family: 'Mona Sans';
+      font-weight: 300;
+      color: var(--color-text-header);
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
 
-  .project__content :global(ul),
-  .project__content :global(ol),
-  .project__content :global(p) {
-    font-family: 'Mona Sans';
-    color: var(--color-text);
-    margin-bottom: 1rem;
-    line-height: 1.7em;
-    max-width: 65ch;
-  }
+    .project__content :global(ul),
+    .project__content :global(ol),
+    .project__content :global(p) {
+      font-family: 'Mona Sans';
+      color: var(--color-text);
+      margin-bottom: 1rem;
+      line-height: 1.7em;
+      max-width: 65ch;
+    }
 
-  .project__content :global(ul) {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-  }
+    .project__content :global(a) {
+      color: var(--color-primary);
+    }
 
-  .project__content :global(ol) {
-    list-style-type: decimal;
-    padding-left: 1.5rem;
-  }
+    .project__content :global(a:hover) {
+      color: var(--color-secondary);
+    }
 
-  .project__content :global(p) > :global(code) {
-    display: inline-block;
-    font-family: 'Source Code Pro';
-    color: var(--color-text-heading);
-    background: var(--color-transparent-bg);
-    border-radius: 5px;
-  }
+    .project__content :global(ul) {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+    }
 
-  .project__content :global(.astro-code) {
-    padding: 0.5rem;
-    font-family: 'Source Code Pro';
-    font-size: 0.9rem;
-    border: 1px solid var(--color-text);
-    border-radius: 5px;
-    background-color: var(--color-surface);
-    color: var(--color-text);
-  }
+    .project__content :global(ol) {
+      list-style-type: decimal;
+      padding-left: 1.5rem;
+    }
 
-  .project__content :global(p):has(> img) {
-    max-width: unset;
-  }
+    .project__content :global(p) > :global(code) {
+      display: inline-block;
+      font-family: 'Source Code Pro';
+      color: var(--color-text-heading);
+      background: var(--color-transparent-bg);
+      border-radius: 5px;
+    }
 
-  .project__content :global(.header-group) {
-    position: relative;
-  }
+    .project__content :global(.astro-code) {
+      padding: 0.5rem;
+      font-family: 'Source Code Pro';
+      font-size: 0.9rem;
+      border: 1px solid var(--color-text);
+      border-radius: 5px;
+      background-color: var(--color-surface);
+      color: var(--color-text);
+    }
 
-  .project__content :global(.header-group a) {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    height: 1rem;
-    width: 1rem;
-    z-index: -1;
-    translate: 0 -50%;
-    opacity: 0;
-    z-index: 10;
-    padding: 0.25rem;
-    transition:
-      opacity 70ms ease-in-out,
-      left 140ms ease-in-out,
-      width 110ms ease-in-out 100ms,
-      height 110ms ease-in-out 100ms;
-  }
+    .project__content :global(p):has(> img) {
+      max-width: unset;
+    }
 
-  .project__content :global(.header-group a:focus) {
-    transition: none;
-  }
+    .project__content :global(.header-group) {
+      position: relative;
+    }
 
-  .project__content :global(.header-group a:focus),
-  .project__content :global(.header-group:hover a),
-  .project__content :global(.header-group a:hover) {
-    left: -2.1rem;
-    height: 1.6rem;
-    width: 1.6rem;
-    opacity: 1;
-  }
+    .project__content :global(.header-group a) {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      height: 1rem;
+      width: 1rem;
+      z-index: -1;
+      translate: 0 -50%;
+      opacity: 0;
+      z-index: 10;
+      padding: 0.25rem;
+      transition:
+        opacity 70ms ease-in-out,
+        left 140ms ease-in-out,
+        width 110ms ease-in-out 100ms,
+        height 110ms ease-in-out 100ms;
+    }
 
-  .project__content :global(.header-link) :global(svg) {
-    width: 100%;
-    height: 100%;
-    fill: var(--color-primary);
-    transition: scale 70ms ease-in-out;
-  }
+    .project__content :global(.header-group a:focus) {
+      transition: none;
+    }
 
-  .project__content :global(.header-link) :global(svg:hover) {
-    scale: 1.1;
-  }
+    .project__content :global(.header-group a:focus),
+    .project__content :global(.header-group:hover a),
+    .project__content :global(.header-group a:hover) {
+      left: -2.1rem;
+      height: 1.6rem;
+      width: 1.6rem;
+      opacity: 1;
+    }
 
-  .project__content :global(.header-link) :global(svg:active) {
-    scale: 1.05;
+    .project__content :global(.header-link) :global(svg) {
+      width: 100%;
+      height: 100%;
+      fill: var(--color-primary);
+      transition: scale 70ms ease-in-out;
+    }
+
+    .project__content :global(.header-link) :global(svg:hover) {
+      scale: 1.1;
+    }
+
+    .project__content :global(.header-link) :global(svg:active) {
+      scale: 1.05;
+    }
   }
 </style>
