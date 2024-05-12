@@ -43,12 +43,12 @@ const locales: Record<string, string> = {
     images: [
       ...(Astro.props.custom?.openGraph?.images ?? []),
       {
-        url: buildUrl('favicon.svg'),
-        secureUrl: buildUrl('favicon.svg'),
+        url: buildUrl('seo.png'),
+        secureUrl: buildUrl('seo.png'),
         alt: 'Fabian Kachlock',
-        type: 'image/svg+xml',
-        // width: 512,
-        // height: 512,
+        type: 'image/png',
+        width: 1920,
+        height: 1080,
       },
     ],
     ...Astro.props.custom?.openGraph,
@@ -69,7 +69,7 @@ const locales: Record<string, string> = {
   robotsProps={Astro.props.custom?.robotsProps!}
   titleTemplate={Astro.props.custom?.titleTemplate!}
 />
-<meta name="twitter:image:alt" content="TODO" />
+<meta name="twitter:image:alt" content="Fabian Kachlock" />
 <meta property="og:author" content="Fabian Kachlock" />
 {
   Object.keys(locales).map(key =>

@@ -8,6 +8,8 @@ export default {
   routes: {
     en: {
       impressum: 'imprint',
+      datenschutz: 'privacy',
+      kontakt: 'contact',
       projekte: {
         index: 'projects',
         '[projectSlug]': '[projectSlug]',

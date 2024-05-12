@@ -29,12 +29,15 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
     openGraph: {
       images: [
         {
-          url: project.data.cover.src,
-          alt: project.data.coverAlt,
+          url: project.data.seo?.src ?? project.data.cover.src,
+          alt: project.data.seo?.src ? project.data.description : project.data.coverAlt,
+          type: `image/${(project.data.seo?.src ?? project.data.cover.src).split('.').pop()?.split('?')[0]}`,
+          width: project.data.seo?.width ?? project.data.cover.width,
+          height: project.data.seo?.height ?? project.data.cover.height,
         },
       ],
     },
-    titleTemplate: `%s | ${t('common.projects')}`,
+    titleTemplate: `%s | ${t('common.projects')} @ Fabian Kachlock`,
   }}
 >
   <link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet" slot="head" />

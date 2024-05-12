@@ -1,11 +1,17 @@
 {
   "title": {
     "/en": "Fabian Kachlock",
-    "/en/": "Fabian Kachlock"
+    "/en/": "Fabian Kachlock",
+    "/en/imprint": "Imprint @ Fabian Kachlock",
+    "/en/privacy": "Privacy Policy @ Fabian Kachlock",
+    "/en/contact": "Contact @ Fabian Kachlock"
   },
   "description": {
     "/en": "Fabian Kachlock - my portfolio.",
-    "/en/": "Fabian Kachlock - my portfolio."
+    "/en/": "Fabian Kachlock - my portfolio.",
+    "/en/imprint": "Imprint of Fabian Kachlock.",
+    "/en/privacy": "Privacy Policy of Fabian Kachlock.",
+    "/en/contact": "Contact Fabian Kachlock."
   },
   "lng": {
     "de": "Deutsch",
