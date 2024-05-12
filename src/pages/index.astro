@@ -43,9 +43,9 @@ const projects = await getPreviewProjects();
       </h1>
     </div>
     <div class="hero__descriptions">
-      <p class="hero__things">&lt;Software Developer/&gt;</p>
-      <p class="hero__things">&lt;Code Architect/&gt;</p>
-      <p class="hero__things">&lt;Tech Enthusiast/&gt;</p>
+      <p class="hero__things"><span class="tags">&lt;</span>Software Developer<span class="tags">/&gt;</span></p>
+      <p class="hero__things"><span class="tags">&lt;</span>Code Architect<span class="tags">/&gt;</span></p>
+      <p class="hero__things"><span class="tags">&lt;</span>Tech Enthusiast<span class="tags">/&gt;</span></p>
     </div>
   </section>
   <section class="section projects">
@@ -275,31 +275,62 @@ const projects = await getPreviewProjects();
           <span slot="en">C# & .NET</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">
-            Ich arbeite auch mit C# und .NET, um leistungsstarke und skalierbare Anwendungen zu entwickeln. Dabei nutze
-            ich Tools wie ASP.NET, Blazor und WebAssembly, um top integrierte, effiziente und zuverlässige Anwendungen
-            zu erstellen.
-          </span>
-          <span slot="en">
-            I also work with C# and .NET to develop powerful and scalable applications. I use tools like ASP.NET,
-            Blazor, and WebAssembly to create top-integrated, efficient, and reliable applications.
-          </span>
+          <div slot="de">
+            <p>
+              Zusätzlich zu Golang nutze ich auch C# und .NET für die Entwicklung von Webanwendungen. Mit Blazor ist es
+              möglich, interaktive Webanwendungen in Windeseile zu erstellen. Oft verwende ich Mudblazor, um Dashboards
+              für die mit ASP.NET entwickelten Backend-Services zu erstellen.
+            </p>
+            <p>
+              Dank WebAssembly kann ich außerdem C#-Code wiederverwenden und in Webanwendungen integrieren, unabhängig
+              vom Backend.
+            </p>
+          </div>
+          <div slot="en">
+            <p>
+              In addition to Golang, I also utilize C# and .NET for developing web applications. With Blazor, it's
+              possible to create interactive web applications quickly. I often use MudBlazor to create dashboards for
+              the backend services developed with ASP.NET.
+            </p>
+            <p>
+              Thanks to WebAssembly, I can also reuse C# code and integrate it into web applications independently of
+              the backend.
+            </p>
+          </div>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer featuredTools={['Git', 'Github', 'Jira']} tools={['Confluence', 'BitBucket', 'Youtrack']}>
+      <SkillDrawer
+        featuredTools={['Git', 'Github', 'Jira']}
+        tools={['Confluence', 'BitBucket', 'Youtrack', 'Markdown']}
+      >
         <Translation slot="title">
           <span slot="de"> Versions&shy;kontrolle & Projekt&shy;management</span>
           <span slot="en">Version Control & Project management</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">
-            Ich bin erfahren im Umgang mit Versionskontrollsystemen wie Git und Projektmanagement-Tools wie Jira, um
-            effizient und effektiv zu arbeiten.
-          </span>
-          <span slot="en">
-            I'm experienced in working with version control systems like Git and project management tools like Jira to
-            work efficiently and effectively.
-          </span>
+          <div slot="de">
+            <p>
+              Planung, Dokumentation und Versionskontrolle sind für mich essentielle Komponenten für den Erfolg eines
+              Projekts. Ich verfüge über umfangreiche Erfahrung im Umgang mit Versionskontrollsystemen wie Git sowie
+              Projektmanagement-Tools wie Jira und Youtrack, um eine reibungslose Projektabwicklung sicherzustellen.
+            </p>
+            <p>
+              Die Dokumentation erfolgt in meinem Arbeitsprozess über integrierte Plattformen wie Confluence oder in
+              verschiedenen Markdown-basierten Formaten und Frameworks, um eine klare und strukturierte Darstellung
+              sicherzustellen.
+            </p>
+          </div>
+          <div slot="en">
+            <p>
+              Planning, documentation, and version control are essential components for the success of a project in my
+              view. I have extensive experience in using version control systems like Git as well as project management
+              tools like Jira and YouTrack to ensure smooth project execution.
+            </p>
+            <p>
+              Documentation in my workflow is done through integrated platforms like Confluence or in various
+              Markdown-based formats and frameworks to ensure clear and structured representation.
+            </p>
+          </div>
         </Translation>
       </SkillDrawer>
       <SkillDrawer
@@ -311,15 +342,28 @@ const projects = await getPreviewProjects();
           <span slot="en">Deplyoment & CI/CD</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">
-            Ich bin erfahren im Streamlining von Bereitstellungsprozessen, indem ich Docker, AWS und GitHub Actions
-            verwende, um Workflows zu automatisieren und reibungslose Übergänge von der Entwicklung zur Produktion
-            sicherzustellen.
-          </span>
-          <span slot="en">
-            I'm experienced in streamlining deployment processes, using Docker, AWS, and GitHub Actions to automate
-            workflows and ensure smooth transitions from development to production.
-          </span>
+          <div slot="de">
+            <p>
+              Ich lege großen Wert auf die Automatisierung von kontinuierlichen Integrations- und
+              Bereitstellungsprozessen. Schnelle und reibungslose Integrationen sind für mich entscheidend, um die
+              Entwicklung effizient zu gestalten.
+            </p>
+            <p>
+              In meinem Arbeitsablauf nutze ich bevorzugt Tools wie Github Actions oder Bitbucket Pipelines zur
+              Automatisierung von Workflows. Für die Bereitstellung von Anwendungen setze ich Docker ein und greife auf
+              verschiedene Cloud-Plattformen wie AWS oder Heroku zurück.
+            </p>
+          </div>
+          <div slot="en">
+            <p>
+              I place great emphasis on the automation of continuous integration and deployment processes. Fast and
+              smooth integrations are crucial to me for making development efficient.
+            </p>
+            <p>
+              In my workflow, I prefer to use tools like Github Actions or Bitbucket Pipelines for automating workflows.
+              For application deployment, I utilize Docker and leverage various cloud platforms such as AWS or Heroku.
+            </p>
+          </div>
         </Translation>
       </SkillDrawer>
       <SkillDrawer featuredTools={['Rust', 'Kotlin', 'MQTT']} tools={['Redis', 'BullMQ', 'Swift', 'p5.js']}>
@@ -328,14 +372,14 @@ const projects = await getPreviewProjects();
           <span slot="en">Other tools, languages & libraries</span>
         </Translation>
         <Translation slot="content">
-          <span slot="de">
-            Neben meinen Hauptfähigkeiten arbeite ich auch mit anderen Tools, Sprachen und Bibliotheken wie Rust, Kotlin
-            und MQTT, um vielseitige und leistungsstarke Anwendungen zu entwickeln.
-          </span>
-          <span slot="en">
-            In addition to my main skills, I also work with other tools, languages, and libraries like Rust, Kotlin, and
-            MQTT to develop versatile and powerful applications.
-          </span>
+          <p slot="de">
+            Für kleinere Projekte tauche ich auch gerne in andere Tools, Sprachen und Bibliotheken ein. Aktuell erkunde
+            ich beispielsweise Rust, Kotlin und MQTT.
+          </p>
+          <p slot="en">
+            For smaller projects, I also enjoy diving into other tools, languages, and libraries. Currently, I'm
+            exploring Rust, Kotlin, and MQTT, for example.
+          </p>
         </Translation>
       </SkillDrawer>
     </div>
@@ -535,6 +579,10 @@ const projects = await getPreviewProjects();
     font-weight: 300;
     font-size: 1.5rem;
     margin-bottom: 0.4rem;
+  }
+
+  .hero__things .tags {
+    color: var(--color-primary);
   }
 
   .hero__name {
