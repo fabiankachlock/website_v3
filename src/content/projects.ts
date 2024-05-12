@@ -22,6 +22,8 @@ export const getProjects = async (language: string): Promise<ProjectEntry[]> => 
   const localizedProjects: Record<string, ProjectEntry> = {};
 
   for (const project of allProjects) {
+    if (!project.data.enabled) continue;
+
     const data = extractSlug(project.slug);
     if (!data.id || !data.lang) continue;
 
@@ -40,7 +42,10 @@ export const getProjects = async (language: string): Promise<ProjectEntry[]> => 
 export const getPreviewProjects = async (): Promise<LocalizedProject[]> => {
   const allProjects = await getCollection('projects');
   const localizedProjects: Record<string, LocalizedProject> = {};
+
   for (const project of allProjects) {
+    if (!project.data.enabled) continue;
+
     const data = extractSlug(project.slug);
     if (!data.id || !data.lang) continue;
     if (data.id in localizedProjects) {
@@ -62,7 +67,10 @@ export const getPreviewProjects = async (): Promise<LocalizedProject[]> => {
 export const getProjectLinks = async (): Promise<ProjectLink[]> => {
   const allProjects = await getCollection('projects');
   const links: Record<string, ProjectLink & { order: number }> = {};
+
   for (const project of allProjects) {
+    if (!project.data.enabled) continue;
+
     const data = extractSlug(project.slug);
     if (!data.id || !data.lang) continue;
     if (data.id in links) {
