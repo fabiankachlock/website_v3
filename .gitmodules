@@ -1,0 +1,3 @@
+[submodule "public/resources/bifurcation-diagram/demo"]
+	path = public/resources/bifurcation-diagram/demo
+	url = https://github.com/fabiankachlock/Bifurcation_Diagram.git
