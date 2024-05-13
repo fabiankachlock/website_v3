@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import type { ProjectEntry } from './config';
+import { localizePath } from 'astro-i18next';
 
 export type LocalizedProject = Record<string, ProjectEntry>;
 
@@ -7,6 +8,23 @@ export type ProjectLink = {
   slug: string;
   title: Record<string, string>;
   url: string;
+};
+
+export type ProjectData = {
+  projects: {
+    id: string;
+    title: string;
+    description: string;
+    links: Record<string, string>;
+  }[];
+  githubLinks: string[];
+  webLinks: string[];
+};
+
+export const translateProjectLink = (slug: string) => {
+  const slugData = extractSlug(slug);
+  const link = localizePath(`/projekte/[projectSlug]`, slugData.lang).replace('[projectSlug]', slugData.id);
+  return link;
 };
 
 export const extractSlug = (slug: string) => {
@@ -17,29 +35,11 @@ export const extractSlug = (slug: string) => {
   };
 };
 
-export const getProjects = async (language: string): Promise<ProjectEntry[]> => {
-  const allProjects = await getCollection('projects');
-  const localizedProjects: Record<string, ProjectEntry> = {};
-
-  for (const project of allProjects) {
-    if (!project.data.enabled) continue;
-
-    const data = extractSlug(project.slug);
-    if (!data.id || !data.lang) continue;
-
-    if (!localizedProjects[data.id]?.slug.startsWith(language)) {
-      localizedProjects[data.id] = project;
-    }
-  }
-
-  return Object.values(localizedProjects).toSorted((a, b) => {
-    const orderA = a?.data.order ?? Infinity;
-    const orderB = b?.data.order ?? Infinity;
-    return orderA - orderB;
-  });
+export const getLocalizedEntryOrDefault = <T>(map: Record<string, T>, language: string): T | undefined => {
+  return map[language] ?? Object.values(map)[0];
 };
 
-export const getPreviewProjects = async (): Promise<LocalizedProject[]> => {
+export const getLocalizedProjects = async (): Promise<Record<string, LocalizedProject>> => {
   const allProjects = await getCollection('projects');
   const localizedProjects: Record<string, LocalizedProject> = {};
 
@@ -56,6 +56,36 @@ export const getPreviewProjects = async (): Promise<LocalizedProject[]> => {
       };
     }
   }
+
+  return localizedProjects;
+};
+
+export const compareProjects = (a: ProjectEntry, b: ProjectEntry): number => {
+  const orderA = a?.data.order ?? Infinity;
+  const orderB = b?.data.order ?? Infinity;
+  return orderA - orderB;
+};
+
+export const getProjects = async (language: string): Promise<ProjectEntry[]> => {
+  const localizedProjects = await getLocalizedProjects();
+  const allProjects: ProjectEntry[] = [];
+
+  for (const projectId in localizedProjects) {
+    const project = localizedProjects[projectId];
+
+    if (project && language in project) {
+      allProjects.push(project[language]!);
+    } else if (project) {
+      const fallback = Object.values(project)[0];
+      if (fallback) allProjects.push(fallback);
+    }
+  }
+
+  return allProjects.toSorted(compareProjects);
+};
+
+export const getPreviewProjects = async (): Promise<LocalizedProject[]> => {
+  const localizedProjects = await getLocalizedProjects();
 
   return Object.values(localizedProjects).toSorted((a, b) => {
     const orderA = a[Object.keys(a)[0]!]?.data.order ?? Infinity;
@@ -98,4 +128,36 @@ export const getSeeAlsoLinks = async (seeAlso: string[]): Promise<ProjectLink[]>
     const slugData = extractSlug(link.slug);
     return slugData.id && seeAlso.includes(slugData.id);
   });
+};
+
+export const getProjectOverview = async (language: string): Promise<ProjectData> => {
+  const localizedProjects = await getLocalizedProjects();
+  const data: ProjectData = {
+    projects: [],
+    githubLinks: [],
+    webLinks: [],
+  };
+
+  for (const projectId in localizedProjects) {
+    const project = localizedProjects[projectId] ?? {};
+    const entry = getLocalizedEntryOrDefault(project ?? {}, language);
+    if (!entry) continue;
+    data.projects.push({
+      id: projectId,
+      title: entry.data.title,
+      description: entry.data.description,
+      links: Object.entries(project).reduce(
+        (allLinks, [projectLang, entry]) => ({
+          ...allLinks,
+          [projectLang]: translateProjectLink(entry.slug),
+        }),
+        {} as Record<string, string>,
+      ),
+    });
+
+    if (entry.data.socials?.github) data.githubLinks.push(entry.data.socials?.github);
+    if (entry.data.socials?.web) data.webLinks.push(entry.data.socials?.web);
+  }
+
+  return data;
 };
