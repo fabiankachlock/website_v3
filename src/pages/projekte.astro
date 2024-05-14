@@ -23,6 +23,7 @@ const projects = await getProjectOverview(i18next.language);
         projects.projects.map(project => (
           <li class="project">
             <div>
+              <p class="project__year">{project.year}</p>
               <h2 class="project__title">{project.title}</h2>
               <p class="project__subtitle">{project.description}</p>
             </div>
@@ -48,11 +49,11 @@ const projects = await getProjectOverview(i18next.language);
       {
         projects.githubLinks.map(project => (
           <li>
-            <a class="external-link" href={project}>
+            <a class="external-link" href={project.url}>
               <span class="link-icon">
                 <Fragment set:html={webIcon} />
               </span>
-              <span>{project}</span>
+              <span>{project.title}</span>
               <span class="link-icon link-icon--open">
                 <Fragment set:html={arrowRightIcon} />
               </span>
@@ -69,11 +70,11 @@ const projects = await getProjectOverview(i18next.language);
       {
         projects.webLinks.map(project => (
           <li>
-            <a class="external-link" href={project}>
+            <a class="external-link" href={project.url}>
               <span class="link-icon">
                 <Fragment set:html={githubIcon} />
               </span>
-              <span>{project}</span>
+              <span>{project.title}</span>
               <span class="link-icon link-icon--open">
                 <Fragment set:html={arrowRightIcon} />
               </span>
@@ -122,6 +123,7 @@ const projects = await getProjectOverview(i18next.language);
     border: 1px solid var(--color-text);
     display: flex;
     gap: 1rem;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
   }
@@ -130,7 +132,7 @@ const projects = await getProjectOverview(i18next.language);
     font-family: 'Mona Sans';
     font-weight: 700;
     color: var(--color-text);
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     margin-bottom: 0.5rem;
   }
 
@@ -140,10 +142,20 @@ const projects = await getProjectOverview(i18next.language);
     font-size: 1.2rem;
   }
 
+  .project__year {
+    font-family: 'Source Code Pro';
+    color: var(--color-primary);
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+  }
+
   .project-links {
     display: flex;
     gap: 0.5rem;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-left: auto;
   }
 
   .project-link-icon {
@@ -219,6 +231,7 @@ const projects = await getProjectOverview(i18next.language);
     width: 2rem;
     height: 2rem;
     fill: var(--color-text);
+    flex-shrink: 0;
   }
 
   :global(.external-link .link-icon--open) {
@@ -231,5 +244,18 @@ const projects = await getProjectOverview(i18next.language);
 
   :global(.external-link:hover .link-icon--open) {
     rotate: -45deg;
+  }
+
+  @media only screen and (min-width: 620px) {
+    .project {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .project-links {
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
   }
 </style>

@@ -13,12 +13,19 @@ export type ProjectLink = {
 export type ProjectData = {
   projects: {
     id: string;
+    year: string;
     title: string;
     description: string;
     links: Record<string, string>;
   }[];
-  githubLinks: string[];
-  webLinks: string[];
+  githubLinks: {
+    title: string;
+    url: string;
+  }[];
+  webLinks: {
+    title: string;
+    url: string;
+  }[];
 };
 
 export const translateProjectLink = (slug: string) => {
@@ -60,7 +67,7 @@ export const getLocalizedProjects = async (): Promise<Record<string, LocalizedPr
   return localizedProjects;
 };
 
-export const compareProjects = (a: ProjectEntry, b: ProjectEntry): number => {
+export const compareProjects = (a?: ProjectEntry, b?: ProjectEntry): number => {
   const orderA = a?.data.order ?? Infinity;
   const orderB = b?.data.order ?? Infinity;
   return orderA - orderB;
@@ -87,11 +94,9 @@ export const getProjects = async (language: string): Promise<ProjectEntry[]> => 
 export const getPreviewProjects = async (): Promise<LocalizedProject[]> => {
   const localizedProjects = await getLocalizedProjects();
 
-  return Object.values(localizedProjects).toSorted((a, b) => {
-    const orderA = a[Object.keys(a)[0]!]?.data.order ?? Infinity;
-    const orderB = b[Object.keys(b)[0]!]?.data.order ?? Infinity;
-    return orderA - orderB;
-  });
+  return Object.values(localizedProjects).toSorted((a, b) =>
+    compareProjects(getLocalizedEntryOrDefault(a, ''), getLocalizedEntryOrDefault(b, '')),
+  );
 };
 
 export const getProjectLinks = async (): Promise<ProjectLink[]> => {
@@ -111,7 +116,7 @@ export const getProjectLinks = async (): Promise<ProjectLink[]> => {
           [data.lang]: project.data.title,
         },
         slug: project.slug,
-        url: data.id,
+        url: translateProjectLink(project.slug),
         order: project.data.order,
       };
     }
@@ -144,6 +149,7 @@ export const getProjectOverview = async (language: string): Promise<ProjectData>
     if (!entry) continue;
     data.projects.push({
       id: projectId,
+      year: entry.data.year,
       title: entry.data.title,
       description: entry.data.description,
       links: Object.entries(project).reduce(
@@ -155,8 +161,16 @@ export const getProjectOverview = async (language: string): Promise<ProjectData>
       ),
     });
 
-    if (entry.data.socials?.github) data.githubLinks.push(entry.data.socials?.github);
-    if (entry.data.socials?.web) data.webLinks.push(entry.data.socials?.web);
+    if (entry.data.socials?.github)
+      data.githubLinks.push({
+        title: entry.data.title,
+        url: entry.data.socials?.github,
+      });
+    if (entry.data.socials?.web)
+      data.webLinks.push({
+        title: entry.data.title,
+        url: entry.data.socials?.web,
+      });
   }
 
   return data;

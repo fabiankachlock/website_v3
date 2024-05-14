@@ -1,6 +1,5 @@
 ---
 import i18next, { t } from 'i18next';
-import { localizePath } from 'astro-i18next';
 import { getProjectLinks } from '@/content/projects';
 
 import ThemeSwitch from './ThemeSwitch.astro';
@@ -53,7 +52,7 @@ const projectLinks = await getProjectLinks();
         {
           projectLinks.map(project => (
             <li class="menu__item menu__item--project-item">
-              <LocalizedLink classes="menu__link" path={localizePath('/projekte') + '/' + project.url}>
+              <LocalizedLink classes="menu__link" path={project.url}>
                 {project.title[i18next.language] ?? Object.values(project.title)[0]}
               </LocalizedLink>
             </li>
