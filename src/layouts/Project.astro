@@ -17,7 +17,7 @@ export interface Props {
 }
 
 const { project } = Astro.props;
-const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
+const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.language);
 ---
 
 <script src="../scripts/blog.ts"></script>
@@ -81,15 +81,19 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
     </main>
     <footer class="project__footer">
       <div class="project__footer-content">
-        <div class="project__footer-info">
-          <Translation>
-            <p slot="de">Links</p>
-            <p slot="en">Links</p>
-          </Translation>
-          <div class="project__links">
-            <ProjectLinks socials={project.data.socials} title={project.data.title} />
-          </div>
-        </div>
+        {
+          project.data.socials && (
+            <div class="project__footer-info">
+              <Translation>
+                <p slot="de">Links</p>
+                <p slot="en">Links</p>
+              </Translation>
+              <div class="project__links">
+                <ProjectLinks socials={project.data.socials} title={project.data.title} />
+              </div>
+            </div>
+          )
+        }
         <Translation>
           <p class="project__footer-see-also" slot="de">Auch interessant:</p>
           <p class="project__footer-see-also" slot="en">See also:</p>
@@ -97,15 +101,12 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
         <div class="project__footer-links">
           {
             seeAlso?.map(p => (
-              <LocalizedLink
-                classes="project__footer-link project__footer-link--project"
-                path={localizePath('/projekte') + '/' + p.url}
-              >
+              <a class="project__footer-link project__footer-link--project" href={p.url}>
                 <span class="project__footer-link-icon">
                   <Fragment set:html={arrowUpRightIcon} />
                 </span>
-                <span>{p.title[i18next.language] ?? Object.values(p.title)[0]}</span>
-              </LocalizedLink>
+                <span>{p.title}</span>
+              </a>
             ))
           }
           <LocalizedLink classes="project__footer-link project__footer-link--home" path="/">
@@ -280,6 +281,7 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
     justify-content: flex-start;
     align-items: center;
     gap: 2rem;
+    margin-bottom: 2rem;
   }
 
   .project__footer-info p {
@@ -292,7 +294,6 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? []);
     font-family: 'Mona Sans';
     color: var(--color-text);
     font-size: 1.3rem;
-    margin-top: 2rem;
     margin-bottom: 1rem;
   }
 

@@ -1,4 +1,4 @@
 - Project detail images
 - dynamic cover image
-- hide links heading when there are no links
 - missing link to project overview
+- sort projects in overview 
