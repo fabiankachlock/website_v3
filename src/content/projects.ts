@@ -6,7 +6,7 @@ export type LocalizedProject = Record<string, ProjectEntry>;
 
 export type ProjectLink = {
   slug: string;
-  title: Record<string, string>;
+  title: string;
   url: string;
 };
 
@@ -99,36 +99,31 @@ export const getPreviewProjects = async (): Promise<LocalizedProject[]> => {
   );
 };
 
-export const getProjectLinks = async (): Promise<ProjectLink[]> => {
-  const allProjects = await getCollection('projects');
-  const links: Record<string, ProjectLink & { order: number }> = {};
+export const getProjectLinks = async (language: string): Promise<ProjectLink[]> => {
+  const localizedProjects = await getLocalizedProjects();
+  const links: (ProjectLink & { order: number })[] = [];
 
-  for (const project of allProjects) {
-    if (!project.data.enabled) continue;
+  for (const projectId in localizedProjects) {
+    const project = getLocalizedEntryOrDefault(localizedProjects[projectId]!, language);
+    if (!project || !project.data.enabled) continue;
 
     const data = extractSlug(project.slug);
     if (!data.id || !data.lang) continue;
-    if (data.id in links) {
-      links[data.id]!.title[data.lang] = project.data.title;
-    } else {
-      links[data.id] = {
-        title: {
-          [data.lang]: project.data.title,
-        },
-        slug: project.slug,
-        url: translateProjectLink(project.slug),
-        order: project.data.order,
-      };
-    }
+    links.push({
+      title: project.data.title,
+      slug: project.slug,
+      url: translateProjectLink(project.slug),
+      order: project.data.order,
+    });
   }
 
-  return Object.values(links).toSorted((a, b) => a.order - b.order);
+  return links.toSorted((a, b) => a.order - b.order);
 };
 
-export const getSeeAlsoLinks = async (seeAlso: string[]): Promise<ProjectLink[]> => {
+export const getSeeAlsoLinks = async (seeAlso: string[], language: string): Promise<ProjectLink[]> => {
   if (!seeAlso || seeAlso.length === 0) return [];
 
-  const allLinks = await getProjectLinks();
+  const allLinks = await getProjectLinks(language);
   return allLinks.filter(link => {
     const slugData = extractSlug(link.slug);
     return slugData.id && seeAlso.includes(slugData.id);

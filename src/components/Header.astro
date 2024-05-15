@@ -10,7 +10,7 @@ import Translation from './Translation.astro';
 import svgMenuButton from '@/assets/menu_button.svg?raw';
 import svgLogo from '@/assets/logo.svg?raw';
 
-const projectLinks = await getProjectLinks();
+const projectLinks = await getProjectLinks(i18next.language);
 ---
 
 <header class="head">
@@ -52,9 +52,9 @@ const projectLinks = await getProjectLinks();
         {
           projectLinks.map(project => (
             <li class="menu__item menu__item--project-item">
-              <LocalizedLink classes="menu__link" path={project.url}>
-                {project.title[i18next.language] ?? Object.values(project.title)[0]}
-              </LocalizedLink>
+              <a class="menu__link" href={project.url}>
+                {project.title}
+              </a>
             </li>
           ))
         }
