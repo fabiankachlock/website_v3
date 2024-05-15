@@ -1,0 +1,43 @@
+---
+enabled: true
+title: 'Morse Code'
+description: 'Morse Code - Generiere den passenden Morsecode-Sound für deinen Code oder sogar Text!'
+seo: '../images/morse-code/seo.png'
+cover: '../images/morse-code/showcase_dark.png'
+coverAlt: 'Morse Code App'
+year: '2020'
+order: 2
+seeAlso:
+  - 'bifurcation_diagram'
+technologies:
+  - 'Swift'
+  - 'iOS'
+  - 'AVAudioEngine'
+# socials:
+#   github:
+#   web:
+---
+import BlogImage from '../BlogImage.vue';
+
+# Morse Code
+
+## Funktionen
+
+Die Hauptaufgabe der App ist es Morsecode in Sound zu übersetzen. Du kannst entweder einen Text eingeben und das Programm ihn in die zugehörige Abfolge von Punkten und Strichen übersetzen lassen oder die Punkte und Striche (Dots und Dashes) direkt eingeben. Zum Generieren eines Tons gibt es einige Optionen. Zuerst kannst du die Wellenform des Tons auswählen. Hier kannst du zwischen Sinus, Quadratischen oder Dreieckigen Tonwellen wählen. Die letzte Option ist ein komplett zufälliger Ton (auch "noise"). Als nächstes kannst du die Frequenz und Unit-Zeit einstellen. Die Unit-Zeit bestimmt die Länge eines Dots oder einer kurzen Pause.
+
+Das sind die Hauptfunktionen der App. Es gibt aber noch ein paar erweiterte Funktionen. Um das Schreiben von langen Texten oder Abfolgen einfacher zu machen habe ich Variablen hinzugefügt. Diese können am Anfang definiert werden und können lange und mehrmals wiederholende Sequenzen stark vereinfachen. Eine weitere Funktion in der Kategorie „Einfacheres Schreiben“ ist eine Funktion, mit der sich eine Sequenz beliebig oft wiederholen lässt. Um alles klar und lesbar zu lassen, habe ich eckige Klammern hinzugefügt. Diese können (und manchmal auch müssen) genutzt werden, um Text in Blöcke zu schließen.
+Das letzte Feature, was zurzeit implementiert ist, ist eine Funktion, mit der sich im Text ein einzelner Ton wiedergeben lässt. Dieser ist in der Zeit und Frequenz variable, denn beides wird direkt im Text angegeben.
+
+## Was habe ich genutzt?
+
+Die „Morse Code“ ist eine iOS Anwendung geschrieben in Swift. Für die Benutzeroberfläche habe ich UIKit und für das Generieren von Tönen die AVAudioEngine genutzt.
+
+## Wie ist es geworden?
+
+Das Projekt lief extrem gut. Es war ein witziges, kleines Projekt, was auf alle Fälle seine Zeit wert war. Die Benutzeroberfläche ist eher eine funktionale. Sie ist nicht gestaltet, um schön auszusehen, die Hauptaufgabe ist den Ton-Generator zu steuern. Die Implementierung vom Morsecode und der Tongenerierung war sehr interessant. Im Gegensatz dazu habe ich mir über das Parsen der extra Funktionen eher den Kopf zerbrochen.
+
+## Was würde ich verbessern?
+
+Es gibt einige Dinge, die ich auf alle Fälle noch verbessern möchte. Zum einen gibt es in der Art und Weiße, wie die Töne generiert werden noch viel Platz für Verbesserungen. Zurzeit werden die Töne nicht kontinuierlich abgespielt. Für jeden Ton wird eine neue AVAudioEngine Instanz initialisiert, welche nur einen Ton spielt. Das ist nicht nur ineffizient, sondern wird auch zum Problem, wenn die Unit-Zeiten sehr klein werden. Um das zu beheben kann eine einzelne AVAudioEngine Instanz genutzt werden, bei welcher die Pausen mit einer Amplitude von 0 (also keinen Ton) gespielt werden.
+
+Das andere Problem ist das Parsen von den extra Funktionen. Der Prozess wurde sehr komplex und nicht mehr 100% zuverlässig. Zurzeit muss man nur den nicht funktionierenden Part in eckigen Klammern zusammenfassen und alles sollte funktionieren, aber mein Ziel ist es da noch eine bessere Lösung zu finden.
