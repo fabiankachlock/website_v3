@@ -1,5 +1,4 @@
 - Project detail images
 - dynamic cover image
 - hide links heading when there are no links
-- project overview missing gap
 - missing link to project overview

@@ -18,7 +18,7 @@ const projects = await getProjectOverview(i18next.language);
       <h1 slot="de" class="site__title">Projekte</h1>
       <h1 slot="en" class="site__title">Projects</h1>
     </Translation>
-    <ul>
+    <ul class="list-container">
       {
         projects.projects.map(project => (
           <li class="project">
@@ -45,7 +45,7 @@ const projects = await getProjectOverview(i18next.language);
       <h2 slot="de" class="site__subtitle">Github</h2>
       <h2 slot="en" class="site__subtitle">Github</h2>
     </Translation>
-    <ul>
+    <ul class="list-container">
       {
         projects.githubLinks.map(project => (
           <li>
@@ -66,7 +66,7 @@ const projects = await getProjectOverview(i18next.language);
       <h2 slot="de" class="site__subtitle">Web Links</h2>
       <h2 slot="en" class="site__subtitle">Web Links</h2>
     </Translation>
-    <ul>
+    <ul class="list-container">
       {
         projects.webLinks.map(project => (
           <li>
@@ -112,9 +112,11 @@ const projects = await getProjectOverview(i18next.language);
     width: calc(100% - 4rem);
     max-width: 768px;
   }
-
-  ul {
+  .list-container {
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .project {
