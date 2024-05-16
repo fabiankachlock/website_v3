@@ -1,0 +1,43 @@
+---
+enabled: true
+title: 'Morse Code'
+description: 'Morse Code - Generate the associated morse code sound to your sequence of dashes and dots or even text!'
+seo: '../images/morse-code/seo.png'
+cover: '../images/morse-code/showcase_dark.png'
+coverAlt: 'Morse Code App'
+year: '2020'
+order: 2
+seeAlso:
+  - 'bifurcation_diagram'
+technologies:
+  - 'Swift'
+  - 'iOS'
+  - 'AVAudioEngine'
+# socials:
+#   github:
+#   web:
+---
+import BlogImage from '../BlogImage.vue';
+
+# Morse Code
+
+## Features
+
+The main intention of the app is to translate Morse Code into sound. You can either type a text and let the program translate it into its associated sequence of dashes and dots or type the dashes and dots directly. For playing the sound, you have some options. First of all, you can select the wave-form of the sound. There you can choose between sine, noise, square, or triangle sound waves. Furthermore, you can set the frequency of the tone and the unit-time for the Morse Code. The unit-time is the length of a single dot or pause.
+
+These are all the basic features, all you would expect from an app called "Morse Code". But, I also have some advanced features. To make your life a little bit easier while writing your text or sequence of dashes and dots, I added capabilities for variables. You can declare them at the start and use them as often you want in the actual text. Another one in the category of easier-writing is that you can quickly repeat a sequence how often you want. To keep things clean and readable, you can (and sometimes must) wrap your text/dashes and dots into brackets.
+The last one currently implemented is an operator, which lets you play a ton a given amount of time. You can optionally provide a different frequency. This might not be super useful, but it's was definitely fun to implement.
+
+## What did I use?
+
+I made the app for iOS with Swift and a 100% programmatic UIKit user interface. The tones are generated with the help of an AVAudioEngine.
+
+## How came it out?
+
+The project went really well! It was a funny, small project, which was unquestionably worth its time. The UI is more of a functional one. I didn't make the UI to look great, the only purpose is, to let the user take control. Implementing the Morse Code and sound-generation was pretty fun. On the other hand, writing the parsing of the extra functions gave me quite a headache.
+
+## What would I improve?
+
+The are a few things I certainly want to improve. The first thing is the way tones are generated. Currently, sounds don't get played in a continuous stream. In fact, every tone initializes a new AVAudioEngine instance, which just plays a single sound. Pauses are just the program waiting for a defined duration. This gets a problem when durations are really short, and some tones get lost. A possible workaround is using a single AVAudioEngine instance. Pauses are just entered with an amplitude of 0, and everything should be fine.
+
+The other thing I don't like is the way I parse the text. This process got super complex and not 100% reliable. For now, you just have to add brackets around the part, which is not working to make it work again. But in the future, I want to come up with a better solution to this problem.
