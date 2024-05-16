@@ -37,6 +37,9 @@ document.querySelectorAll('.translate').forEach(e => {
   e.querySelector('.translate__button')?.addEventListener('click', evt => {
     e.querySelector('.language-select')?.classList.toggle('open');
     evt.stopPropagation();
+    try {
+      plausible('Translate');
+    } catch {}
   });
 });
 
@@ -50,6 +53,9 @@ document.addEventListener('click', () => {
 document.querySelectorAll('.theme-switch__button').forEach(e => {
   e.addEventListener('click', () => {
     toggleTheme();
+    try {
+      plausible('Theme');
+    } catch {}
   });
 });
 

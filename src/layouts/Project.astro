@@ -4,12 +4,12 @@ import { getSeeAlsoLinks } from '@/content/projects';
 import Main from './Main.astro';
 import { Image } from 'astro:assets';
 import i18next, { t } from 'i18next';
-import { localizePath } from 'astro-i18next';
 import TechPill from '@/components/common/TechPill.astro';
 import Translation from '@/components/Translation.astro';
 import ProjectLinks from '@/components/common/ProjectLinks.astro';
 import LocalizedLink from '@/components/LocalizedLink.astro';
 import homeIcon from '@carbon/icons/svg/32/home.svg?raw';
+import galleryIcon from '@carbon/icons/svg/32/image.svg?raw';
 import arrowUpRightIcon from '@carbon/icons/svg/32/arrow--up-right.svg?raw';
 
 export interface Props {
@@ -77,6 +77,11 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
       </div>
     </header>
     <main class="project__content">
+      <div class="project__gallery">
+        <span>
+          <Fragment set:html={galleryIcon} />
+        </span>
+      </div>
       <slot />
     </main>
     <footer class="project__footer">
@@ -197,6 +202,12 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+  }
+
+  .project__gallery :global(svg) {
+    width: 2rem;
+    height: 2rem;
+    fill: var(--color-text);
   }
 
   @media only screen and (min-width: 460px) {

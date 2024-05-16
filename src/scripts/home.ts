@@ -7,6 +7,11 @@ document.querySelectorAll('.skill-drawer').forEach((drawer, idx) => {
 
   head?.addEventListener('click', () => {
     drawer.classList.toggle('open');
+    if (drawer.classList.contains('open')) {
+      try {
+        plausible('Skill', { props: { 'skill-id': id } });
+      } catch {}
+    }
 
     let openDrawer: HTMLElement | null = null;
     document.querySelectorAll(`.skill-drawer:not([data-id="${id}"])`).forEach(otherDrawer => {

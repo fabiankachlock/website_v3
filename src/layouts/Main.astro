@@ -23,6 +23,7 @@ export interface Props {
     <CommonSeo title={Astro.props.title!} description={Astro.props.description!} custom={Astro.props.seo!} />
     <slot name="head" />
     <script src="../scripts/setup.ts"></script>
+    <script defer data-domain="localhost" src="http://localhost:8000/js/script.local.js"></script>
   </head>
   <body>
     <div class="frame__content">
