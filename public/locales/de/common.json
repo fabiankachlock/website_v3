@@ -3,13 +3,15 @@
     "/": "Fabian Kachlock",
     "/impressum": "Impressum @ Fabian Kachlock",
     "/datenschutz": "Datenschutz @ Fabian Kachlock",
-    "/kontakt": "Kontakt @ Fabian Kachlock"
+    "/kontakt": "Kontakt @ Fabian Kachlock",
+    "/projekte": "Projekte @ Fabian Kachlock"
   },
   "description": {
     "/": "Fabian Kachlock - mein Portfolio.",
     "/impressum": "Impressum von Fabian Kachlock.",
     "/datenschutz": "Datenschutzerklärung von Fabian Kachlock.",
-    "/kontakt": "Kontaktiere Fabian Kachlock."
+    "/kontakt": "Kontaktiere Fabian Kachlock.",
+    "/projekte": "Projekte von Fabian Kachlock."
   },
   "lng": {
     "de": "Deutsch",

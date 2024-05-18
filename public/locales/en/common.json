@@ -4,14 +4,16 @@
     "/en/": "Fabian Kachlock",
     "/en/imprint": "Imprint @ Fabian Kachlock",
     "/en/privacy": "Privacy Policy @ Fabian Kachlock",
-    "/en/contact": "Contact @ Fabian Kachlock"
+    "/en/contact": "Contact @ Fabian Kachlock",
+    "/en/projects": "Projects @ Fabian Kachlock"
   },
   "description": {
     "/en": "Fabian Kachlock - my portfolio.",
     "/en/": "Fabian Kachlock - my portfolio.",
     "/en/imprint": "Imprint of Fabian Kachlock.",
     "/en/privacy": "Privacy Policy of Fabian Kachlock.",
-    "/en/contact": "Contact Fabian Kachlock."
+    "/en/contact": "Contact Fabian Kachlock.",
+    "/en/projects": "Projects of Fabian Kachlock."
   },
   "lng": {
     "de": "Deutsch",
@@ -19,6 +21,11 @@
   },
   "common": {
     "projects": "Projects",
+    "openMenu": "Open menu",
+    "changeLanguage": "Change language",
+    "openWeb": "Open website of {{name}}",
+    "openGitHub": "Show {{name}} on GitHub",
+    "openLink": "Open reference of {{name}}",
     "maximizeImage": "Enlarge image",
     "closeImage": "Close image"
   },
