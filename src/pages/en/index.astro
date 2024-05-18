@@ -10,7 +10,6 @@ import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
 import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
 import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
 import formLogo from '@carbon/icons/svg/32/pen.svg?raw';
-import infoIcon from '@carbon/icons/svg/32/information.svg?raw';
 import LocalizedLink from '@/components/LocalizedLink.astro';
 import { getPreviewProjects } from '@/content/projects';
 
@@ -463,21 +462,11 @@ const projects = await getPreviewProjects();
     </h2>
     <div class="projects-container">
       {projects.map(p => <ProjectCard project={p} />)}
-      <!-- <Translation>
-        <p slot="de" style="font-family: 'Mona Sans'">Bald verfügbar</p>
-        <p slot="en" style="font-family: 'Mona Sans'">Coming soon</p>
-      </Translation> -->
     </div>
   </section>
 </Main>
 
 <style is:global>
-  #info svg {
-    height: 29px;
-    fill: var(--color-primary);
-    vertical-align: bottom;
-  }
-
   .section-anchor {
     display: block;
     visibility: hidden;

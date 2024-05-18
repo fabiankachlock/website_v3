@@ -1,0 +1,263 @@
+---
+import i18next, { changeLanguage, t } from 'i18next';
+import { getProjectOverview } from '@/content/projects';
+import Main from '@/layouts/Main.astro';
+import Translation from '@/components/Translation.astro';
+import githubIcon from '@carbon/icons/svg/32/logo--github.svg?raw';
+import arrowRightIcon from '@carbon/icons/svg/32/arrow--right.svg?raw';
+import webIcon from '@carbon/icons/svg/32/wikis.svg?raw';
+
+changeLanguage('en');
+
+const projects = await getProjectOverview(i18next.language);
+---
+
+<Main>
+  <div class="site__content">
+    <Translation>
+      <h1 slot="de" class="site__title">Projekte</h1>
+      <h1 slot="en" class="site__title">Projects</h1>
+    </Translation>
+    <ul class="list-container">
+      {
+        projects.projects.map(project => (
+          <li class="project">
+            <div>
+              <p class="project__year">{project.year}</p>
+              <h2 class="project__title">{project.title}</h2>
+              <p class="project__subtitle">{project.description}</p>
+            </div>
+            <div class="project-links">
+              {Object.entries(project.links).map(([lang, url]) => (
+                <a class="project-link" href={url}>
+                  {t(`lng.${lang}`)}
+                  <span class="project-link-icon">
+                    <Fragment set:html={arrowRightIcon} />
+                  </span>
+                </a>
+              ))}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <Translation>
+      <h2 slot="de" class="site__subtitle">Github</h2>
+      <h2 slot="en" class="site__subtitle">Github</h2>
+    </Translation>
+    <ul class="list-container">
+      {
+        projects.githubLinks.map(project => (
+          <li>
+            <a class="external-link" href={project.url}>
+              <span class="link-icon">
+                <Fragment set:html={webIcon} />
+              </span>
+              <span>{project.title}</span>
+              <span class="link-icon link-icon--open">
+                <Fragment set:html={arrowRightIcon} />
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <Translation>
+      <h2 slot="de" class="site__subtitle">Web Links</h2>
+      <h2 slot="en" class="site__subtitle">Web Links</h2>
+    </Translation>
+    <ul class="list-container">
+      {
+        projects.webLinks.map(project => (
+          <li>
+            <a class="external-link" href={project.url}>
+              <span class="link-icon">
+                <Fragment set:html={githubIcon} />
+              </span>
+              <span>{project.title}</span>
+              <span class="link-icon link-icon--open">
+                <Fragment set:html={arrowRightIcon} />
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Main>
+
+<style>
+  .site__title {
+    color: var(--color-text-header);
+    font-family: 'Source Code Pro';
+    font-weight: 500;
+    font-size: 3rem;
+    margin: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .site__subtitle {
+    color: var(--color-text-header);
+    font-family: 'Source Code Pro';
+    font-weight: 400;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .site__content {
+    padding: 2rem;
+    flex: 1;
+    margin: 0 auto;
+    width: calc(100% - 4rem);
+    max-width: 768px;
+  }
+  .list-container {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project {
+    padding: 1rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-text);
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .project__title {
+    font-family: 'Mona Sans';
+    font-weight: 700;
+    color: var(--color-text);
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project__subtitle {
+    font-family: 'Mona Sans';
+    color: var(--color-text);
+    font-size: 1.2rem;
+  }
+
+  .project__year {
+    font-family: 'Source Code Pro';
+    color: var(--color-primary);
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
+  .project-link-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    right: 0.3rem;
+    top: 50%;
+    translate: 150% -50%;
+    position: absolute;
+    fill: var(--color-primary);
+    transition:
+      translate 140ms linear,
+      rotate 70ms linear 140ms;
+  }
+
+  .project-link,
+  .external-link {
+    font-family: 'Mona Sans';
+    color: var(--color-text);
+    font-size: 1.2rem;
+    padding: 1rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-text);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    transition:
+      padding 140ms linear,
+      box-shadow 70ms linear,
+      translate 70ms linear;
+    box-shadow:
+      0px 0px 0 -1px var(--color-bg-tint-3),
+      0px 0px var(--color-text);
+    text-decoration: none;
+  }
+
+  .project-link {
+    position: relative;
+    overflow: hidden;
+    padding: 0.5rem 1.5rem;
+  }
+
+  :global(.link-icon) {
+    transition: rotate 70ms linear;
+  }
+
+  .project-link:hover {
+    padding-left: 1rem;
+    padding-right: 2rem;
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+    translate: -3px -3px;
+    box-shadow:
+      3px 3px 0 -1px var(--color-bg-tint-3),
+      3px 3px var(--color-text);
+  }
+
+  .project-link:hover :global(.project-link-icon) {
+    translate: 0 -50%;
+    rotate: -45deg;
+  }
+
+  :global(.external-link:hover) {
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+    translate: -5px -5px;
+    box-shadow:
+      5px 5px 0 -1px var(--color-bg-tint-3),
+      5px 5px var(--color-text);
+  }
+
+  :global(.external-link .link-icon) {
+    width: 2rem;
+    height: 2rem;
+    fill: var(--color-text);
+    flex-shrink: 0;
+  }
+
+  :global(.external-link .link-icon--open) {
+    margin-left: auto;
+  }
+
+  :global(.external-link:hover .link-icon) {
+    fill: var(--color-primary);
+  }
+
+  :global(.external-link:hover .link-icon--open) {
+    rotate: -45deg;
+  }
+
+  @media only screen and (min-width: 620px) {
+    .project {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .project-links {
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+  }
+</style>
