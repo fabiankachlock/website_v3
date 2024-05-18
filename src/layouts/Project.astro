@@ -2,15 +2,14 @@
 import type { ProjectEntry } from '@/content/config';
 import { getSeeAlsoLinks } from '@/content/projects';
 import Main from './Main.astro';
-import { Image } from 'astro:assets';
 import i18next, { t } from 'i18next';
-import { localizePath } from 'astro-i18next';
 import TechPill from '@/components/common/TechPill.astro';
 import Translation from '@/components/Translation.astro';
 import ProjectLinks from '@/components/common/ProjectLinks.astro';
 import LocalizedLink from '@/components/LocalizedLink.astro';
 import homeIcon from '@carbon/icons/svg/32/home.svg?raw';
 import arrowUpRightIcon from '@carbon/icons/svg/32/arrow--up-right.svg?raw';
+import DynamicImage from '@/components/common/DynamicImage.astro';
 
 export interface Props {
   project: ProjectEntry;
@@ -29,11 +28,11 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
     openGraph: {
       images: [
         {
-          url: project.data.seo?.src ?? project.data.cover.src,
+          url: project.data.seo?.src ?? project.data.coverDark.src,
           alt: project.data.seo?.src ? project.data.description : project.data.coverAlt,
-          type: `image/${(project.data.seo?.src ?? project.data.cover.src).split('.').pop()?.split('?')[0]}`,
-          width: project.data.seo?.width ?? project.data.cover.width,
-          height: project.data.seo?.height ?? project.data.cover.height,
+          type: `image/${(project.data.seo?.src ?? project.data.coverDark.src).split('.').pop()?.split('?')[0]}`,
+          width: project.data.seo?.width ?? project.data.coverDark.width,
+          height: project.data.seo?.height ?? project.data.coverDark.height,
         },
       ],
     },
@@ -46,11 +45,12 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
     <header class="project__header">
       <div class="project__header-content">
         <div class="project__header-image-wrappper">
-          <Image
-            class="project__header-image"
-            src={project.data.cover}
+          <DynamicImage
+            dark={project.data.coverDark}
+            light={project.data.coverLight}
             alt={project.data.coverAlt}
             transition:name={`project-image:${project?.slug}`}
+            class="project__header-image"
           />
         </div>
         <h1 class="project__title" transition:name={`project-title:${project?.slug}`}>{project.data.title}</h1>
@@ -142,7 +142,7 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
     margin-bottom: 1rem;
   }
 
-  .project__header-image {
+  :global(.project__header-image) {
     max-height: max(400px, 70vh);
     max-width: min(100%, 920px);
     height: 100%;

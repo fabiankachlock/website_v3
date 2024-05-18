@@ -1,10 +1,10 @@
 ---
 import { getLocalizedEntryOrDefault, translateProjectLink, type LocalizedProject } from '@/content/projects';
-import { Image } from 'astro:assets';
 import i18next, { t } from 'i18next';
 import Translation from '../Translation.astro';
 import SocialLink from '../common/SocialLink.astro';
 import TechPill from '../common/TechPill.astro';
+import DynamicImage from '../common/DynamicImage.astro';
 
 export type Props = {
   project: LocalizedProject;
@@ -20,9 +20,10 @@ const project = translatedData!.data;
   <div class="project-card__wrapper">
     <p class="project-card__year">{project?.year}</p>
     <div class="project-card__image-wrapper">
-      <Image
+      <DynamicImage
         class="project-card__image"
-        src={project.cover}
+        dark={project.coverDark}
+        light={project.coverLight}
         alt={project.coverAlt}
         transition:name={`project-image:${translatedData?.slug}`}
       />
@@ -134,7 +135,7 @@ const project = translatedData!.data;
     margin: 0 auto;
   }
 
-  .project-card__image {
+  :global(.project-card__image) {
     display: block;
     width: 100%;
     height: 100%;

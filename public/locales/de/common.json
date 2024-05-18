@@ -21,7 +21,9 @@
     "changeLanguage": "Sprache ändern",
     "openWeb": "Webseite von {{name}} anzeigen",
     "openGitHub": "{{name}} auf GitHub anzeigen",
-    "openLink": "Referenz vom {{name}} öffnen"
+    "openLink": "Referenz vom {{name}} öffnen",
+    "maximizeImage": "Bild vergrößern",
+    "closeImage": "Bild schließen"
   },
   "contactForm": {
     "warnHttp": "Achtung: Die Seite wurde über HTTP aufgerufen. Alle Daten, die in dieses Formular eingeben werden, werden unverschlüsselt über das Internet übertragen. Das Formular kann nur über eine sichere HTTPS Verbindung genutzt werden.",

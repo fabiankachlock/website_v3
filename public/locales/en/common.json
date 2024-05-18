@@ -18,7 +18,9 @@
     "en": "English"
   },
   "common": {
-    "projects": "Projects"
+    "projects": "Projects",
+    "maximizeImage": "Enlarge image",
+    "closeImage": "Close image"
   },
   "contactForm": {
     "warnHttp": "Attention: The page was accessed via HTTP. All data you enter in this form will be transmitted unencrypted over the Internet. The form can only be used with a secure HTTPS connection.",
