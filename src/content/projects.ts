@@ -14,6 +14,7 @@ export type ProjectData = {
   projects: {
     id: string;
     year: string;
+    order: number;
     title: string;
     description: string;
     links: Record<string, string>;
@@ -142,10 +143,12 @@ export const getProjectOverview = async (language: string): Promise<ProjectData>
     const project = localizedProjects[projectId] ?? {};
     const entry = getLocalizedEntryOrDefault(project ?? {}, language);
     if (!entry) continue;
+
     data.projects.push({
       id: projectId,
       year: entry.data.year,
       title: entry.data.title,
+      order: entry.data.order,
       description: entry.data.description,
       links: Object.entries(project).reduce(
         (allLinks, [projectLang, entry]) => ({
@@ -168,5 +171,6 @@ export const getProjectOverview = async (language: string): Promise<ProjectData>
       });
   }
 
+  data.projects ? data.projects.sort((a, b) => a.order - b.order) : [];
   return data;
 };

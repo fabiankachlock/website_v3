@@ -1,4 +1,3 @@
 - Project detail images
 - dynamic cover image
 - missing link to project overview
-- sort projects in overview 
