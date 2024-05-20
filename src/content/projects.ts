@@ -1,4 +1,6 @@
 import { getCollection } from 'astro:content';
+/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+// @ts-ignore
 import { localizePath } from 'astro-i18next';
 
 import type { ProjectEntry } from './config';

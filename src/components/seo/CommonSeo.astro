@@ -1,4 +1,5 @@
 ---
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import type { Props as AstroSeoProps } from '@astrolib/seo';
 import { AstroSeo } from '@astrolib/seo';
 import i18next, { t } from 'i18next';
@@ -57,17 +58,17 @@ const locales: Record<string, string> = {
     cardType: 'summary_large_image',
     ...Astro.props.custom?.twitter,
   }}
-  additionalLinkTags={Astro.props.custom!.additionalLinkTags!}
-  additionalMetaTags={Astro.props.custom!.additionalMetaTags!}
+  additionalLinkTags={Astro.props.custom?.additionalLinkTags!}
+  additionalMetaTags={Astro.props.custom?.additionalMetaTags!}
   canonical={Astro.props.custom?.canonical ?? Astro.url.toString()}
-  defaultTitle={Astro.props.custom!.defaultTitle!}
-  facebook={Astro.props.custom!.facebook!}
-  languageAlternates={Astro.props.custom!.languageAlternates!}
-  mobileAlternate={Astro.props.custom!.mobileAlternate!}
-  nofollow={Astro.props.custom!.nofollow!}
-  noindex={Astro.props.custom!.noindex!}
-  robotsProps={Astro.props.custom!.robotsProps!}
-  titleTemplate={Astro.props.custom!.titleTemplate!}
+  defaultTitle={Astro.props.custom?.defaultTitle!}
+  facebook={Astro.props.custom?.facebook!}
+  languageAlternates={Astro.props.custom?.languageAlternates!}
+  mobileAlternate={Astro.props.custom?.mobileAlternate!}
+  nofollow={Astro.props.custom?.nofollow!}
+  noindex={Astro.props.custom?.noindex!}
+  robotsProps={Astro.props.custom?.robotsProps!}
+  titleTemplate={Astro.props.custom?.titleTemplate!}
 />
 <meta name="twitter:image:alt" content="Fabian Kachlock" />
 <meta property="og:author" content="Fabian Kachlock" />
