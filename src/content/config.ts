@@ -1,4 +1,4 @@
-import { z, defineCollection, type CollectionEntry } from 'astro:content';
+import { type CollectionEntry, defineCollection, z } from 'astro:content';
 
 const projectsCollection = defineCollection({
   type: 'content',

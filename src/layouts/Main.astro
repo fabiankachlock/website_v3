@@ -1,13 +1,13 @@
 ---
+import '@/main.css';
+
 import type { Props as AstroSeoProps } from '@astrolib/seo';
 import i18next from 'i18next';
 
 import CommonHead from '@/components/CommonHead.astro';
-import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
 import CommonSeo from '@/components/seo/CommonSeo.astro';
-
-import '@/main.css';
 
 export interface Props {
   title?: string;

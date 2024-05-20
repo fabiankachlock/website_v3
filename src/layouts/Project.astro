@@ -1,15 +1,17 @@
 ---
+import arrowUpRightIcon from '@carbon/icons/svg/32/arrow--up-right.svg?raw';
+import homeIcon from '@carbon/icons/svg/32/home.svg?raw';
+import i18next, { t } from 'i18next';
+
+import DynamicImage from '@/components/common/DynamicImage.astro';
+import ProjectLinks from '@/components/common/ProjectLinks.astro';
+import TechPill from '@/components/common/TechPill.astro';
+import LocalizedLink from '@/components/LocalizedLink.astro';
+import Translation from '@/components/Translation.astro';
 import type { ProjectEntry } from '@/content/config';
 import { getSeeAlsoLinks } from '@/content/projects';
+
 import Main from './Main.astro';
-import i18next, { t } from 'i18next';
-import TechPill from '@/components/common/TechPill.astro';
-import Translation from '@/components/Translation.astro';
-import ProjectLinks from '@/components/common/ProjectLinks.astro';
-import LocalizedLink from '@/components/LocalizedLink.astro';
-import homeIcon from '@carbon/icons/svg/32/home.svg?raw';
-import arrowUpRightIcon from '@carbon/icons/svg/32/arrow--up-right.svg?raw';
-import DynamicImage from '@/components/common/DynamicImage.astro';
 
 export interface Props {
   project: ProjectEntry;

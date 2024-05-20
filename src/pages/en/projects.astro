@@ -1,11 +1,12 @@
 ---
+import arrowRightIcon from '@carbon/icons/svg/32/arrow--right.svg?raw';
+import githubIcon from '@carbon/icons/svg/32/logo--github.svg?raw';
+import webIcon from '@carbon/icons/svg/32/wikis.svg?raw';
 import i18next, { changeLanguage, t } from 'i18next';
+
+import Translation from '@/components/Translation.astro';
 import { getProjectOverview } from '@/content/projects';
 import Main from '@/layouts/Main.astro';
-import Translation from '@/components/Translation.astro';
-import githubIcon from '@carbon/icons/svg/32/logo--github.svg?raw';
-import arrowRightIcon from '@carbon/icons/svg/32/arrow--right.svg?raw';
-import webIcon from '@carbon/icons/svg/32/wikis.svg?raw';
 
 changeLanguage('en');
 

@@ -1,17 +1,18 @@
 ---
-import { changeLanguage } from 'i18next';
-import { Image } from 'astro:assets';
-import Main from '@/layouts/Main.astro';
-import meJpeg from '@/assets/me.jpeg';
-import SkillDrawer from '@/components/home/SkillDrawer.astro';
-import Translation from '@/components/Translation.astro';
-import ProjectCard from '@/components/home/ProjectCard.astro';
+import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
 import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
 import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
-import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
 import formLogo from '@carbon/icons/svg/32/pen.svg?raw';
+import { Image } from 'astro:assets';
+import { changeLanguage } from 'i18next';
+
+import meJpeg from '@/assets/me.jpeg';
+import ProjectCard from '@/components/home/ProjectCard.astro';
+import SkillDrawer from '@/components/home/SkillDrawer.astro';
 import LocalizedLink from '@/components/LocalizedLink.astro';
+import Translation from '@/components/Translation.astro';
 import { getPreviewProjects } from '@/content/projects';
+import Main from '@/layouts/Main.astro';
 
 changeLanguage('de');
 

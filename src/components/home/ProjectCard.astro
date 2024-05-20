@@ -1,10 +1,12 @@
 ---
-import { getLocalizedEntryOrDefault, translateProjectLink, type LocalizedProject } from '@/content/projects';
 import i18next, { t } from 'i18next';
-import Translation from '../Translation.astro';
+
+import { getLocalizedEntryOrDefault, type LocalizedProject, translateProjectLink } from '@/content/projects';
+
+import DynamicImage from '../common/DynamicImage.astro';
 import SocialLink from '../common/SocialLink.astro';
 import TechPill from '../common/TechPill.astro';
-import DynamicImage from '../common/DynamicImage.astro';
+import Translation from '../Translation.astro';
 
 export type Props = {
   project: LocalizedProject;

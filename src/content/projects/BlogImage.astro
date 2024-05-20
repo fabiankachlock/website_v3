@@ -1,9 +1,10 @@
 ---
-import type { LocalImageProps } from 'astro:assets';
 import maximizeIcon from '@carbon/icons/svg/32/maximize.svg?raw';
 import minimizeIcon from '@carbon/icons/svg/32/minimize.svg?raw';
-import DynamicImage from '@/components/common/DynamicImage.astro';
+import type { LocalImageProps } from 'astro:assets';
 import { t } from 'i18next';
+
+import DynamicImage from '@/components/common/DynamicImage.astro';
 
 export type Props = {
   dark: LocalImageProps['src'];

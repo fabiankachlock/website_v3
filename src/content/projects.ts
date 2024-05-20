@@ -1,6 +1,7 @@
 import { getCollection } from 'astro:content';
-import type { ProjectEntry } from './config';
 import { localizePath } from 'astro-i18next';
+
+import type { ProjectEntry } from './config';
 
 export type LocalizedProject = Record<string, ProjectEntry>;
 
