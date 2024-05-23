@@ -83,16 +83,20 @@ const localize = (path: string, lng: string): string => {
       3px 3px var(--color-text);
   }
 
+  .translate:active .translate__button {
+    translate: -1px -1px;
+    background-color: var(--color-bg);
+    box-shadow:
+      1px 1px 0 -1px var(--color-surface),
+      1px 1px var(--color-text);
+  }
+
   .translate__button :global(svg) {
     display: block;
     width: 100%;
     height: 100%;
     fill: var(--color-text);
     transition: scale 70ms linear;
-  }
-
-  .translate__button:active :global(svg) {
-    scale: 0.8;
   }
 
   .language-select {

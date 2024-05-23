@@ -317,6 +317,15 @@ const handleSubmit = async () => {
     5px 5px var(--color-text);
 }
 
+.form__row button[type='submit']:active {
+  translate: -2px -2px;
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
+  box-shadow:
+    2px 2px 0 -2px var(--color-surface),
+    2px 2px var(--color-text);
+}
+
 .form__row--captcha {
   align-items: center;
 }

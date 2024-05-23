@@ -346,6 +346,15 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
       5px 5px var(--color-text);
   }
 
+  :global(.project__footer-link:active) {
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+    translate: -2px -2px;
+    box-shadow:
+      2px 2px 0 -1px var(--color-bg-tint-3),
+      2px 2px var(--color-text);
+  }
+
   :global(.project__footer-link .project__footer-link-icon) {
     width: 1.5rem;
     height: 1.5rem;
