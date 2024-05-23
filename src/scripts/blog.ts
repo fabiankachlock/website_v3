@@ -2,7 +2,7 @@ const enableImageButton = (elm: HTMLElement, isActive: boolean) => {
   elm.setAttribute('focusable', isActive ? 'true' : 'false');
   elm.setAttribute('tabindex', isActive ? '0' : '-1');
   elm.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-  elm.setAttribute('aria-role', isActive ? 'button' : '');
+  elm.setAttribute('role', isActive ? 'button' : '');
 };
 
 const menu = document.querySelector('.menu') as HTMLElement | null;
