@@ -22,7 +22,9 @@ const projectLinks = await getProjectLinks(i18next.language);
   <nav class="menu">
     <div class="menu__content">
       <div class="menu__logo">
-        <Fragment set:html={svgLogo} />
+        <LocalizedLink path="/" label={t('common.goToStart')}>
+          <Fragment set:html={svgLogo} />
+        </LocalizedLink>
       </div>
       <ul class="menu__nav">
         <li class="menu__item">
