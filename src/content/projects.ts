@@ -248,6 +248,44 @@ export const getProjectOverview = async (language: string): Promise<ProjectData>
       });
   }
 
+  data.webLinks.push(
+    ...[
+      {
+        title: 'zwoo',
+        url: 'https://zwoo.igd20.de',
+      },
+    ],
+  );
+
+  data.githubLinks.push(
+    ...[
+      {
+        title: 'zwoo',
+        url: 'https://github.com/fabiankachlock/zwoo',
+      },
+      {
+        title: 'zwoo-hq',
+        url: 'https://github.com/zwoo-hq',
+      },
+      {
+        title: '@log-rush/log-formatter',
+        url: 'https://github.com/log-rush/log-formatter',
+      },
+      {
+        title: 'tapo-api',
+        url: 'https://github.com/fabiankachlock/tapo-api',
+      },
+      {
+        title: 'website_v3',
+        url: 'https://github.com/fabiankachlock/website_v3',
+      },
+      {
+        title: 'local-cast',
+        url: 'https://github.com/fabiankachlock/local-cast',
+      },
+    ],
+  );
+
   data.projects ? data.projects.toSorted(compareOrders) : [];
   return data;
 };
