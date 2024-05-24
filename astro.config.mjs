@@ -44,10 +44,10 @@ export default defineConfig({
         rehypeAutolinkHeadings,
         {
           behavior: 'before',
-          content(node) {
+          content() {
             return [h('span.header-link', fromHtml(linkIcon))];
           },
-          group(node) {
+          group() {
             return h('.header-group');
           },
         },

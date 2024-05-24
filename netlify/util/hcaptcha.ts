@@ -21,10 +21,10 @@ export const verifyCaptcha = async (req: CaptchaRequestDto): Promise<CaptchaResp
     sitekey: captchaSiteKey,
   };
 
-  let formBody = [];
+  const formBody = [];
   for (const entry of Object.entries(data)) {
-    var encodedKey = encodeURIComponent(entry[0] ?? '');
-    var encodedValue = encodeURIComponent(entry[1] ?? '');
+    const encodedKey = encodeURIComponent(entry[0] ?? '');
+    const encodedValue = encodeURIComponent(entry[1] ?? '');
     formBody.push(encodedKey + '=' + encodedValue);
   }
 

@@ -1,10 +1,12 @@
 ---
-import { getLocalizedEntryOrDefault, translateProjectLink, type LocalizedProject } from '@/content/projects';
 import i18next, { t } from 'i18next';
-import Translation from '../Translation.astro';
+
+import { getLocalizedEntryOrDefault, type LocalizedProject, translateProjectLink } from '@/content/projects';
+
+import DynamicImage from '../common/DynamicImage.astro';
 import SocialLink from '../common/SocialLink.astro';
 import TechPill from '../common/TechPill.astro';
-import DynamicImage from '../common/DynamicImage.astro';
+import Translation from '../Translation.astro';
 
 export type Props = {
   project: LocalizedProject;
@@ -241,5 +243,14 @@ const project = translatedData!.data;
     box-shadow:
       5px 5px 0 -2px var(--color-surface),
       5px 5px var(--color-text);
+  }
+
+  .project-card__read:active {
+    translate: -2px -2px;
+    background-color: var(--color-primary);
+    color: var(--color-primary-text);
+    box-shadow:
+      2px 2px 0 -2px var(--color-surface),
+      2px 2px var(--color-text);
   }
 </style>

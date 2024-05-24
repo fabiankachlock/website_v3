@@ -1,11 +1,12 @@
 ---
+import arrowRightIcon from '@carbon/icons/svg/32/arrow--right.svg?raw';
+import githubIcon from '@carbon/icons/svg/32/logo--github.svg?raw';
+import webIcon from '@carbon/icons/svg/32/wikis.svg?raw';
 import i18next, { changeLanguage, t } from 'i18next';
+
+import Translation from '@/components/Translation.astro';
 import { getProjectOverview } from '@/content/projects';
 import Main from '@/layouts/Main.astro';
-import Translation from '@/components/Translation.astro';
-import githubIcon from '@carbon/icons/svg/32/logo--github.svg?raw';
-import arrowRightIcon from '@carbon/icons/svg/32/arrow--right.svg?raw';
-import webIcon from '@carbon/icons/svg/32/wikis.svg?raw';
 
 changeLanguage('en');
 
@@ -51,7 +52,7 @@ const projects = await getProjectOverview(i18next.language);
           <li>
             <a class="external-link" href={project.url}>
               <span class="link-icon">
-                <Fragment set:html={webIcon} />
+                <Fragment set:html={githubIcon} />
               </span>
               <span>{project.title}</span>
               <span class="link-icon link-icon--open">
@@ -72,7 +73,7 @@ const projects = await getProjectOverview(i18next.language);
           <li>
             <a class="external-link" href={project.url}>
               <span class="link-icon">
-                <Fragment set:html={githubIcon} />
+                <Fragment set:html={webIcon} />
               </span>
               <span>{project.title}</span>
               <span class="link-icon link-icon--open">
@@ -215,6 +216,17 @@ const projects = await getProjectOverview(i18next.language);
       3px 3px var(--color-text);
   }
 
+  .project-link:active {
+    padding-left: 1rem;
+    padding-right: 2rem;
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+    translate: -1px -1px;
+    box-shadow:
+      1px 1px 0 -1px var(--color-bg-tint-3),
+      1px 1px var(--color-text);
+  }
+
   .project-link:hover :global(.project-link-icon) {
     translate: 0 -50%;
     rotate: -45deg;
@@ -227,6 +239,15 @@ const projects = await getProjectOverview(i18next.language);
     box-shadow:
       5px 5px 0 -1px var(--color-bg-tint-3),
       5px 5px var(--color-text);
+  }
+
+  :global(.external-link:active) {
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+    translate: -2px -2px;
+    box-shadow:
+      2px 2px 0 -1px var(--color-bg-tint-3),
+      2px 2px var(--color-text);
   }
 
   :global(.external-link .link-icon) {

@@ -16,10 +16,9 @@
     "format:check": "prettier --check \"./**/*.{html,css,js,ts,mdx,json,astro,vue}\"",
     "lint": "eslint --fix .",
     "check": "astro check",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/check": "^0.7.0",
     "@astrojs/mdx": "^3.0.0",
     "@astrojs/sitemap": "3.1.4",
     "@astrojs/vue": "4.2.0",
@@ -33,12 +32,13 @@
     "i18next": "^22.4.10",
     "i18next-vue": "^2.1.1",
     "sharp": "^0.33.3",
-    "typescript": "^5.4.5",
     "vue": "^3.4.27"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.7.0",
     "@hcaptcha/types": "^1.0.3",
     "astro": "^4.8.2",
+    "astro-eslint-parser": "^1.0.2",
     "eslint": "^9.2.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-astro": "^1.1.2",
@@ -55,6 +55,8 @@
     "rehype-autolink-headings": "^7.1.0",
     "rehype-external-links": "^3.0.0",
     "rehype-katex": "^7.0.0",
-    "remark-math": "^6.0.0"
+    "remark-math": "^6.0.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.9.0"
   }
 }

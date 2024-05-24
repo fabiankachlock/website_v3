@@ -1,14 +1,14 @@
 ---
 import i18next, { t } from 'i18next';
+
+import svgLogo from '@/assets/logo.svg?raw';
+import svgMenuButton from '@/assets/menu_button.svg?raw';
 import { getProjectLinks } from '@/content/projects';
 
-import ThemeSwitch from './ThemeSwitch.astro';
 import LanguageSelect from './LanguageSelect.astro';
 import LocalizedLink from './LocalizedLink.astro';
+import ThemeSwitch from './ThemeSwitch.astro';
 import Translation from './Translation.astro';
-
-import svgMenuButton from '@/assets/menu_button.svg?raw';
-import svgLogo from '@/assets/logo.svg?raw';
 
 const projectLinks = await getProjectLinks(i18next.language);
 ---
@@ -22,7 +22,9 @@ const projectLinks = await getProjectLinks(i18next.language);
   <nav class="menu">
     <div class="menu__content">
       <div class="menu__logo">
-        <Fragment set:html={svgLogo} />
+        <LocalizedLink path="/" label={t('common.goToStart')}>
+          <Fragment set:html={svgLogo} />
+        </LocalizedLink>
       </div>
       <ul class="menu__nav">
         <li class="menu__item">

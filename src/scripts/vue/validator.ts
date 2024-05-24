@@ -1,3 +1,4 @@
+/* eslint-disable no-control-regex */
 export const isNonEmptyString = (str: string): boolean => {
   return !!str && str.length > 0;
 };

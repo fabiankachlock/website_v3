@@ -22,6 +22,7 @@
   "common": {
     "projects": "Projects",
     "openMenu": "Open menu",
+    "goToStart": "Go to Homepage",
     "changeLanguage": "Change language",
     "openWeb": "Open website of {{name}}",
     "openGitHub": "Show {{name}} on GitHub",
