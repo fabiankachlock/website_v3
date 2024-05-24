@@ -44,7 +44,18 @@ const localize = (path: string, lng: string): string => {
   <div class="language-select">
     <div class="language-select__wrapper">
       <div class="language-select__content">
-        {i18next.languages.map(lng => <a href={localize(pathname, lng)}>{t(`lng.${lng}`)}</a>)}
+        {
+          i18next.languages.map(lng => (
+            <a
+              href={localize(pathname, lng)}
+              class:list={{
+                current: lng === i18next.language,
+              }}
+            >
+              {t(`lng.${lng}`)}
+            </a>
+          ))
+        }
       </div>
     </div>
   </div>
@@ -145,6 +156,10 @@ const localize = (path: string, lng: string): string => {
     color: var(--color-text);
     padding: 0.8rem 2rem;
     cursor: pointer;
+  }
+
+  .language-select__content a.current {
+    color: var(--color-primary);
   }
 
   .language-select__content a:hover {
