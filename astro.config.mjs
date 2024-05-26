@@ -21,7 +21,7 @@ export default defineConfig({
     defaultStrategy: 'viewport',
     prefetchAll: true,
   },
-  site: 'https://new.fabiankachlock.dev',
+  site: 'https://fabiankachlock.dev',
   // base: '/website_v3',
   server: {
     port: 3000,
