@@ -133,6 +133,7 @@ const projects = await getPreviewProjects();
     </h2>
     <div class="skills-container">
       <SkillDrawer
+        id="web-dev"
         featuredTools={['HTML', 'CSS', 'JS', 'TS']}
         tools={['Web APIs', 'express', 'NestJS', 'eslint', 'prettier', 'jest', 'Cypress']}
       >
@@ -167,6 +168,7 @@ const projects = await getPreviewProjects();
         </Translation>
       </SkillDrawer>
       <SkillDrawer
+        id="vue"
         featuredTools={['vite', 'pinia', 'vuetify', 'vue-i18n']}
         tools={['tailwindcss', 'SASS', 'vitest', 'vue-router']}
       >
@@ -200,7 +202,11 @@ const projects = await getPreviewProjects();
           </div>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer featuredTools={['Astro', 'React', 'Angular']} tools={['Nuxt.js', 'Alpinejs', 'i18next']}>
+      <SkillDrawer
+        id="web-frameworks"
+        featuredTools={['Astro', 'React', 'Angular']}
+        tools={['Nuxt.js', 'Alpinejs', 'i18next']}
+      >
         <Translation slot="title">
           <span slot="de">Andere Frontend-Frameworks</span>
           <span slot="en">Other frontend frameworks</span>
@@ -232,6 +238,7 @@ const projects = await getPreviewProjects();
         </Translation>
       </SkillDrawer>
       <SkillDrawer
+        id="go"
         featuredTools={['fiber', 'go-cron', 'SSE']}
         tools={['WebSockets', 'golang-migrate', 'Postgresql', 'MongoDB']}
       >
@@ -271,6 +278,7 @@ const projects = await getPreviewProjects();
         </Translation>
       </SkillDrawer>
       <SkillDrawer
+        id="csharp"
         featuredTools={['ASP.NET', 'Blazor', 'WASM']}
         tools={['WebSockets', 'Mudblazor', 'Quartz.AspNetCore', 'MongoDB']}
       >
@@ -304,6 +312,7 @@ const projects = await getPreviewProjects();
         </Translation>
       </SkillDrawer>
       <SkillDrawer
+        id="tools"
         featuredTools={['Git', 'Github', 'Jira']}
         tools={['Confluence', 'BitBucket', 'Youtrack', 'Markdown']}
       >
@@ -338,6 +347,7 @@ const projects = await getPreviewProjects();
         </Translation>
       </SkillDrawer>
       <SkillDrawer
+        id="deployment"
         featuredTools={['Docker', 'AWS', 'Github Actions']}
         tools={['Heroku', 'Bash', 'Bitbucket Pipelines']}
       >
@@ -370,7 +380,7 @@ const projects = await getPreviewProjects();
           </div>
         </Translation>
       </SkillDrawer>
-      <SkillDrawer featuredTools={['Rust', 'Kotlin', 'MQTT']} tools={['Redis', 'BullMQ', 'Swift', 'p5.js']}>
+      <SkillDrawer id="other" featuredTools={['Rust', 'Kotlin', 'MQTT']} tools={['Redis', 'BullMQ', 'Swift', 'p5.js']}>
         <Translation slot="title">
           <span slot="de"> Andere Tools, Sprachen & Bibliotheken</span>
           <span slot="en">Other tools, languages & libraries</span>

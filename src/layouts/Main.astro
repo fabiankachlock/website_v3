@@ -14,6 +14,8 @@ export interface Props {
   description?: string;
   seo?: AstroSeoProps;
 }
+
+const isProd = import.meta.env.PROD;
 ---
 
 <!doctype html>
@@ -23,6 +25,12 @@ export interface Props {
     <CommonSeo title={Astro.props.title!} description={Astro.props.description!} custom={Astro.props.seo!} />
     <slot name="head" />
     <script src="../scripts/setup.ts"></script>
+    <script
+      is:inline
+      defer
+      data-domain="localhost"
+      src={`https://insights.fabiankachlock.dev/js/script.${isProd ? 'outbound-links.pageview-props.tagged-events' : 'local'}.js`}
+    ></script>
   </head>
   <body>
     <div class="frame__content">
