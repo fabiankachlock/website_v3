@@ -1,7 +1,8 @@
 ---
-import { localizePath } from 'astro-i18next';
-
 import translateIcon from '@carbon/icons/svg/32/translate.svg?raw';
+/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+// @ts-ignore
+import { localizePath } from 'astro-i18next';
 import i18next, { t } from 'i18next';
 
 const { pathname } = Astro.url;
@@ -43,7 +44,18 @@ const localize = (path: string, lng: string): string => {
   <div class="language-select">
     <div class="language-select__wrapper">
       <div class="language-select__content">
-        {i18next.languages.map(lng => <a href={localize(pathname, lng)}>{t(`lng.${lng}`)}</a>)}
+        {
+          i18next.languages.map(lng => (
+            <a
+              href={localize(pathname, lng)}
+              class:list={{
+                current: lng === i18next.language,
+              }}
+            >
+              {t(`lng.${lng}`)}
+            </a>
+          ))
+        }
       </div>
     </div>
   </div>
@@ -82,16 +94,20 @@ const localize = (path: string, lng: string): string => {
       3px 3px var(--color-text);
   }
 
+  .translate:active .translate__button {
+    translate: -1px -1px;
+    background-color: var(--color-bg);
+    box-shadow:
+      1px 1px 0 -1px var(--color-surface),
+      1px 1px var(--color-text);
+  }
+
   .translate__button :global(svg) {
     display: block;
     width: 100%;
     height: 100%;
     fill: var(--color-text);
     transition: scale 70ms linear;
-  }
-
-  .translate__button:active :global(svg) {
-    scale: 0.8;
   }
 
   .language-select {
@@ -140,6 +156,10 @@ const localize = (path: string, lng: string): string => {
     color: var(--color-text);
     padding: 0.8rem 2rem;
     cursor: pointer;
+  }
+
+  .language-select__content a.current {
+    color: var(--color-primary);
   }
 
   .language-select__content a:hover {

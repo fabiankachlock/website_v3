@@ -4,21 +4,31 @@
     "/en/": "Fabian Kachlock",
     "/en/imprint": "Imprint @ Fabian Kachlock",
     "/en/privacy": "Privacy Policy @ Fabian Kachlock",
-    "/en/contact": "Contact @ Fabian Kachlock"
+    "/en/contact": "Contact @ Fabian Kachlock",
+    "/en/projects": "Projects @ Fabian Kachlock"
   },
   "description": {
     "/en": "Fabian Kachlock - my portfolio.",
     "/en/": "Fabian Kachlock - my portfolio.",
     "/en/imprint": "Imprint of Fabian Kachlock.",
     "/en/privacy": "Privacy Policy of Fabian Kachlock.",
-    "/en/contact": "Contact Fabian Kachlock."
+    "/en/contact": "Contact Fabian Kachlock.",
+    "/en/projects": "Projects of Fabian Kachlock."
   },
   "lng": {
     "de": "Deutsch",
     "en": "English"
   },
   "common": {
-    "projects": "Projects"
+    "projects": "Projects",
+    "openMenu": "Open menu",
+    "goToStart": "Go to Homepage",
+    "changeLanguage": "Change language",
+    "openWeb": "Open website of {{name}}",
+    "openGitHub": "Show {{name}} on GitHub",
+    "openLink": "Open reference of {{name}}",
+    "maximizeImage": "Enlarge image",
+    "closeImage": "Close image"
   },
   "contactForm": {
     "warnHttp": "Attention: The page was accessed via HTTP. All data you enter in this form will be transmitted unencrypted over the Internet. The form can only be used with a secure HTTPS connection.",

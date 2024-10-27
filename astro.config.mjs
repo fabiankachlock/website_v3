@@ -21,7 +21,7 @@ export default defineConfig({
     defaultStrategy: 'viewport',
     prefetchAll: true,
   },
-  site: 'https://new.fabiankachlock.dev',
+  site: 'https://fabiankachlock.dev',
   // base: '/website_v3',
   server: {
     port: 3000,
@@ -44,10 +44,10 @@ export default defineConfig({
         rehypeAutolinkHeadings,
         {
           behavior: 'before',
-          content(node) {
+          content() {
             return [h('span.header-link', fromHtml(linkIcon))];
           },
-          group(node) {
+          group() {
             return h('.header-group');
           },
         },

@@ -24,6 +24,8 @@ if (menuButtonElement) {
   });
 }
 
+const isMenuOpen = () => headElement && headElement.classList.contains('open');
+
 const tryToggleMenu = (open: boolean) => {
   if (headElement && open && !headElement.classList.contains('open')) {
     headElement.classList.add('open');
@@ -39,7 +41,9 @@ document.querySelectorAll('.translate').forEach(e => {
     evt.stopPropagation();
     try {
       plausible('Translate');
-    } catch {}
+    } catch {
+      /* empty */
+    }
   });
 });
 
@@ -55,7 +59,9 @@ document.querySelectorAll('.theme-switch__button').forEach(e => {
     toggleTheme();
     try {
       plausible('Theme');
-    } catch {}
+    } catch {
+      /* empty */
+    }
   });
 });
 
@@ -69,23 +75,35 @@ let xEnd: number | undefined = undefined;
 let yStart: number | undefined = undefined;
 
 const handleTouchStart = (evt: TouchEvent) => {
+  // set initial touch position
   xStart = evt.touches[0]?.clientX;
   yStart = evt.touches[0]?.clientY;
+  // reset end state
   xEnd = undefined;
+  // prepare dom nodes
   headElement?.classList.add('dragging');
   document.body?.style.setProperty('--dragged-offset', '0.0001');
 };
 
 const handleTouchMove = (evt: TouchEvent) => {
   if (!xStart || !yStart || window.innerWidth > 1024) {
+    // not initial position / window to large --> disable dragging
     xEnd = undefined;
     return;
   }
 
+  // set current end
   xEnd = evt.touches[0]?.clientX;
   const minThreshold = 5;
   const yDiff = Math.abs(yStart - (evt.touches[0]?.clientY ?? yStart));
-  const xDiff = Math.abs(xStart - (xEnd ?? xStart));
+  let xDiff = xStart - (xEnd ?? xStart);
+  const menuOpen = isMenuOpen();
+
+  // prevent swipes in the opposite direction
+  if ((xDiff > 0 && menuOpen) || (xDiff < 0 && !menuOpen)) {
+    return;
+  }
+  xDiff = Math.abs(xDiff);
 
   // sort ou normal scrolling and prevent menu flickering on normal scroll
   if (yDiff > xDiff || xDiff < minThreshold) {

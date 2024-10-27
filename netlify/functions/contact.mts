@@ -1,5 +1,5 @@
-import { verifyCaptcha } from 'netlify/util/hcaptcha';
 import sgMail from '@sendgrid/mail';
+import { verifyCaptcha } from 'netlify/util/hcaptcha';
 
 export class ContactFormDto {
   public constructor(

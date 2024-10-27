@@ -1,0 +1,54 @@
+---
+import { Image, type LocalImageProps } from 'astro:assets';
+
+export type Props = {
+  dark: LocalImageProps['src'];
+  light: LocalImageProps['src'];
+  alt?: string;
+  class?: string;
+  className?: string;
+};
+
+const { dark, light, alt = '', class: allClasses, className } = Astro.props;
+---
+
+<Image
+  class="dynamic-image dynamic-image--dark"
+  src={dark}
+  alt={alt}
+  class:list={[
+    allClasses,
+    {
+      [`${className}--dark`]: className,
+    },
+  ]}
+/>
+<Image
+  class="dynamic-image dynamic-image--light"
+  src={light}
+  alt=""
+  class:list={[
+    allClasses,
+    {
+      [`${className}--light`]: className,
+    },
+  ]}
+/>
+
+<style>
+  :global([data-theme='dark']) .dynamic-image--dark {
+    display: block;
+  }
+
+  :global([data-theme='dark']) .dynamic-image--light {
+    display: none;
+  }
+
+  :global([data-theme='light']) .dynamic-image--dark {
+    display: none;
+  }
+
+  :global([data-theme='light']) .dynamic-image--light {
+    display: block;
+  }
+</style>

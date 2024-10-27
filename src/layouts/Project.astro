@@ -1,16 +1,18 @@
 ---
+import arrowUpRightIcon from '@carbon/icons/svg/32/arrow--up-right.svg?raw';
+import homeIcon from '@carbon/icons/svg/32/home.svg?raw';
+// import galleryIcon from '@carbon/icons/svg/32/image.svg?raw';
+import i18next, { t } from 'i18next';
+
+import DynamicImage from '@/components/common/DynamicImage.astro';
+import ProjectLinks from '@/components/common/ProjectLinks.astro';
+import TechPill from '@/components/common/TechPill.astro';
+import LocalizedLink from '@/components/LocalizedLink.astro';
+import Translation from '@/components/Translation.astro';
 import type { ProjectEntry } from '@/content/config';
 import { getSeeAlsoLinks } from '@/content/projects';
+
 import Main from './Main.astro';
-import { Image } from 'astro:assets';
-import i18next, { t } from 'i18next';
-import TechPill from '@/components/common/TechPill.astro';
-import Translation from '@/components/Translation.astro';
-import ProjectLinks from '@/components/common/ProjectLinks.astro';
-import LocalizedLink from '@/components/LocalizedLink.astro';
-import homeIcon from '@carbon/icons/svg/32/home.svg?raw';
-import galleryIcon from '@carbon/icons/svg/32/image.svg?raw';
-import arrowUpRightIcon from '@carbon/icons/svg/32/arrow--up-right.svg?raw';
 
 export interface Props {
   project: ProjectEntry;
@@ -29,11 +31,11 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
     openGraph: {
       images: [
         {
-          url: project.data.seo?.src ?? project.data.cover.src,
+          url: project.data.seo?.src ?? project.data.coverDark.src,
           alt: project.data.seo?.src ? project.data.description : project.data.coverAlt,
-          type: `image/${(project.data.seo?.src ?? project.data.cover.src).split('.').pop()?.split('?')[0]}`,
-          width: project.data.seo?.width ?? project.data.cover.width,
-          height: project.data.seo?.height ?? project.data.cover.height,
+          type: `image/${(project.data.seo?.src ?? project.data.coverDark.src).split('.').pop()?.split('?')[0]}`,
+          width: project.data.seo?.width ?? project.data.coverDark.width,
+          height: project.data.seo?.height ?? project.data.coverDark.height,
         },
       ],
     },
@@ -46,11 +48,12 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
     <header class="project__header">
       <div class="project__header-content">
         <div class="project__header-image-wrappper">
-          <Image
-            class="project__header-image"
-            src={project.data.cover}
+          <DynamicImage
+            dark={project.data.coverDark}
+            light={project.data.coverLight}
             alt={project.data.coverAlt}
             transition:name={`project-image:${project?.slug}`}
+            class="project__header-image"
           />
         </div>
         <h1 class="project__title" transition:name={`project-title:${project?.slug}`}>{project.data.title}</h1>
@@ -77,11 +80,11 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
       </div>
     </header>
     <main class="project__content">
-      <div class="project__gallery">
+      <!-- <div class="project__gallery">
         <span>
           <Fragment set:html={galleryIcon} />
         </span>
-      </div>
+      </div> -->
       <slot />
     </main>
     <footer class="project__footer">
@@ -147,7 +150,7 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
     margin-bottom: 1rem;
   }
 
-  .project__header-image {
+  :global(.project__header-image) {
     max-height: max(400px, 70vh);
     max-width: min(100%, 920px);
     height: 100%;
@@ -159,7 +162,7 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
     font-family: 'Source Code Pro';
     font-weight: 700;
     font-size: 2rem;
-    background: var(--color-bg-tint-3);
+    background: var(--color-surface);
     border: 2px solid var(--color-text);
     border-right: none;
     border-top: none;
@@ -204,11 +207,11 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
     justify-content: flex-start;
   }
 
-  .project__gallery :global(svg) {
+  /* .project__gallery :global(svg) {
     width: 2rem;
     height: 2rem;
     fill: var(--color-text);
-  }
+  } */
 
   @media only screen and (min-width: 460px) {
     .project__header {
@@ -353,6 +356,15 @@ const seeAlso = await getSeeAlsoLinks(project.data.seeAlso ?? [], i18next.langua
     box-shadow:
       5px 5px 0 -1px var(--color-bg-tint-3),
       5px 5px var(--color-text);
+  }
+
+  :global(.project__footer-link:active) {
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+    translate: -2px -2px;
+    box-shadow:
+      2px 2px 0 -1px var(--color-bg-tint-3),
+      2px 2px var(--color-text);
   }
 
   :global(.project__footer-link .project__footer-link-icon) {

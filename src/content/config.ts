@@ -1,14 +1,15 @@
-import { z, defineCollection, type CollectionEntry } from 'astro:content';
+import { type CollectionEntry, defineCollection, z } from 'astro:content';
 
 const projectsCollection = defineCollection({
   type: 'content',
   schema: ({ image }) =>
     z.object({
-      enabled: z.boolean().default(false),
+      disabled: z.boolean().default(false),
       title: z.string(),
       description: z.string(),
       seo: image().optional(),
-      cover: image(),
+      coverDark: image(),
+      coverLight: image(),
       coverAlt: z.string(),
       altImages: z.array(image()).optional(),
       author: z.string().default('Fabian Kachlock'),

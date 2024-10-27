@@ -1,14 +1,15 @@
 ---
+import commitIcon from '@carbon/icons/svg/32/commit.svg?raw';
 import i18next, { t } from 'i18next';
+
+import svgLogo from '@/assets/logo.svg?raw';
+import svgMenuButton from '@/assets/menu_button.svg?raw';
 import { getProjectLinks } from '@/content/projects';
 
-import ThemeSwitch from './ThemeSwitch.astro';
 import LanguageSelect from './LanguageSelect.astro';
 import LocalizedLink from './LocalizedLink.astro';
+import ThemeSwitch from './ThemeSwitch.astro';
 import Translation from './Translation.astro';
-
-import svgMenuButton from '@/assets/menu_button.svg?raw';
-import svgLogo from '@/assets/logo.svg?raw';
 
 const projectLinks = await getProjectLinks(i18next.language);
 ---
@@ -22,7 +23,9 @@ const projectLinks = await getProjectLinks(i18next.language);
   <nav class="menu">
     <div class="menu__content">
       <div class="menu__logo">
-        <Fragment set:html={svgLogo} />
+        <LocalizedLink path="/" label={t('common.goToStart')}>
+          <Fragment set:html={svgLogo} />
+        </LocalizedLink>
       </div>
       <ul class="menu__nav">
         <li class="menu__item">
@@ -52,6 +55,7 @@ const projectLinks = await getProjectLinks(i18next.language);
         {
           projectLinks.map(project => (
             <li class="menu__item menu__item--project-item">
+              <Fragment set:html={commitIcon} />
               <a class="menu__link" href={project.url}>
                 {project.title}
               </a>
@@ -195,34 +199,20 @@ const projectLinks = await getProjectLinks(i18next.language);
 
   .menu__item--project-item {
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  .menu__item--project-item {
-    margin-bottom: 0;
+  .menu__item--project-item :global(svg) {
+    height: 2rem;
+    width: 2rem;
+    fill: var(--color-primary);
+    flex-shrink: 0;
   }
 
   .menu__item--contact {
     margin-top: 1rem;
-  }
-
-  .menu__item--project-item {
-    margin-left: 1.1rem;
-    position: relative;
-  }
-
-  .menu__item--project-item::before {
-    content: '';
-    width: 0.3rem;
-    background: var(--color-text);
-    height: 60%;
-    left: 0.1rem;
-    top: 50%;
-    translate: 0 -50%;
-    position: absolute;
-  }
-
-  .menu__item--project-item:has(:global(.menu__link:hover))::before {
-    background: var(--color-primary);
   }
 
   .menu__nav :global(.menu__link) {

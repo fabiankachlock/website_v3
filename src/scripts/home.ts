@@ -10,7 +10,9 @@ document.querySelectorAll('.skill-drawer').forEach((drawer, idx) => {
     if (drawer.classList.contains('open')) {
       try {
         plausible('Skill', { props: { 'skill-id': id } });
-      } catch {}
+      } catch {
+        /* empty */
+      }
     }
 
     let openDrawer: HTMLElement | null = null;

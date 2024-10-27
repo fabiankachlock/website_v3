@@ -1,17 +1,20 @@
 ---
-import { changeLanguage } from 'i18next';
-import { Image } from 'astro:assets';
-import Main from '@/layouts/Main.astro';
-import meJpeg from '@/assets/me.jpeg';
-import SkillDrawer from '@/components/home/SkillDrawer.astro';
-import Translation from '@/components/Translation.astro';
-import ProjectCard from '@/components/home/ProjectCard.astro';
+import arrowRightIcon from '@carbon/icons/svg/32/arrow--right.svg?raw';
+import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
 import githubLogo from '@carbon/icons/svg/32/logo--github.svg?raw';
 import instagramLogo from '@carbon/icons/svg/32/logo--instagram.svg?raw';
-import emailLogo from '@carbon/icons/svg/32/email.svg?raw';
 import formLogo from '@carbon/icons/svg/32/pen.svg?raw';
+import catalogLogo from '@carbon/pictograms/svg/contract.svg?raw';
+import { Image } from 'astro:assets';
+import { changeLanguage } from 'i18next';
+
+import meJpeg from '@/assets/me.jpeg';
+import ProjectCard from '@/components/home/ProjectCard.astro';
+import SkillDrawer from '@/components/home/SkillDrawer.astro';
 import LocalizedLink from '@/components/LocalizedLink.astro';
+import Translation from '@/components/Translation.astro';
 import { getPreviewProjects } from '@/content/projects';
+import Main from '@/layouts/Main.astro';
 
 changeLanguage('en');
 
@@ -48,7 +51,7 @@ const projects = await getPreviewProjects();
     </div>
   </section>
   <section class="section about">
-    <a id="about" class="section-anchor">
+    <a id="about" href="#about" class="section-anchor">
       <Translation>
         <span slot="de">Über</span>
         <span slot="en">About</span>
@@ -87,6 +90,17 @@ const projects = await getPreviewProjects();
             id="experience">6</span
           > Jahren Erfahrung hauptsächlich in der Webentwicklung.
         </p>
+        <!--
+          Ob mit Fullstack Frameworkjs order reinem HTML/CSS/JS - ich habe schon mit vielen TEchnologien und in verschiedenen Stacks gearbeitet
+          erschaffen einer guten Usability und Accessability (Webseiten)
+          solide Architektur
+          CI/CD
+          dabei sind Tools wie TS/Eslint etc. unverzichtbar
+         -->
+        <!-- <p>
+          Ob mit Fullstack Frameworks oder reinem HTML/CSS/JS - ich habe schon mit vielen Technologien und in
+          verschiedenen Stacks gearbeitet. Von Angular über React bis hin zu Vue.js habe
+        </p> -->
         <p>
           Ich konzentriere mich darauf, benutzerfreundliche Oberflächen und robuste Backend-Systeme zu entwickeln. Meine
           umfangreiche Erfahrung mit einer Vielzahl von Technologien und Tools ermöglicht es mir, hochwertigen Code zu
@@ -105,7 +119,7 @@ const projects = await getPreviewProjects();
     </Translation>
   </section>
   <section class="section skills">
-    <a id="skills" class="section-anchor">
+    <a id="skills" href="#skills" class="section-anchor">
       <Translation>
         <span slot="de">Skills</span>
         <span slot="en">Skills</span>
@@ -385,7 +399,7 @@ const projects = await getPreviewProjects();
     </div>
   </section>
   <section class="section contact">
-    <a id="contact" class="section-anchor">
+    <a id="contact" href="#contact" class="section-anchor">
       <Translation>
         <span slot="de">Kontakt</span>
         <span slot="en">Contact</span>
@@ -458,7 +472,7 @@ const projects = await getPreviewProjects();
     </ul>
   </section>
   <section class="section projects">
-    <a id="projects" class="section-anchor">
+    <a id="projects" href="#projects" class="section-anchor">
       <Translation>
         <span slot="de">Projekte</span>
         <span slot="en">Projects</span>
@@ -472,6 +486,18 @@ const projects = await getPreviewProjects();
     </h2>
     <div class="projects-container">
       {projects.map(p => <ProjectCard project={p} />)}
+      <div class="project-references">
+        <LocalizedLink path="/projekte" classes="project-references__link">
+          <Fragment set:html={catalogLogo} />
+          <Translation>
+            <span slot="de">Alle Projekte ansehen</span>
+            <span slot="en">View all projects</span>
+          </Translation>
+          <span class="project-references__icon">
+            <Fragment set:html={arrowRightIcon} />
+          </span>
+        </LocalizedLink>
+      </div>
     </div>
   </section>
 </Main>
@@ -786,6 +812,70 @@ const projects = await getPreviewProjects();
     align-items: stretch;
     max-width: 920px;
     margin: 0 auto;
+  }
+
+  .project-references {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-text);
+    border-radius: 5px;
+    transition: box-shadow 140ms linear;
+    width: 100%;
+    max-width: 400px;
+    grid-column: 1 / -1;
+  }
+
+  @media only screen and (min-width: 656px) {
+    .project-references {
+      max-width: unset;
+    }
+  }
+
+  .project-references__link {
+    display: flex;
+    border: 1px solid transparent;
+    transition: border 140ms linear;
+    border-radius: 5px;
+    padding: 1rem;
+    align-items: center;
+    gap: 2rem;
+    text-decoration: none;
+  }
+
+  .project-references__link svg {
+    height: 3rem;
+    width: 3rem;
+    fill: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .project-references__link span {
+    font-family: 'Mona Sans';
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--color-text);
+    hyphens: auto;
+  }
+
+  .project-references:hover {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-text);
+    box-shadow:
+      4px 4px 0 0 var(--color-text),
+      0 0 8rem -2rem var(--color-primary);
+    z-index: 1;
+  }
+
+  .project-references__icon {
+    margin-left: auto;
+    transition: rotate 70ms ease-in-out;
+  }
+
+  .project-references:hover .project-references__icon {
+    rotate: -45deg;
+  }
+
+  .project-references:hover .project-references__link {
+    border-color: var(--color-text);
   }
 
   @media only screen and (min-width: 720px) {

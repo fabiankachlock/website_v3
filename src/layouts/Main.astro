@@ -26,6 +26,7 @@ const isProd = import.meta.env.PROD;
     <slot name="head" />
     <script src="../scripts/setup.ts"></script>
     <script
+      is:inline
       defer
       data-domain="localhost"
       src={`https://insights.fabiankachlock.dev/js/script.${isProd ? 'outbound-links.pageview-props.tagged-events' : 'local'}.js`}

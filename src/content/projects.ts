@@ -1,19 +1,29 @@
 import { getCollection } from 'astro:content';
-import type { ProjectEntry } from './config';
+/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+// @ts-ignore
 import { localizePath } from 'astro-i18next';
+
+import type { ProjectEntry } from './config';
 
 export type LocalizedProject = Record<string, ProjectEntry>;
 
+/**
+ * A ProjectLink is a translated link to a project.
+ */
 export type ProjectLink = {
   slug: string;
   title: string;
   url: string;
 };
 
+/**
+ * ProjectData is a collection of all projects with their links and resources.
+ */
 export type ProjectData = {
   projects: {
     id: string;
     year: string;
+    order: number;
     title: string;
     description: string;
     links: Record<string, string>;
@@ -28,12 +38,24 @@ export type ProjectData = {
   }[];
 };
 
+/**
+ * Translates a project slug to a localized project link.
+ *
+ * @param slug the project slug
+ * @returns the translated project link
+ */
 export const translateProjectLink = (slug: string) => {
   const slugData = extractSlug(slug);
   const link = localizePath(`/projekte/[projectSlug]`, slugData.lang).replace('[projectSlug]', slugData.id);
   return link;
 };
 
+/**
+ * Extracts the language and id from a project slug.
+ *
+ * @param slug the project slug
+ * @returns the language and id
+ */
 export const extractSlug = (slug: string) => {
   const parts = slug.split('/');
   return {
@@ -42,16 +64,28 @@ export const extractSlug = (slug: string) => {
   };
 };
 
+/**
+ * Returns the localized entry for a language or the default entry.
+ *
+ * @param map the localized entries
+ * @param language the language
+ * @returns the localized entry or the default entry
+ */
 export const getLocalizedEntryOrDefault = <T>(map: Record<string, T>, language: string): T | undefined => {
   return map[language] ?? Object.values(map)[0];
 };
 
+/**
+ * Collects all projects into a localized map.
+ *
+ * @returns the localized projects
+ */
 export const getLocalizedProjects = async (): Promise<Record<string, LocalizedProject>> => {
   const allProjects = await getCollection('projects');
   const localizedProjects: Record<string, LocalizedProject> = {};
 
   for (const project of allProjects) {
-    if (!project.data.enabled) continue;
+    if (project.data.disabled) continue;
 
     const data = extractSlug(project.slug);
     if (!data.id || !data.lang) continue;
@@ -67,12 +101,32 @@ export const getLocalizedProjects = async (): Promise<Record<string, LocalizedPr
   return localizedProjects;
 };
 
+/**
+ * Compares two projects by their order to sort them ascending.
+ *
+ * @param a the first project
+ * @param b the second project
+ * @returns the comparison result
+ */
 export const compareProjects = (a?: ProjectEntry, b?: ProjectEntry): number => {
-  const orderA = a?.data.order ?? Infinity;
-  const orderB = b?.data.order ?? Infinity;
-  return orderA - orderB;
+  return compareOrders(a?.data, b?.data);
 };
 
+/**
+ * Compares two objects by their order to sort them in ascending order.
+ *
+ * @param a the first object
+ * @param b the second object
+ * @returns the comparison result
+ */
+export const compareOrders = <T extends { order?: number }>(a?: T, b?: T) => (b?.order ?? 0) - (a?.order ?? 0);
+
+/**
+ * Returns all projects sorted by their order.
+ *
+ * @param language the language
+ * @returns the sorted projects
+ */
 export const getProjects = async (language: string): Promise<ProjectEntry[]> => {
   const localizedProjects = await getLocalizedProjects();
   const allProjects: ProjectEntry[] = [];
@@ -91,6 +145,11 @@ export const getProjects = async (language: string): Promise<ProjectEntry[]> => 
   return allProjects.toSorted(compareProjects);
 };
 
+/**
+ * Returns a list of preview projects sorted by their order.
+ *
+ * @returns a list of preview projects
+ */
 export const getPreviewProjects = async (): Promise<LocalizedProject[]> => {
   const localizedProjects = await getLocalizedProjects();
 
@@ -99,13 +158,19 @@ export const getPreviewProjects = async (): Promise<LocalizedProject[]> => {
   );
 };
 
+/**
+ * Returns a list of links to all projects.
+ *
+ * @param language the current ui language
+ * @returns a list of project links
+ */
 export const getProjectLinks = async (language: string): Promise<ProjectLink[]> => {
   const localizedProjects = await getLocalizedProjects();
   const links: (ProjectLink & { order: number })[] = [];
 
   for (const projectId in localizedProjects) {
     const project = getLocalizedEntryOrDefault(localizedProjects[projectId]!, language);
-    if (!project || !project.data.enabled) continue;
+    if (!project) continue;
 
     const data = extractSlug(project.slug);
     if (!data.id || !data.lang) continue;
@@ -117,9 +182,16 @@ export const getProjectLinks = async (language: string): Promise<ProjectLink[]> 
     });
   }
 
-  return links.toSorted((a, b) => a.order - b.order);
+  return links.toSorted(compareOrders);
 };
 
+/**
+ * Returns a list of links to all projects that are referenced by the given project.
+ *
+ * @param seeAlso the see also references of the project
+ * @param language the current ui language
+ * @returns a list of project links
+ */
 export const getSeeAlsoLinks = async (seeAlso: string[], language: string): Promise<ProjectLink[]> => {
   if (!seeAlso || seeAlso.length === 0) return [];
 
@@ -130,6 +202,12 @@ export const getSeeAlsoLinks = async (seeAlso: string[], language: string): Prom
   });
 };
 
+/**
+ * Returns the project overview with all projects and their links.
+ *
+ * @param language the current ui language
+ * @returns the project overview
+ */
 export const getProjectOverview = async (language: string): Promise<ProjectData> => {
   const localizedProjects = await getLocalizedProjects();
   const data: ProjectData = {
@@ -142,10 +220,12 @@ export const getProjectOverview = async (language: string): Promise<ProjectData>
     const project = localizedProjects[projectId] ?? {};
     const entry = getLocalizedEntryOrDefault(project ?? {}, language);
     if (!entry) continue;
+
     data.projects.push({
       id: projectId,
       year: entry.data.year,
       title: entry.data.title,
+      order: entry.data.order,
       description: entry.data.description,
       links: Object.entries(project).reduce(
         (allLinks, [projectLang, entry]) => ({
@@ -168,5 +248,44 @@ export const getProjectOverview = async (language: string): Promise<ProjectData>
       });
   }
 
+  data.webLinks.push(
+    ...[
+      {
+        title: 'zwoo',
+        url: 'https://zwoo.igd20.de',
+      },
+    ],
+  );
+
+  data.githubLinks.push(
+    ...[
+      {
+        title: 'zwoo',
+        url: 'https://github.com/fabiankachlock/zwoo',
+      },
+      {
+        title: 'zwoo-hq',
+        url: 'https://github.com/zwoo-hq',
+      },
+      {
+        title: '@log-rush/log-formatter',
+        url: 'https://github.com/log-rush/log-formatter',
+      },
+      {
+        title: 'tapo-api',
+        url: 'https://github.com/fabiankachlock/tapo-api',
+      },
+      {
+        title: 'website_v3',
+        url: 'https://github.com/fabiankachlock/website_v3',
+      },
+      {
+        title: 'local-cast',
+        url: 'https://github.com/fabiankachlock/local-cast',
+      },
+    ],
+  );
+
+  data.projects ? data.projects.toSorted(compareOrders) : [];
   return data;
 };

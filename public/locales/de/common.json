@@ -3,13 +3,15 @@
     "/": "Fabian Kachlock",
     "/impressum": "Impressum @ Fabian Kachlock",
     "/datenschutz": "Datenschutz @ Fabian Kachlock",
-    "/kontakt": "Kontakt @ Fabian Kachlock"
+    "/kontakt": "Kontakt @ Fabian Kachlock",
+    "/projekte": "Projekte @ Fabian Kachlock"
   },
   "description": {
     "/": "Fabian Kachlock - mein Portfolio.",
     "/impressum": "Impressum von Fabian Kachlock.",
     "/datenschutz": "Datenschutzerklärung von Fabian Kachlock.",
-    "/kontakt": "Kontaktiere Fabian Kachlock."
+    "/kontakt": "Kontaktiere Fabian Kachlock.",
+    "/projekte": "Projekte von Fabian Kachlock."
   },
   "lng": {
     "de": "Deutsch",
@@ -18,10 +20,13 @@
   "common": {
     "projects": "Projekte",
     "openMenu": "Menü öffnen",
+    "goToStart": "Zur Startseite",
     "changeLanguage": "Sprache ändern",
     "openWeb": "Webseite von {{name}} anzeigen",
     "openGitHub": "{{name}} auf GitHub anzeigen",
-    "openLink": "Referenz vom {{name}} öffnen"
+    "openLink": "Referenz vom {{name}} öffnen",
+    "maximizeImage": "Bild vergrößern",
+    "closeImage": "Bild schließen"
   },
   "contactForm": {
     "warnHttp": "Achtung: Die Seite wurde über HTTP aufgerufen. Alle Daten, die in dieses Formular eingeben werden, werden unverschlüsselt über das Internet übertragen. Das Formular kann nur über eine sichere HTTPS Verbindung genutzt werden.",
@@ -31,7 +36,7 @@
     "email": "E-Mail Adresse*:",
     "emailPlaceholder": "max@mustermann.de",
     "message": "Nachricht*:",
-    "messagePlaceholder": "Deine Nachricht ans mich",
+    "messagePlaceholder": "Deine Nachricht an mich",
     "submit": "Absenden",
     "loading": "lädt...",
     "submitDone": "Vielen Dank für deine Kontaktanfrage. Deine Anfrage wurde im System registriert und ich werde sie so schnell wie möglich bearbeiten und mich bei dir zurückmelden.",
