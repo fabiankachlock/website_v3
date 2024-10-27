@@ -7,3 +7,5 @@ declare const Netlify: {
     get: (key: string) => string | undefined;
   };
 };
+
+declare function plausible(event: string, args?: unknown): void;

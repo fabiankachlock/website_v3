@@ -1,12 +1,11 @@
 ---
-const id = Math.random().toString().substring(2, 7);
-
 export type Props = {
   tools: string[];
   featuredTools: string[];
+  id: string;
 };
 
-const { featuredTools, tools } = Astro.props;
+const { featuredTools, tools, id } = Astro.props;
 ---
 
 <div class="skill-drawer" data-id={id}>
