@@ -66,54 +66,33 @@ const projects = await getPreviewProjects();
     <Translation>
       <div slot="en" class="about-container">
         <p>
-          Hi, I'm Fabian Kachlock, a 20 years old software developer from Germany with about <span id="experience"
-            >6</span
-          > years of experience in mainly web development.
+          Hey, I'm Fabian Kachlock, a <span id="age">21</span>-year-old software developer from Germany. Alongside my
+          computer science studies, I like to spend my free time hacking away at one of my various side projects, going
+          for runs, or occasionally bouldering.
         </p>
         <p>
-          I focus on developing user-friendly interfaces and robust backend systems. My extensive experience with a
-          variety of technologies and tools enables me to write high-quality code and ensure its quality.
+          I've been involved in different areas of development for over <span id="experience">6</span> years and have found
+          my home in full-stack web development. I also enjoy working on developer tooling, like libraries or CLI tools.
         </p>
         <p>
-          I rely on proven methods and techniques to ensure the security and scalability of my applications and to
-          establish a solid codebase. Through careful architectural planning and continuous assurance of code quality, I
-          aim to deliver reliable and high-quality solutions.
-        </p>
-        <p>
-          By automating workflows and optimizing deployment processes, I ensure efficient operations and continuous
-          improvement in development.
+          I'm also interested in infrastructure, code and software architecture topics, and related process automation
+          in the area of CI/CD.
         </p>
       </div>
       <div slot="de" class="about-container">
         <p>
-          Hi, ich bin Fabian Kachlock, ein 20 Jahre alter Softwareentwickler aus Deutschland mit etwa <span
-            id="experience">6</span
-          > Jahren Erfahrung hauptsächlich in der Webentwicklung.
-        </p>
-        <!--
-          Ob mit Fullstack Frameworkjs order reinem HTML/CSS/JS - ich habe schon mit vielen TEchnologien und in verschiedenen Stacks gearbeitet
-          erschaffen einer guten Usability und Accessability (Webseiten)
-          solide Architektur
-          CI/CD
-          dabei sind Tools wie TS/Eslint etc. unverzichtbar
-         -->
-        <!-- <p>
-          Ob mit Fullstack Frameworks oder reinem HTML/CSS/JS - ich habe schon mit vielen Technologien und in
-          verschiedenen Stacks gearbeitet. Von Angular über React bis hin zu Vue.js habe
-        </p> -->
-        <p>
-          Ich konzentriere mich darauf, benutzerfreundliche Oberflächen und robuste Backend-Systeme zu entwickeln. Meine
-          umfangreiche Erfahrung mit einer Vielzahl von Technologien und Tools ermöglicht es mir, hochwertigen Code zu
-          schreiben und dessen Qualität sicherzustellen.
+          Hey, ich bin Fabian Kachlock, ein <span id="age">21</span> Jahre alter Softwareentwickler aus Deutschland. Neben
+          meinem Informatikstudium hacke ich in meiner Freizeit gerne an einem meiner diversen Side-Projects, gehe laufen
+          oder bin gelegendlich Bouldern.
         </p>
         <p>
-          Ich setze auf bewährte Methoden und Techniken, um die Sicherheit und Skalierbarkeit meiner Anwendungen zu
-          gewährleisten und eine solide Codebasis zu schaffen. Durch sorgfältige Architekturplanung und kontinuierliche
-          Sicherstellung der Codequalität strebe ich nach zuverlässigen und hochwertigen Lösungen.
+          Ich bin seit über <span id="experience">6</span> Jahren in verschiedenen Bereichen der Entwicklung tätig und habe
+          dabei mein zu Hause in der Fullstack-Webentwicklung gefunden. Außerdem arbeite ich gerne an Developer-Tooling,
+          wie Bibliotheken oder CLI-Tools.
         </p>
         <p>
-          Mit der Automatisierung von Workflows und der Optimierung von Bereitstellungs&shy;prozessen sorge ich für
-          effiziente Abläufe und eine kontinuierliche Verbesserung der Entwicklung.
+          Weiterhin bin ich an Infrastruktur, Code- und Softwarearchitektur-Themen und daran verknüpften
+          Prozessautomatisierungen im Bereich von CI/CD interessiert.
         </p>
       </div>
     </Translation>
@@ -138,7 +117,7 @@ const projects = await getPreviewProjects();
         tools={['Web APIs', 'express', 'NestJS', 'eslint', 'prettier', 'jest', 'Cypress']}
       >
         <Translation slot="title">
-          <span slot="de">Grundlagen der Web-Entwicklung</span>
+          <span slot="de">Web-Entwicklung Basics</span>
           <span slot="en">Webdevelopment essentials</span>
         </Translation>
         <Translation slot="content">
@@ -173,8 +152,8 @@ const projects = await getPreviewProjects();
         tools={['tailwindcss', 'SASS', 'vitest', 'vue-router']}
       >
         <Translation slot="title">
-          <span slot="de">Vue.js - mein bevorzugtes Frontend-Framework</span>
-          <span slot="en">Vue.js - my frontend framework of choice</span>
+          <span slot="de">Vue.js</span>
+          <span slot="en">Vue.js</span>
         </Translation>
         <Translation slot="content">
           <div slot="de">
@@ -208,8 +187,8 @@ const projects = await getPreviewProjects();
         tools={['Nuxt.js', 'Alpinejs', 'i18next']}
       >
         <Translation slot="title">
-          <span slot="de">Andere Frontend-Frameworks</span>
-          <span slot="en">Other frontend frameworks</span>
+          <span slot="de">Weitere Frontend-Frameworks</span>
+          <span slot="en"> Other frontend frameworks </span>
         </Translation>
         <Translation slot="content">
           <div slot="de">
@@ -243,8 +222,8 @@ const projects = await getPreviewProjects();
         tools={['WebSockets', 'golang-migrate', 'Postgresql', 'MongoDB']}
       >
         <Translation slot="title">
-          <span slot="de">Golang - meine bevorzugte Backend-Sprache</span>
-          <span slot="en">Golang - my backend language of choice</span>
+          <span slot="de">Golang</span>
+          <span slot="en">Golang</span>
         </Translation>
         <Translation slot="content">
           <div slot="de">
@@ -314,7 +293,7 @@ const projects = await getPreviewProjects();
       <SkillDrawer
         id="tools"
         featuredTools={['Git', 'Github', 'Jira']}
-        tools={['Confluence', 'BitBucket', 'Youtrack', 'Markdown']}
+        tools={['Confluence', 'BitBucket', 'Youtrack', 'gitea', 'Markdown']}
       >
         <Translation slot="title">
           <span slot="de"> Versions&shy;kontrolle & Projekt&shy;management</span>

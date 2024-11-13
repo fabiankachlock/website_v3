@@ -1,0 +1,26 @@
+# Projekte
+
+<horizontale Project Feature Cards>
+
+> zwoo
+
+ZWOO ist ein online Multiplayer Kartenspiel. 
+
+Außerdem ist zwoo für mich eine Art Spielplatz, auf dem ich verschiedene technische Konzepte einfach ausimplementieren kann, da a ich über die letzte Jahre genau dafür eine solide Basis geschaffen habe. 
+Dabei spare ich mir für jede Idee ein neues Project von 0 auf starten zu müssen udn kann es gleichzeit als Feature in zwoo integrieren. 
+Beispiele für solche Ideen aus den letzten Jahren sind:
+- Offline Modus: für den Offline Modus wird ein Wrapper um die zwoo GameEgine nach WASM kompiliert und im BRowser gecached, somit sind Spiele ohne Server und separate GameEngine impelmentierung im Browser möglich
+- Lokal-Modus mit Tauri: die auf Tauri basierende Dekstop App bringt einen eigenen Server mit, der eine AOT-kompiliere ASP.NET Anwendung ist und ermöglicht somit SPiele im LAN-Modus
+- Custom Bots: Mit Hilfe von ClearScript und den @zwoo/bots-builder Helper ist es möglich eigene Bots in Javascript zu schreiben und mit einer eingebetten V8 Engine in der Game Egine auszuführen
+
+> ? zwooc
+
+>
+
+<alle Projekte Link>
+
+# Posts
+
+
+
+--- Projekte

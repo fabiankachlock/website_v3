@@ -49,3 +49,9 @@ document.querySelectorAll('.skill-drawer').forEach((drawer, idx) => {
 document.querySelectorAll('#experience').forEach(span => {
   span.innerHTML = (new Date().getFullYear() - 2018).toString();
 });
+
+document.querySelectorAll('#age').forEach(span => {
+  const dateDiff = new Date().getTime() - new Date(2003, 8, 9).getTime();
+  const yearDiff = new Date(dateDiff).getFullYear() - new Date(0).getFullYear();
+  span.innerHTML = yearDiff.toString();
+});
