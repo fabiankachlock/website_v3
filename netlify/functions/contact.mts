@@ -1,4 +1,3 @@
-import sgMail from '@sendgrid/mail';
 import { verifyCaptcha } from 'netlify/util/hcaptcha';
 
 export class ContactFormDto {
@@ -36,19 +35,27 @@ export default async (req: Request) => {
       });
     }
 
-    sgMail.setApiKey(Netlify.env.get('SENDGRID_API_KEY')!);
-
     let body = `From: '${data.name}' (${data.email})\n`;
     body += `Submitted: ${data.site} at ${new Date(Date.now()).toLocaleString('de-DE')}\n`;
     body += `Captcha Score: ${captchaResponse.success ? 1 : 0} / 1\n`;
     body += `Message:\n${data.message}\n\n`;
 
-    await sgMail.send({
-      from: 'no-reply@fabiankachlock.dev',
-      to: 'contact@fabiankachlock.dev',
-      subject: 'Contact Form Submission',
-      text: body,
+    const mailResponse = await fetch('https://eu-api.smtp2go.com/v3/email/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Smtp2go-Api-Key': Netlify.env.get('SMTP2GO_API_KEY')!,
+      },
+      body: JSON.stringify({
+        sender: 'no-reply@fabiankachlock.dev',
+        to: ['contact@fabiankachlock.dev'],
+        subject: 'Contact Form Submission',
+        text_body: body,
+      }),
     });
+    if (!mailResponse.ok) {
+      throw new Error(`smtp2go responded with ${mailResponse.status}: ${await mailResponse.text()}`);
+    }
     console.log(`[http] out | 200 - success`);
     return new Response('OK', { headers, status: 200 });
   } catch (e: unknown) {
